@@ -1,0 +1,29 @@
+.input {
+  display: inline-block;
+  padding: 17px 32px;
+  width: 100%;
+  font-weight: 600;
+  line-height: 16px;
+  color: $primary;
+  border: 1px solid $primary-accent;
+  border-radius: 20px;
+
+  &::placeholder {
+    color: $gray-light;
+  }
+
+  &--form {
+    padding: 18px 20px;
+    border-radius: 7px;
+    border-color: $white;
+    color: $white;
+
+    &::placeholder {
+      color: $light;
+    }
+  }
+}
+
+textarea.input {
+  min-height: 90px;
+}

@@ -1,0 +1,18 @@
+.tag {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  width: max-content;
+  padding: 4px 9.5px;
+
+  font-family: $font-accent;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.12px;
+  letter-spacing: 0.05em;
+  color: $white;
+
+  border-radius: 10px;
+  background-color: $gray-light;
+}

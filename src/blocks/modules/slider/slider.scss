@@ -1,0 +1,52 @@
+.slider {
+  position: relative;
+
+  &--intro {
+    margin-left: -145px;
+    margin-right: -145px;
+
+    .swiper {
+      overflow: visible;
+    }
+
+    .swiper-pagination {
+      bottom: 60px !important;
+    }
+  }
+
+  &--visible {
+    .swiper {
+      overflow: visible;
+    }
+  }
+
+  .swiper-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-bullet {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 10px;
+      height: 10px;
+      background-color: $gray-light;
+      opacity: 1;
+
+      &-active {
+        background-color: $primary-accent;
+
+        &::before {
+          content: '';
+          flex-shrink: 0;
+          width: 16px;
+          height: 16px;
+          border-radius: 50px;
+          border: 1px solid $primary-accent;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.section {
+
+  &--gradient {
+    margin-top: -113px;
+    padding-top: 153px;
+    background: linear-gradient(0deg, #F3FDF6 87.01%, rgba(243, 253, 246, 0) 106.39%);
+  }
+
+  &--bg {
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $primary-accent;
+      opacity: 0.8;
+      mix-blend-mode: multiply;
+      z-index: 0;
+    }
+
+
+    .container {
+      z-index: 1;
+    }
+  }
+
+  &--gray {
+    background-color: $gray-white;
+  }
+
+  &--accent {
+    background-color: $primary;
+  }
+}

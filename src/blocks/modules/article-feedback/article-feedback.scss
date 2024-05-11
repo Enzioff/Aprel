@@ -1,0 +1,36 @@
+.article-feedback {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 39px 54px 50px;
+  background-color: $white;
+  border-radius: 25px 0 25px 25px;
+
+  &__date {
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 19.1px;
+    letter-spacing: 0.05em;
+    color: $gray-blue;
+  }
+
+  &__title {
+    margin-bottom: 19px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24.55px;
+    letter-spacing: 0.05em;
+  }
+
+  &__text {
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    color: $gray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}

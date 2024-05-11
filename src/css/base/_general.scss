@@ -1,0 +1,120 @@
+html {
+	scroll-behavior: smooth;
+}
+
+a,
+svg,
+button {
+	transition: 0.3s all;
+}
+
+input,
+textarea,
+button {
+	font-family: inherit;
+}
+
+.z-index {
+	&-1 {
+		z-index: 1;
+	}
+
+	&-2 {
+		z-index: 2;
+	}
+
+	&-3 {
+		z-index: 3;
+	}
+}
+
+.mob-hidden {
+	@include r(1200) {
+		visibility: hidden !important;
+		display:    none !important;
+	}
+}
+
+.desktop-hidden {
+	display:    none;
+	visibility: hidden;
+	@include r(1200) {
+		display:    block;
+		visibility: visible;
+	}
+}
+
+
+.order-m {
+	&-1 {
+		@include r(1200) {
+			order: 1;
+		}
+	}
+
+	&-2 {
+		@include r(1200) {
+			order: 2;
+		}
+	}
+
+	&-3 {
+		@include r(1200) {
+			order: 3;
+		}
+	}
+
+	&-4 {
+		@include r(1200) {
+			order: 4;
+		}
+	}
+
+	&-5 {
+		@include r(1200) {
+			order: 5;
+		}
+	}
+
+	&-6 {
+		@include r(1200) {
+			order: 6;
+		}
+	}
+
+	&-7 {
+		@include r(1200) {
+			order: 7;
+		}
+	}
+
+	&-8 {
+		@include r(1200) {
+			order: 8;
+		}
+	}
+
+	&-9 {
+		@include r(1200) {
+			order: 9;
+		}
+	}
+}
+
+.center {
+	text-align: center;
+}
+
+.centered {
+	margin-left:  auto;
+	margin-right: auto;
+}
+
+*[disabled] {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+.text-right {
+	text-align: right;
+}

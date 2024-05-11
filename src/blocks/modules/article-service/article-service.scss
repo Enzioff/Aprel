@@ -1,0 +1,27 @@
+.article-service {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 40px 31px 60px 40px;
+  border-radius: 25px 25px 0 25px;
+  background-color: $white;
+
+  &__picture {
+    display: flex;
+    width: auto;
+    height: 52px;
+    margin-bottom: 33px;
+  }
+
+  &__title {
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+  }
+
+  &__text {
+    line-height: 24px;
+    color: $gray;
+  }
+}

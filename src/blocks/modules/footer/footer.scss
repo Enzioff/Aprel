@@ -1,0 +1,64 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  padding: 76px 0 67px;
+  background-color: $primary;
+  color: $white;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 54px;
+    border-bottom: 1px solid $gray-light;
+    gap: 10px;
+  }
+
+  &__logo {
+    display: flex;
+    width: 122px;
+    height: 122px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: 76px;
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+  }
+
+  &__phone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.82px;
+    letter-spacing: 0.05em;
+
+    span {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 27.28px;
+    }
+  }
+}

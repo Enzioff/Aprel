@@ -1,0 +1,13 @@
+import instagram from "../assets/sprite/icon-instagram.svg";
+import tg from "../assets/sprite/icon-tg.svg";
+import vk from "../assets/sprite/icon-vk.svg";
+import roadmapVector from "../assets/sprite/icon-rd-vector.svg";
+import magnifier from "../assets/sprite/icon-magnifier.svg";
+
+export default {
+    instagram,
+    tg,
+    vk,
+    roadmapVector,
+    magnifier
+};

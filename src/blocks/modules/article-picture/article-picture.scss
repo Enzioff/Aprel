@@ -1,0 +1,38 @@
+.article-picture {
+  position: relative;
+  cursor: pointer;
+
+  &__picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    .article-picture__blackout {
+      opacity: 1;
+    }
+  }
+
+  &__blackout {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 70px;
+    background-color: rgba($primary-accent, 0.6);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: .2s linear;
+  }
+
+  &__icon {
+    display: flex;
+    width: 26px;
+    height: 26px;
+  }
+}

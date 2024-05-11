@@ -1,0 +1,21 @@
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &--light {
+    .subtitle {
+      color: $light;
+    }
+
+    .title {
+      color: $white;
+    }
+  }
+}

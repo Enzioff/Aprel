@@ -1,0 +1,51 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  min-width: 624px;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+  }
+
+  &__item {
+    position: relative;
+    width: 100%;
+  }
+
+  &__legend {
+    position: absolute;
+    top: -5px;
+    left: 40px;
+    display: flex;
+    padding: 0 17px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    color: $white;
+    background-color: $primary-accent;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  &__accept {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    line-height: 18px;
+    color: $white;
+    cursor: pointer;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}

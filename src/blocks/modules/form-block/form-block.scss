@@ -1,0 +1,27 @@
+.form-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+  height: 100%;
+  padding: 40px 46px 35px 47px;
+  border-radius: 0 25px 0 25px;
+  background-color: $primary-accent;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: $white;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}

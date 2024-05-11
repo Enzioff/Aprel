@@ -1,0 +1,12 @@
+.subtitle {
+  font-family: $font-accent;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $primary-accent;
+
+  &--default {
+    letter-spacing: 0;
+  }
+}
