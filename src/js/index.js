@@ -4,3 +4,4 @@ import "../css/main.scss";
 
 
 import "./slider";
+import "./header";

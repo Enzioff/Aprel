@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <%= htmlWebpackPlugin.options.head %>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body class="body">
+<%= htmlWebpackPlugin.options.sectionHeader %>
+<main class="main">
+    <section class="section pt-55 pb-40">
+        <div class="container">
+            <div class="breadcrumbs breadcrumbs--single mb-50">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a href="#" class="breadcrumbs__link">Главная</a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <span class="breadcrumbs__link breadcrumbs__link--current">Контакты</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="columns mb-40">
+                <div class="columns__col--3">
+                    <div class="contacts">
+                        <div class="contacts__intro">
+                            <h1 class="title title--accent title--lower">Контакты</h1>
+                            <p class="contacts__text">Для вопросов, предложений
+                                и просто чтобы сказать “привет”</p>
+                        </div>
+                        <div class="contacts__info">
+                            <ul class="contacts__list">
+                                <li class="contacts__item">
+                                    <a class="contacts__link" href="#">
+                                        Тел.
+                                        <span>
+                                            +7 (996) 521-27-92
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="contacts__item">
+                                    <a class="contacts__link" href="">
+                                        Email
+                                        <span>
+                                            hi@aprel-ls.ru
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="contacts__item">
+                                    <a class="contacts__link" href="#">
+                                        Все социальные сети
+                                        <span>
+                                            @aprel-ls
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="social social--border">
+                                <a href="#" class="social__link">
+                                    <svg class="social__icon">
+                                        <use xlink:href="./assets/sprite/sprite.svg#icon-vk"></use>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social__link">
+                                    <svg class="social__icon">
+                                        <use xlink:href="./assets/sprite/sprite.svg#icon-instagram"></use>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social__link">
+                                    <svg class="social__icon">
+                                        <use xlink:href="./assets/sprite/sprite.svg#icon-tg"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns__col--9">
+                    <picture class="picture picture--350">
+                        <img src="./assets/images/people.jpg" alt="">
+                    </picture>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="columns__col--3">
+                    <div class="features">
+                        <article class="article-feature">
+                            <picture class="article-feature__picture">
+                                <img src="./assets/images/icon-doc.svg" alt="">
+                            </picture>
+                            <p class="article-feature__text">
+                                Работаем по договору.
+                                Без выходных.
+                            </p>
+                        </article>
+                        <article class="article-feature">
+                            <picture class="article-feature__picture">
+                                <img src="./assets/images/icon-medal.svg" alt="">
+                            </picture>
+                            <p class="article-feature__text">
+                                Мы гарантируем качество выполненных работ и профессиональный сервис.
+                            </p>
+                        </article>
+                        <article class="article-feature">
+                            <picture class="article-feature__picture">
+                                <img src="./assets/images/icon-tree.svg" alt="">
+                            </picture>
+                            <p class="article-feature__text">
+                                Обращайтесь к нам,
+                                и ваш сад будет выглядеть великолепно!
+                            </p>
+                        </article>
+                    </div>
+                </div>
+                <div class="columns__col--9">
+                    <div class="form-block">
+                        <div class="form-block__info">
+                            <h3 class="form-block__title">
+                                Не нашли
+                                нужную услугу или есть вопросы?
+                            </h3>
+                            <p class="form-block__text">
+                                Заполните форму заявки и мы рассмотрим ваш запрос
+                            </p>
+                        </div>
+                        <form class="form" action="#">
+                            <fieldset class="form__wrapper">
+                                <label class="form__item">
+                                    <input class="input input--form" type="text" placeholder="Введите имя">
+                                    <span class="form__legend">Имя</span>
+                                </label>
+                                <label class="form__item">
+                                    <input class="input input--form" type="text" placeholder="+7-000-000-00-00">
+                                    <span class="form__legend">Телефон</span>
+                                </label>
+                            </fieldset>
+                            <fieldset class="form__wrapper">
+                                <label class="form__item">
+                                    <textarea class="input input--form" placeholder="Введите ваш вопрос"></textarea>
+                                    <span class="form__legend">Вопрос</span>
+                                </label>
+                            </fieldset>
+                            <div class="form__footer">
+                                <button class="button" type="submit">Отправить</button>
+                                <label class="form__accept">
+                                    <input class="checkbox" type="checkbox">
+                                    <span>
+                                        Я согласен с правилами обработки персональных данных и ознакомлен с <a
+                                            href="#" target="_blank">Политикой конфидециальности</a>
+                                    </span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<%= htmlWebpackPlugin.options.sectionFooter %>
+<%= htmlWebpackPlugin.options.temp %>
+</body>
+</html>

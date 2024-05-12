@@ -11,6 +11,11 @@
     height: 30px;
     border-radius: 50px;
     background-color: $white;
+    transition: .2s linear;
+
+    &:hover {
+      opacity: .7;
+    }
   }
 
   &__icon {
@@ -25,10 +30,17 @@
       background-color: transparent;
       border: 1px solid $white;
     }
+
     .social__icon {
       fill: $white;
       width: 13px;
       height: 13px;
+    }
+  }
+
+  &--border {
+    .social__link {
+      border: 1px solid $primary-accent;
     }
   }
 }

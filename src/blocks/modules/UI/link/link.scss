@@ -5,4 +5,8 @@
   letter-spacing: 0.05em;
   color: $primary-accent;
   text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
 }

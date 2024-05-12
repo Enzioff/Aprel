@@ -15,4 +15,13 @@
 
   border-radius: 10px;
   background-color: $gray-light;
+
+  @include r($mobile) {
+    top: 17px;
+    left: 17px;
+    padding: 4px 5px;
+    font-size: 10px;
+    line-height: 10px;
+    border-radius: 5px;
+  }
 }

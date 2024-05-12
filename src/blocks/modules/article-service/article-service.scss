@@ -5,6 +5,19 @@
   padding: 40px 31px 60px 40px;
   border-radius: 25px 25px 0 25px;
   background-color: $white;
+  transition: .2s linear;
+
+  @include r($mobile) {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 20px;
+    border-radius: 20px;
+  }
+
+  &:hover {
+    box-shadow: -40px 40px 100px 0px #1B7C5F2B;
+  }
 
   &--row {
     flex-direction: row;
@@ -33,9 +46,16 @@
 
   &__picture {
     display: flex;
+    flex-shrink: 0;
     width: auto;
     height: 52px;
     margin-bottom: 33px;
+
+    @include r($mobile) {
+      margin-bottom: 0;
+      width: 30px;
+      height: 28px;
+    }
   }
 
   &__title {
@@ -43,10 +63,25 @@
     font-size: 20px;
     font-weight: 700;
     line-height: 28px;
+
+    @include r($mobile) {
+      margin-bottom: 0;
+      font-size: 16px;
+      line-height: 1;
+    }
   }
 
   &__text {
     line-height: 24px;
     color: $gray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+
+    @include r($mobile) {
+      display: none;
+    }
   }
 }

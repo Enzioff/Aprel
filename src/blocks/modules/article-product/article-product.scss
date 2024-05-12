@@ -9,6 +9,12 @@
   background-color: $white;
   border-radius: 0 25px 25px 25px;
 
+  @include r($mobile) {
+    padding: 17px;
+    border-radius: 20px;
+    min-height: 385px;
+  }
+
   &__picture {
     display: flex;
     align-items: center;
@@ -35,6 +41,11 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+
+    @include r($mobile) {
+      font-size: 11px;
+      line-height: 19.56px;
+    }
   }
 
   &__info {
@@ -42,6 +53,11 @@
     align-items: center;
     gap: 15px;
     margin-bottom: 23px;
+
+    @include r($mobile) {
+      gap: 10px;
+      margin-bottom: 15px;
+    }
 
     .price {
       margin-left: auto;
@@ -53,5 +69,16 @@
     font-size: 14px;
     line-height: 24px;
     color: $gray;
+
+    @include r($mobile) {
+      font-size: 10px;
+      line-height: 10px;
+    }
+  }
+
+  .button {
+    @include r($mobile) {
+      border-radius: 5px;
+    }
   }
 }

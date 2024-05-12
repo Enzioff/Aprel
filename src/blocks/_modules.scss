@@ -9,6 +9,9 @@
 @import "modules/UI/link/link";
 @import "modules/UI/development/development";
 @import "modules/UI/breadcrumbs/breadcrumbs";
+@import "modules/UI/picture/picture";
+@import "modules/UI/text/text";
+@import "modules/UI/burger/burger";
 
 // Components
 @import "modules/body/body";
@@ -36,6 +39,8 @@
 @import "modules/features/features";
 @import "modules/product-page/product-page";
 @import "modules/product-filter/product-filter";
+@import "modules/contacts/contacts";
+@import "modules/top-line/top-line";
 
 // Articles
 @import "modules/article-preview/article-preview";

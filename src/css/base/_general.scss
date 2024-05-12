@@ -36,10 +36,10 @@ button {
 }
 
 .desktop-hidden {
-	display:    none;
+	display:    none !important;
 	visibility: hidden;
 	@include r(1200) {
-		display:    block;
+		display:    flex !important;
 		visibility: visible;
 	}
 }
@@ -117,4 +117,15 @@ button {
 
 .text-right {
 	text-align: right;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+	clip: rect(0 0 0 0);
 }

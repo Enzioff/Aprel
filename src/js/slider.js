@@ -1,4 +1,4 @@
-import Swiper, {EffectFade, Pagination, Thumbs} from "swiper";
+import Swiper, {Autoplay, EffectFade, Pagination, Thumbs} from "swiper";
 import "swiper/swiper-bundle.min.css";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,6 +16,7 @@ class Slider {
         this.el = el;
         this.type = this.el.getAttribute('data-slider');
         this.visibleSlides = this.el.getAttribute('data-slider-slides')
+        this.visibleSlidesMobile = this.el.getAttribute('data-slider-slides-mobile')
 
         this.init()
     }
@@ -37,10 +38,13 @@ class Slider {
     initIntroSlider() {
         const slider = this.el.querySelector('.swiper');
         const swiper = new Swiper(slider, {
-            modules: [Pagination, EffectFade],
+            modules: [Pagination, EffectFade, Autoplay],
             slidesPerView: this.visibleSlides ? this.visibleSlides : 1,
             effect: 'fade',
             crossFade: true,
+            autoplay: {
+              delay: 3000,
+            },
             pagination: {
                 el: slider.querySelector('.swiper-pagination'),
                 clickable: true,
@@ -52,12 +56,18 @@ class Slider {
         const slider = this.el.querySelector('.swiper');
         const swiper = new Swiper(slider, {
             modules: [Pagination, Thumbs],
-            slidesPerView: this.visibleSlides ? this.visibleSlides : 3,
-            spaceBetween: 24,
+            slidesPerView: 'auto',
+            spaceBetween: 16,
             pagination: {
                 el: slider.querySelector('.swiper-pagination'),
                 clickable: true,
             },
+            breakpoints: {
+                1200: {
+                    slidesPerView: this.visibleSlides ? this.visibleSlides : 3,
+                    spaceBetween: 24,
+                }
+            }
         })
     }
 

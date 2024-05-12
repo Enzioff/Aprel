@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <%= htmlWebpackPlugin.options.head %>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body class="body">
+<%= htmlWebpackPlugin.options.sectionHeader %>
+<main class="main">
+    <section class="section pt-50 pb-40">
+        <div class="container">
+            <div class="breadcrumbs breadcrumbs--single mb-60">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a href="#" class="breadcrumbs__link">Главная</a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <span class="breadcrumbs__link breadcrumbs__link--current">Услуги</span>
+                    </li>
+                </ul>
+            </div>
+            <h1 class="title title--accent title--lower mb-40">Услуги садовника</h1>
+            <p class="text mb-60">
+                Мы - команда профессиональных садовников. Услуга сервисного ухода за садом - это персональный подход в
+                уходе за вашим садом. Каждый участок для нас - это уникальный единый живой организм. Поэтому мы работаем
+                строго индивидуально. За Вашим садом будет ухаживать одна и та же команда, которая будет знать
+                особенности и нюансы Вашего участка.
+            </p>
+            <div class="editor mb-40">
+                <h2>Мы готовы предоставить Вам следующие услуги:</h2>
+                <ul>
+                    <li>
+                        Комплексное обслуживание газона
+                    </li>
+                    <li>
+                        Профилактические и лечебные обработки
+                    </li>
+                    <li>
+                        Все виды обрезки и стрижки
+                    </li>
+                    <li>
+                        Уход за зимним садом
+                    </li>
+                    <li>
+                        Ведение журнала садовых работ
+                    </li>
+                </ul>
+                <br/>
+                <br/>
+                <br/>
+                <h2>заголовок</h2>
+                <p>
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum."
+                </p>
+                <p>
+                    "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+                    deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non
+                    provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum
+                    fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis
+                    est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis
+                    voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis
+                    aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non
+                    recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus
+                    maiores alias consequatur aut perferendis doloribus asperiores repellat."
+                </p>
+            </div>
+            <div class="slider mb-40" data-slider data-slider-slides="4">
+                <div class="swiper">
+                    <div class="swiper-wrapper pb-80">
+                        <div class="swiper-slide">
+                            <img src="./assets/images/gallery-1.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/images/gallery-1.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/images/gallery-1.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/images/gallery-1.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/images/gallery-1.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="columns__col--3">
+                    <div class="features">
+                        <article class="article-feature">
+                            <picture class="article-feature__picture">
+                                <img src="./assets/images/icon-doc.svg" alt="">
+                            </picture>
+                            <p class="article-feature__text">
+                                Работаем по договору.
+                                Без выходных.
+                            </p>
+                        </article>
+                        <article class="article-feature">
+                            <picture class="article-feature__picture">
+                                <img src="./assets/images/icon-medal.svg" alt="">
+                            </picture>
+                            <p class="article-feature__text">
+                                Мы гарантируем качество выполненных работ и профессиональный сервис.
+                            </p>
+                        </article>
+                        <article class="article-feature">
+                            <picture class="article-feature__picture">
+                                <img src="./assets/images/icon-tree.svg" alt="">
+                            </picture>
+                            <p class="article-feature__text">
+                                Обращайтесь к нам,
+                                и ваш сад будет выглядеть великолепно!
+                            </p>
+                        </article>
+                    </div>
+                </div>
+                <div class="columns__col--9">
+                    <div class="form-block">
+                        <div class="form-block__info">
+                            <h3 class="form-block__title">
+                                Не нашли
+                                нужную услугу или есть вопросы?
+                            </h3>
+                            <p class="form-block__text">
+                                Заполните форму заявки и мы рассмотрим ваш запрос
+                            </p>
+                        </div>
+                        <form class="form" action="#">
+                            <fieldset class="form__wrapper">
+                                <label class="form__item">
+                                    <input class="input input--form" type="text" placeholder="Введите имя">
+                                    <span class="form__legend">Имя</span>
+                                </label>
+                                <label class="form__item">
+                                    <input class="input input--form" type="text" placeholder="+7-000-000-00-00">
+                                    <span class="form__legend">Телефон</span>
+                                </label>
+                            </fieldset>
+                            <fieldset class="form__wrapper">
+                                <label class="form__item">
+                                    <textarea class="input input--form" placeholder="Введите ваш вопрос"></textarea>
+                                    <span class="form__legend">Вопрос</span>
+                                </label>
+                            </fieldset>
+                            <div class="form__footer">
+                                <button class="button" type="submit">Отправить</button>
+                                <label class="form__accept">
+                                    <input class="checkbox" type="checkbox">
+                                    <span>
+                                        Я согласен с правилами обработки персональных данных и ознакомлен с <a
+                                            href="#" target="_blank">Политикой конфидециальности</a>
+                                    </span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<%= htmlWebpackPlugin.options.sectionFooter %>
+<%= htmlWebpackPlugin.options.temp %>
+</body>
+</html>

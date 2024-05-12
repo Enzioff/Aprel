@@ -1,0 +1,16 @@
+.top-line {
+  padding: 23px 0;
+  background-color: $gray-white;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__link {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+}

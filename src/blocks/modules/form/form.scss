@@ -4,11 +4,20 @@
   gap: 42px;
   min-width: 624px;
 
+  @include r($mobile) {
+    min-width: 100%;
+    gap: 20px;
+  }
+
   &__wrapper {
     display: flex;
     align-items: center;
     gap: 30px;
     width: 100%;
+
+    @include r($mobile) {
+      flex-direction: column;
+    }
   }
 
   &__item {
@@ -33,6 +42,9 @@
     display: flex;
     align-items: center;
     gap: 25px;
+    @include r($mobile) {
+      flex-direction: column;
+    }
   }
 
   &__accept {
@@ -46,6 +58,10 @@
 
     a {
       text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }

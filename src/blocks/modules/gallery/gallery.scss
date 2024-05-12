@@ -5,6 +5,12 @@
   grid-auto-rows: 10px;
   gap: 1px 30px;
 
+  @include r($mobile) {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    grid-auto-rows: initial;
+  }
+
   &__item {
     position: relative;
     display: flex;
@@ -18,6 +24,11 @@
     border-radius: 20px;
     overflow: hidden;
 
+    @include r($mobile) {
+      grid-row-end: auto;
+      height: 172px;
+    }
+
     &:hover {
       .gallery__blackout {
         opacity: 1;
@@ -27,21 +38,42 @@
     &--small {
       height: 257px;
       grid-row-end: span 26;
+
+      @include r($mobile) {
+        display: none;
+        grid-row-end: auto;
+      }
     }
 
     &--big {
       height: 435px;
       grid-row-end: span 43;
+
+      @include r($mobile) {
+        display: none;
+        grid-row-end: auto;
+      }
     }
 
     &--full {
       grid-column: span 2;
       grid-row-end: span 23;
       height: 220px;
+
+      @include r($mobile) {
+        height: 100px;
+        grid-row-end: auto;
+      }
+
       &-big {
         grid-column: span 2;
         grid-row-end: span 23;
         height: 298px;
+
+        @include r($mobile) {
+          display: none;
+          grid-row-end: auto;
+        }
       }
     }
   }
@@ -49,7 +81,7 @@
   &__picture {
     display: flex;
     width: 100%;
-    height: auto;
+    height: 100%;
 
     img {
       display: block;

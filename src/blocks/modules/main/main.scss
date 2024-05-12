@@ -1,4 +1,9 @@
 .main {
+  padding-top: 112px;
   flex-grow: 1;
   overflow-x: clip;
+
+  @include r($mobile) {
+    padding-top: 73px;
+  }
 }

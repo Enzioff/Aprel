@@ -21,6 +21,12 @@
   &__button {
     background-color: $white;
     color: $gray;
+    transition: .2s linear;
+
+    &:hover {
+      opacity: .7;
+      box-shadow: none;
+    }
   }
 
   input:checked ~ .button,
@@ -50,5 +56,10 @@
     color: $gray;
     border-radius: 20px;
     background-color: $white;
+    transition: .2s linear;
+
+    &:hover {
+      opacity: .7;
+    }
   }
 }

@@ -1,0 +1,35 @@
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  &__intro,
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 24px;
+    color: $gray;
+  }
+
+  &__link {
+    line-height: 21.82px;
+    letter-spacing: 0.05em;
+
+    span {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 27.28px;
+    }
+  }
+}

@@ -1,16 +1,24 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 105px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 20px 105px;
 
   &__link {
     font-weight: 500;
     line-height: 20px;
     text-transform: uppercase;
     color: $primary;
+    transition: .2s linear;
+
+    &:hover {
+      opacity: .7;
+    }
   }
 
   &--footer {
+    justify-content: flex-start;
     gap: 50px;
 
     .nav__link {

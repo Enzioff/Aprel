@@ -4,6 +4,11 @@
   line-height: 48px;
   text-transform: uppercase;
 
+  @include r($mobile) {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
   &--accent {
     color: $primary-accent;
   }

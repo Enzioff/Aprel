@@ -1,3 +1,11 @@
+.mtm {
+    &-20 {
+        @include r($mobile) {
+            margin-top: rem(20);
+        }
+    }
+}
+
 .mbm {
     &-1 {
         @include r(1200) {

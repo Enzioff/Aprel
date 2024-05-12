@@ -7,6 +7,12 @@
   border-radius: 0 25px 0 25px;
   background-color: $primary-accent;
 
+  @include r($mobile) {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 20px;
+  }
+
   &__info {
     display: flex;
     flex-direction: column;
@@ -18,10 +24,20 @@
     font-size: 24px;
     font-weight: 700;
     line-height: 32px;
+
+    @include r($mobile) {
+      font-size: 16px;
+      line-height: 20px;
+    }
   }
 
   &__text {
     font-size: 20px;
     line-height: 28px;
+
+    @include r($mobile) {
+      font-size: 16px;
+      line-height: 20px;
+    }
   }
 }

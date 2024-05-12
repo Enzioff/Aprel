@@ -9,6 +9,13 @@
   border-radius: 30px;
   overflow: hidden;
 
+  @include r($mobile) {
+    align-items: flex-end;
+    padding: 0 24px 100px;
+    min-height: 612px;
+    border-radius: 0 0 20px 20px;
+  }
+
   &__picture {
     position: absolute;
     top: 0;
@@ -48,6 +55,12 @@
     span {
       color: $primary-accent;
     }
+
+    @include r($mobile) {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 38.4px;
+    }
   }
 
   &__text {
@@ -55,11 +68,39 @@
     font-size: 36px;
     line-height: 48px;
     color: $white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+
+    @include r($mobile) {
+      display: none;
+    }
   }
 
   &__controls {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 25px;
+
+    @include r($mobile) {
+      .button {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &__logo {
+    @include r($mobile) {
+      display: none;
+    }
+  }
+
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 }

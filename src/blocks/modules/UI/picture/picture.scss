@@ -1,0 +1,18 @@
+.picture {
+  display: flex;
+  width: 100%;
+  border-radius: 25px 0 25px 0;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &--350 {
+    height: 350px;
+  }
+}

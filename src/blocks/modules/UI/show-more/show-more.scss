@@ -4,4 +4,8 @@
   letter-spacing: 0.05em;
   text-decoration: underline;
   color: $primary-accent;
+
+  &:hover {
+    opacity: .7;
+  }
 }

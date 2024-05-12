@@ -6,6 +6,11 @@
   text-transform: uppercase;
   color: $primary-accent;
 
+  @include r($mobile) {
+    font-size: 10px;
+    line-height: 10px;
+  }
+
   &--default {
     letter-spacing: 0;
   }

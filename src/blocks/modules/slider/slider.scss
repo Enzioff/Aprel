@@ -14,9 +14,22 @@
     }
   }
 
+  &--auto {
+    .swiper-slide {
+      @include r($mobile) {
+        max-width: 240px;
+      }
+    }
+  }
+
   &--intro {
     margin-left: -145px;
     margin-right: -145px;
+
+    @include r($mobile) {
+      margin-left: -24px;
+      margin-right: -24px;
+    }
 
     .swiper {
       overflow: visible;
@@ -24,6 +37,10 @@
 
     .swiper-pagination {
       bottom: 60px !important;
+
+      @include r($mobile) {
+        bottom: 38px !important;
+      }
     }
   }
 

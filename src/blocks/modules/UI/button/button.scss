@@ -17,9 +17,24 @@
 
   cursor: pointer;
 
+  &:hover {
+    box-shadow: 0 3px 4px 0 #F3E9C5 inset, 0 -3px 4px 0 #FFFDF6 inset;
+  }
+
+  @include r($mobile) {
+    padding: 13px;
+    max-width: 155px;
+    font-size: 14px;
+    line-height: 19.12px;
+  }
+
   &--accent {
     background-color: $primary-accent;
     color: $white;
+
+    &:hover {
+      box-shadow: 0 -3px 4px 0 #FFFFFF40 inset, 0 4px 4px 0 #00000040 inset;
+    }
   }
 
   &--thin {
@@ -27,5 +42,11 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
+  }
+
+  &--mobile-wide {
+    @include r($mobile) {
+      max-width: 100%;
+    }
   }
 }

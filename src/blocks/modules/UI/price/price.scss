@@ -3,11 +3,20 @@
     font-size: 20px;
     font-weight: 700;
     color: $gray;
+
+    @include r($mobile) {
+      font-size: 13.97px;
+      line-height: 13.97px;
+    }
   }
 
   span {
     font-size: 24px;
     color: $primary;
+    @include r($mobile) {
+      font-size: 16.77px;
+      line-height: 16.77px;
+    }
   }
 
   &--big {
