@@ -75,8 +75,14 @@ class Slider {
         const slider = this.el.querySelector('.swiper');
         const thumbSlider = document.querySelector('.slider--thumbs');
         const thumb = new Swiper(thumbSlider.querySelector('.swiper'), {
-            slidesPerView: 'auto',
-            spaceBetween: 30,
+            slidesPerView: 2,
+            spaceBetween: 16,
+            breakpoints: {
+                1200: {
+                    slidesPerView: 'auto',
+                    spaceBetween: 30,
+                }
+            }
         })
         const swiper = new Swiper(slider, {
             modules: [Thumbs],

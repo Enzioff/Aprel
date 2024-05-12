@@ -1,5 +1,9 @@
 .section {
 
+  @include r($mobile) {
+    background-color: $gray-white;
+  }
+
   &--gradient {
     margin-top: -113px;
     padding-top: 153px;

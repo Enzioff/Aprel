@@ -4,6 +4,11 @@
             margin-top: rem(20);
         }
     }
+    &-30 {
+        @include r($mobile) {
+            margin-top: rem(30);
+        }
+    }
 }
 
 .mbm {

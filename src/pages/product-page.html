@@ -7,9 +7,9 @@
 <body class="body">
 <%= htmlWebpackPlugin.options.sectionHeader %>
 <main class="main">
-    <section class="section section--gray-gradient pb-75">
+    <section class="section section--gray-gradient ptm-20 pb-75">
         <div class="container">
-            <div class="breadcrumbs breadcrumbs--single mb-60">
+            <div class="breadcrumbs breadcrumbs--single mb-60 mbm-25">
                 <ul class="breadcrumbs__list">
                     <li class="breadcrumbs__item">
                         <a href="#" class="breadcrumbs__link">Главная</a>
@@ -22,8 +22,46 @@
                     </li>
                 </ul>
             </div>
-            <div class="columns mb-75">
-                <div class="columns__col--5">
+            <div class="columns mb-75 mbm-30">
+                <div class="columns__col--12 desktop-hidden">
+                    <div class="product-page">
+                        <div class="product-page__intro">
+                            <h1 class="title title--accent title--lower">Мешок/гроубэг для посадки растений</h1>
+                            <p class="product-page__text">
+                                Умные горшки, или по-другому гроубэги (англ. Grow Bag – сумка для выращивания) –
+                                отличная
+                                альтернатива привычным емкостям для выращивания зелени, плодово-ягодных растений или
+                                цветов.
+                            </p>
+                        </div>
+                        <div class="product-page__detail">
+                            <h3 class="product-page__title">о товаре</h3>
+                            <ul class="product-page__list">
+                                <li class="product-page__item">
+                                    <strong>Материал</strong>
+                                    <span>Нетканное полотно</span>
+                                </li>
+                                <li class="product-page__item">
+                                    <strong>Цвет</strong>
+                                    <span>Чёрный</span>
+                                </li>
+                                <li class="product-page__item">
+                                    <strong>Форма</strong>
+                                    <span>Квадрат</span>
+                                </li>
+                                <li class="product-page__item">
+                                    <strong>Высота</strong>
+                                    <span>30 см</span>
+                                </li>
+                                <li class="product-page__item">
+                                    <strong>Ширина</strong>
+                                    <span>20 см</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns__col--5 mbm-30">
                     <div class="slider slider--preview mb-20" data-slider="thumbs">
                         <div class="swiper">
                             <div class="swiper-wrapper">
@@ -113,10 +151,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="columns__col--1"></div>
+                <div class="columns__col--1 mob-hidden"></div>
                 <div class="columns__col--6">
                     <div class="product-page">
-                        <div class="product-page__intro">
+                        <div class="product-page__intro mob-hidden">
                             <h1 class="title title--accent title--lower">Мешок/гроубэг для посадки растений</h1>
                             <p class="product-page__text">
                                 Умные горшки, или по-другому гроубэги (англ. Grow Bag – сумка для выращивания) –
@@ -135,7 +173,7 @@
                                         <input class="input" type="number" placeholder="введите количество">
                                     </label>
                                 </div>
-                                <div class="product-page__detail">
+                                <div class="product-page__detail mob-hidden">
                                     <h3 class="product-page__title">о товаре</h3>
                                     <ul class="product-page__list">
                                         <li class="product-page__item">
@@ -161,7 +199,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="product-filter">
+                            <div class="product-filter mbm-30">
                                 <div class="product-filter__top">
                                     <label class="product-filter__label">
                                         <input type="checkbox" name="pens" hidden>
@@ -179,7 +217,7 @@
                                             <img src="./assets/images/icon-rectangle.svg" alt="">
                                         </span>
                                     </label>
-                                    <button class="button" type="submit">Оставить заявку</button>
+                                    <button class="button mob-hidden" type="submit">Оставить заявку</button>
                                 </div>
                                 <div class="product-filter__content">
                                     <label class="product-filter__label">
@@ -228,17 +266,18 @@
                                     </label>
                                 </div>
                             </div>
+                            <button class="button button--mobile-wide desktop-hidden">Оставить заявку</button>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="head mb-55">
+            <div class="head mb-55 mbm-30">
                 <div class="head__info">
                     <p class="subtitle">часто покупают</p>
                     <h2 class="title">Популярное</h2>
                 </div>
             </div>
-            <div class="slider" data-slider data-slider-slides="4">
+            <div class="slider slider--auto" data-slider data-slider-slides="4">
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">

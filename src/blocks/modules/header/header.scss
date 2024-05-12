@@ -9,7 +9,7 @@
   z-index: 3;
 
   @include r($mobile) {
-    top: 62px;
+    top: 0;
     padding: 14px 0;
   }
 

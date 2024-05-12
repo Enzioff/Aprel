@@ -7,9 +7,9 @@
 <body class="body">
 <%= htmlWebpackPlugin.options.sectionHeader %>
 <main class="main">
-    <section class="section pt-50 pb-40">
+    <section class="section pt-50 pb-40 pbm-30">
         <div class="container">
-            <div class="page-header mb-80">
+            <div class="page-header mb-80 mbm-30">
                 <div class="breadcrumbs">
                     <ul class="breadcrumbs__list">
                         <li class="breadcrumbs__item">
@@ -24,7 +24,7 @@
                 <img class="page-header__background" src="./assets/images/about-img.jpg" alt="">
             </div>
             <div class="about">
-                <div class="columns mb-60">
+                <div class="columns mb-60 mbm-50">
                     <div class="columns__col--3">
                         <div class="about__item">
                             <p class="about__value">26</p>
@@ -59,14 +59,45 @@
             </div>
         </div>
     </section>
-    <section class="section pt-40 pb-40">
+    <section class="section pb-40 pbm-0">
         <div class="container">
-            <div class="head mb-55">
+            <div class="masters">
+                <div class="masters__info">
+                    <div class="head mb-30 mbm-30 mob-hidden">
+                        <div class="head__info">
+                            <p class="subtitle">наша команда</p>
+                            <h2 class="title">Мастера</h2>
+                        </div>
+                    </div>
+                    <div class="masters__list">
+                        <div class="masters__item">
+                            <h3 class="masters__title">Анна Кудрявцева</h3>
+                            <p class="masters__description">Ландшафтный архитектор</p>
+                        </div>
+                        <div class="masters__item">
+                            <h3 class="masters__title">Юрий Семёнов</h3>
+                            <p class="masters__description">Руководитель отдела озеленения и ухода</p>
+                        </div>
+                    </div>
+                    <p class="masters__text mob-hidden">
+                        создаём комфортное и удобное<br/>
+                        в эксплуатации пространство
+                    </p>
+                </div>
+                <picture class="masters__picture picture">
+                    <img src="./assets/images/people.jpg" alt="">
+                </picture>
+            </div>
+        </div>
+    </section>
+    <section class="section pt-40 ptm-30 pb-40">
+        <div class="container">
+            <div class="head mb-55 mbm-30">
                 <div class="head__info">
                     <p class="subtitle">портфолио</p>
                     <h2 class="title">проекты</h2>
                 </div>
-                <a class="button" href="#">Все проекты</a>
+                <a class="button visually-hidden" href="#">Все проекты</a>
             </div>
             <div class="gallery">
                 <div class="gallery__item">
@@ -170,7 +201,8 @@
                     </div>
                 </div>
             </div>
-            <div class="columns">
+            <a href="#" class="button button--mobile-wide visually-hidden mtm-20">Все проекты</a>
+            <div class="columns mtm-30">
                 <div class="columns__col--3">
                     <div class="features">
                         <article class="article-feature">
@@ -245,17 +277,17 @@
             </div>
         </div>
     </section>
-    <section class="section section--accent pt-70 pb-70">
+    <section class="section section--accent pt-70 ptm-30 pb-70 pbm-40">
         <div class="container">
-            <div class="head head--light mb-55">
+            <div class="head head--light mb-55 mbm-40">
                 <div class="head__info">
                     <p class="subtitle">о нас говорят</p>
                     <h2 class="title">Отзывы</h2>
                 </div>
             </div>
-            <div class="slider slider--visible" data-slider data-slider-slides="3">
+            <div class="slider slider--auto slider--visible" data-slider data-slider-slides="3">
                 <div class="swiper">
-                    <div class="swiper-wrapper pb-80">
+                    <div class="swiper-wrapper pb-80 pbm-40">
                         <div class="swiper-slide">
                             <article class="article-feedback">
                                 <time class="article-feedback__date" datetime="2021.10.14">14.10.21</time>
@@ -327,7 +359,7 @@
             </div>
         </div>
     </section>
-    <section class="section section--gray pt-80 pb-65">
+    <section class="section section--gray pt-80 ptm-30 pb-65 pbm-40">
         <div class="container">
             <div class="head mb-55">
                 <div class="head__info">
@@ -335,9 +367,9 @@
                     <h2 class="title">Сертификаты и Дипломы</h2>
                 </div>
             </div>
-            <div class="slider" data-slider data-slider-slides="4">
+            <div class="slider slider--auto slider--visible-mobile" data-slider data-slider-slides="4">
                 <div class="swiper">
-                    <div class="swiper-wrapper pb-80">
+                    <div class="swiper-wrapper pb-80 pbm-40">
                         <div class="swiper-slide">
                             <article class="article-picture">
                                 <picture class="article-picture__picture">

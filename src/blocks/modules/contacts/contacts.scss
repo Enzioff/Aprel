@@ -3,6 +3,10 @@
   flex-direction: column;
   gap: 60px;
 
+  @include r($mobile) {
+    gap: 30px;
+  }
+
   &__intro,
   &__list {
     display: flex;

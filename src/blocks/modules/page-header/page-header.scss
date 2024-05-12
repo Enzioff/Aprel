@@ -5,8 +5,13 @@
   padding: 30px 72px;
   height: 284px;
   border-radius: 25px;
-  overflow: hidden;
   background-color: $gray;
+
+  @include r($mobile) {
+    padding: 26px 20px;
+    height: auto;
+    min-height: 80px;
+  }
 
   *:not(.page-header__background) {
     position: relative;
@@ -21,6 +26,8 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(90deg, rgba(45, 74, 69, 0.85) 30.85%, rgba(30, 201, 150, 0.1) 100%);
+    border-radius: 25px;
+    overflow: hidden;
     z-index: 1;
   }
 
@@ -36,9 +43,19 @@
     left: 0;
     display: flex;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     object-position: center;
+    border-radius: 25px;
+    overflow: hidden;
     z-index: 0;
+  }
+
+  .breadcrumbs {
+    @include r($mobile) {
+      position: absolute;
+      left: 0;
+      top: -28px;
+    }
   }
 }

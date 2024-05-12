@@ -24,11 +24,22 @@
     align-items: center;
     padding: 43px 40px;
 
+    @include r($mobile) {
+      gap: 20px;
+      padding: 22px 20px;
+      border-radius: 20px;
+    }
+
     .article-service__picture {
       flex-shrink: 0;
       margin-bottom: 0;
       width: 62px;
       margin-right: 50px;
+
+      @include r($mobile) {
+        width: 30px;
+        margin-right: 0;
+      }
     }
 
     .article-service__title {
@@ -37,6 +48,12 @@
       width: 300px;
       margin-right: 50px;
       text-transform: uppercase;
+
+      @include r($mobile) {
+        flex-shrink: 1;
+        width: auto;
+        margin-right: 0;
+      }
     }
 
     .article-service__text {

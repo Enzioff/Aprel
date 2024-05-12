@@ -5,20 +5,36 @@
   background-color: $white;
   border-radius: 25px 0 25px 25px;
 
+  @include r($mobile) {
+    padding: 17px;
+    height: 100%;
+  }
+
   &__date {
     margin-bottom: 24px;
     font-size: 14px;
     line-height: 19.1px;
     letter-spacing: 0.05em;
     color: $gray-blue;
+
+    @include r($mobile) {
+      margin-bottom: 30px;
+      font-size: 10px;
+      line-height: 13.64px;
+    }
   }
 
   &__title {
-    margin-bottom: 19px;
+    margin-bottom: 20px;
     font-size: 18px;
     font-weight: 600;
     line-height: 24.55px;
     letter-spacing: 0.05em;
+
+    @include r($mobile) {
+      font-size: 16px;
+      line-height: 16px;
+    }
   }
 
   &__text {
@@ -32,5 +48,15 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+
+    @include r($mobile) {
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 21px;
+      -webkit-line-clamp: 5;
+    }
+  }
+  .show-more {
+    margin-top: auto;
   }
 }

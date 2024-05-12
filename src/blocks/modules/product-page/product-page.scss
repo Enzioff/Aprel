@@ -7,6 +7,10 @@
     flex-direction: column;
     gap: 20px;
     margin-bottom: 40px;
+
+    @include r($mobile) {
+      margin-bottom: 20px;
+    }
   }
 
   &__text {
@@ -35,6 +39,11 @@
     .input {
       max-width: 219px;
       appearance: none;
+
+      @include r($mobile) {
+        text-align: center;
+        max-width: 100%;
+      }
 
       &::-webkit-inner-spin-button,
       &::-webkit-outer-spin-button {

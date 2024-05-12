@@ -17,6 +17,12 @@
         font-weight: 400;
         line-height: 24px;
         color: $white;
+
+        @include r($mobile) {
+          font-size: 14px;
+          line-height: 1;
+          color: $primary;
+        }
       }
     }
   }
@@ -26,6 +32,23 @@
     font-weight: 400;
     line-height: 24px;
     color: $white;
+    transition: .2s linear;
+
+    &:hover {
+      opacity: .7;
+    }
+
+    &--current {
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    @include r($mobile) {
+      font-size: 14px;
+      line-height: 1;
+      color: $primary;
+    }
   }
 
   &--single {
