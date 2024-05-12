@@ -1,3 +1,16 @@
+// UI
+@import "modules/UI/logo/logo";
+@import "modules/UI/button/button";
+@import "modules/UI/input/input";
+@import "modules/UI/checkbox/checkbox";
+@import "modules/UI/tag/tag";
+@import "modules/UI/price/price";
+@import "modules/UI/show-more/show-more";
+@import "modules/UI/link/link";
+@import "modules/UI/development/development";
+@import "modules/UI/breadcrumbs/breadcrumbs";
+
+// Components
 @import "modules/body/body";
 @import "modules/container/container";
 @import "modules/columns/columns";
@@ -19,6 +32,10 @@
 @import "modules/roadmap/roadmap";
 @import "modules/gallery/gallery";
 @import "modules/footer/footer";
+@import "modules/page-header/page-header";
+@import "modules/features/features";
+@import "modules/product-page/product-page";
+@import "modules/product-filter/product-filter";
 
 // Articles
 @import "modules/article-preview/article-preview";
@@ -26,14 +43,5 @@
 @import "modules/article-product/article-product";
 @import "modules/article-picture/article-picture";
 @import "modules/article-feedback/article-feedback";
-
-// UI
-@import "modules/UI/logo/logo";
-@import "modules/UI/button/button";
-@import "modules/UI/input/input";
-@import "modules/UI/checkbox/checkbox";
-@import "modules/UI/tag/tag";
-@import "modules/UI/price/price";
-@import "modules/UI/show-more/show-more";
-@import "modules/UI/link/link";
-@import "modules/UI/development/development";
+@import "modules/article-feature/article-feature";
+@import "modules/article-photo/article-photo";

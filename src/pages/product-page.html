@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <%= htmlWebpackPlugin.options.head %>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body class="body">
+<%= htmlWebpackPlugin.options.sectionHeader %>
+<main class="main">
+    <section class="section section--gray-gradient pb-75">
+        <div class="container">
+            <div class="breadcrumbs breadcrumbs--single mb-60">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a href="#" class="breadcrumbs__link">Главная</a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <a href="#" class="breadcrumbs__link">Товары</a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <span class="breadcrumbs__link breadcrumbs__link--current">Мешок/гроубэг для растений</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="columns mb-75">
+                <div class="columns__col--5">
+                    <div class="slider slider--preview mb-20" data-slider="thumbs">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <article class="article-photo article-photo--big">
+                                        <picture class="article-photo__picture">
+                                            <img src="./assets/images/product-1.png" alt="">
+                                        </picture>
+                                        <div class="article-photo__blackout">
+                                            <svg class="article-photo__icon">
+                                                <use xlink:href="./assets/sprite/sprite.svg#icon-magnifier"></use>
+                                            </svg>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="swiper-slide">
+                                    <article class="article-photo article-photo--big">
+                                        <picture class="article-photo__picture">
+                                            <img src="./assets/images/product-1.png" alt="">
+                                        </picture>
+                                        <div class="article-photo__blackout">
+                                            <svg class="article-photo__icon">
+                                                <use xlink:href="./assets/sprite/sprite.svg#icon-magnifier"></use>
+                                            </svg>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="swiper-slide">
+                                    <article class="article-photo article-photo--big">
+                                        <picture class="article-photo__picture">
+                                            <img src="./assets/images/product-1.png" alt="">
+                                        </picture>
+                                        <div class="article-photo__blackout">
+                                            <svg class="article-photo__icon">
+                                                <use xlink:href="./assets/sprite/sprite.svg#icon-magnifier"></use>
+                                            </svg>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="swiper-slide">
+                                    <article class="article-photo article-photo--big">
+                                        <picture class="article-photo__picture">
+                                            <img src="./assets/images/product-1.png" alt="">
+                                        </picture>
+                                        <div class="article-photo__blackout">
+                                            <svg class="article-photo__icon">
+                                                <use xlink:href="./assets/sprite/sprite.svg#icon-magnifier"></use>
+                                            </svg>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider slider--thumbs">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <article class="article-photo">
+                                        <picture class="article-photo__picture">
+                                            <img src="./assets/images/product-1.png" alt="">
+                                        </picture>
+                                    </article>
+                                </div>
+                                <div class="swiper-slide">
+                                    <article class="article-photo">
+                                        <picture class="article-photo__picture">
+                                            <img src="./assets/images/product-1.png" alt="">
+                                        </picture>
+                                    </article>
+                                </div>
+                                <div class="swiper-slide">
+                                    <article class="article-photo">
+                                        <picture class="article-photo__picture">
+                                            <img src="./assets/images/product-1.png" alt="">
+                                        </picture>
+                                    </article>
+                                </div>
+                                <div class="swiper-slide">
+                                    <article class="article-photo">
+                                        <picture class="article-photo__picture">
+                                            <img src="./assets/images/product-1.png" alt="">
+                                        </picture>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns__col--1"></div>
+                <div class="columns__col--6">
+                    <div class="product-page">
+                        <div class="product-page__intro">
+                            <h1 class="title title--accent title--lower">Мешок/гроубэг для посадки растений</h1>
+                            <p class="product-page__text">
+                                Умные горшки, или по-другому гроубэги (англ. Grow Bag – сумка для выращивания) –
+                                отличная
+                                альтернатива привычным емкостям для выращивания зелени, плодово-ягодных растений или
+                                цветов.
+                            </p>
+                        </div>
+                        <form class="product-page__form" action="#">
+                            <div class="product-page__info">
+                                <div class="product-page__count">
+                                    <div class="price price--big">
+                                        <div class="price__text"><span>500</span> ₽/шт</div>
+                                    </div>
+                                    <label>
+                                        <input class="input" type="number" placeholder="введите количество">
+                                    </label>
+                                </div>
+                                <div class="product-page__detail">
+                                    <h3 class="product-page__title">о товаре</h3>
+                                    <ul class="product-page__list">
+                                        <li class="product-page__item">
+                                            <strong>Материал</strong>
+                                            <span>Нетканное полотно</span>
+                                        </li>
+                                        <li class="product-page__item">
+                                            <strong>Цвет</strong>
+                                            <span>Чёрный</span>
+                                        </li>
+                                        <li class="product-page__item">
+                                            <strong>Форма</strong>
+                                            <span>Квадрат</span>
+                                        </li>
+                                        <li class="product-page__item">
+                                            <strong>Высота</strong>
+                                            <span>30 см</span>
+                                        </li>
+                                        <li class="product-page__item">
+                                            <strong>Ширина</strong>
+                                            <span>20 см</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-filter">
+                                <div class="product-filter__top">
+                                    <label class="product-filter__label">
+                                        <input type="checkbox" name="pens" hidden>
+                                        <span class="button product-filter__button">Добавить ручки</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="type" hidden checked>
+                                        <span class="button product-filter__button">
+                                            <img src="./assets/images/icon-circle.svg" alt="">
+                                        </span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="type" hidden>
+                                        <span class="button product-filter__button">
+                                            <img src="./assets/images/icon-rectangle.svg" alt="">
+                                        </span>
+                                    </label>
+                                    <button class="button" type="submit">Оставить заявку</button>
+                                </div>
+                                <div class="product-filter__content">
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">1 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">3 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">5 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">7 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">10 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">15 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">20 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">25 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">35 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">50 л</span>
+                                    </label>
+                                    <label class="product-filter__label">
+                                        <input type="radio" name="value" hidden>
+                                        <span class="product-filter__element">100 л</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="head mb-55">
+                <div class="head__info">
+                    <p class="subtitle">часто покупают</p>
+                    <h2 class="title">Популярное</h2>
+                </div>
+            </div>
+            <div class="slider" data-slider data-slider-slides="4">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <article class="article-product">
+                                <div class="tag">
+                                    <span>Новинка</span>
+                                </div>
+                                <picture class="article-product__picture">
+                                    <img src="assets/images/product-1.png" alt="">
+                                </picture>
+                                <div class="article-product__content">
+                                    <p class="article-product__name">Мешок/гроубэг для посадки растений</p>
+                                    <div class="article-product__info">
+                                        <p class="article-product__size">10x200 мм</p>
+                                        <p class="article-product__value">10 л</p>
+                                        <div class="price">
+                                            <p class="price__text"><span>500</span> ₽/шт</p>
+                                        </div>
+                                    </div>
+                                    <button class="button button--thin button--accent">подробнее</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="swiper-slide">
+                            <article class="article-product">
+                                <div class="tag">
+                                    <span>Новинка</span>
+                                </div>
+                                <picture class="article-product__picture">
+                                    <img src="assets/images/product-2.png" alt="">
+                                </picture>
+                                <div class="article-product__content">
+                                    <p class="article-product__name">Мешок/гроубэг для посадки растений</p>
+                                    <div class="article-product__info">
+                                        <p class="article-product__size">10x200 мм</p>
+                                        <p class="article-product__value">10 л</p>
+                                        <div class="price">
+                                            <p class="price__text"><span>500</span> ₽/шт</p>
+                                        </div>
+                                    </div>
+                                    <button class="button button--thin button--accent">подробнее</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="swiper-slide">
+                            <article class="article-product">
+                                <div class="tag">
+                                    <span>Новинка</span>
+                                </div>
+                                <picture class="article-product__picture">
+                                    <img src="assets/images/product-3.png" alt="">
+                                </picture>
+                                <div class="article-product__content">
+                                    <p class="article-product__name">Мешок/гроубэг для посадки растений</p>
+                                    <div class="article-product__info">
+                                        <p class="article-product__size">10x200 мм</p>
+                                        <p class="article-product__value">10 л</p>
+                                        <div class="price">
+                                            <p class="price__text"><span>500</span> ₽/шт</p>
+                                        </div>
+                                    </div>
+                                    <button class="button button--thin button--accent">подробнее</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="swiper-slide">
+                            <article class="article-product">
+                                <div class="tag">
+                                    <span>Новинка</span>
+                                </div>
+                                <picture class="article-product__picture">
+                                    <img src="assets/images/product-1.png" alt="">
+                                </picture>
+                                <div class="article-product__content">
+                                    <p class="article-product__name">Мешок/гроубэг для посадки растений</p>
+                                    <div class="article-product__info">
+                                        <p class="article-product__size">10x200 мм</p>
+                                        <p class="article-product__value">10 л</p>
+                                        <div class="price">
+                                            <p class="price__text"><span>500</span> ₽/шт</p>
+                                        </div>
+                                    </div>
+                                    <button class="button button--thin button--accent">подробнее</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="swiper-slide">
+                            <article class="article-product">
+                                <div class="tag">
+                                    <span>Новинка</span>
+                                </div>
+                                <picture class="article-product__picture">
+                                    <img src="assets/images/product-1.png" alt="">
+                                </picture>
+                                <div class="article-product__content">
+                                    <p class="article-product__name">Мешок/гроубэг для посадки растений</p>
+                                    <div class="article-product__info">
+                                        <p class="article-product__size">10x200 мм</p>
+                                        <p class="article-product__value">10 л</p>
+                                        <div class="price">
+                                            <p class="price__text"><span>500</span> ₽/шт</p>
+                                        </div>
+                                    </div>
+                                    <button class="button button--thin button--accent">подробнее</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="swiper-slide">
+                            <article class="article-product">
+                                <div class="tag">
+                                    <span>Новинка</span>
+                                </div>
+                                <picture class="article-product__picture">
+                                    <img src="assets/images/product-1.png" alt="">
+                                </picture>
+                                <div class="article-product__content">
+                                    <p class="article-product__name">Мешок/гроубэг для посадки растений</p>
+                                    <div class="article-product__info">
+                                        <p class="article-product__size">10x200 мм</p>
+                                        <p class="article-product__value">10 л</p>
+                                        <div class="price">
+                                            <p class="price__text"><span>500</span> ₽/шт</p>
+                                        </div>
+                                    </div>
+                                    <button class="button button--thin button--accent">подробнее</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="swiper-slide">
+                            <article class="article-product">
+                                <div class="tag">
+                                    <span>Новинка</span>
+                                </div>
+                                <picture class="article-product__picture">
+                                    <img src="assets/images/product-1.png" alt="">
+                                </picture>
+                                <div class="article-product__content">
+                                    <p class="article-product__name">Мешок/гроубэг для посадки растений</p>
+                                    <div class="article-product__info">
+                                        <p class="article-product__size">10x200 мм</p>
+                                        <p class="article-product__value">10 л</p>
+                                        <div class="price">
+                                            <p class="price__text"><span>500</span> ₽/шт</p>
+                                        </div>
+                                    </div>
+                                    <button class="button button--thin button--accent">подробнее</button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<%= htmlWebpackPlugin.options.sectionFooter %>
+<%= htmlWebpackPlugin.options.temp %>
+</body>
+</html>

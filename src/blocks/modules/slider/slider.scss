@@ -1,6 +1,19 @@
 .slider {
   position: relative;
 
+  &--preview {
+    border-radius: 30px;
+    overflow: hidden;
+  }
+  &--thumbs {
+    .swiper-slide {
+      width: 220px;
+      height: 115px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+  }
+
   &--intro {
     margin-left: -145px;
     margin-right: -145px;

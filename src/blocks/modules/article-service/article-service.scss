@@ -6,6 +6,31 @@
   border-radius: 25px 25px 0 25px;
   background-color: $white;
 
+  &--row {
+    flex-direction: row;
+    align-items: center;
+    padding: 43px 40px;
+
+    .article-service__picture {
+      flex-shrink: 0;
+      margin-bottom: 0;
+      width: 62px;
+      margin-right: 50px;
+    }
+
+    .article-service__title {
+      flex-shrink: 0;
+      margin-bottom: 0;
+      width: 300px;
+      margin-right: 50px;
+      text-transform: uppercase;
+    }
+
+    .article-service__text {
+      flex-grow: 1;
+    }
+  }
+
   &__picture {
     display: flex;
     width: auto;

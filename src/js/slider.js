@@ -1,4 +1,4 @@
-import Swiper, {EffectFade, Navigation, Pagination} from "swiper";
+import Swiper, {EffectFade, Pagination, Thumbs} from "swiper";
 import "swiper/swiper-bundle.min.css";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,6 +25,9 @@ class Slider {
             case 'intro':
                 this.initIntroSlider()
                 break;
+            case 'thumbs':
+                this.initThumbsSlider()
+                break;
             default:
                 this.initSlider();
                 break;
@@ -48,13 +51,31 @@ class Slider {
     initSlider() {
         const slider = this.el.querySelector('.swiper');
         const swiper = new Swiper(slider, {
-            modules: [Navigation, Pagination],
+            modules: [Pagination, Thumbs],
             slidesPerView: this.visibleSlides ? this.visibleSlides : 3,
             spaceBetween: 24,
             pagination: {
                 el: slider.querySelector('.swiper-pagination'),
                 clickable: true,
+            },
+        })
+    }
+
+    initThumbsSlider() {
+        const slider = this.el.querySelector('.swiper');
+        const thumbSlider = document.querySelector('.slider--thumbs');
+        const thumb = new Swiper(thumbSlider.querySelector('.swiper'), {
+            slidesPerView: 'auto',
+            spaceBetween: 30,
+        })
+        const swiper = new Swiper(slider, {
+            modules: [Thumbs],
+            slidesPerView: 1,
+            spaceBetween: 30,
+            thumbs: {
+                swiper: thumb ? thumb : null,
             }
         })
+        return swiper;
     }
 }

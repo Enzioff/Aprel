@@ -32,6 +32,10 @@
 
   &--gray {
     background-color: $gray-white;
+
+    &-gradient {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 13.44%);
+    }
   }
 
   &--accent {

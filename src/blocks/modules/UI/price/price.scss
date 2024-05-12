@@ -7,6 +7,16 @@
 
   span {
     font-size: 24px;
-    color: #000;
+    color: $primary;
+  }
+
+  &--big {
+    .price__text {
+      font-size: 47.14px;
+
+      span {
+        font-size: 56.57px;
+      }
+    }
   }
 }

@@ -3,4 +3,12 @@
   font-weight: 700;
   line-height: 48px;
   text-transform: uppercase;
+
+  &--accent {
+    color: $primary-accent;
+  }
+
+  &--lower {
+    text-transform: none;
+  }
 }

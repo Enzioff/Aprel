@@ -19,4 +19,34 @@ module.exports = [
         sectionFooter,
         temp
     }),
+    new HtmlWebpackPlugin({
+        template: "./src/pages/services.html",
+        filename: "services.html",
+        inject: "body",
+        title: "Aprel | Услуги",
+        head,
+        sectionHeader,
+        sectionFooter,
+        temp
+    }),
+    new HtmlWebpackPlugin({
+        template: "./src/pages/about.html",
+        filename: "about.html",
+        inject: "body",
+        title: "Aprel | О мастерской",
+        head,
+        sectionHeader,
+        sectionFooter,
+        temp
+    }),
+    new HtmlWebpackPlugin({
+        template: "./src/pages/product-page.html",
+        filename: "product-page.html",
+        inject: "body",
+        title: "Aprel | Карточка товара",
+        head,
+        sectionHeader,
+        sectionFooter,
+        temp
+    }),
 ];
