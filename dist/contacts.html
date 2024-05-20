@@ -196,6 +196,73 @@
         </div>
     </section>
 </main>
+<div class="modal" id="feedback" data-modal>
+	<div class="modal__content" data-modal-content>
+		<div class="modal__head">
+			<h2 class="modal__title">Откликнуться</h2>
+			<p class="modal__text">Заполните форму и мы свяжемся с вами в ближайшее время.</p>
+		</div>
+		<form action="#" class="modal__form" data-form>
+			<label class="modal__item">
+				<span>Ваше полное имя <sup>*</sup></span>
+				<input type="text" class="modal__input input" placeholder="Введите ваше имя">
+			</label>
+			<label class="modal__item">
+				<span>Телефон <sup>*</sup></span>
+				<input type="tel" class="modal__input input" placeholder="+7 (___) ___-__-__">
+			</label>
+			<label class="modal__item">
+				<span>Email <sup>*</sup></span>
+				<input type="email" class="modal__input input" placeholder="info@mail.ru">
+			</label>
+			<label class="modal__item">
+				<span>Адрес объекта</span>
+				<input type="text" class="modal__input input" placeholder="Введите адрес объекта">
+			</label>
+			<label class="modal__item">
+				<span>Сообщение</span>
+				<textarea class="input" placeholder="Сопроводительное письмо"></textarea>
+			</label>
+			<div class="modal__footer">
+				<label class="modal__file">
+					<input type="file" style="display: none">
+					<svg class="modal__icon">
+						<use xlink:href="./assets/sprite/sprite.svg#icon-file"></use>
+					</svg>
+					<span>Прикрепить фотогорафии объекта</span>
+				</label>
+				<div class="modal__send">
+					<button class="button" type="submit">Отправить</button>
+					<label class="modal__accept">
+						<input type="checkbox" class="checkbox checkbox--dark" data-form-accept>
+						<span>Я согласен с правилами обработки персональных данных и ознакомлен с <a href="#">Политикой конфиденциальности</a></span>
+					</label>
+				</div>
+			</div>
+		</form>
+		<button class="modal__close" type="button" data-modal-close>
+			<svg class="modal__icon">
+				<use xlink:href="./assets/sprite/sprite.svg#icon-cross"></use>
+			</svg>
+		</button>
+	</div>
+</div>
+<div class="modal modal--slim" id="accept" data-modal>
+	<div class="modal__content" data-modal-content>
+		<div class="modal__head">
+			<picture class="modal__picture">
+				<img src="./assets/images/logo-dark.svg" alt="">
+			</picture>
+			<h2 class="modal__title" data-modal-title>Заявка отправлена</h2>
+			<p class="modal__text" data-modal-text>Мы свяжемся с вами в ближайшее время.</p>
+		</div>
+		<button class="modal__close" type="button" data-modal-close>
+			<svg class="modal__icon">
+				<use xlink:href="./assets/sprite/sprite.svg#icon-cross"></use>
+			</svg>
+		</button>
+	</div>
+</div>
 <footer class="footer">
 	<div class="container">
 		<div class="footer__wrapper">
