@@ -8,6 +8,8 @@ class Header {
         this.el = el;
         this.topLine = document.querySelector('.top-line')
         this.topLineHeight = this.topLine.clientHeight;
+        this.burger = document.querySelector('[data-burger]');
+        this.mobileMenu = document.querySelector('[data-mobile-menu]')
         this.init()
     }
 
@@ -25,6 +27,8 @@ class Header {
             this.el.style.top = `${this.topLineHeight - window.pageYOffset}px`;
         } else {
             this.el.style.top = 0;
+            this.mobileMenu.classList.remove('active')
+            this.burger.classList.remove('active')
         }
     }
 }

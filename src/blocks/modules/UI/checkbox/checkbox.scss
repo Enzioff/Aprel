@@ -9,6 +9,10 @@
   border: 1px solid $white;
   transition: .2s linear;
 
+  &--dark {
+    border-color: $gray;
+  }
+
   &::before {
     content: '';
     display: flex;

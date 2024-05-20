@@ -1,6 +1,6929 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@fancyapps/ui/dist/index.esm.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@fancyapps/ui/dist/index.esm.js ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Carousel": function() { return /* binding */ Q; },
+/* harmony export */   "Fancybox": function() { return /* binding */ Oe; },
+/* harmony export */   "Panzoom": function() { return /* binding */ I; }
+/* harmony export */ });
+const t=(t,e=1e4)=>(t=parseFloat(t+"")||0,Math.round((t+Number.EPSILON)*e)/e),e=function(t){if(!(t&&t instanceof Element&&t.offsetParent))return!1;const e=t.scrollHeight>t.clientHeight,i=window.getComputedStyle(t).overflowY,n=-1!==i.indexOf("hidden"),s=-1!==i.indexOf("visible");return e&&!n&&!s},i=function(t,n=void 0){return!(!t||t===document.body||n&&t===n)&&(e(t)?t:i(t.parentElement,n))},n=function(t){var e=(new DOMParser).parseFromString(t,"text/html").body;if(e.childElementCount>1){for(var i=document.createElement("div");e.firstChild;)i.appendChild(e.firstChild);return i}return e.firstChild},s=t=>`${t||""}`.split(" ").filter((t=>!!t)),o=(t,e,i)=>{t&&s(e).forEach((e=>{t.classList.toggle(e,i||!1)}))};class a{constructor(t){Object.defineProperty(this,"pageX",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"pageY",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"clientX",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"clientY",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"id",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"time",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"nativePointer",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),this.nativePointer=t,this.pageX=t.pageX,this.pageY=t.pageY,this.clientX=t.clientX,this.clientY=t.clientY,this.id=self.Touch&&t instanceof Touch?t.identifier:-1,this.time=Date.now()}}const r={passive:!1};class l{constructor(t,{start:e=(()=>!0),move:i=(()=>{}),end:n=(()=>{})}){Object.defineProperty(this,"element",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"startCallback",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"moveCallback",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"endCallback",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"currentPointers",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"startPointers",{enumerable:!0,configurable:!0,writable:!0,value:[]}),this.element=t,this.startCallback=e,this.moveCallback=i,this.endCallback=n;for(const t of["onPointerStart","onTouchStart","onMove","onTouchEnd","onPointerEnd","onWindowBlur"])this[t]=this[t].bind(this);this.element.addEventListener("mousedown",this.onPointerStart,r),this.element.addEventListener("touchstart",this.onTouchStart,r),this.element.addEventListener("touchmove",this.onMove,r),this.element.addEventListener("touchend",this.onTouchEnd),this.element.addEventListener("touchcancel",this.onTouchEnd)}onPointerStart(t){if(!t.buttons||0!==t.button)return;const e=new a(t);this.currentPointers.some((t=>t.id===e.id))||this.triggerPointerStart(e,t)&&(window.addEventListener("mousemove",this.onMove),window.addEventListener("mouseup",this.onPointerEnd),window.addEventListener("blur",this.onWindowBlur))}onTouchStart(t){for(const e of Array.from(t.changedTouches||[]))this.triggerPointerStart(new a(e),t);window.addEventListener("blur",this.onWindowBlur)}onMove(t){const e=this.currentPointers.slice(),i="changedTouches"in t?Array.from(t.changedTouches||[]).map((t=>new a(t))):[new a(t)],n=[];for(const t of i){const e=this.currentPointers.findIndex((e=>e.id===t.id));e<0||(n.push(t),this.currentPointers[e]=t)}n.length&&this.moveCallback(t,this.currentPointers.slice(),e)}onPointerEnd(t){t.buttons>0&&0!==t.button||(this.triggerPointerEnd(t,new a(t)),window.removeEventListener("mousemove",this.onMove),window.removeEventListener("mouseup",this.onPointerEnd),window.removeEventListener("blur",this.onWindowBlur))}onTouchEnd(t){for(const e of Array.from(t.changedTouches||[]))this.triggerPointerEnd(t,new a(e))}triggerPointerStart(t,e){return!!this.startCallback(e,t,this.currentPointers.slice())&&(this.currentPointers.push(t),this.startPointers.push(t),!0)}triggerPointerEnd(t,e){const i=this.currentPointers.findIndex((t=>t.id===e.id));i<0||(this.currentPointers.splice(i,1),this.startPointers.splice(i,1),this.endCallback(t,e,this.currentPointers.slice()))}onWindowBlur(){this.clear()}clear(){for(;this.currentPointers.length;){const t=this.currentPointers[this.currentPointers.length-1];this.currentPointers.splice(this.currentPointers.length-1,1),this.startPointers.splice(this.currentPointers.length-1,1),this.endCallback(new Event("touchend",{bubbles:!0,cancelable:!0,clientX:t.clientX,clientY:t.clientY}),t,this.currentPointers.slice())}}stop(){this.element.removeEventListener("mousedown",this.onPointerStart,r),this.element.removeEventListener("touchstart",this.onTouchStart,r),this.element.removeEventListener("touchmove",this.onMove,r),this.element.removeEventListener("touchend",this.onTouchEnd),this.element.removeEventListener("touchcancel",this.onTouchEnd),window.removeEventListener("mousemove",this.onMove),window.removeEventListener("mouseup",this.onPointerEnd),window.removeEventListener("blur",this.onWindowBlur)}}function c(t,e){return e?Math.sqrt(Math.pow(e.clientX-t.clientX,2)+Math.pow(e.clientY-t.clientY,2)):0}function h(t,e){return e?{clientX:(t.clientX+e.clientX)/2,clientY:(t.clientY+e.clientY)/2}:t}const d=t=>"object"==typeof t&&null!==t&&t.constructor===Object&&"[object Object]"===Object.prototype.toString.call(t),u=(t,...e)=>{const i=e.length;for(let n=0;n<i;n++){const i=e[n]||{};Object.entries(i).forEach((([e,i])=>{const n=Array.isArray(i)?[]:{};t[e]||Object.assign(t,{[e]:n}),d(i)?Object.assign(t[e],u(n,i)):Array.isArray(i)?Object.assign(t,{[e]:[...i]}):Object.assign(t,{[e]:i})}))}return t},p=function(t,e){return t.split(".").reduce(((t,e)=>"object"==typeof t?t[e]:void 0),e)};class f{constructor(t={}){Object.defineProperty(this,"options",{enumerable:!0,configurable:!0,writable:!0,value:t}),Object.defineProperty(this,"events",{enumerable:!0,configurable:!0,writable:!0,value:new Map}),this.setOptions(t);for(const t of Object.getOwnPropertyNames(Object.getPrototypeOf(this)))t.startsWith("on")&&"function"==typeof this[t]&&(this[t]=this[t].bind(this))}setOptions(t){this.options=t?u({},this.constructor.defaults,t):{};for(const[t,e]of Object.entries(this.option("on")||{}))this.on(t,e)}option(t,...e){let i=p(t,this.options);return i&&"function"==typeof i&&(i=i.call(this,this,...e)),i}optionFor(t,e,i,...n){let s=p(e,t);var o;"string"!=typeof(o=s)||isNaN(o)||isNaN(parseFloat(o))||(s=parseFloat(s)),"true"===s&&(s=!0),"false"===s&&(s=!1),s&&"function"==typeof s&&(s=s.call(this,this,t,...n));let a=p(e,this.options);return a&&"function"==typeof a?s=a.call(this,this,t,...n,s):void 0===s&&(s=a),void 0===s?i:s}cn(t){const e=this.options.classes;return e&&e[t]||""}localize(t,e=[]){t=String(t).replace(/\{\{(\w+).?(\w+)?\}\}/g,((t,e,i)=>{let n="";return i?n=this.option(`${e[0]+e.toLowerCase().substring(1)}.l10n.${i}`):e&&(n=this.option(`l10n.${e}`)),n||(n=t),n}));for(let i=0;i<e.length;i++)t=t.split(e[i][0]).join(e[i][1]);return t=t.replace(/\{\{(.*?)\}\}/g,((t,e)=>e))}on(t,e){let i=[];"string"==typeof t?i=t.split(" "):Array.isArray(t)&&(i=t),this.events||(this.events=new Map),i.forEach((t=>{let i=this.events.get(t);i||(this.events.set(t,[]),i=[]),i.includes(e)||i.push(e),this.events.set(t,i)}))}off(t,e){let i=[];"string"==typeof t?i=t.split(" "):Array.isArray(t)&&(i=t),i.forEach((t=>{const i=this.events.get(t);if(Array.isArray(i)){const t=i.indexOf(e);t>-1&&i.splice(t,1)}}))}emit(t,...e){[...this.events.get(t)||[]].forEach((t=>t(this,...e))),"*"!==t&&this.emit("*",t,...e)}}Object.defineProperty(f,"version",{enumerable:!0,configurable:!0,writable:!0,value:"5.0.36"}),Object.defineProperty(f,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{}});class g extends f{constructor(t={}){super(t),Object.defineProperty(this,"plugins",{enumerable:!0,configurable:!0,writable:!0,value:{}})}attachPlugins(t={}){const e=new Map;for(const[i,n]of Object.entries(t)){const t=this.option(i),s=this.plugins[i];s||!1===t?s&&!1===t&&(s.detach(),delete this.plugins[i]):e.set(i,new n(this,t||{}))}for(const[t,i]of e)this.plugins[t]=i,i.attach()}detachPlugins(t){t=t||Object.keys(this.plugins);for(const e of t){const t=this.plugins[e];t&&t.detach(),delete this.plugins[e]}return this.emit("detachPlugins"),this}}var m;!function(t){t[t.Init=0]="Init",t[t.Error=1]="Error",t[t.Ready=2]="Ready",t[t.Panning=3]="Panning",t[t.Mousemove=4]="Mousemove",t[t.Destroy=5]="Destroy"}(m||(m={}));const v=["a","b","c","d","e","f"],b={PANUP:"Move up",PANDOWN:"Move down",PANLEFT:"Move left",PANRIGHT:"Move right",ZOOMIN:"Zoom in",ZOOMOUT:"Zoom out",TOGGLEZOOM:"Toggle zoom level",TOGGLE1TO1:"Toggle zoom level",ITERATEZOOM:"Toggle zoom level",ROTATECCW:"Rotate counterclockwise",ROTATECW:"Rotate clockwise",FLIPX:"Flip horizontally",FLIPY:"Flip vertically",FITX:"Fit horizontally",FITY:"Fit vertically",RESET:"Reset",TOGGLEFS:"Toggle fullscreen"},y={content:null,width:"auto",height:"auto",panMode:"drag",touch:!0,dragMinThreshold:3,lockAxis:!1,mouseMoveFactor:1,mouseMoveFriction:.12,zoom:!0,pinchToZoom:!0,panOnlyZoomed:"auto",minScale:1,maxScale:2,friction:.25,dragFriction:.35,decelFriction:.05,click:"toggleZoom",dblClick:!1,wheel:"zoom",wheelLimit:7,spinner:!0,bounds:"auto",infinite:!1,rubberband:!0,bounce:!0,maxVelocity:75,transformParent:!1,classes:{content:"f-panzoom__content",isLoading:"is-loading",canZoomIn:"can-zoom_in",canZoomOut:"can-zoom_out",isDraggable:"is-draggable",isDragging:"is-dragging",inFullscreen:"in-fullscreen",htmlHasFullscreen:"with-panzoom-in-fullscreen"},l10n:b},w='<circle cx="25" cy="25" r="20"></circle>',x='<div class="f-spinner"><svg viewBox="0 0 50 50">'+w+w+"</svg></div>",E=t=>t&&null!==t&&t instanceof Element&&"nodeType"in t,S=(t,e)=>{t&&s(e).forEach((e=>{t.classList.remove(e)}))},P=(t,e)=>{t&&s(e).forEach((e=>{t.classList.add(e)}))},C={a:1,b:0,c:0,d:1,e:0,f:0},T=1e5,M=1e4,O="mousemove",A="drag",L="content",z="auto";let R=null,k=null;class I extends g{get fits(){return this.contentRect.width-this.contentRect.fitWidth<1&&this.contentRect.height-this.contentRect.fitHeight<1}get isTouchDevice(){return null===k&&(k=window.matchMedia("(hover: none)").matches),k}get isMobile(){return null===R&&(R=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)),R}get panMode(){return this.options.panMode!==O||this.isTouchDevice?A:O}get panOnlyZoomed(){const t=this.options.panOnlyZoomed;return t===z?this.isTouchDevice:t}get isInfinite(){return this.option("infinite")}get angle(){return 180*Math.atan2(this.current.b,this.current.a)/Math.PI||0}get targetAngle(){return 180*Math.atan2(this.target.b,this.target.a)/Math.PI||0}get scale(){const{a:t,b:e}=this.current;return Math.sqrt(t*t+e*e)||1}get targetScale(){const{a:t,b:e}=this.target;return Math.sqrt(t*t+e*e)||1}get minScale(){return this.option("minScale")||1}get fullScale(){const{contentRect:t}=this;return t.fullWidth/t.fitWidth||1}get maxScale(){return this.fullScale*(this.option("maxScale")||1)||1}get coverScale(){const{containerRect:t,contentRect:e}=this,i=Math.max(t.height/e.fitHeight,t.width/e.fitWidth)||1;return Math.min(this.fullScale,i)}get isScaling(){return Math.abs(this.targetScale-this.scale)>1e-5&&!this.isResting}get isContentLoading(){const t=this.content;return!!(t&&t instanceof HTMLImageElement)&&!t.complete}get isResting(){if(this.isBouncingX||this.isBouncingY)return!1;for(const t of v){const e="e"==t||"f"===t?1e-4:1e-5;if(Math.abs(this.target[t]-this.current[t])>e)return!1}return!(!this.ignoreBounds&&!this.checkBounds().inBounds)}constructor(t,e={},i={}){var s;if(super(e),Object.defineProperty(this,"pointerTracker",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"resizeObserver",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"updateTimer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"clickTimer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"rAF",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"isTicking",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"ignoreBounds",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"isBouncingX",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"isBouncingY",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"clicks",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"trackingPoints",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"pwt",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"cwd",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"pmme",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"friction",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:m.Init}),Object.defineProperty(this,"isDragging",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"content",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"spinner",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"containerRect",{enumerable:!0,configurable:!0,writable:!0,value:{width:0,height:0,innerWidth:0,innerHeight:0}}),Object.defineProperty(this,"contentRect",{enumerable:!0,configurable:!0,writable:!0,value:{top:0,right:0,bottom:0,left:0,fullWidth:0,fullHeight:0,fitWidth:0,fitHeight:0,width:0,height:0}}),Object.defineProperty(this,"dragStart",{enumerable:!0,configurable:!0,writable:!0,value:{x:0,y:0,top:0,left:0,time:0}}),Object.defineProperty(this,"dragOffset",{enumerable:!0,configurable:!0,writable:!0,value:{x:0,y:0,time:0}}),Object.defineProperty(this,"current",{enumerable:!0,configurable:!0,writable:!0,value:Object.assign({},C)}),Object.defineProperty(this,"target",{enumerable:!0,configurable:!0,writable:!0,value:Object.assign({},C)}),Object.defineProperty(this,"velocity",{enumerable:!0,configurable:!0,writable:!0,value:{a:0,b:0,c:0,d:0,e:0,f:0}}),Object.defineProperty(this,"lockedAxis",{enumerable:!0,configurable:!0,writable:!0,value:!1}),!t)throw new Error("Container Element Not Found");this.container=t,this.initContent(),this.attachPlugins(Object.assign(Object.assign({},I.Plugins),i)),this.emit("attachPlugins"),this.emit("init");const o=this.content;if(o.addEventListener("load",this.onLoad),o.addEventListener("error",this.onError),this.isContentLoading){if(this.option("spinner")){t.classList.add(this.cn("isLoading"));const e=n(x);!t.contains(o)||o.parentElement instanceof HTMLPictureElement?this.spinner=t.appendChild(e):this.spinner=(null===(s=o.parentElement)||void 0===s?void 0:s.insertBefore(e,o))||null}this.emit("beforeLoad")}else queueMicrotask((()=>{this.enable()}))}initContent(){const{container:t}=this,e=this.cn(L);let i=this.option(L)||t.querySelector(`.${e}`);if(i||(i=t.querySelector("img,picture")||t.firstElementChild,i&&P(i,e)),i instanceof HTMLPictureElement&&(i=i.querySelector("img")),!i)throw new Error("No content found");this.content=i}onLoad(){const{spinner:t,container:e,state:i}=this;t&&(t.remove(),this.spinner=null),this.option("spinner")&&e.classList.remove(this.cn("isLoading")),this.emit("afterLoad"),i===m.Init?this.enable():this.updateMetrics()}onError(){this.state!==m.Destroy&&(this.spinner&&(this.spinner.remove(),this.spinner=null),this.stop(),this.detachEvents(),this.state=m.Error,this.emit("error"))}getNextScale(t){const{fullScale:e,targetScale:i,coverScale:n,maxScale:s,minScale:o}=this;let a=o;switch(t){case"toggleMax":a=i-o<.5*(s-o)?s:o;break;case"toggleCover":a=i-o<.5*(n-o)?n:o;break;case"toggleZoom":a=i-o<.5*(e-o)?e:o;break;case"iterateZoom":let t=[1,e,s].sort(((t,e)=>t-e)),r=t.findIndex((t=>t>i+1e-5));a=t[r]||1}return a}attachObserver(){var t;const e=()=>{const{container:t,containerRect:e}=this;return Math.abs(e.width-t.getBoundingClientRect().width)>.1||Math.abs(e.height-t.getBoundingClientRect().height)>.1};this.resizeObserver||void 0===window.ResizeObserver||(this.resizeObserver=new ResizeObserver((()=>{this.updateTimer||(e()?(this.onResize(),this.isMobile&&(this.updateTimer=setTimeout((()=>{e()&&this.onResize(),this.updateTimer=null}),500))):this.updateTimer&&(clearTimeout(this.updateTimer),this.updateTimer=null))}))),null===(t=this.resizeObserver)||void 0===t||t.observe(this.container)}detachObserver(){var t;null===(t=this.resizeObserver)||void 0===t||t.disconnect()}attachEvents(){const{container:t}=this;t.addEventListener("click",this.onClick,{passive:!1,capture:!1}),t.addEventListener("wheel",this.onWheel,{passive:!1}),this.pointerTracker=new l(t,{start:this.onPointerDown,move:this.onPointerMove,end:this.onPointerUp}),document.addEventListener(O,this.onMouseMove)}detachEvents(){var t;const{container:e}=this;e.removeEventListener("click",this.onClick,{passive:!1,capture:!1}),e.removeEventListener("wheel",this.onWheel,{passive:!1}),null===(t=this.pointerTracker)||void 0===t||t.stop(),this.pointerTracker=null,document.removeEventListener(O,this.onMouseMove),document.removeEventListener("keydown",this.onKeydown,!0),this.clickTimer&&(clearTimeout(this.clickTimer),this.clickTimer=null),this.updateTimer&&(clearTimeout(this.updateTimer),this.updateTimer=null)}animate(){this.setTargetForce();const t=this.friction,e=this.option("maxVelocity");for(const i of v)t?(this.velocity[i]*=1-t,e&&!this.isScaling&&(this.velocity[i]=Math.max(Math.min(this.velocity[i],e),-1*e)),this.current[i]+=this.velocity[i]):this.current[i]=this.target[i];this.setTransform(),this.setEdgeForce(),!this.isResting||this.isDragging?this.rAF=requestAnimationFrame((()=>this.animate())):this.stop("current")}setTargetForce(){for(const t of v)"e"===t&&this.isBouncingX||"f"===t&&this.isBouncingY||(this.velocity[t]=(1/(1-this.friction)-1)*(this.target[t]-this.current[t]))}checkBounds(t=0,e=0){const{current:i}=this,n=i.e+t,s=i.f+e,o=this.getBounds(),{x:a,y:r}=o,l=a.min,c=a.max,h=r.min,d=r.max;let u=0,p=0;return l!==1/0&&n<l?u=l-n:c!==1/0&&n>c&&(u=c-n),h!==1/0&&s<h?p=h-s:d!==1/0&&s>d&&(p=d-s),Math.abs(u)<1e-4&&(u=0),Math.abs(p)<1e-4&&(p=0),Object.assign(Object.assign({},o),{xDiff:u,yDiff:p,inBounds:!u&&!p})}clampTargetBounds(){const{target:t}=this,{x:e,y:i}=this.getBounds();e.min!==1/0&&(t.e=Math.max(t.e,e.min)),e.max!==1/0&&(t.e=Math.min(t.e,e.max)),i.min!==1/0&&(t.f=Math.max(t.f,i.min)),i.max!==1/0&&(t.f=Math.min(t.f,i.max))}calculateContentDim(t=this.current){const{content:e,contentRect:i}=this,{fitWidth:n,fitHeight:s,fullWidth:o,fullHeight:a}=i;let r=o,l=a;if(this.option("zoom")||0!==this.angle){const i=!(e instanceof HTMLImageElement)&&("none"===window.getComputedStyle(e).maxWidth||"none"===window.getComputedStyle(e).maxHeight),c=i?o:n,h=i?a:s,d=this.getMatrix(t),u=new DOMPoint(0,0).matrixTransform(d),p=new DOMPoint(0+c,0).matrixTransform(d),f=new DOMPoint(0+c,0+h).matrixTransform(d),g=new DOMPoint(0,0+h).matrixTransform(d),m=Math.abs(f.x-u.x),v=Math.abs(f.y-u.y),b=Math.abs(g.x-p.x),y=Math.abs(g.y-p.y);r=Math.max(m,b),l=Math.max(v,y)}return{contentWidth:r,contentHeight:l}}setEdgeForce(){if(this.ignoreBounds||this.isDragging||this.panMode===O||this.targetScale<this.scale)return this.isBouncingX=!1,void(this.isBouncingY=!1);const{target:t}=this,{x:e,y:i,xDiff:n,yDiff:s}=this.checkBounds();const o=this.option("maxVelocity");let a=this.velocity.e,r=this.velocity.f;0!==n?(this.isBouncingX=!0,n*a<=0?a+=.14*n:(a=.14*n,e.min!==1/0&&(this.target.e=Math.max(t.e,e.min)),e.max!==1/0&&(this.target.e=Math.min(t.e,e.max))),o&&(a=Math.max(Math.min(a,o),-1*o))):this.isBouncingX=!1,0!==s?(this.isBouncingY=!0,s*r<=0?r+=.14*s:(r=.14*s,i.min!==1/0&&(this.target.f=Math.max(t.f,i.min)),i.max!==1/0&&(this.target.f=Math.min(t.f,i.max))),o&&(r=Math.max(Math.min(r,o),-1*o))):this.isBouncingY=!1,this.isBouncingX&&(this.velocity.e=a),this.isBouncingY&&(this.velocity.f=r)}enable(){const{content:t}=this,e=new DOMMatrixReadOnly(window.getComputedStyle(t).transform);for(const t of v)this.current[t]=this.target[t]=e[t];this.updateMetrics(),this.attachObserver(),this.attachEvents(),this.state=m.Ready,this.emit("ready")}onClick(t){var e;"click"===t.type&&0===t.detail&&(this.dragOffset.x=0,this.dragOffset.y=0),this.isDragging&&(null===(e=this.pointerTracker)||void 0===e||e.clear(),this.trackingPoints=[],this.startDecelAnim());const i=t.target;if(!i||t.defaultPrevented)return;if(i.hasAttribute("disabled"))return t.preventDefault(),void t.stopPropagation();if((()=>{const t=window.getSelection();return t&&"Range"===t.type})()&&!i.closest("button"))return;const n=i.closest("[data-panzoom-action]"),s=i.closest("[data-panzoom-change]"),o=n||s,a=o&&E(o)?o.dataset:null;if(a){const e=a.panzoomChange,i=a.panzoomAction;if((e||i)&&t.preventDefault(),e){let t={};try{t=JSON.parse(e)}catch(t){console&&console.warn("The given data was not valid JSON")}return void this.applyChange(t)}if(i)return void(this[i]&&this[i]())}if(Math.abs(this.dragOffset.x)>3||Math.abs(this.dragOffset.y)>3)return t.preventDefault(),void t.stopPropagation();if(i.closest("[data-fancybox]"))return;const r=this.content.getBoundingClientRect(),l=this.dragStart;if(l.time&&!this.canZoomOut()&&(Math.abs(r.x-l.x)>2||Math.abs(r.y-l.y)>2))return;this.dragStart.time=0;const c=e=>{this.option("zoom",t)&&e&&"string"==typeof e&&/(iterateZoom)|(toggle(Zoom|Full|Cover|Max)|(zoomTo(Fit|Cover|Max)))/.test(e)&&"function"==typeof this[e]&&(t.preventDefault(),this[e]({event:t}))},h=this.option("click",t),d=this.option("dblClick",t);d?(this.clicks++,1==this.clicks&&(this.clickTimer=setTimeout((()=>{1===this.clicks?(this.emit("click",t),!t.defaultPrevented&&h&&c(h)):(this.emit("dblClick",t),t.defaultPrevented||c(d)),this.clicks=0,this.clickTimer=null}),350))):(this.emit("click",t),!t.defaultPrevented&&h&&c(h))}addTrackingPoint(t){const e=this.trackingPoints.filter((t=>t.time>Date.now()-100));e.push(t),this.trackingPoints=e}onPointerDown(t,e,i){var n;if(!1===this.option("touch",t))return!1;this.pwt=0,this.dragOffset={x:0,y:0,time:0},this.trackingPoints=[];const s=this.content.getBoundingClientRect();if(this.dragStart={x:s.x,y:s.y,top:s.top,left:s.left,time:Date.now()},this.clickTimer)return!1;if(this.panMode===O&&this.targetScale>1)return t.preventDefault(),t.stopPropagation(),!1;const o=t.composedPath()[0];if(!i.length){if(["TEXTAREA","OPTION","INPUT","SELECT","VIDEO","IFRAME"].includes(o.nodeName)||o.closest("[contenteditable],[data-selectable],[data-draggable],[data-clickable],[data-panzoom-change],[data-panzoom-action]"))return!1;null===(n=window.getSelection())||void 0===n||n.removeAllRanges()}if("mousedown"===t.type)["A","BUTTON"].includes(o.nodeName)||t.preventDefault();else if(Math.abs(this.velocity.a)>.3)return!1;return this.target.e=this.current.e,this.target.f=this.current.f,this.stop(),this.isDragging||(this.isDragging=!0,this.addTrackingPoint(e),this.emit("touchStart",t)),!0}onPointerMove(e,n,s){if(!1===this.option("touch",e))return;if(!this.isDragging)return;if(n.length<2&&this.panOnlyZoomed&&t(this.targetScale)<=t(this.minScale))return;if(this.emit("touchMove",e),e.defaultPrevented)return;this.addTrackingPoint(n[0]);const{content:o}=this,a=h(s[0],s[1]),r=h(n[0],n[1]);let l=0,d=0;if(n.length>1){const t=o.getBoundingClientRect();l=a.clientX-t.left-.5*t.width,d=a.clientY-t.top-.5*t.height}const u=c(s[0],s[1]),p=c(n[0],n[1]);let f=u?p/u:1,g=r.clientX-a.clientX,m=r.clientY-a.clientY;this.dragOffset.x+=g,this.dragOffset.y+=m,this.dragOffset.time=Date.now()-this.dragStart.time;let v=t(this.targetScale)===t(this.minScale)&&this.option("lockAxis");if(v&&!this.lockedAxis)if("xy"===v||"y"===v||"touchmove"===e.type){if(Math.abs(this.dragOffset.x)<6&&Math.abs(this.dragOffset.y)<6)return void e.preventDefault();const t=Math.abs(180*Math.atan2(this.dragOffset.y,this.dragOffset.x)/Math.PI);this.lockedAxis=t>45&&t<135?"y":"x",this.dragOffset.x=0,this.dragOffset.y=0,g=0,m=0}else this.lockedAxis=v;if(i(e.target,this.content)&&(v="x",this.dragOffset.y=0),v&&"xy"!==v&&this.lockedAxis!==v&&t(this.targetScale)===t(this.minScale))return;e.cancelable&&e.preventDefault(),this.container.classList.add(this.cn("isDragging"));const b=this.checkBounds(g,m);this.option("rubberband")?("x"!==this.isInfinite&&(b.xDiff>0&&g<0||b.xDiff<0&&g>0)&&(g*=Math.max(0,.5-Math.abs(.75/this.contentRect.fitWidth*b.xDiff))),"y"!==this.isInfinite&&(b.yDiff>0&&m<0||b.yDiff<0&&m>0)&&(m*=Math.max(0,.5-Math.abs(.75/this.contentRect.fitHeight*b.yDiff)))):(b.xDiff&&(g=0),b.yDiff&&(m=0));const y=this.targetScale,w=this.minScale,x=this.maxScale;y<.5*w&&(f=Math.max(f,w)),y>1.5*x&&(f=Math.min(f,x)),"y"===this.lockedAxis&&t(y)===t(w)&&(g=0),"x"===this.lockedAxis&&t(y)===t(w)&&(m=0),this.applyChange({originX:l,originY:d,panX:g,panY:m,scale:f,friction:this.option("dragFriction"),ignoreBounds:!0})}onPointerUp(t,e,n){if(n.length)return this.dragOffset.x=0,this.dragOffset.y=0,void(this.trackingPoints=[]);this.container.classList.remove(this.cn("isDragging")),this.isDragging&&(this.addTrackingPoint(e),this.panOnlyZoomed&&this.contentRect.width-this.contentRect.fitWidth<1&&this.contentRect.height-this.contentRect.fitHeight<1&&(this.trackingPoints=[]),i(t.target,this.content)&&"y"===this.lockedAxis&&(this.trackingPoints=[]),this.emit("touchEnd",t),this.isDragging=!1,this.lockedAxis=!1,this.state!==m.Destroy&&(t.defaultPrevented||this.startDecelAnim()))}startDecelAnim(){var e;const i=this.isScaling;this.rAF&&(cancelAnimationFrame(this.rAF),this.rAF=null),this.isBouncingX=!1,this.isBouncingY=!1;for(const t of v)this.velocity[t]=0;this.target.e=this.current.e,this.target.f=this.current.f,S(this.container,"is-scaling"),S(this.container,"is-animating"),this.isTicking=!1;const{trackingPoints:n}=this,s=n[0],o=n[n.length-1];let a=0,r=0,l=0;o&&s&&(a=o.clientX-s.clientX,r=o.clientY-s.clientY,l=o.time-s.time);const c=(null===(e=window.visualViewport)||void 0===e?void 0:e.scale)||1;1!==c&&(a*=c,r*=c);let h=0,d=0,u=0,p=0,f=this.option("decelFriction");const g=this.targetScale;if(l>0){u=Math.abs(a)>3?a/(l/30):0,p=Math.abs(r)>3?r/(l/30):0;const t=this.option("maxVelocity");t&&(u=Math.max(Math.min(u,t),-1*t),p=Math.max(Math.min(p,t),-1*t))}u&&(h=u/(1/(1-f)-1)),p&&(d=p/(1/(1-f)-1)),("y"===this.option("lockAxis")||"xy"===this.option("lockAxis")&&"y"===this.lockedAxis&&t(g)===this.minScale)&&(h=u=0),("x"===this.option("lockAxis")||"xy"===this.option("lockAxis")&&"x"===this.lockedAxis&&t(g)===this.minScale)&&(d=p=0);const m=this.dragOffset.x,b=this.dragOffset.y,y=this.option("dragMinThreshold")||0;Math.abs(m)<y&&Math.abs(b)<y&&(h=d=0,u=p=0),(this.option("zoom")&&(g<this.minScale-1e-5||g>this.maxScale+1e-5)||i&&!h&&!d)&&(f=.35),this.applyChange({panX:h,panY:d,friction:f}),this.emit("decel",u,p,m,b)}onWheel(t){var e=[-t.deltaX||0,-t.deltaY||0,-t.detail||0].reduce((function(t,e){return Math.abs(e)>Math.abs(t)?e:t}));const i=Math.max(-1,Math.min(1,e));if(this.emit("wheel",t,i),this.panMode===O)return;if(t.defaultPrevented)return;const n=this.option("wheel");"pan"===n?(t.preventDefault(),this.panOnlyZoomed&&!this.canZoomOut()||this.applyChange({panX:2*-t.deltaX,panY:2*-t.deltaY,bounce:!1})):"zoom"===n&&!1!==this.option("zoom")&&this.zoomWithWheel(t)}onMouseMove(t){this.panWithMouse(t)}onKeydown(t){"Escape"===t.key&&this.toggleFS()}onResize(){this.updateMetrics(),this.checkBounds().inBounds||this.requestTick()}setTransform(){this.emit("beforeTransform");const{current:e,target:i,content:n,contentRect:s}=this,o=Object.assign({},C);for(const n of v){const s="e"==n||"f"===n?M:T;o[n]=t(e[n],s),Math.abs(i[n]-e[n])<("e"==n||"f"===n?.51:.001)&&(e[n]=i[n])}let{a:a,b:r,c:l,d:c,e:h,f:d}=o,u=`matrix(${a}, ${r}, ${l}, ${c}, ${h}, ${d})`,p=n.parentElement instanceof HTMLPictureElement?n.parentElement:n;if(this.option("transformParent")&&(p=p.parentElement||p),p.style.transform===u)return;p.style.transform=u;const{contentWidth:f,contentHeight:g}=this.calculateContentDim();s.width=f,s.height=g,this.emit("afterTransform")}updateMetrics(e=!1){var i;if(!this||this.state===m.Destroy)return;if(this.isContentLoading)return;const n=Math.max(1,(null===(i=window.visualViewport)||void 0===i?void 0:i.scale)||1),{container:s,content:o}=this,a=o instanceof HTMLImageElement,r=s.getBoundingClientRect(),l=getComputedStyle(this.container);let c=r.width*n,h=r.height*n;const d=parseFloat(l.paddingTop)+parseFloat(l.paddingBottom),u=c-(parseFloat(l.paddingLeft)+parseFloat(l.paddingRight)),p=h-d;this.containerRect={width:c,height:h,innerWidth:u,innerHeight:p};const f=parseFloat(o.dataset.width||"")||(t=>{let e=0;return e=t instanceof HTMLImageElement?t.naturalWidth:t instanceof SVGElement?t.width.baseVal.value:Math.max(t.offsetWidth,t.scrollWidth),e||0})(o),g=parseFloat(o.dataset.height||"")||(t=>{let e=0;return e=t instanceof HTMLImageElement?t.naturalHeight:t instanceof SVGElement?t.height.baseVal.value:Math.max(t.offsetHeight,t.scrollHeight),e||0})(o);let v=this.option("width",f)||z,b=this.option("height",g)||z;const y=v===z,w=b===z;"number"!=typeof v&&(v=f),"number"!=typeof b&&(b=g),y&&(v=f*(b/g)),w&&(b=g/(f/v));let x=o.parentElement instanceof HTMLPictureElement?o.parentElement:o;this.option("transformParent")&&(x=x.parentElement||x);const E=x.getAttribute("style")||"";x.style.setProperty("transform","none","important"),a&&(x.style.width="",x.style.height=""),x.offsetHeight;const S=o.getBoundingClientRect();let P=S.width*n,C=S.height*n,T=P,M=C;P=Math.min(P,v),C=Math.min(C,b),a?({width:P,height:C}=((t,e,i,n)=>{const s=i/t,o=n/e,a=Math.min(s,o);return{width:t*=a,height:e*=a}})(v,b,P,C)):(P=Math.min(P,v),C=Math.min(C,b));let O=.5*(M-C),A=.5*(T-P);this.contentRect=Object.assign(Object.assign({},this.contentRect),{top:S.top-r.top+O,bottom:r.bottom-S.bottom+O,left:S.left-r.left+A,right:r.right-S.right+A,fitWidth:P,fitHeight:C,width:P,height:C,fullWidth:v,fullHeight:b}),x.style.cssText=E,a&&(x.style.width=`${P}px`,x.style.height=`${C}px`),this.setTransform(),!0!==e&&this.emit("refresh"),this.ignoreBounds||(t(this.targetScale)<t(this.minScale)?this.zoomTo(this.minScale,{friction:0}):this.targetScale>this.maxScale?this.zoomTo(this.maxScale,{friction:0}):this.state===m.Init||this.checkBounds().inBounds||this.requestTick()),this.updateControls()}calculateBounds(){const{contentWidth:e,contentHeight:i}=this.calculateContentDim(this.target),{targetScale:n,lockedAxis:s}=this,{fitWidth:o,fitHeight:a}=this.contentRect;let r=0,l=0,c=0,h=0;const d=this.option("infinite");if(!0===d||s&&d===s)r=-1/0,c=1/0,l=-1/0,h=1/0;else{let{containerRect:s,contentRect:d}=this,u=t(o*n,M),p=t(a*n,M),{innerWidth:f,innerHeight:g}=s;if(s.width===u&&(f=s.width),s.width===p&&(g=s.height),e>f){c=.5*(e-f),r=-1*c;let t=.5*(d.right-d.left);r+=t,c+=t}if(o>f&&e<f&&(r-=.5*(o-f),c-=.5*(o-f)),i>g){h=.5*(i-g),l=-1*h;let t=.5*(d.bottom-d.top);l+=t,h+=t}a>g&&i<g&&(r-=.5*(a-g),c-=.5*(a-g))}return{x:{min:r,max:c},y:{min:l,max:h}}}getBounds(){const t=this.option("bounds");return t!==z?t:this.calculateBounds()}updateControls(){const e=this,i=e.container,{panMode:n,contentRect:s,targetScale:a,minScale:r}=e;let l=r,c=e.option("click")||!1;c&&(l=e.getNextScale(c));let h=e.canZoomIn(),d=e.canZoomOut(),u=n===A&&!!this.option("touch"),p=d&&u;if(u&&(t(a)<t(r)&&!this.panOnlyZoomed&&(p=!0),(t(s.width,1)>t(s.fitWidth,1)||t(s.height,1)>t(s.fitHeight,1))&&(p=!0)),t(s.width*a,1)<t(s.fitWidth,1)&&(p=!1),n===O&&(p=!1),o(i,this.cn("isDraggable"),p),!this.option("zoom"))return;let f=h&&t(l)>t(a),g=!f&&!p&&d&&t(l)<t(a);o(i,this.cn("canZoomIn"),f),o(i,this.cn("canZoomOut"),g);for(const t of i.querySelectorAll("[data-panzoom-action]")){let e=!1,i=!1;switch(t.dataset.panzoomAction){case"zoomIn":h?e=!0:i=!0;break;case"zoomOut":d?e=!0:i=!0;break;case"toggleZoom":case"iterateZoom":h||d?e=!0:i=!0;const n=t.querySelector("g");n&&(n.style.display=h?"":"none")}e?(t.removeAttribute("disabled"),t.removeAttribute("tabindex")):i&&(t.setAttribute("disabled",""),t.setAttribute("tabindex","-1"))}}panTo({x:t=this.target.e,y:e=this.target.f,scale:i=this.targetScale,friction:n=this.option("friction"),angle:s=0,originX:o=0,originY:a=0,flipX:r=!1,flipY:l=!1,ignoreBounds:c=!1}){this.state!==m.Destroy&&this.applyChange({panX:t-this.target.e,panY:e-this.target.f,scale:i/this.targetScale,angle:s,originX:o,originY:a,friction:n,flipX:r,flipY:l,ignoreBounds:c})}applyChange({panX:e=0,panY:i=0,scale:n=1,angle:s=0,originX:o=-this.current.e,originY:a=-this.current.f,friction:r=this.option("friction"),flipX:l=!1,flipY:c=!1,ignoreBounds:h=!1,bounce:d=this.option("bounce")}){const u=this.state;if(u===m.Destroy)return;this.rAF&&(cancelAnimationFrame(this.rAF),this.rAF=null),this.friction=r||0,this.ignoreBounds=h;const{current:p}=this,f=p.e,g=p.f,b=this.getMatrix(this.target);let y=(new DOMMatrix).translate(f,g).translate(o,a).translate(e,i);if(this.option("zoom")){if(!h){const t=this.targetScale,e=this.minScale,i=this.maxScale;t*n<e&&(n=e/t),t*n>i&&(n=i/t)}y=y.scale(n)}y=y.translate(-o,-a).translate(-f,-g).multiply(b),s&&(y=y.rotate(s)),l&&(y=y.scale(-1,1)),c&&(y=y.scale(1,-1));for(const e of v)"e"!==e&&"f"!==e&&(y[e]>this.minScale+1e-5||y[e]<this.minScale-1e-5)?this.target[e]=y[e]:this.target[e]=t(y[e],M);(this.targetScale<this.scale||Math.abs(n-1)>.1||this.panMode===O||!1===d)&&!h&&this.clampTargetBounds(),u===m.Init?this.animate():this.isResting||(this.state=m.Panning,this.requestTick())}stop(t=!1){if(this.state===m.Init||this.state===m.Destroy)return;const e=this.isTicking;this.rAF&&(cancelAnimationFrame(this.rAF),this.rAF=null),this.isBouncingX=!1,this.isBouncingY=!1;for(const e of v)this.velocity[e]=0,"current"===t?this.current[e]=this.target[e]:"target"===t&&(this.target[e]=this.current[e]);this.setTransform(),S(this.container,"is-scaling"),S(this.container,"is-animating"),this.isTicking=!1,this.state=m.Ready,e&&(this.emit("endAnimation"),this.updateControls())}requestTick(){this.isTicking||(this.emit("startAnimation"),this.updateControls(),P(this.container,"is-animating"),this.isScaling&&P(this.container,"is-scaling")),this.isTicking=!0,this.rAF||(this.rAF=requestAnimationFrame((()=>this.animate())))}panWithMouse(e,i=this.option("mouseMoveFriction")){if(this.pmme=e,this.panMode!==O||!e)return;if(t(this.targetScale)<=t(this.minScale))return;this.emit("mouseMove",e);const{container:n,containerRect:s,contentRect:o}=this,a=s.width,r=s.height,l=n.getBoundingClientRect(),c=(e.clientX||0)-l.left,h=(e.clientY||0)-l.top;let{contentWidth:d,contentHeight:u}=this.calculateContentDim(this.target);const p=this.option("mouseMoveFactor");p>1&&(d!==a&&(d*=p),u!==r&&(u*=p));let f=.5*(d-a)-c/a*100/100*(d-a);f+=.5*(o.right-o.left);let g=.5*(u-r)-h/r*100/100*(u-r);g+=.5*(o.bottom-o.top),this.applyChange({panX:f-this.target.e,panY:g-this.target.f,friction:i})}zoomWithWheel(e){if(this.state===m.Destroy||this.state===m.Init)return;const i=Date.now();if(i-this.pwt<45)return void e.preventDefault();this.pwt=i;var n=[-e.deltaX||0,-e.deltaY||0,-e.detail||0].reduce((function(t,e){return Math.abs(e)>Math.abs(t)?e:t}));const s=Math.max(-1,Math.min(1,n)),{targetScale:o,maxScale:a,minScale:r}=this;let l=o*(100+45*s)/100;t(l)<t(r)&&t(o)<=t(r)?(this.cwd+=Math.abs(s),l=r):t(l)>t(a)&&t(o)>=t(a)?(this.cwd+=Math.abs(s),l=a):(this.cwd=0,l=Math.max(Math.min(l,a),r)),this.cwd>this.option("wheelLimit")||(e.preventDefault(),t(l)!==t(o)&&this.zoomTo(l,{event:e}))}canZoomIn(){return this.option("zoom")&&(t(this.contentRect.width,1)<t(this.contentRect.fitWidth,1)||t(this.targetScale)<t(this.maxScale))}canZoomOut(){return this.option("zoom")&&t(this.targetScale)>t(this.minScale)}zoomIn(t=1.25,e){this.zoomTo(this.targetScale*t,e)}zoomOut(t=.8,e){this.zoomTo(this.targetScale*t,e)}zoomToFit(t){this.zoomTo("fit",t)}zoomToCover(t){this.zoomTo("cover",t)}zoomToFull(t){this.zoomTo("full",t)}zoomToMax(t){this.zoomTo("max",t)}toggleZoom(t){this.zoomTo(this.getNextScale("toggleZoom"),t)}toggleMax(t){this.zoomTo(this.getNextScale("toggleMax"),t)}toggleCover(t){this.zoomTo(this.getNextScale("toggleCover"),t)}iterateZoom(t){this.zoomTo("next",t)}zoomTo(t=1,{friction:e=z,originX:i=z,originY:n=z,event:s}={}){if(this.isContentLoading||this.state===m.Destroy)return;const{targetScale:o,fullScale:a,maxScale:r,coverScale:l}=this;if(this.stop(),this.panMode===O&&(s=this.pmme||s),s||i===z||n===z){const t=this.content.getBoundingClientRect(),e=this.container.getBoundingClientRect(),o=s?s.clientX:e.left+.5*e.width,a=s?s.clientY:e.top+.5*e.height;i=o-t.left-.5*t.width,n=a-t.top-.5*t.height}let c=1;"number"==typeof t?c=t:"full"===t?c=a:"cover"===t?c=l:"max"===t?c=r:"fit"===t?c=1:"next"===t&&(c=this.getNextScale("iterateZoom")),c=c/o||1,e=e===z?c>1?.15:.25:e,this.applyChange({scale:c,originX:i,originY:n,friction:e}),s&&this.panMode===O&&this.panWithMouse(s,e)}rotateCCW(){this.applyChange({angle:-90})}rotateCW(){this.applyChange({angle:90})}flipX(){this.applyChange({flipX:!0})}flipY(){this.applyChange({flipY:!0})}fitX(){this.stop("target");const{containerRect:t,contentRect:e,target:i}=this;this.applyChange({panX:.5*t.width-(e.left+.5*e.fitWidth)-i.e,panY:.5*t.height-(e.top+.5*e.fitHeight)-i.f,scale:t.width/e.fitWidth/this.targetScale,originX:0,originY:0,ignoreBounds:!0})}fitY(){this.stop("target");const{containerRect:t,contentRect:e,target:i}=this;this.applyChange({panX:.5*t.width-(e.left+.5*e.fitWidth)-i.e,panY:.5*t.innerHeight-(e.top+.5*e.fitHeight)-i.f,scale:t.height/e.fitHeight/this.targetScale,originX:0,originY:0,ignoreBounds:!0})}toggleFS(){const{container:t}=this,e=this.cn("inFullscreen"),i=this.cn("htmlHasFullscreen");t.classList.toggle(e);const n=t.classList.contains(e);n?(document.documentElement.classList.add(i),document.addEventListener("keydown",this.onKeydown,!0)):(document.documentElement.classList.remove(i),document.removeEventListener("keydown",this.onKeydown,!0)),this.updateMetrics(),this.emit(n?"enterFS":"exitFS")}getMatrix(t=this.current){const{a:e,b:i,c:n,d:s,e:o,f:a}=t;return new DOMMatrix([e,i,n,s,o,a])}reset(t){if(this.state!==m.Init&&this.state!==m.Destroy){this.stop("current");for(const t of v)this.target[t]=C[t];this.target.a=this.minScale,this.target.d=this.minScale,this.clampTargetBounds(),this.isResting||(this.friction=void 0===t?this.option("friction"):t,this.state=m.Panning,this.requestTick())}}destroy(){this.stop(),this.state=m.Destroy,this.detachEvents(),this.detachObserver();const{container:t,content:e}=this,i=this.option("classes")||{};for(const e of Object.values(i))t.classList.remove(e+"");e&&(e.removeEventListener("load",this.onLoad),e.removeEventListener("error",this.onError)),this.detachPlugins()}}Object.defineProperty(I,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:y}),Object.defineProperty(I,"Plugins",{enumerable:!0,configurable:!0,writable:!0,value:{}});const D=function(t,e){let i=!0;return(...n)=>{i&&(i=!1,t(...n),setTimeout((()=>{i=!0}),e))}},F=(t,e)=>{let i=[];return t.childNodes.forEach((t=>{t.nodeType!==Node.ELEMENT_NODE||e&&!t.matches(e)||i.push(t)})),i},j={viewport:null,track:null,enabled:!0,slides:[],axis:"x",transition:"fade",preload:1,slidesPerPage:"auto",initialPage:0,friction:.12,Panzoom:{decelFriction:.12},center:!0,infinite:!0,fill:!0,dragFree:!1,adaptiveHeight:!1,direction:"ltr",classes:{container:"f-carousel",viewport:"f-carousel__viewport",track:"f-carousel__track",slide:"f-carousel__slide",isLTR:"is-ltr",isRTL:"is-rtl",isHorizontal:"is-horizontal",isVertical:"is-vertical",inTransition:"in-transition",isSelected:"is-selected"},l10n:{NEXT:"Next slide",PREV:"Previous slide",GOTO:"Go to slide #%d"}};var B;!function(t){t[t.Init=0]="Init",t[t.Ready=1]="Ready",t[t.Destroy=2]="Destroy"}(B||(B={}));const H=t=>{if("string"==typeof t||t instanceof HTMLElement)t={html:t};else{const e=t.thumb;void 0!==e&&("string"==typeof e&&(t.thumbSrc=e),e instanceof HTMLImageElement&&(t.thumbEl=e,t.thumbElSrc=e.src,t.thumbSrc=e.src),delete t.thumb)}return Object.assign({html:"",el:null,isDom:!1,class:"",customClass:"",index:-1,dim:0,gap:0,pos:0,transition:!1},t)},N=(t={})=>Object.assign({index:-1,slides:[],dim:0,pos:-1},t);class _ extends f{constructor(t,e){super(e),Object.defineProperty(this,"instance",{enumerable:!0,configurable:!0,writable:!0,value:t})}attach(){}detach(){}}const $={classes:{list:"f-carousel__dots",isDynamic:"is-dynamic",hasDots:"has-dots",dot:"f-carousel__dot",isBeforePrev:"is-before-prev",isPrev:"is-prev",isCurrent:"is-current",isNext:"is-next",isAfterNext:"is-after-next"},dotTpl:'<button type="button" data-carousel-page="%i" aria-label="{{GOTO}}"><span class="f-carousel__dot" aria-hidden="true"></span></button>',dynamicFrom:11,maxCount:1/0,minCount:2};class W extends _{constructor(){super(...arguments),Object.defineProperty(this,"isDynamic",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"list",{enumerable:!0,configurable:!0,writable:!0,value:null})}onRefresh(){this.refresh()}build(){let t=this.list;if(!t){t=document.createElement("ul"),P(t,this.cn("list")),t.setAttribute("role","tablist");const e=this.instance.container;e.appendChild(t),P(e,this.cn("hasDots")),this.list=t}return t}refresh(){var t;const e=this.instance.pages.length,i=Math.min(2,this.option("minCount")),n=Math.max(2e3,this.option("maxCount")),s=this.option("dynamicFrom");if(e<i||e>n)return void this.cleanup();const a="number"==typeof s&&e>5&&e>=s,r=!this.list||this.isDynamic!==a||this.list.children.length!==e;r&&this.cleanup();const l=this.build();if(o(l,this.cn("isDynamic"),!!a),r)for(let t=0;t<e;t++)l.append(this.createItem(t));let c,h=0;for(const e of[...l.children]){const i=h===this.instance.page;i&&(c=e),o(e,this.cn("isCurrent"),i),null===(t=e.children[0])||void 0===t||t.setAttribute("aria-selected",i?"true":"false");for(const t of["isBeforePrev","isPrev","isNext","isAfterNext"])S(e,this.cn(t));h++}if(c=c||l.firstChild,a&&c){const t=c.previousElementSibling,e=t&&t.previousElementSibling;P(t,this.cn("isPrev")),P(e,this.cn("isBeforePrev"));const i=c.nextElementSibling,n=i&&i.nextElementSibling;P(i,this.cn("isNext")),P(n,this.cn("isAfterNext"))}this.isDynamic=a}createItem(t=0){var e;const i=document.createElement("li");i.setAttribute("role","presentation");const s=n(this.instance.localize(this.option("dotTpl"),[["%d",t+1]]).replace(/\%i/g,t+""));return i.appendChild(s),null===(e=i.children[0])||void 0===e||e.setAttribute("role","tab"),i}cleanup(){this.list&&(this.list.remove(),this.list=null),this.isDynamic=!1,S(this.instance.container,this.cn("hasDots"))}attach(){this.instance.on(["refresh","change"],this.onRefresh)}detach(){this.instance.off(["refresh","change"],this.onRefresh),this.cleanup()}}Object.defineProperty(W,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:$});const X="disabled",q="next",Y="prev";class V extends _{constructor(){super(...arguments),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"prev",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"next",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"isDom",{enumerable:!0,configurable:!0,writable:!0,value:!1})}onRefresh(){const t=this.instance,e=t.pages.length,i=t.page;if(e<2)return void this.cleanup();this.build();let n=this.prev,s=this.next;n&&s&&(n.removeAttribute(X),s.removeAttribute(X),t.isInfinite||(i<=0&&n.setAttribute(X,""),i>=e-1&&s.setAttribute(X,"")))}addBtn(t){var e;const i=this.instance,n=document.createElement("button");n.setAttribute("tabindex","0"),n.setAttribute("title",i.localize(`{{${t.toUpperCase()}}}`)),P(n,this.cn("button")+" "+this.cn(t===q?"isNext":"isPrev"));const s=i.isRTL?t===q?Y:q:t;var o;return n.innerHTML=i.localize(this.option(`${s}Tpl`)),n.dataset[`carousel${o=t,o?o.match("^[a-z]")?o.charAt(0).toUpperCase()+o.substring(1):o:""}`]="true",null===(e=this.container)||void 0===e||e.appendChild(n),n}build(){const t=this.instance.container,e=this.cn("container");let{container:i,prev:n,next:s}=this;i||(i=t.querySelector("."+e),this.isDom=!!i),i||(i=document.createElement("div"),P(i,e),t.appendChild(i)),this.container=i,s||(s=i.querySelector("[data-carousel-next]")),s||(s=this.addBtn(q)),this.next=s,n||(n=i.querySelector("[data-carousel-prev]")),n||(n=this.addBtn(Y)),this.prev=n}cleanup(){this.isDom||(this.prev&&this.prev.remove(),this.next&&this.next.remove(),this.container&&this.container.remove()),this.prev=null,this.next=null,this.container=null,this.isDom=!1}attach(){this.instance.on(["refresh","change"],this.onRefresh)}detach(){this.instance.off(["refresh","change"],this.onRefresh),this.cleanup()}}Object.defineProperty(V,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{classes:{container:"f-carousel__nav",button:"f-button",isNext:"is-next",isPrev:"is-prev"},nextTpl:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M9 3l9 9-9 9"/></svg>',prevTpl:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M15 3l-9 9 9 9"/></svg>'}});class Z extends _{constructor(){super(...arguments),Object.defineProperty(this,"selectedIndex",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"target",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"nav",{enumerable:!0,configurable:!0,writable:!0,value:null})}addAsTargetFor(t){this.target=this.instance,this.nav=t,this.attachEvents()}addAsNavFor(t){this.nav=this.instance,this.target=t,this.attachEvents()}attachEvents(){const{nav:t,target:e}=this;t&&e&&(t.options.initialSlide=e.options.initialPage,t.state===B.Ready?this.onNavReady(t):t.on("ready",this.onNavReady),e.state===B.Ready?this.onTargetReady(e):e.on("ready",this.onTargetReady))}onNavReady(t){t.on("createSlide",this.onNavCreateSlide),t.on("Panzoom.click",this.onNavClick),t.on("Panzoom.touchEnd",this.onNavTouch),this.onTargetChange()}onTargetReady(t){t.on("change",this.onTargetChange),t.on("Panzoom.refresh",this.onTargetChange),this.onTargetChange()}onNavClick(t,e,i){this.onNavTouch(t,t.panzoom,i)}onNavTouch(t,e,i){var n,s;if(Math.abs(e.dragOffset.x)>3||Math.abs(e.dragOffset.y)>3)return;const o=i.target,{nav:a,target:r}=this;if(!a||!r||!o)return;const l=o.closest("[data-index]");if(i.stopPropagation(),i.preventDefault(),!l)return;const c=parseInt(l.dataset.index||"",10)||0,h=r.getPageForSlide(c),d=a.getPageForSlide(c);a.slideTo(d),r.slideTo(h,{friction:(null===(s=null===(n=this.nav)||void 0===n?void 0:n.plugins)||void 0===s?void 0:s.Sync.option("friction"))||0}),this.markSelectedSlide(c)}onNavCreateSlide(t,e){e.index===this.selectedIndex&&this.markSelectedSlide(e.index)}onTargetChange(){var t,e;const{target:i,nav:n}=this;if(!i||!n)return;if(n.state!==B.Ready||i.state!==B.Ready)return;const s=null===(e=null===(t=i.pages[i.page])||void 0===t?void 0:t.slides[0])||void 0===e?void 0:e.index,o=n.getPageForSlide(s);this.markSelectedSlide(s),n.slideTo(o,null===n.prevPage&&null===i.prevPage?{friction:0}:void 0)}markSelectedSlide(t){const e=this.nav;e&&e.state===B.Ready&&(this.selectedIndex=t,[...e.slides].map((e=>{e.el&&e.el.classList[e.index===t?"add":"remove"]("is-nav-selected")})))}attach(){const t=this;let e=t.options.target,i=t.options.nav;e?t.addAsNavFor(e):i&&t.addAsTargetFor(i)}detach(){const t=this,e=t.nav,i=t.target;e&&(e.off("ready",t.onNavReady),e.off("createSlide",t.onNavCreateSlide),e.off("Panzoom.click",t.onNavClick),e.off("Panzoom.touchEnd",t.onNavTouch)),t.nav=null,i&&(i.off("ready",t.onTargetReady),i.off("refresh",t.onTargetChange),i.off("change",t.onTargetChange)),t.target=null}}Object.defineProperty(Z,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{friction:.35}});const U={Navigation:V,Dots:W,Sync:Z},G="animationend",K="isSelected",J="slide";class Q extends g{get axis(){return this.isHorizontal?"e":"f"}get isEnabled(){return this.state===B.Ready}get isInfinite(){let t=!1;const{contentDim:e,viewportDim:i,pages:n,slides:s}=this,o=s[0];return n.length>=2&&o&&e+o.dim>=i&&(t=this.option("infinite")),t}get isRTL(){return"rtl"===this.option("direction")}get isHorizontal(){return"x"===this.option("axis")}constructor(t,e={},i={}){if(super(),Object.defineProperty(this,"bp",{enumerable:!0,configurable:!0,writable:!0,value:""}),Object.defineProperty(this,"lp",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"userOptions",{enumerable:!0,configurable:!0,writable:!0,value:{}}),Object.defineProperty(this,"userPlugins",{enumerable:!0,configurable:!0,writable:!0,value:{}}),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:B.Init}),Object.defineProperty(this,"page",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"prevPage",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"viewport",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"track",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"slides",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"pages",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"panzoom",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"inTransition",{enumerable:!0,configurable:!0,writable:!0,value:new Set}),Object.defineProperty(this,"contentDim",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"viewportDim",{enumerable:!0,configurable:!0,writable:!0,value:0}),"string"==typeof t&&(t=document.querySelector(t)),!t||!E(t))throw new Error("No Element found");this.container=t,this.slideNext=D(this.slideNext.bind(this),150),this.slidePrev=D(this.slidePrev.bind(this),150),this.userOptions=e,this.userPlugins=i,queueMicrotask((()=>{this.processOptions()}))}processOptions(){var t,e;const i=u({},Q.defaults,this.userOptions);let n="";const s=i.breakpoints;if(s&&d(s))for(const[t,e]of Object.entries(s))window.matchMedia(t).matches&&d(e)&&(n+=t,u(i,e));n===this.bp&&this.state!==B.Init||(this.bp=n,this.state===B.Ready&&(i.initialSlide=(null===(e=null===(t=this.pages[this.page])||void 0===t?void 0:t.slides[0])||void 0===e?void 0:e.index)||0),this.state!==B.Init&&this.destroy(),super.setOptions(i),!1===this.option("enabled")?this.attachEvents():setTimeout((()=>{this.init()}),0))}init(){this.state=B.Init,this.emit("init"),this.attachPlugins(Object.assign(Object.assign({},Q.Plugins),this.userPlugins)),this.emit("attachPlugins"),this.initLayout(),this.initSlides(),this.updateMetrics(),this.setInitialPosition(),this.initPanzoom(),this.attachEvents(),this.state=B.Ready,this.emit("ready")}initLayout(){const{container:t}=this,e=this.option("classes");P(t,this.cn("container")),o(t,e.isLTR,!this.isRTL),o(t,e.isRTL,this.isRTL),o(t,e.isVertical,!this.isHorizontal),o(t,e.isHorizontal,this.isHorizontal);let i=this.option("viewport")||t.querySelector(`.${e.viewport}`);i||(i=document.createElement("div"),P(i,e.viewport),i.append(...F(t,`.${e.slide}`)),t.prepend(i)),i.addEventListener("scroll",this.onScroll);let n=this.option("track")||t.querySelector(`.${e.track}`);n||(n=document.createElement("div"),P(n,e.track),n.append(...Array.from(i.childNodes))),n.setAttribute("aria-live","polite"),i.contains(n)||i.prepend(n),this.viewport=i,this.track=n,this.emit("initLayout")}initSlides(){const{track:t}=this;if(!t)return;const e=[...this.slides],i=[];[...F(t,`.${this.cn(J)}`)].forEach((t=>{if(E(t)){const e=H({el:t,isDom:!0,index:this.slides.length});i.push(e)}}));for(let t of[...this.option("slides",[])||[],...e])i.push(H(t));this.slides=i;for(let t=0;t<this.slides.length;t++)this.slides[t].index=t;for(const t of i)this.emit("beforeInitSlide",t,t.index),this.emit("initSlide",t,t.index);this.emit("initSlides")}setInitialPage(){const t=this.option("initialSlide");this.page="number"==typeof t?this.getPageForSlide(t):parseInt(this.option("initialPage",0)+"",10)||0}setInitialPosition(){const{track:t,pages:e,isHorizontal:i}=this;if(!t||!e.length)return;let n=this.page;e[n]||(this.page=n=0);const s=(e[n].pos||0)*(this.isRTL&&i?1:-1),o=i?`${s}px`:"0",a=i?"0":`${s}px`;t.style.transform=`translate3d(${o}, ${a}, 0) scale(1)`,this.option("adaptiveHeight")&&this.setViewportHeight()}initPanzoom(){this.panzoom&&(this.panzoom.destroy(),this.panzoom=null);const t=this.option("Panzoom")||{};this.panzoom=new I(this.viewport,u({},{content:this.track,zoom:!1,panOnlyZoomed:!1,lockAxis:this.isHorizontal?"x":"y",infinite:this.isInfinite,click:!1,dblClick:!1,touch:t=>!(this.pages.length<2&&!t.options.infinite),bounds:()=>this.getBounds(),maxVelocity:t=>Math.abs(t.target[this.axis]-t.current[this.axis])<2*this.viewportDim?100:0},t)),this.panzoom.on("*",((t,e,...i)=>{this.emit(`Panzoom.${e}`,t,...i)})),this.panzoom.on("decel",this.onDecel),this.panzoom.on("refresh",this.onRefresh),this.panzoom.on("beforeTransform",this.onBeforeTransform),this.panzoom.on("endAnimation",this.onEndAnimation)}attachEvents(){const t=this.container;t&&(t.addEventListener("click",this.onClick,{passive:!1,capture:!1}),t.addEventListener("slideTo",this.onSlideTo)),window.addEventListener("resize",this.onResize)}createPages(){let t=[];const{contentDim:e,viewportDim:i}=this;let n=this.option("slidesPerPage");n=("auto"===n||e<=i)&&!1!==this.option("fill")?1/0:parseFloat(n+"");let s=0,o=0,a=0;for(const e of this.slides)(!t.length||o+e.dim-i>.05||a>=n)&&(t.push(N()),s=t.length-1,o=0,a=0),t[s].slides.push(e),o+=e.dim+e.gap,a++;return t}processPages(){const e=this.pages,{contentDim:i,viewportDim:n,isInfinite:s}=this,o=this.option("center"),a=this.option("fill"),r=a&&o&&i>n&&!s;if(e.forEach(((t,e)=>{var s;t.index=e,t.pos=(null===(s=t.slides[0])||void 0===s?void 0:s.pos)||0,t.dim=0;for(const[e,i]of t.slides.entries())t.dim+=i.dim,e<t.slides.length-1&&(t.dim+=i.gap);r&&t.pos+.5*t.dim<.5*n?t.pos=0:r&&t.pos+.5*t.dim>=i-.5*n?t.pos=i-n:o&&(t.pos+=-.5*(n-t.dim))})),e.forEach((e=>{a&&!s&&i>n&&(e.pos=Math.max(e.pos,0),e.pos=Math.min(e.pos,i-n)),e.pos=t(e.pos,1e3),e.dim=t(e.dim,1e3),Math.abs(e.pos)<=.1&&(e.pos=0)})),s)return e;const l=[];let c;return e.forEach((t=>{const e=Object.assign({},t);c&&e.pos===c.pos?(c.dim+=e.dim,c.slides=[...c.slides,...e.slides]):(e.index=l.length,c=e,l.push(e))})),l}getPageFromIndex(t=0){const e=this.pages.length;let i;return t=parseInt((t||0).toString())||0,i=this.isInfinite?(t%e+e)%e:Math.max(Math.min(t,e-1),0),i}getSlideMetrics(e){var i,n;const s=this.isHorizontal?"width":"height";let o=0,a=0,r=e.el;const l=!(!r||r.parentNode);if(r?o=parseFloat(r.dataset[s]||"")||0:(r=document.createElement("div"),r.style.visibility="hidden",(this.track||document.body).prepend(r)),P(r,this.cn(J)+" "+e.class+" "+e.customClass),o)r.style[s]=`${o}px`,r.style["width"===s?"height":"width"]="";else{l&&(this.track||document.body).prepend(r),o=r.getBoundingClientRect()[s]*Math.max(1,(null===(i=window.visualViewport)||void 0===i?void 0:i.scale)||1);let t=r[this.isHorizontal?"offsetWidth":"offsetHeight"];t-1>o&&(o=t)}const c=getComputedStyle(r);return"content-box"===c.boxSizing&&(this.isHorizontal?(o+=parseFloat(c.paddingLeft)||0,o+=parseFloat(c.paddingRight)||0):(o+=parseFloat(c.paddingTop)||0,o+=parseFloat(c.paddingBottom)||0)),a=parseFloat(c[this.isHorizontal?"marginRight":"marginBottom"])||0,l?null===(n=r.parentElement)||void 0===n||n.removeChild(r):e.el||r.remove(),{dim:t(o,1e3),gap:t(a,1e3)}}getBounds(){const{isInfinite:t,isRTL:e,isHorizontal:i,pages:n}=this;let s={min:0,max:0};if(t)s={min:-1/0,max:1/0};else if(n.length){const t=n[0].pos,o=n[n.length-1].pos;s=e&&i?{min:t,max:o}:{min:-1*o,max:-1*t}}return{x:i?s:{min:0,max:0},y:i?{min:0,max:0}:s}}repositionSlides(){let e,{isHorizontal:i,isRTL:n,isInfinite:s,viewport:o,viewportDim:a,contentDim:r,page:l,pages:c,slides:h,panzoom:d}=this,u=0,p=0,f=0,g=0;d?g=-1*d.current[this.axis]:c[l]&&(g=c[l].pos||0),e=i?n?"right":"left":"top",n&&i&&(g*=-1);for(const i of h){const n=i.el;n?("top"===e?(n.style.right="",n.style.left=""):n.style.top="",i.index!==u?n.style[e]=0===p?"":`${t(p,1e3)}px`:n.style[e]="",f+=i.dim+i.gap,u++):p+=i.dim+i.gap}if(s&&f&&o){let n=getComputedStyle(o),s="padding",l=i?"Right":"Bottom",c=parseFloat(n[s+(i?"Left":"Top")]);g-=c,a+=c,a+=parseFloat(n[s+l]);for(const i of h)i.el&&(t(i.pos)<t(a)&&t(i.pos+i.dim+i.gap)<t(g)&&t(g)>t(r-a)&&(i.el.style[e]=`${t(p+f,1e3)}px`),t(i.pos+i.gap)>=t(r-a)&&t(i.pos)>t(g+a)&&t(g)<t(a)&&(i.el.style[e]=`-${t(f,1e3)}px`))}let m,v,b=[...this.inTransition];if(b.length>1&&(m=c[b[0]],v=c[b[1]]),m&&v){let i=0;for(const n of h)n.el?this.inTransition.has(n.index)&&m.slides.indexOf(n)<0&&(n.el.style[e]=`${t(i+(m.pos-v.pos),1e3)}px`):i+=n.dim+n.gap}}createSlideEl(t){const{track:e,slides:i}=this;if(!e||!t)return;if(t.el&&t.el.parentNode)return;const n=t.el||document.createElement("div");P(n,this.cn(J)),P(n,t.class),P(n,t.customClass);const s=t.html;s&&(s instanceof HTMLElement?n.appendChild(s):n.innerHTML=t.html+"");const o=[];i.forEach(((t,e)=>{t.el&&o.push(e)}));const a=t.index;let r=null;if(o.length){r=i[o.reduce(((t,e)=>Math.abs(e-a)<Math.abs(t-a)?e:t))]}const l=r&&r.el&&r.el.parentNode?r.index<t.index?r.el.nextSibling:r.el:null;e.insertBefore(n,e.contains(l)?l:null),t.el=n,this.emit("createSlide",t)}removeSlideEl(t,e=!1){const i=null==t?void 0:t.el;if(!i||!i.parentNode)return;const n=this.cn(K);if(i.classList.contains(n)&&(S(i,n),this.emit("unselectSlide",t)),t.isDom&&!e)return i.removeAttribute("aria-hidden"),i.removeAttribute("data-index"),void(i.style.left="");this.emit("removeSlide",t);const s=new CustomEvent(G);i.dispatchEvent(s),t.el&&(t.el.remove(),t.el=null)}transitionTo(t=0,e=this.option("transition")){var i,n,s,o;if(!e)return!1;const a=this.page,{pages:r,panzoom:l}=this;t=parseInt((t||0).toString())||0;const c=this.getPageFromIndex(t);if(!l||!r[c]||r.length<2||Math.abs(((null===(n=null===(i=r[a])||void 0===i?void 0:i.slides[0])||void 0===n?void 0:n.dim)||0)-this.viewportDim)>1)return!1;let h=t>a?1:-1;this.isInfinite&&(0===a&&t===r.length-1&&(h=-1),a===r.length-1&&0===t&&(h=1));const d=r[c].pos*(this.isRTL?1:-1);if(a===c&&Math.abs(d-l.target[this.axis])<1)return!1;this.clearTransitions();const u=l.isResting;P(this.container,this.cn("inTransition"));const p=(null===(s=r[a])||void 0===s?void 0:s.slides[0])||null,f=(null===(o=r[c])||void 0===o?void 0:o.slides[0])||null;this.inTransition.add(f.index),this.createSlideEl(f);let g=p.el,m=f.el;u||e===J||(e="fadeFast",g=null);const v=this.isRTL?"next":"prev",b=this.isRTL?"prev":"next";return g&&(this.inTransition.add(p.index),p.transition=e,g.addEventListener(G,this.onAnimationEnd),g.classList.add(`f-${e}Out`,`to-${h>0?b:v}`)),m&&(f.transition=e,m.addEventListener(G,this.onAnimationEnd),m.classList.add(`f-${e}In`,`from-${h>0?v:b}`)),l.current[this.axis]=d,l.target[this.axis]=d,l.requestTick(),this.onChange(c),!0}manageSlideVisiblity(){const t=new Set,e=new Set,i=this.getVisibleSlides(parseFloat(this.option("preload",0)+"")||0);for(const n of this.slides)i.has(n)?t.add(n):e.add(n);for(const e of this.inTransition)t.add(this.slides[e]);for(const e of t)this.createSlideEl(e),this.lazyLoadSlide(e);for(const i of e)t.has(i)||this.removeSlideEl(i);this.markSelectedSlides(),this.repositionSlides()}markSelectedSlides(){if(!this.pages[this.page]||!this.pages[this.page].slides)return;const t="aria-hidden";let e=this.cn(K);if(e)for(const i of this.slides){const n=i.el;n&&(n.dataset.index=`${i.index}`,n.classList.contains("f-thumbs__slide")?this.getVisibleSlides(0).has(i)?n.removeAttribute(t):n.setAttribute(t,"true"):this.pages[this.page].slides.includes(i)?(n.classList.contains(e)||(P(n,e),this.emit("selectSlide",i)),n.removeAttribute(t)):(n.classList.contains(e)&&(S(n,e),this.emit("unselectSlide",i)),n.setAttribute(t,"true")))}}flipInfiniteTrack(){const{axis:t,isHorizontal:e,isInfinite:i,isRTL:n,viewportDim:s,contentDim:o}=this,a=this.panzoom;if(!a||!i)return;let r=a.current[t],l=a.target[t]-r,c=0,h=.5*s;n&&e?(r<-h&&(c=-1,r+=o),r>o-h&&(c=1,r-=o)):(r>h&&(c=1,r-=o),r<-o+h&&(c=-1,r+=o)),c&&(a.current[t]=r,a.target[t]=r+l)}lazyLoadImg(t,e){const i=this,s="f-fadeIn",o="is-preloading";let a=!1,r=null;const l=()=>{a||(a=!0,r&&(r.remove(),r=null),S(e,o),e.complete&&(P(e,s),setTimeout((()=>{S(e,s)}),350)),this.option("adaptiveHeight")&&t.el&&this.pages[this.page].slides.indexOf(t)>-1&&(i.updateMetrics(),i.setViewportHeight()),this.emit("load",t))};P(e,o),e.src=e.dataset.lazySrcset||e.dataset.lazySrc||"",delete e.dataset.lazySrc,delete e.dataset.lazySrcset,e.addEventListener("error",(()=>{l()})),e.addEventListener("load",(()=>{l()})),setTimeout((()=>{const i=e.parentNode;i&&t.el&&(e.complete?l():a||(r=n(x),i.insertBefore(r,e)))}),300)}lazyLoadSlide(t){const e=t&&t.el;if(!e)return;const i=new Set;let n=Array.from(e.querySelectorAll("[data-lazy-src],[data-lazy-srcset]"));e.dataset.lazySrc&&n.push(e),n.map((t=>{t instanceof HTMLImageElement?i.add(t):t instanceof HTMLElement&&t.dataset.lazySrc&&(t.style.backgroundImage=`url('${t.dataset.lazySrc}')`,delete t.dataset.lazySrc)}));for(const e of i)this.lazyLoadImg(t,e)}onAnimationEnd(t){var e;const i=t.target,n=i?parseInt(i.dataset.index||"",10)||0:-1,s=this.slides[n],o=t.animationName;if(!i||!s||!o)return;const a=!!this.inTransition.has(n)&&s.transition;a&&o.substring(0,a.length+2)===`f-${a}`&&this.inTransition.delete(n),this.inTransition.size||this.clearTransitions(),n===this.page&&(null===(e=this.panzoom)||void 0===e?void 0:e.isResting)&&this.emit("settle")}onDecel(t,e=0,i=0,n=0,s=0){if(this.option("dragFree"))return void this.setPageFromPosition();const{isRTL:o,isHorizontal:a,axis:r,pages:l}=this,c=l.length,h=Math.abs(Math.atan2(i,e)/(Math.PI/180));let d=0;if(d=h>45&&h<135?a?0:i:a?e:0,!c)return;let u=this.page,p=o&&a?1:-1;const f=t.current[r]*p;let{pageIndex:g}=this.getPageFromPosition(f);Math.abs(d)>5?(l[u].dim<document.documentElement["client"+(this.isHorizontal?"Width":"Height")]-1&&(u=g),u=o&&a?d<0?u-1:u+1:d<0?u+1:u-1):u=0===n&&0===s?u:g,this.slideTo(u,{transition:!1,friction:t.option("decelFriction")})}onClick(t){const e=t.target,i=e&&E(e)?e.dataset:null;let n,s;i&&(void 0!==i.carouselPage?(s="slideTo",n=i.carouselPage):void 0!==i.carouselNext?s="slideNext":void 0!==i.carouselPrev&&(s="slidePrev")),s?(t.preventDefault(),t.stopPropagation(),e&&!e.hasAttribute("disabled")&&this[s](n)):this.emit("click",t)}onSlideTo(t){const e=t.detail||0;this.slideTo(this.getPageForSlide(e),{friction:0})}onChange(t,e=0){const i=this.page;this.prevPage=i,this.page=t,this.option("adaptiveHeight")&&this.setViewportHeight(),t!==i&&(this.markSelectedSlides(),this.emit("change",t,i,e))}onRefresh(){let t=this.contentDim,e=this.viewportDim;this.updateMetrics(),this.contentDim===t&&this.viewportDim===e||this.slideTo(this.page,{friction:0,transition:!1})}onScroll(){var t;null===(t=this.viewport)||void 0===t||t.scroll(0,0)}onResize(){this.option("breakpoints")&&this.processOptions()}onBeforeTransform(t){this.lp!==t.current[this.axis]&&(this.flipInfiniteTrack(),this.manageSlideVisiblity()),this.lp=t.current.e}onEndAnimation(){this.inTransition.size||this.emit("settle")}reInit(t=null,e=null){this.destroy(),this.state=B.Init,this.prevPage=null,this.userOptions=t||this.userOptions,this.userPlugins=e||this.userPlugins,this.processOptions()}slideTo(t=0,{friction:e=this.option("friction"),transition:i=this.option("transition")}={}){if(this.state===B.Destroy)return;t=parseInt((t||0).toString())||0;const n=this.getPageFromIndex(t),{axis:s,isHorizontal:o,isRTL:a,pages:r,panzoom:l}=this,c=r.length,h=a&&o?1:-1;if(!l||!c)return;if(this.page!==n){const e=new Event("beforeChange",{bubbles:!0,cancelable:!0});if(this.emit("beforeChange",e,t),e.defaultPrevented)return}if(this.transitionTo(t,i))return;let d=r[n].pos;if(this.isInfinite){const e=this.contentDim,i=l.target[s]*h;if(2===c)d+=e*Math.floor(parseFloat(t+"")/2);else{d=[d,d-e,d+e].reduce((function(t,e){return Math.abs(e-i)<Math.abs(t-i)?e:t}))}}d*=h,Math.abs(l.target[s]-d)<1||(l.panTo({x:o?d:0,y:o?0:d,friction:e}),this.onChange(n))}slideToClosest(t){if(this.panzoom){const{pageIndex:e}=this.getPageFromPosition();this.slideTo(e,t)}}slideNext(){this.slideTo(this.page+1)}slidePrev(){this.slideTo(this.page-1)}clearTransitions(){this.inTransition.clear(),S(this.container,this.cn("inTransition"));const t=["to-prev","to-next","from-prev","from-next"];for(const e of this.slides){const i=e.el;if(i){i.removeEventListener(G,this.onAnimationEnd),i.classList.remove(...t);const n=e.transition;n&&i.classList.remove(`f-${n}Out`,`f-${n}In`)}}this.manageSlideVisiblity()}addSlide(t,e){var i,n,s,o;const a=this.panzoom,r=(null===(i=this.pages[this.page])||void 0===i?void 0:i.pos)||0,l=(null===(n=this.pages[this.page])||void 0===n?void 0:n.dim)||0,c=this.contentDim<this.viewportDim;let h=Array.isArray(e)?e:[e];const d=[];for(const t of h)d.push(H(t));this.slides.splice(t,0,...d);for(let t=0;t<this.slides.length;t++)this.slides[t].index=t;for(const t of d)this.emit("beforeInitSlide",t,t.index);if(this.page>=t&&(this.page+=d.length),this.updateMetrics(),a){const e=(null===(s=this.pages[this.page])||void 0===s?void 0:s.pos)||0,i=(null===(o=this.pages[this.page])||void 0===o?void 0:o.dim)||0,n=this.pages.length||1,h=this.isRTL?l-i:i-l,d=this.isRTL?r-e:e-r;c&&1===n?(t<=this.page&&(a.current[this.axis]-=h,a.target[this.axis]-=h),a.panTo({[this.isHorizontal?"x":"y"]:-1*e})):d&&t<=this.page&&(a.target[this.axis]-=d,a.current[this.axis]-=d,a.requestTick())}for(const t of d)this.emit("initSlide",t,t.index)}prependSlide(t){this.addSlide(0,t)}appendSlide(t){this.addSlide(this.slides.length,t)}removeSlide(t){const e=this.slides.length;t=(t%e+e)%e;const i=this.slides[t];if(i){this.removeSlideEl(i,!0),this.slides.splice(t,1);for(let t=0;t<this.slides.length;t++)this.slides[t].index=t;this.updateMetrics(),this.slideTo(this.page,{friction:0,transition:!1}),this.emit("destroySlide",i)}}updateMetrics(){const{panzoom:e,viewport:i,track:n,slides:s,isHorizontal:o,isInfinite:a}=this;if(!n)return;const r=o?"width":"height",l=o?"offsetWidth":"offsetHeight";if(i){let e=Math.max(i[l],t(i.getBoundingClientRect()[r],1e3)),n=getComputedStyle(i),s="padding",a=o?"Right":"Bottom";e-=parseFloat(n[s+(o?"Left":"Top")])+parseFloat(n[s+a]),this.viewportDim=e}let c,h=0;for(const[e,i]of s.entries()){let n=0,o=0;!i.el&&c?(n=c.dim,o=c.gap):(({dim:n,gap:o}=this.getSlideMetrics(i)),c=i),n=t(n,1e3),o=t(o,1e3),i.dim=n,i.gap=o,i.pos=h,h+=n,(a||e<s.length-1)&&(h+=o)}h=t(h,1e3),this.contentDim=h,e&&(e.contentRect[r]=h,e.contentRect[o?"fullWidth":"fullHeight"]=h),this.pages=this.createPages(),this.pages=this.processPages(),this.state===B.Init&&this.setInitialPage(),this.page=Math.max(0,Math.min(this.page,this.pages.length-1)),this.manageSlideVisiblity(),this.emit("refresh")}getProgress(e,i=!1,n=!1){void 0===e&&(e=this.page);const s=this,o=s.panzoom,a=s.contentDim,r=s.pages[e]||0;if(!r||!o)return e>this.page?-1:1;let l=-1*o.current.e,c=t((l-r.pos)/(1*r.dim),1e3),h=c,d=c;this.isInfinite&&!0!==n&&(h=t((l-r.pos+a)/(1*r.dim),1e3),d=t((l-r.pos-a)/(1*r.dim),1e3));let u=[c,h,d].reduce((function(t,e){return Math.abs(e)<Math.abs(t)?e:t}));return i?u:u>1?1:u<-1?-1:u}setViewportHeight(){const{page:t,pages:e,viewport:i,isHorizontal:n}=this;if(!i||!e[t])return;let s=0;n&&this.track&&(this.track.style.height="auto",e[t].slides.forEach((t=>{t.el&&(s=Math.max(s,t.el.offsetHeight))}))),i.style.height=s?`${s}px`:""}getPageForSlide(t){for(const e of this.pages)for(const i of e.slides)if(i.index===t)return e.index;return-1}getVisibleSlides(t=0){var e;const i=new Set;let{panzoom:n,contentDim:s,viewportDim:o,pages:a,page:r}=this;if(o){s=s+(null===(e=this.slides[this.slides.length-1])||void 0===e?void 0:e.gap)||0;let l=0;l=n&&n.state!==m.Init&&n.state!==m.Destroy?-1*n.current[this.axis]:a[r]&&a[r].pos||0,this.isInfinite&&(l-=Math.floor(l/s)*s),this.isRTL&&this.isHorizontal&&(l*=-1);const c=l-o*t,h=l+o*(t+1),d=this.isInfinite?[-1,0,1]:[0];for(const t of this.slides)for(const e of d){const n=t.pos+e*s,o=n+t.dim+t.gap;n<h&&o>c&&i.add(t)}}return i}getPageFromPosition(t){const{viewportDim:e,contentDim:i,slides:n,pages:s,panzoom:o}=this,a=s.length,r=n.length,l=n[0],c=n[r-1],h=this.option("center");let d=0,u=0,p=0,f=void 0===t?-1*((null==o?void 0:o.target[this.axis])||0):t;h&&(f+=.5*e),this.isInfinite?(f<l.pos-.5*c.gap&&(f-=i,p=-1),f>c.pos+c.dim+.5*c.gap&&(f-=i,p=1)):f=Math.max(l.pos||0,Math.min(f,c.pos));let g=c,m=n.find((t=>{const e=t.pos-.5*g.gap,i=t.pos+t.dim+.5*t.gap;return g=t,f>=e&&f<i}));return m||(m=c),u=this.getPageForSlide(m.index),d=u+p*a,{page:d,pageIndex:u}}setPageFromPosition(){const{pageIndex:t}=this.getPageFromPosition();this.onChange(t)}destroy(){if([B.Destroy].includes(this.state))return;this.state=B.Destroy;const{container:t,viewport:e,track:i,slides:n,panzoom:s}=this,o=this.option("classes");t.removeEventListener("click",this.onClick,{passive:!1,capture:!1}),t.removeEventListener("slideTo",this.onSlideTo),window.removeEventListener("resize",this.onResize),s&&(s.destroy(),this.panzoom=null),n&&n.forEach((t=>{this.removeSlideEl(t)})),this.detachPlugins(),e&&(e.removeEventListener("scroll",this.onScroll),e.offsetParent&&i&&i.offsetParent&&e.replaceWith(...i.childNodes));for(const[e,i]of Object.entries(o))"container"!==e&&i&&t.classList.remove(i);this.track=null,this.viewport=null,this.page=0,this.slides=[];const a=this.events.get("ready");this.events=new Map,a&&this.events.set("ready",a)}}Object.defineProperty(Q,"Panzoom",{enumerable:!0,configurable:!0,writable:!0,value:I}),Object.defineProperty(Q,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:j}),Object.defineProperty(Q,"Plugins",{enumerable:!0,configurable:!0,writable:!0,value:U});const tt=function(t){if(!E(t))return 0;const e=window.scrollY,i=window.innerHeight,n=e+i,s=t.getBoundingClientRect(),o=s.y+e,a=s.height,r=o+a;if(e>r||n<o)return 0;if(e<o&&n>r)return 100;if(o<e&&r>n)return 100;let l=a;o<e&&(l-=e-o),r>n&&(l-=r-n);const c=l/i*100;return Math.round(c)},et=!("undefined"==typeof window||!window.document||!window.document.createElement);let it;const nt=["a[href]","area[href]",'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',"select:not([disabled]):not([aria-hidden])","textarea:not([disabled]):not([aria-hidden])","button:not([disabled]):not([aria-hidden]):not(.fancybox-focus-guard)","iframe","object","embed","video","audio","[contenteditable]",'[tabindex]:not([tabindex^="-"]):not([disabled]):not([aria-hidden])'].join(","),st=t=>{if(t&&et){void 0===it&&document.createElement("div").focus({get preventScroll(){return it=!0,!1}});try{if(it)t.focus({preventScroll:!0});else{const e=window.scrollY||document.body.scrollTop,i=window.scrollX||document.body.scrollLeft;t.focus(),document.body.scrollTo({top:e,left:i,behavior:"auto"})}}catch(t){}}},ot=()=>{const t=document;let e,i="",n="",s="";return t.fullscreenEnabled?(i="requestFullscreen",n="exitFullscreen",s="fullscreenElement"):t.webkitFullscreenEnabled&&(i="webkitRequestFullscreen",n="webkitExitFullscreen",s="webkitFullscreenElement"),i&&(e={request:function(e=t.documentElement){return"webkitRequestFullscreen"===i?e[i](Element.ALLOW_KEYBOARD_INPUT):e[i]()},exit:function(){return t[s]&&t[n]()},isFullscreen:function(){return t[s]}}),e},at={animated:!0,autoFocus:!0,backdropClick:"close",Carousel:{classes:{container:"fancybox__carousel",viewport:"fancybox__viewport",track:"fancybox__track",slide:"fancybox__slide"}},closeButton:"auto",closeExisting:!1,commonCaption:!1,compact:()=>window.matchMedia("(max-width: 578px), (max-height: 578px)").matches,contentClick:"toggleZoom",contentDblClick:!1,defaultType:"image",defaultDisplay:"flex",dragToClose:!0,Fullscreen:{autoStart:!1},groupAll:!1,groupAttr:"data-fancybox",hideClass:"f-fadeOut",hideScrollbar:!0,idle:3500,keyboard:{Escape:"close",Delete:"close",Backspace:"close",PageUp:"next",PageDown:"prev",ArrowUp:"prev",ArrowDown:"next",ArrowRight:"next",ArrowLeft:"prev"},l10n:Object.assign(Object.assign({},b),{CLOSE:"Close",NEXT:"Next",PREV:"Previous",MODAL:"You can close this modal content with the ESC key",ERROR:"Something Went Wrong, Please Try Again Later",IMAGE_ERROR:"Image Not Found",ELEMENT_NOT_FOUND:"HTML Element Not Found",AJAX_NOT_FOUND:"Error Loading AJAX : Not Found",AJAX_FORBIDDEN:"Error Loading AJAX : Forbidden",IFRAME_ERROR:"Error Loading Page",TOGGLE_ZOOM:"Toggle zoom level",TOGGLE_THUMBS:"Toggle thumbnails",TOGGLE_SLIDESHOW:"Toggle slideshow",TOGGLE_FULLSCREEN:"Toggle full-screen mode",DOWNLOAD:"Download"}),parentEl:null,placeFocusBack:!0,showClass:"f-zoomInUp",startIndex:0,tpl:{closeButton:'<button data-fancybox-close class="f-button is-close-btn" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',main:'<div class="fancybox__container" role="dialog" aria-modal="true" aria-label="{{MODAL}}" tabindex="-1">\n    <div class="fancybox__backdrop"></div>\n    <div class="fancybox__carousel"></div>\n    <div class="fancybox__footer"></div>\n  </div>'},trapFocus:!0,wheel:"zoom"};var rt,lt;!function(t){t[t.Init=0]="Init",t[t.Ready=1]="Ready",t[t.Closing=2]="Closing",t[t.CustomClosing=3]="CustomClosing",t[t.Destroy=4]="Destroy"}(rt||(rt={})),function(t){t[t.Loading=0]="Loading",t[t.Opening=1]="Opening",t[t.Ready=2]="Ready",t[t.Closing=3]="Closing"}(lt||(lt={}));let ct="",ht=!1,dt=!1,ut=null;const pt=()=>{let t="",e="";const i=Oe.getInstance();if(i){const n=i.carousel,s=i.getSlide();if(n&&s){let o=s.slug||void 0,a=s.triggerEl||void 0;e=o||(i.option("slug")||""),!e&&a&&a.dataset&&(e=a.dataset.fancybox||""),e&&"true"!==e&&(t="#"+e+(!o&&n.slides.length>1?"-"+(s.index+1):""))}}return{hash:t,slug:e,index:1}},ft=()=>{const t=new URL(document.URL).hash,e=t.slice(1).split("-"),i=e[e.length-1],n=i&&/^\+?\d+$/.test(i)&&parseInt(e.pop()||"1",10)||1;return{hash:t,slug:e.join("-"),index:n}},gt=()=>{const{slug:t,index:e}=ft();if(!t)return;let i=document.querySelector(`[data-slug="${t}"]`);if(i&&i.dispatchEvent(new CustomEvent("click",{bubbles:!0,cancelable:!0})),Oe.getInstance())return;const n=document.querySelectorAll(`[data-fancybox="${t}"]`);n.length&&(i=n[e-1],i&&i.dispatchEvent(new CustomEvent("click",{bubbles:!0,cancelable:!0})))},mt=()=>{if(!1===Oe.defaults.Hash)return;const t=Oe.getInstance();if(!1===(null==t?void 0:t.options.Hash))return;const{slug:e,index:i}=ft(),{slug:n}=pt();t&&(e===n?t.jumpTo(i-1):(ht=!0,t.close())),gt()},vt=()=>{ut&&clearTimeout(ut),queueMicrotask((()=>{mt()}))},bt=()=>{window.addEventListener("hashchange",vt,!1),setTimeout((()=>{mt()}),500)};et&&(/complete|interactive|loaded/.test(document.readyState)?bt():document.addEventListener("DOMContentLoaded",bt));const yt="is-zooming-in";class wt extends _{onCreateSlide(t,e,i){const n=this.instance.optionFor(i,"src")||"";i.el&&"image"===i.type&&"string"==typeof n&&this.setImage(i,n)}onRemoveSlide(t,e,i){i.panzoom&&i.panzoom.destroy(),i.panzoom=void 0,i.imageEl=void 0}onChange(t,e,i,n){S(this.instance.container,yt);for(const t of e.slides){const e=t.panzoom;e&&t.index!==i&&e.reset(.35)}}onClose(){var t;const e=this.instance,i=e.container,n=e.getSlide();if(!i||!i.parentElement||!n)return;const{el:s,contentEl:o,panzoom:a,thumbElSrc:r}=n;if(!s||!r||!o||!a||a.isContentLoading||a.state===m.Init||a.state===m.Destroy)return;a.updateMetrics();let l=this.getZoomInfo(n);if(!l)return;this.instance.state=rt.CustomClosing,i.classList.remove(yt),i.classList.add("is-zooming-out"),o.style.backgroundImage=`url('${r}')`;const c=i.getBoundingClientRect();1===((null===(t=window.visualViewport)||void 0===t?void 0:t.scale)||1)&&Object.assign(i.style,{position:"absolute",top:`${i.offsetTop+window.scrollY}px`,left:`${i.offsetLeft+window.scrollX}px`,bottom:"auto",right:"auto",width:`${c.width}px`,height:`${c.height}px`,overflow:"hidden"});const{x:h,y:d,scale:u,opacity:p}=l;if(p){const t=((t,e,i,n)=>{const s=e-t,o=n-i;return e=>i+((e-t)/s*o||0)})(a.scale,u,1,0);a.on("afterTransform",(()=>{o.style.opacity=t(a.scale)+""}))}a.on("endAnimation",(()=>{e.destroy()})),a.target.a=u,a.target.b=0,a.target.c=0,a.target.d=u,a.panTo({x:h,y:d,scale:u,friction:p?.2:.33,ignoreBounds:!0}),a.isResting&&e.destroy()}setImage(t,e){const i=this.instance;t.src=e,this.process(t,e).then((e=>{const{contentEl:n,imageEl:s,thumbElSrc:o,el:a}=t;if(i.isClosing()||!n||!s)return;n.offsetHeight;const r=!!i.isOpeningSlide(t)&&this.getZoomInfo(t);if(this.option("protected")&&a){a.addEventListener("contextmenu",(t=>{t.preventDefault()}));const t=document.createElement("div");P(t,"fancybox-protected"),n.appendChild(t)}if(o&&r){const s=e.contentRect,a=Math.max(s.fullWidth,s.fullHeight);let c=null;!r.opacity&&a>1200&&(c=document.createElement("img"),P(c,"fancybox-ghost"),c.src=o,n.appendChild(c));const h=()=>{c&&(P(c,"f-fadeFastOut"),setTimeout((()=>{c&&(c.remove(),c=null)}),200))};(l=o,new Promise(((t,e)=>{const i=new Image;i.onload=t,i.onerror=e,i.src=l}))).then((()=>{i.hideLoading(t),t.state=lt.Opening,this.instance.emit("reveal",t),this.zoomIn(t).then((()=>{h(),this.instance.done(t)}),(()=>{})),c&&setTimeout((()=>{h()}),a>2500?800:200)}),(()=>{i.hideLoading(t),i.revealContent(t)}))}else{const n=this.optionFor(t,"initialSize"),s=this.optionFor(t,"zoom"),o={event:i.prevMouseMoveEvent||i.options.event,friction:s?.12:0};let a=i.optionFor(t,"showClass")||void 0,r=!0;i.isOpeningSlide(t)&&("full"===n?e.zoomToFull(o):"cover"===n?e.zoomToCover(o):"max"===n?e.zoomToMax(o):r=!1,e.stop("current")),r&&a&&(a=e.isDragging?"f-fadeIn":""),i.hideLoading(t),i.revealContent(t,a)}var l}),(()=>{i.setError(t,"{{IMAGE_ERROR}}")}))}process(t,e){return new Promise(((i,s)=>{var o;const a=this.instance,r=t.el;a.clearContent(t),a.showLoading(t);let l=this.optionFor(t,"content");if("string"==typeof l&&(l=n(l)),!l||!E(l)){if(l=document.createElement("img"),l instanceof HTMLImageElement){let i="",n=t.caption;i="string"==typeof n&&n?n.replace(/<[^>]+>/gi,"").substring(0,1e3):`Image ${t.index+1} of ${(null===(o=a.carousel)||void 0===o?void 0:o.pages.length)||1}`,l.src=e||"",l.alt=i,l.draggable=!1,t.srcset&&l.setAttribute("srcset",t.srcset),this.instance.isOpeningSlide(t)&&(l.fetchPriority="high")}t.sizes&&l.setAttribute("sizes",t.sizes)}P(l,"fancybox-image"),t.imageEl=l,a.setContent(t,l,!1);t.panzoom=new I(r,u({transformParent:!0},this.option("Panzoom")||{},{content:l,width:(e,i)=>a.optionFor(t,"width","auto",i)||"auto",height:(e,i)=>a.optionFor(t,"height","auto",i)||"auto",wheel:()=>{const t=a.option("wheel");return("zoom"===t||"pan"==t)&&t},click:(e,i)=>{var n,s;if(a.isCompact||a.isClosing())return!1;if(t.index!==(null===(n=a.getSlide())||void 0===n?void 0:n.index))return!1;if(i){const t=i.composedPath()[0];if(["A","BUTTON","TEXTAREA","OPTION","INPUT","SELECT","VIDEO"].includes(t.nodeName))return!1}let o=!i||i.target&&(null===(s=t.contentEl)||void 0===s?void 0:s.contains(i.target));return a.option(o?"contentClick":"backdropClick")||!1},dblClick:()=>a.isCompact?"toggleZoom":a.option("contentDblClick")||!1,spinner:!1,panOnlyZoomed:!0,wheelLimit:1/0,on:{ready:t=>{i(t)},error:()=>{s()},destroy:()=>{s()}}}))}))}zoomIn(t){return new Promise(((e,i)=>{const n=this.instance,s=n.container,{panzoom:o,contentEl:a,el:r}=t;o&&o.updateMetrics();const l=this.getZoomInfo(t);if(!(l&&r&&a&&o&&s))return void i();const{x:c,y:h,scale:d,opacity:u}=l,p=()=>{t.state!==lt.Closing&&(u&&(a.style.opacity=Math.max(Math.min(1,1-(1-o.scale)/(1-d)),0)+""),o.scale>=1&&o.scale>o.targetScale-.1&&e(o))},f=t=>{(t.scale<.99||t.scale>1.01)&&!t.isDragging||(S(s,yt),a.style.opacity="",t.off("endAnimation",f),t.off("touchStart",f),t.off("afterTransform",p),e(t))};o.on("endAnimation",f),o.on("touchStart",f),o.on("afterTransform",p),o.on(["error","destroy"],(()=>{i()})),o.panTo({x:c,y:h,scale:d,friction:0,ignoreBounds:!0}),o.stop("current");const g={event:"mousemove"===o.panMode?n.prevMouseMoveEvent||n.options.event:void 0},m=this.optionFor(t,"initialSize");P(s,yt),n.hideLoading(t),"full"===m?o.zoomToFull(g):"cover"===m?o.zoomToCover(g):"max"===m?o.zoomToMax(g):o.reset(.172)}))}getZoomInfo(t){const{el:e,imageEl:i,thumbEl:n,panzoom:s}=t,o=this.instance,a=o.container;if(!e||!i||!n||!s||tt(n)<3||!this.optionFor(t,"zoom")||!a||o.state===rt.Destroy)return!1;if("0"===getComputedStyle(a).getPropertyValue("--f-images-zoom"))return!1;const r=window.visualViewport||null;if(1!==(r?r.scale:1))return!1;let{top:l,left:c,width:h,height:d}=n.getBoundingClientRect(),{top:u,left:p,fitWidth:f,fitHeight:g}=s.contentRect;if(!(h&&d&&f&&g))return!1;const m=s.container.getBoundingClientRect();p+=m.left,u+=m.top;const v=-1*(p+.5*f-(c+.5*h)),b=-1*(u+.5*g-(l+.5*d)),y=h/f;let w=this.option("zoomOpacity")||!1;return"auto"===w&&(w=Math.abs(h/d-f/g)>.1),{x:v,y:b,scale:y,opacity:w}}attach(){const t=this,e=t.instance;e.on("Carousel.change",t.onChange),e.on("Carousel.createSlide",t.onCreateSlide),e.on("Carousel.removeSlide",t.onRemoveSlide),e.on("close",t.onClose)}detach(){const t=this,e=t.instance;e.off("Carousel.change",t.onChange),e.off("Carousel.createSlide",t.onCreateSlide),e.off("Carousel.removeSlide",t.onRemoveSlide),e.off("close",t.onClose)}}Object.defineProperty(wt,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{initialSize:"fit",Panzoom:{maxScale:1},protected:!1,zoom:!0,zoomOpacity:"auto"}}),"function"==typeof SuppressedError&&SuppressedError;const xt="html",Et="image",St="map",Pt="youtube",Ct="vimeo",Tt="html5video",Mt=(t,e={})=>{const i=new URL(t),n=new URLSearchParams(i.search),s=new URLSearchParams;for(const[t,i]of[...n,...Object.entries(e)]){let e=i+"";if("t"===t){let t=e.match(/((\d*)m)?(\d*)s?/);t&&s.set("start",60*parseInt(t[2]||"0")+parseInt(t[3]||"0")+"")}else s.set(t,e)}let o=s+"",a=t.match(/#t=((.*)?\d+s)/);return a&&(o+=`#t=${a[1]}`),o},Ot={ajax:null,autoSize:!0,iframeAttr:{allow:"autoplay; fullscreen",scrolling:"auto"},preload:!0,videoAutoplay:!0,videoRatio:16/9,videoTpl:'<video class="fancybox__html5video" playsinline controls controlsList="nodownload" poster="{{poster}}">\n  <source src="{{src}}" type="{{format}}" />Sorry, your browser doesn\'t support embedded videos.</video>',videoFormat:"",vimeo:{byline:1,color:"00adef",controls:1,dnt:1,muted:0},youtube:{controls:1,enablejsapi:1,nocookie:1,rel:0,fs:1}},At=["image","html","ajax","inline","clone","iframe","map","pdf","html5video","youtube","vimeo"];class Lt extends _{onBeforeInitSlide(t,e,i){this.processType(i)}onCreateSlide(t,e,i){this.setContent(i)}onClearContent(t,e){e.xhr&&(e.xhr.abort(),e.xhr=null);const i=e.iframeEl;i&&(i.onload=i.onerror=null,i.src="//about:blank",e.iframeEl=null);const n=e.contentEl,s=e.placeholderEl;if("inline"===e.type&&n&&s)n.classList.remove("fancybox__content"),"none"!==getComputedStyle(n).getPropertyValue("display")&&(n.style.display="none"),setTimeout((()=>{s&&(n&&s.parentNode&&s.parentNode.insertBefore(n,s),s.remove())}),0),e.contentEl=void 0,e.placeholderEl=void 0;else for(;e.el&&e.el.firstChild;)e.el.removeChild(e.el.firstChild)}onSelectSlide(t,e,i){i.state===lt.Ready&&this.playVideo()}onUnselectSlide(t,e,i){var n,s;if(i.type===Tt){try{null===(s=null===(n=i.el)||void 0===n?void 0:n.querySelector("video"))||void 0===s||s.pause()}catch(t){}return}let o;i.type===Ct?o={method:"pause",value:"true"}:i.type===Pt&&(o={event:"command",func:"pauseVideo"}),o&&i.iframeEl&&i.iframeEl.contentWindow&&i.iframeEl.contentWindow.postMessage(JSON.stringify(o),"*"),i.poller&&clearTimeout(i.poller)}onDone(t,e){t.isCurrentSlide(e)&&!t.isClosing()&&this.playVideo()}onRefresh(t,e){e.slides.forEach((t=>{t.el&&(this.resizeIframe(t),this.setAspectRatio(t))}))}onMessage(t){try{let e=JSON.parse(t.data);if("https://player.vimeo.com"===t.origin){if("ready"===e.event)for(let e of Array.from(document.getElementsByClassName("fancybox__iframe")))e instanceof HTMLIFrameElement&&e.contentWindow===t.source&&(e.dataset.ready="true")}else if(t.origin.match(/^https:\/\/(www.)?youtube(-nocookie)?.com$/)&&"onReady"===e.event){const t=document.getElementById(e.id);t&&(t.dataset.ready="true")}}catch(t){}}loadAjaxContent(t){const e=this.instance.optionFor(t,"src")||"";this.instance.showLoading(t);const i=this.instance,n=new XMLHttpRequest;i.showLoading(t),n.onreadystatechange=function(){n.readyState===XMLHttpRequest.DONE&&i.state===rt.Ready&&(i.hideLoading(t),200===n.status?i.setContent(t,n.responseText):i.setError(t,404===n.status?"{{AJAX_NOT_FOUND}}":"{{AJAX_FORBIDDEN}}"))};const s=t.ajax||null;n.open(s?"POST":"GET",e+""),n.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),n.setRequestHeader("X-Requested-With","XMLHttpRequest"),n.send(s),t.xhr=n}setInlineContent(t){let e=null;if(E(t.src))e=t.src;else if("string"==typeof t.src){const i=t.src.split("#",2).pop();e=i?document.getElementById(i):null}if(e){if("clone"===t.type||e.closest(".fancybox__slide")){e=e.cloneNode(!0);const i=e.dataset.animationName;i&&(e.classList.remove(i),delete e.dataset.animationName);let n=e.getAttribute("id");n=n?`${n}--clone`:`clone-${this.instance.id}-${t.index}`,e.setAttribute("id",n)}else if(e.parentNode){const i=document.createElement("div");i.classList.add("fancybox-placeholder"),e.parentNode.insertBefore(i,e),t.placeholderEl=i}this.instance.setContent(t,e)}else this.instance.setError(t,"{{ELEMENT_NOT_FOUND}}")}setIframeContent(t){const{src:e,el:i}=t;if(!e||"string"!=typeof e||!i)return;i.classList.add("is-loading");const n=this.instance,s=document.createElement("iframe");s.className="fancybox__iframe",s.setAttribute("id",`fancybox__iframe_${n.id}_${t.index}`);for(const[e,i]of Object.entries(this.optionFor(t,"iframeAttr")||{}))s.setAttribute(e,i);s.onerror=()=>{n.setError(t,"{{IFRAME_ERROR}}")},t.iframeEl=s;const o=this.optionFor(t,"preload");if("iframe"!==t.type||!1===o)return s.setAttribute("src",t.src+""),n.setContent(t,s,!1),this.resizeIframe(t),void n.revealContent(t);n.showLoading(t),s.onload=()=>{if(!s.src.length)return;const e="true"!==s.dataset.ready;s.dataset.ready="true",this.resizeIframe(t),e?n.revealContent(t):n.hideLoading(t)},s.setAttribute("src",e),n.setContent(t,s,!1)}resizeIframe(t){const{type:e,iframeEl:i}=t;if(e===Pt||e===Ct)return;const n=null==i?void 0:i.parentElement;if(!i||!n)return;let s=t.autoSize;void 0===s&&(s=this.optionFor(t,"autoSize"));let o=t.width||0,a=t.height||0;o&&a&&(s=!1);const r=n&&n.style;if(!1!==t.preload&&!1!==s&&r)try{const t=window.getComputedStyle(n),e=parseFloat(t.paddingLeft)+parseFloat(t.paddingRight),s=parseFloat(t.paddingTop)+parseFloat(t.paddingBottom),l=i.contentWindow;if(l){const t=l.document,i=t.getElementsByTagName(xt)[0],n=t.body;r.width="",n.style.overflow="hidden",o=o||i.scrollWidth+e,r.width=`${o}px`,n.style.overflow="",r.flex="0 0 auto",r.height=`${n.scrollHeight}px`,a=i.scrollHeight+s}}catch(t){}if(o||a){const t={flex:"0 1 auto",width:"",height:""};o&&"auto"!==o&&(t.width=`${o}px`),a&&"auto"!==a&&(t.height=`${a}px`),Object.assign(r,t)}}playVideo(){const t=this.instance.getSlide();if(!t)return;const{el:e}=t;if(!e||!e.offsetParent)return;if(!this.optionFor(t,"videoAutoplay"))return;if(t.type===Tt)try{const t=e.querySelector("video");if(t){const e=t.play();void 0!==e&&e.then((()=>{})).catch((e=>{t.muted=!0,t.play()}))}}catch(t){}if(t.type!==Pt&&t.type!==Ct)return;const i=()=>{if(t.iframeEl&&t.iframeEl.contentWindow){let e;if("true"===t.iframeEl.dataset.ready)return e=t.type===Pt?{event:"command",func:"playVideo"}:{method:"play",value:"true"},e&&t.iframeEl.contentWindow.postMessage(JSON.stringify(e),"*"),void(t.poller=void 0);t.type===Pt&&(e={event:"listening",id:t.iframeEl.getAttribute("id")},t.iframeEl.contentWindow.postMessage(JSON.stringify(e),"*"))}t.poller=setTimeout(i,250)};i()}processType(t){if(t.html)return t.type=xt,t.src=t.html,void(t.html="");const e=this.instance.optionFor(t,"src","");if(!e||"string"!=typeof e)return;let i=t.type,n=null;if(n=e.match(/(youtube\.com|youtu\.be|youtube\-nocookie\.com)\/(?:watch\?(?:.*&)?v=|v\/|u\/|shorts\/|embed\/?)?(videoseries\?list=(?:.*)|[\w-]{11}|\?listType=(?:.*)&list=(?:.*))(?:.*)/i)){const s=this.optionFor(t,Pt),{nocookie:o}=s,a=function(t,e){var i={};for(var n in t)Object.prototype.hasOwnProperty.call(t,n)&&e.indexOf(n)<0&&(i[n]=t[n]);if(null!=t&&"function"==typeof Object.getOwnPropertySymbols){var s=0;for(n=Object.getOwnPropertySymbols(t);s<n.length;s++)e.indexOf(n[s])<0&&Object.prototype.propertyIsEnumerable.call(t,n[s])&&(i[n[s]]=t[n[s]])}return i}(s,["nocookie"]),r=`www.youtube${o?"-nocookie":""}.com`,l=Mt(e,a),c=encodeURIComponent(n[2]);t.videoId=c,t.src=`https://${r}/embed/${c}?${l}`,t.thumbSrc=t.thumbSrc||`https://i.ytimg.com/vi/${c}/mqdefault.jpg`,i=Pt}else if(n=e.match(/^.+vimeo.com\/(?:\/)?([\d]+)((\/|\?h=)([a-z0-9]+))?(.*)?/)){const s=Mt(e,this.optionFor(t,Ct)),o=encodeURIComponent(n[1]),a=n[4]||"";t.videoId=o,t.src=`https://player.vimeo.com/video/${o}?${a?`h=${a}${s?"&":""}`:""}${s}`,i=Ct}if(!i&&t.triggerEl){const e=t.triggerEl.dataset.type;At.includes(e)&&(i=e)}i||"string"==typeof e&&("#"===e.charAt(0)?i="inline":(n=e.match(/\.(mp4|mov|ogv|webm)((\?|#).*)?$/i))?(i=Tt,t.videoFormat=t.videoFormat||"video/"+("ogv"===n[1]?"ogg":n[1])):e.match(/(^data:image\/[a-z0-9+\/=]*,)|(\.(jp(e|g|eg)|gif|png|bmp|webp|svg|ico)((\?|#).*)?$)/i)?i=Et:e.match(/\.(pdf)((\?|#).*)?$/i)&&(i="pdf")),(n=e.match(/(?:maps\.)?google\.([a-z]{2,3}(?:\.[a-z]{2})?)\/(?:(?:(?:maps\/(?:place\/(?:.*)\/)?\@(.*),(\d+.?\d+?)z))|(?:\?ll=))(.*)?/i))?(t.src=`https://maps.google.${n[1]}/?ll=${(n[2]?n[2]+"&z="+Math.floor(parseFloat(n[3]))+(n[4]?n[4].replace(/^\//,"&"):""):n[4]+"").replace(/\?/,"&")}&output=${n[4]&&n[4].indexOf("layer=c")>0?"svembed":"embed"}`,i=St):(n=e.match(/(?:maps\.)?google\.([a-z]{2,3}(?:\.[a-z]{2})?)\/(?:maps\/search\/)(.*)/i))&&(t.src=`https://maps.google.${n[1]}/maps?q=${n[2].replace("query=","q=").replace("api=1","")}&output=embed`,i=St),i=i||this.instance.option("defaultType"),t.type=i,i===Et&&(t.thumbSrc=t.thumbSrc||t.src)}setContent(t){const e=this.instance.optionFor(t,"src")||"";if(t&&t.type&&e){switch(t.type){case xt:this.instance.setContent(t,e);break;case Tt:const i=this.option("videoTpl");i&&this.instance.setContent(t,i.replace(/\{\{src\}\}/gi,e+"").replace(/\{\{format\}\}/gi,this.optionFor(t,"videoFormat")||"").replace(/\{\{poster\}\}/gi,t.poster||t.thumbSrc||""));break;case"inline":case"clone":this.setInlineContent(t);break;case"ajax":this.loadAjaxContent(t);break;case"pdf":case St:case Pt:case Ct:t.preload=!1;case"iframe":this.setIframeContent(t)}this.setAspectRatio(t)}}setAspectRatio(t){const e=t.contentEl;if(!(t.el&&e&&t.type&&[Pt,Ct,Tt].includes(t.type)))return;let i,n=t.width||"auto",s=t.height||"auto";if("auto"===n||"auto"===s){i=this.optionFor(t,"videoRatio");const e=(i+"").match(/(\d+)\s*\/\s?(\d+)/);i=e&&e.length>2?parseFloat(e[1])/parseFloat(e[2]):parseFloat(i+"")}else n&&s&&(i=n/s);if(!i)return;e.style.aspectRatio="",e.style.width="",e.style.height="",e.offsetHeight;const o=e.getBoundingClientRect(),a=o.width||1,r=o.height||1;e.style.aspectRatio=i+"",i<a/r?(s="auto"===s?r:Math.min(r,s),e.style.width="auto",e.style.height=`${s}px`):(n="auto"===n?a:Math.min(a,n),e.style.width=`${n}px`,e.style.height="auto")}attach(){const t=this,e=t.instance;e.on("Carousel.beforeInitSlide",t.onBeforeInitSlide),e.on("Carousel.createSlide",t.onCreateSlide),e.on("Carousel.selectSlide",t.onSelectSlide),e.on("Carousel.unselectSlide",t.onUnselectSlide),e.on("Carousel.Panzoom.refresh",t.onRefresh),e.on("done",t.onDone),e.on("clearContent",t.onClearContent),window.addEventListener("message",t.onMessage)}detach(){const t=this,e=t.instance;e.off("Carousel.beforeInitSlide",t.onBeforeInitSlide),e.off("Carousel.createSlide",t.onCreateSlide),e.off("Carousel.selectSlide",t.onSelectSlide),e.off("Carousel.unselectSlide",t.onUnselectSlide),e.off("Carousel.Panzoom.refresh",t.onRefresh),e.off("done",t.onDone),e.off("clearContent",t.onClearContent),window.removeEventListener("message",t.onMessage)}}Object.defineProperty(Lt,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:Ot});const zt="play",Rt="pause",kt="ready";class It extends _{constructor(){super(...arguments),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:kt}),Object.defineProperty(this,"inHover",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"timer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"progressBar",{enumerable:!0,configurable:!0,writable:!0,value:null})}get isActive(){return this.state!==kt}onReady(t){this.option("autoStart")&&(t.isInfinite||t.page<t.pages.length-1)&&this.start()}onChange(){this.removeProgressBar(),this.pause()}onSettle(){this.resume()}onVisibilityChange(){"visible"===document.visibilityState?this.resume():this.pause()}onMouseEnter(){this.inHover=!0,this.pause()}onMouseLeave(){var t;this.inHover=!1,(null===(t=this.instance.panzoom)||void 0===t?void 0:t.isResting)&&this.resume()}onTimerEnd(){const t=this.instance;"play"===this.state&&(t.isInfinite||t.page!==t.pages.length-1?t.slideNext():t.slideTo(0))}removeProgressBar(){this.progressBar&&(this.progressBar.remove(),this.progressBar=null)}createProgressBar(){var t;if(!this.option("showProgress"))return null;this.removeProgressBar();const e=this.instance,i=(null===(t=e.pages[e.page])||void 0===t?void 0:t.slides)||[];let n=this.option("progressParentEl");if(n||(n=(1===i.length?i[0].el:null)||e.viewport),!n)return null;const s=document.createElement("div");return P(s,"f-progress"),n.prepend(s),this.progressBar=s,s.offsetHeight,s}set(){const t=this,e=t.instance;if(e.pages.length<2)return;if(t.timer)return;const i=t.option("timeout");t.state=zt,P(e.container,"has-autoplay");let n=t.createProgressBar();n&&(n.style.transitionDuration=`${i}ms`,n.style.transform="scaleX(1)"),t.timer=setTimeout((()=>{t.timer=null,t.inHover||t.onTimerEnd()}),i),t.emit("set")}clear(){const t=this;t.timer&&(clearTimeout(t.timer),t.timer=null),t.removeProgressBar()}start(){const t=this;if(t.set(),t.state!==kt){if(t.option("pauseOnHover")){const e=t.instance.container;e.addEventListener("mouseenter",t.onMouseEnter,!1),e.addEventListener("mouseleave",t.onMouseLeave,!1)}document.addEventListener("visibilitychange",t.onVisibilityChange,!1),t.emit("start")}}stop(){const t=this,e=t.state,i=t.instance.container;t.clear(),t.state=kt,i.removeEventListener("mouseenter",t.onMouseEnter,!1),i.removeEventListener("mouseleave",t.onMouseLeave,!1),document.removeEventListener("visibilitychange",t.onVisibilityChange,!1),S(i,"has-autoplay"),e!==kt&&t.emit("stop")}pause(){const t=this;t.state===zt&&(t.state=Rt,t.clear(),t.emit(Rt))}resume(){const t=this,e=t.instance;if(e.isInfinite||e.page!==e.pages.length-1)if(t.state!==zt){if(t.state===Rt&&!t.inHover){const e=new Event("resume",{bubbles:!0,cancelable:!0});t.emit("resume",e),e.defaultPrevented||t.set()}}else t.set();else t.stop()}toggle(){this.state===zt||this.state===Rt?this.stop():this.start()}attach(){const t=this,e=t.instance;e.on("ready",t.onReady),e.on("Panzoom.startAnimation",t.onChange),e.on("Panzoom.endAnimation",t.onSettle),e.on("Panzoom.touchMove",t.onChange)}detach(){const t=this,e=t.instance;e.off("ready",t.onReady),e.off("Panzoom.startAnimation",t.onChange),e.off("Panzoom.endAnimation",t.onSettle),e.off("Panzoom.touchMove",t.onChange),t.stop()}}Object.defineProperty(It,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{autoStart:!0,pauseOnHover:!0,progressParentEl:null,showProgress:!0,timeout:3e3}});class Dt extends _{constructor(){super(...arguments),Object.defineProperty(this,"ref",{enumerable:!0,configurable:!0,writable:!0,value:null})}onPrepare(t){const e=t.carousel;if(!e)return;const i=t.container;i&&(e.options.Autoplay=u({autoStart:!1},this.option("Autoplay")||{},{pauseOnHover:!1,timeout:this.option("timeout"),progressParentEl:()=>this.option("progressParentEl")||null,on:{start:()=>{t.emit("startSlideshow")},set:e=>{var n;i.classList.add("has-slideshow"),(null===(n=t.getSlide())||void 0===n?void 0:n.state)!==lt.Ready&&e.pause()},stop:()=>{i.classList.remove("has-slideshow"),t.isCompact||t.endIdle(),t.emit("endSlideshow")},resume:(e,i)=>{var n,s,o;!i||!i.cancelable||(null===(n=t.getSlide())||void 0===n?void 0:n.state)===lt.Ready&&(null===(o=null===(s=t.carousel)||void 0===s?void 0:s.panzoom)||void 0===o?void 0:o.isResting)||i.preventDefault()}}}),e.attachPlugins({Autoplay:It}),this.ref=e.plugins.Autoplay)}onReady(t){const e=t.carousel,i=this.ref;i&&e&&this.option("playOnStart")&&(e.isInfinite||e.page<e.pages.length-1)&&i.start()}onDone(t,e){const i=this.ref,n=t.carousel;if(!i||!n)return;const s=e.panzoom;s&&s.on("startAnimation",(()=>{t.isCurrentSlide(e)&&i.stop()})),t.isCurrentSlide(e)&&i.resume()}onKeydown(t,e){var i;const n=this.ref;n&&e===this.option("key")&&"BUTTON"!==(null===(i=document.activeElement)||void 0===i?void 0:i.nodeName)&&n.toggle()}attach(){const t=this,e=t.instance;e.on("Carousel.init",t.onPrepare),e.on("Carousel.ready",t.onReady),e.on("done",t.onDone),e.on("keydown",t.onKeydown)}detach(){const t=this,e=t.instance;e.off("Carousel.init",t.onPrepare),e.off("Carousel.ready",t.onReady),e.off("done",t.onDone),e.off("keydown",t.onKeydown)}}Object.defineProperty(Dt,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:{key:" ",playOnStart:!1,progressParentEl:t=>{var e;return(null===(e=t.instance.container)||void 0===e?void 0:e.querySelector(".fancybox__toolbar [data-fancybox-toggle-slideshow]"))||t.instance.container},timeout:3e3}});const Ft={classes:{container:"f-thumbs f-carousel__thumbs",viewport:"f-thumbs__viewport",track:"f-thumbs__track",slide:"f-thumbs__slide",isResting:"is-resting",isSelected:"is-selected",isLoading:"is-loading",hasThumbs:"has-thumbs"},minCount:2,parentEl:null,thumbTpl:'<button class="f-thumbs__slide__button" tabindex="0" type="button" aria-label="{{GOTO}}" data-carousel-index="%i"><img class="f-thumbs__slide__img" data-lazy-src="{{%s}}" alt="" /></button>',type:"modern"};var jt;!function(t){t[t.Init=0]="Init",t[t.Ready=1]="Ready",t[t.Hidden=2]="Hidden"}(jt||(jt={}));const Bt="isResting",Ht="thumbWidth",Nt="thumbHeight",_t="thumbClipWidth";let $t=class extends _{constructor(){super(...arguments),Object.defineProperty(this,"type",{enumerable:!0,configurable:!0,writable:!0,value:"modern"}),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"track",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"carousel",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"thumbWidth",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"thumbClipWidth",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"thumbHeight",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"thumbGap",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"thumbExtraGap",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:jt.Init})}get isModern(){return"modern"===this.type}onInitSlide(t,e){const i=e.el?e.el.dataset:void 0;i&&(e.thumbSrc=i.thumbSrc||e.thumbSrc||"",e[_t]=parseFloat(i[_t]||"")||e[_t]||0,e[Nt]=parseFloat(i.thumbHeight||"")||e[Nt]||0),this.addSlide(e)}onInitSlides(){this.build()}onChange(){var t;if(!this.isModern)return;const e=this.container,i=this.instance,n=i.panzoom,s=this.carousel,a=s?s.panzoom:null,r=i.page;if(n&&s&&a){if(n.isDragging){S(e,this.cn(Bt));let n=(null===(t=s.pages[r])||void 0===t?void 0:t.pos)||0;n+=i.getProgress(r)*(this[_t]+this.thumbGap);let o=a.getBounds();-1*n>o.x.min&&-1*n<o.x.max&&a.panTo({x:-1*n,friction:.12})}else o(e,this.cn(Bt),n.isResting);this.shiftModern()}}onRefresh(){this.updateProps();for(const t of this.instance.slides||[])this.resizeModernSlide(t);this.shiftModern()}isDisabled(){const t=this.option("minCount")||0;if(t){const e=this.instance;let i=0;for(const t of e.slides||[])t.thumbSrc&&i++;if(i<t)return!0}const e=this.option("type");return["modern","classic"].indexOf(e)<0}getThumb(t){const e=this.option("thumbTpl")||"";return{html:this.instance.localize(e,[["%i",t.index],["%d",t.index+1],["%s",t.thumbSrc||"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"]])}}addSlide(t){const e=this.carousel;e&&e.addSlide(t.index,this.getThumb(t))}getSlides(){const t=[];for(const e of this.instance.slides||[])t.push(this.getThumb(e));return t}resizeModernSlide(t){this.isModern&&(t[Ht]=t[_t]&&t[Nt]?Math.round(this[Nt]*(t[_t]/t[Nt])):this[Ht])}updateProps(){const t=this.container;if(!t)return;const e=e=>parseFloat(getComputedStyle(t).getPropertyValue("--f-thumb-"+e))||0;this.thumbGap=e("gap"),this.thumbExtraGap=e("extra-gap"),this[Ht]=e("width")||40,this[_t]=e("clip-width")||40,this[Nt]=e("height")||40}build(){const t=this;if(t.state!==jt.Init)return;if(t.isDisabled())return void t.emit("disabled");const e=t.instance,i=e.container,n=t.getSlides(),s=t.option("type");t.type=s;const o=t.option("parentEl"),a=t.cn("container"),r=t.cn("track");let l=null==o?void 0:o.querySelector("."+a);l||(l=document.createElement("div"),P(l,a),o?o.appendChild(l):i.after(l)),P(l,`is-${s}`),P(i,t.cn("hasThumbs")),t.container=l,t.updateProps();let c=l.querySelector("."+r);c||(c=document.createElement("div"),P(c,t.cn("track")),l.appendChild(c)),t.track=c;const h=u({},{track:c,infinite:!1,center:!0,fill:"classic"===s,dragFree:!0,slidesPerPage:1,transition:!1,preload:.25,friction:.12,Panzoom:{maxVelocity:0},Dots:!1,Navigation:!1,classes:{container:"f-thumbs",viewport:"f-thumbs__viewport",track:"f-thumbs__track",slide:"f-thumbs__slide"}},t.option("Carousel")||{},{Sync:{target:e},slides:n}),d=new e.constructor(l,h);d.on("createSlide",((e,i)=>{t.setProps(i.index),t.emit("createSlide",i,i.el)})),d.on("ready",(()=>{t.shiftModern(),t.emit("ready")})),d.on("refresh",(()=>{t.shiftModern()})),d.on("Panzoom.click",((e,i,n)=>{t.onClick(n)})),t.carousel=d,t.state=jt.Ready}onClick(t){t.preventDefault(),t.stopPropagation();const e=this.instance,{pages:i,page:n}=e,s=t=>{if(t){const e=t.closest("[data-carousel-index]");if(e)return[parseInt(e.dataset.carouselIndex||"",10)||0,e]}return[-1,void 0]},o=(t,e)=>{const i=document.elementFromPoint(t,e);return i?s(i):[-1,void 0]};let[a,r]=s(t.target);if(a>-1)return;const l=this[_t],c=t.clientX,h=t.clientY;let[d,u]=o(c-l,h),[p,f]=o(c+l,h);u&&f?(a=Math.abs(c-u.getBoundingClientRect().right)<Math.abs(c-f.getBoundingClientRect().left)?d:p,a===n&&(a=a===d?p:d)):u?a=d:f&&(a=p),a>-1&&i[a]&&e.slideTo(a)}getShift(t){var e;const i=this,{instance:n}=i,s=i.carousel;if(!n||!s)return 0;const o=i[Ht],a=i[_t],r=i.thumbGap,l=i.thumbExtraGap;if(!(null===(e=s.slides[t])||void 0===e?void 0:e.el))return 0;const c=.5*(o-a),h=n.pages.length-1;let d=n.getProgress(0),u=n.getProgress(h),p=n.getProgress(t,!1,!0),f=0,g=c+l+r;const m=d<0&&d>-1,v=u>0&&u<1;return 0===t?(f=g*Math.abs(d),v&&1===d&&(f-=g*Math.abs(u))):t===h?(f=g*Math.abs(u)*-1,m&&-1===u&&(f+=g*Math.abs(d))):m||v?(f=-1*g,f+=g*Math.abs(d),f+=g*(1-Math.abs(u))):f=g*p,f}setProps(e){var i;const n=this;if(!n.isModern)return;const{instance:s}=n,o=n.carousel;if(s&&o){const a=null===(i=o.slides[e])||void 0===i?void 0:i.el;if(a&&a.childNodes.length){let i=t(1-Math.abs(s.getProgress(e))),o=t(n.getShift(e));a.style.setProperty("--progress",i?i+"":""),a.style.setProperty("--shift",o+"")}}}shiftModern(){const t=this;if(!t.isModern)return;const{instance:e,track:i}=t,n=e.panzoom,s=t.carousel;if(!(e&&i&&n&&s))return;if(n.state===m.Init||n.state===m.Destroy)return;for(const i of e.slides)t.setProps(i.index);let o=(t[_t]+t.thumbGap)*(s.slides.length||0);i.style.setProperty("--width",o+"")}cleanup(){const t=this;t.carousel&&t.carousel.destroy(),t.carousel=null,t.container&&t.container.remove(),t.container=null,t.track&&t.track.remove(),t.track=null,t.state=jt.Init,S(t.instance.container,t.cn("hasThumbs"))}attach(){const t=this,e=t.instance;e.on("initSlide",t.onInitSlide),e.state===B.Init?e.on("initSlides",t.onInitSlides):t.onInitSlides(),e.on(["change","Panzoom.afterTransform"],t.onChange),e.on("Panzoom.refresh",t.onRefresh)}detach(){const t=this,e=t.instance;e.off("initSlide",t.onInitSlide),e.off("initSlides",t.onInitSlides),e.off(["change","Panzoom.afterTransform"],t.onChange),e.off("Panzoom.refresh",t.onRefresh),t.cleanup()}};Object.defineProperty($t,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:Ft});const Wt=Object.assign(Object.assign({},Ft),{key:"t",showOnStart:!0,parentEl:null}),Xt="is-masked",qt="aria-hidden";class Yt extends _{constructor(){super(...arguments),Object.defineProperty(this,"ref",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"hidden",{enumerable:!0,configurable:!0,writable:!0,value:!1})}get isEnabled(){const t=this.ref;return t&&!t.isDisabled()}get isHidden(){return this.hidden}onClick(t,e){e.stopPropagation()}onCreateSlide(t,e){var i,n,s;const o=(null===(s=null===(n=null===(i=this.instance)||void 0===i?void 0:i.carousel)||void 0===n?void 0:n.slides[e.index])||void 0===s?void 0:s.type)||"",a=e.el;if(a&&o){let t=`for-${o}`;["video","youtube","vimeo","html5video"].includes(o)&&(t+=" for-video"),P(a,t)}}onInit(){var t;const e=this,i=e.instance,n=i.carousel;if(e.ref||!n)return;const s=e.option("parentEl")||i.footer||i.container;if(!s)return;const o=u({},e.options,{parentEl:s,classes:{container:"f-thumbs fancybox__thumbs"},Carousel:{Sync:{friction:i.option("Carousel.friction")||0}},on:{ready:t=>{const i=t.container;i&&this.hidden&&(e.refresh(),i.style.transition="none",e.hide(),i.offsetHeight,queueMicrotask((()=>{i.style.transition="",e.show()})))}}});o.Carousel=o.Carousel||{},o.Carousel.on=u((null===(t=e.options.Carousel)||void 0===t?void 0:t.on)||{},{click:this.onClick,createSlide:this.onCreateSlide}),n.options.Thumbs=o,n.attachPlugins({Thumbs:$t}),e.ref=n.plugins.Thumbs,e.option("showOnStart")||(e.ref.state=jt.Hidden,e.hidden=!0)}onResize(){var t;const e=null===(t=this.ref)||void 0===t?void 0:t.container;e&&(e.style.maxHeight="")}onKeydown(t,e){const i=this.option("key");i&&i===e&&this.toggle()}toggle(){const t=this.ref;if(t&&!t.isDisabled())return t.state===jt.Hidden?(t.state=jt.Init,void t.build()):void(this.hidden?this.show():this.hide())}show(){const t=this.ref;if(!t||t.isDisabled())return;const e=t.container;e&&(this.refresh(),e.offsetHeight,e.removeAttribute(qt),e.classList.remove(Xt),this.hidden=!1)}hide(){const t=this.ref,e=t&&t.container;e&&(this.refresh(),e.offsetHeight,e.classList.add(Xt),e.setAttribute(qt,"true")),this.hidden=!0}refresh(){const t=this.ref;if(!t||!t.state)return;const e=t.container,i=(null==e?void 0:e.firstChild)||null;e&&i&&i.childNodes.length&&(e.style.maxHeight=`${i.getBoundingClientRect().height}px`)}attach(){const t=this,e=t.instance;e.state===rt.Init?e.on("Carousel.init",t.onInit):t.onInit(),e.on("resize",t.onResize),e.on("keydown",t.onKeydown)}detach(){var t;const e=this,i=e.instance;i.off("Carousel.init",e.onInit),i.off("resize",e.onResize),i.off("keydown",e.onKeydown),null===(t=i.carousel)||void 0===t||t.detachPlugins(["Thumbs"]),e.ref=null}}Object.defineProperty(Yt,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:Wt});const Vt={panLeft:{icon:'<svg><path d="M5 12h14M5 12l6 6M5 12l6-6"/></svg>',change:{panX:-100}},panRight:{icon:'<svg><path d="M5 12h14M13 18l6-6M13 6l6 6"/></svg>',change:{panX:100}},panUp:{icon:'<svg><path d="M12 5v14M18 11l-6-6M6 11l6-6"/></svg>',change:{panY:-100}},panDown:{icon:'<svg><path d="M12 5v14M18 13l-6 6M6 13l6 6"/></svg>',change:{panY:100}},zoomIn:{icon:'<svg><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>',action:"zoomIn"},zoomOut:{icon:'<svg><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.35-4.35M8 11h6"/></svg>',action:"zoomOut"},toggle1to1:{icon:'<svg><path d="M3.51 3.07c5.74.02 11.48-.02 17.22.02 1.37.1 2.34 1.64 2.18 3.13 0 4.08.02 8.16 0 12.23-.1 1.54-1.47 2.64-2.79 2.46-5.61-.01-11.24.02-16.86-.01-1.36-.12-2.33-1.65-2.17-3.14 0-4.07-.02-8.16 0-12.23.1-1.36 1.22-2.48 2.42-2.46Z"/><path d="M5.65 8.54h1.49v6.92m8.94-6.92h1.49v6.92M11.5 9.4v.02m0 5.18v0"/></svg>',action:"toggleZoom"},toggleZoom:{icon:'<svg><g><line x1="11" y1="8" x2="11" y2="14"></line></g><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.35-4.35M8 11h6"/></svg>',action:"toggleZoom"},iterateZoom:{icon:'<svg><g><line x1="11" y1="8" x2="11" y2="14"></line></g><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.35-4.35M8 11h6"/></svg>',action:"iterateZoom"},rotateCCW:{icon:'<svg><path d="M15 4.55a8 8 0 0 0-6 14.9M9 15v5H4M18.37 7.16v.01M13 19.94v.01M16.84 18.37v.01M19.37 15.1v.01M19.94 11v.01"/></svg>',action:"rotateCCW"},rotateCW:{icon:'<svg><path d="M9 4.55a8 8 0 0 1 6 14.9M15 15v5h5M5.63 7.16v.01M4.06 11v.01M4.63 15.1v.01M7.16 18.37v.01M11 19.94v.01"/></svg>',action:"rotateCW"},flipX:{icon:'<svg style="stroke-width: 1.3"><path d="M12 3v18M16 7v10h5L16 7M8 7v10H3L8 7"/></svg>',action:"flipX"},flipY:{icon:'<svg style="stroke-width: 1.3"><path d="M3 12h18M7 16h10L7 21v-5M7 8h10L7 3v5"/></svg>',action:"flipY"},fitX:{icon:'<svg><path d="M4 12V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6M10 18H3M21 18h-7M6 15l-3 3 3 3M18 15l3 3-3 3"/></svg>',action:"fitX"},fitY:{icon:'<svg><path d="M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6M18 14v7M18 3v7M15 18l3 3 3-3M15 6l3-3 3 3"/></svg>',action:"fitY"},reset:{icon:'<svg><path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>',action:"reset"},toggleFS:{icon:'<svg><g><path d="M14.5 9.5 21 3m0 0h-6m6 0v6M3 21l6.5-6.5M3 21v-6m0 6h6"/></g><g><path d="m14 10 7-7m-7 7h6m-6 0V4M3 21l7-7m0 0v6m0-6H4"/></g></svg>',action:"toggleFS"}};var Zt;!function(t){t[t.Init=0]="Init",t[t.Ready=1]="Ready",t[t.Disabled=2]="Disabled"}(Zt||(Zt={}));const Ut={absolute:"auto",display:{left:["infobar"],middle:[],right:["iterateZoom","slideshow","fullscreen","thumbs","close"]},enabled:"auto",items:{infobar:{tpl:'<div class="fancybox__infobar" tabindex="-1"><span data-fancybox-current-index></span>/<span data-fancybox-count></span></div>'},download:{tpl:'<a class="f-button" title="{{DOWNLOAD}}" data-fancybox-download href="javasript:;"><svg><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 11l5 5 5-5M12 4v12"/></svg></a>'},prev:{tpl:'<button class="f-button" title="{{PREV}}" data-fancybox-prev><svg><path d="m15 6-6 6 6 6"/></svg></button>'},next:{tpl:'<button class="f-button" title="{{NEXT}}" data-fancybox-next><svg><path d="m9 6 6 6-6 6"/></svg></button>'},slideshow:{tpl:'<button class="f-button" title="{{TOGGLE_SLIDESHOW}}" data-fancybox-toggle-slideshow><svg><g><path d="M8 4v16l13 -8z"></path></g><g><path d="M8 4v15M17 4v15"/></g></svg></button>'},fullscreen:{tpl:'<button class="f-button" title="{{TOGGLE_FULLSCREEN}}" data-fancybox-toggle-fullscreen><svg><g><path d="M4 8V6a2 2 0 0 1 2-2h2M4 16v2a2 2 0 0 0 2 2h2M16 4h2a2 2 0 0 1 2 2v2M16 20h2a2 2 0 0 0 2-2v-2"/></g><g><path d="M15 19v-2a2 2 0 0 1 2-2h2M15 5v2a2 2 0 0 0 2 2h2M5 15h2a2 2 0 0 1 2 2v2M5 9h2a2 2 0 0 0 2-2V5"/></g></svg></button>'},thumbs:{tpl:'<button class="f-button" title="{{TOGGLE_THUMBS}}" data-fancybox-toggle-thumbs><svg><circle cx="5.5" cy="5.5" r="1"/><circle cx="12" cy="5.5" r="1"/><circle cx="18.5" cy="5.5" r="1"/><circle cx="5.5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="18.5" cy="12" r="1"/><circle cx="5.5" cy="18.5" r="1"/><circle cx="12" cy="18.5" r="1"/><circle cx="18.5" cy="18.5" r="1"/></svg></button>'},close:{tpl:'<button class="f-button" title="{{CLOSE}}" data-fancybox-close><svg><path d="m19.5 4.5-15 15M4.5 4.5l15 15"/></svg></button>'}},parentEl:null},Gt={tabindex:"-1",width:"24",height:"24",viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg"},Kt="has-toolbar",Jt="fancybox__toolbar";class Qt extends _{constructor(){super(...arguments),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:Zt.Init}),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:null})}onReady(t){var e;if(!t.carousel)return;let i=this.option("display"),n=this.option("absolute"),s=this.option("enabled");if("auto"===s){const t=this.instance.carousel;let e=0;if(t)for(const i of t.slides)(i.panzoom||"image"===i.type)&&e++;e||(s=!1)}s||(i=void 0);let o=0;const a={left:[],middle:[],right:[]};if(i)for(const t of["left","middle","right"])for(const n of i[t]){const i=this.createEl(n);i&&(null===(e=a[t])||void 0===e||e.push(i),o++)}let r=null;if(o&&(r=this.createContainer()),r){for(const[t,e]of Object.entries(a)){const i=document.createElement("div");P(i,Jt+"__column is-"+t);for(const t of e)i.appendChild(t);"auto"!==n||"middle"!==t||e.length||(n=!0),r.appendChild(i)}!0===n&&P(r,"is-absolute"),this.state=Zt.Ready,this.onRefresh()}else this.state=Zt.Disabled}onClick(t){var e,i;const n=this.instance,s=n.getSlide(),o=null==s?void 0:s.panzoom,a=t.target,r=a&&E(a)?a.dataset:null;if(!r)return;if(void 0!==r.fancyboxToggleThumbs)return t.preventDefault(),t.stopPropagation(),void(null===(e=n.plugins.Thumbs)||void 0===e||e.toggle());if(void 0!==r.fancyboxToggleFullscreen)return t.preventDefault(),t.stopPropagation(),void this.instance.toggleFullscreen();if(void 0!==r.fancyboxToggleSlideshow){t.preventDefault(),t.stopPropagation();const e=null===(i=n.carousel)||void 0===i?void 0:i.plugins.Autoplay;let s=e.isActive;return o&&"mousemove"===o.panMode&&!s&&o.reset(),void(s?e.stop():e.start())}const l=r.panzoomAction,c=r.panzoomChange;if((c||l)&&(t.preventDefault(),t.stopPropagation()),c){let t={};try{t=JSON.parse(c)}catch(t){}o&&o.applyChange(t)}else l&&o&&o[l]&&o[l]()}onChange(){this.onRefresh()}onRefresh(){if(this.instance.isClosing())return;const t=this.container;if(!t)return;const e=this.instance.getSlide();if(!e||e.state!==lt.Ready)return;const i=e&&!e.error&&e.panzoom;for(const e of t.querySelectorAll("[data-panzoom-action]"))i?(e.removeAttribute("disabled"),e.removeAttribute("tabindex")):(e.setAttribute("disabled",""),e.setAttribute("tabindex","-1"));let n=i&&i.canZoomIn(),s=i&&i.canZoomOut();for(const e of t.querySelectorAll('[data-panzoom-action="zoomIn"]'))n?(e.removeAttribute("disabled"),e.removeAttribute("tabindex")):(e.setAttribute("disabled",""),e.setAttribute("tabindex","-1"));for(const e of t.querySelectorAll('[data-panzoom-action="zoomOut"]'))s?(e.removeAttribute("disabled"),e.removeAttribute("tabindex")):(e.setAttribute("disabled",""),e.setAttribute("tabindex","-1"));for(const e of t.querySelectorAll('[data-panzoom-action="toggleZoom"],[data-panzoom-action="iterateZoom"]')){s||n?(e.removeAttribute("disabled"),e.removeAttribute("tabindex")):(e.setAttribute("disabled",""),e.setAttribute("tabindex","-1"));const t=e.querySelector("g");t&&(t.style.display=n?"":"none")}}onDone(t,e){var i;null===(i=e.panzoom)||void 0===i||i.on("afterTransform",(()=>{this.instance.isCurrentSlide(e)&&this.onRefresh()})),this.instance.isCurrentSlide(e)&&this.onRefresh()}createContainer(){const t=this.instance.container;if(!t)return null;const e=this.option("parentEl")||t;let i=e.querySelector("."+Jt);return i||(i=document.createElement("div"),P(i,Jt),e.prepend(i)),i.addEventListener("click",this.onClick,{passive:!1,capture:!0}),t&&P(t,Kt),this.container=i,i}createEl(t){const e=this.instance,i=e.carousel;if(!i)return null;if("toggleFS"===t)return null;if("fullscreen"===t&&!ot())return null;let s=null;const o=i.slides.length||0;let a=0,r=0;for(const t of i.slides)(t.panzoom||"image"===t.type)&&a++,("image"===t.type||t.downloadSrc)&&r++;if(o<2&&["infobar","prev","next"].includes(t))return s;if(void 0!==Vt[t]&&!a)return null;if("download"===t&&!r)return null;if("thumbs"===t){const t=e.plugins.Thumbs;if(!t||!t.isEnabled)return null}if("slideshow"===t){if(!i.plugins.Autoplay||o<2)return null}if(void 0!==Vt[t]){const e=Vt[t];s=document.createElement("button"),s.setAttribute("title",this.instance.localize(`{{${t.toUpperCase()}}}`)),P(s,"f-button"),e.action&&(s.dataset.panzoomAction=e.action),e.change&&(s.dataset.panzoomChange=JSON.stringify(e.change)),s.appendChild(n(this.instance.localize(e.icon)))}else{const e=(this.option("items")||[])[t];e&&(s=n(this.instance.localize(e.tpl)),"function"==typeof e.click&&s.addEventListener("click",(t=>{t.preventDefault(),t.stopPropagation(),"function"==typeof e.click&&e.click.call(this,this,t)})))}const l=null==s?void 0:s.querySelector("svg");if(l)for(const[t,e]of Object.entries(Gt))l.getAttribute(t)||l.setAttribute(t,String(e));return s}removeContainer(){const t=this.container;t&&t.remove(),this.container=null,this.state=Zt.Disabled;const e=this.instance.container;e&&S(e,Kt)}attach(){const t=this,e=t.instance;e.on("Carousel.initSlides",t.onReady),e.on("done",t.onDone),e.on(["reveal","Carousel.change"],t.onChange),t.onReady(t.instance)}detach(){const t=this,e=t.instance;e.off("Carousel.initSlides",t.onReady),e.off("done",t.onDone),e.off(["reveal","Carousel.change"],t.onChange),t.removeContainer()}}Object.defineProperty(Qt,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:Ut});const te={Hash:class extends _{onReady(){ht=!1}onChange(t){ut&&clearTimeout(ut);const{hash:e}=pt(),{hash:i}=ft(),n=t.isOpeningSlide(t.getSlide());n&&(ct=i===e?"":i),e&&e!==i&&(ut=setTimeout((()=>{try{if(t.state===rt.Ready){let t="replaceState";n&&!dt&&(t="pushState",dt=!0),window.history[t]({},document.title,window.location.pathname+window.location.search+e)}}catch(t){}}),300))}onClose(t){if(ut&&clearTimeout(ut),!ht&&dt)return dt=!1,ht=!1,void window.history.back();if(!ht)try{window.history.replaceState({},document.title,window.location.pathname+window.location.search+(ct||""))}catch(t){}}attach(){const t=this.instance;t.on("ready",this.onReady),t.on(["Carousel.ready","Carousel.change"],this.onChange),t.on("close",this.onClose)}detach(){const t=this.instance;t.off("ready",this.onReady),t.off(["Carousel.ready","Carousel.change"],this.onChange),t.off("close",this.onClose)}static parseURL(){return ft()}static startFromUrl(){gt()}static destroy(){window.removeEventListener("hashchange",vt,!1)}},Html:Lt,Images:wt,Slideshow:Dt,Thumbs:Yt,Toolbar:Qt},ee="with-fancybox",ie="hide-scrollbar",ne="--fancybox-scrollbar-compensate",se="--fancybox-body-margin",oe="aria-hidden",ae="is-using-tab",re="is-animated",le="is-compact",ce="is-loading",he="is-opening",de="has-caption",ue="disabled",pe="tabindex",fe="download",ge="href",me="src",ve=t=>"string"==typeof t,be=function(){var t=window.getSelection();return!!t&&"Range"===t.type};let ye,we=null,xe=null,Ee=0,Se=0,Pe=0,Ce=0;const Te=new Map;let Me=0;class Oe extends g{get isIdle(){return this.idle}get isCompact(){return this.option("compact")}constructor(t=[],e={},i={}){super(e),Object.defineProperty(this,"userSlides",{enumerable:!0,configurable:!0,writable:!0,value:[]}),Object.defineProperty(this,"userPlugins",{enumerable:!0,configurable:!0,writable:!0,value:{}}),Object.defineProperty(this,"idle",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"idleTimer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"clickTimer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"pwt",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"ignoreFocusChange",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"startedFs",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"state",{enumerable:!0,configurable:!0,writable:!0,value:rt.Init}),Object.defineProperty(this,"id",{enumerable:!0,configurable:!0,writable:!0,value:0}),Object.defineProperty(this,"container",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"caption",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"footer",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"carousel",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"lastFocus",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"prevMouseMoveEvent",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),ye||(ye=ot()),this.id=e.id||++Me,Te.set(this.id,this),this.userSlides=t,this.userPlugins=i,queueMicrotask((()=>{this.init()}))}init(){if(this.state===rt.Destroy)return;this.state=rt.Init,this.attachPlugins(Object.assign(Object.assign({},Oe.Plugins),this.userPlugins)),this.emit("init"),this.emit("attachPlugins"),!0===this.option("hideScrollbar")&&(()=>{if(!et)return;const t=document,e=t.body,i=t.documentElement;if(e.classList.contains(ie))return;let n=window.innerWidth-i.getBoundingClientRect().width;const s=parseFloat(window.getComputedStyle(e).marginRight);n<0&&(n=0),i.style.setProperty(ne,`${n}px`),s&&e.style.setProperty(se,`${s}px`),e.classList.add(ie)})(),this.initLayout(),this.scale();const t=()=>{this.initCarousel(this.userSlides),this.state=rt.Ready,this.attachEvents(),this.emit("ready"),setTimeout((()=>{this.container&&this.container.setAttribute(oe,"false")}),16)};this.option("Fullscreen.autoStart")&&ye&&!ye.isFullscreen()?ye.request().then((()=>{this.startedFs=!0,t()})).catch((()=>t())):t()}initLayout(){var t,e;const i=this.option("parentEl")||document.body,s=n(this.localize(this.option("tpl.main")||""));if(s){if(s.setAttribute("id",`fancybox-${this.id}`),s.setAttribute("aria-label",this.localize("{{MODAL}}")),s.classList.toggle(le,this.isCompact),P(s,this.option("mainClass")||""),P(s,he),this.container=s,this.footer=s.querySelector(".fancybox__footer"),i.appendChild(s),P(document.documentElement,ee),we&&xe||(we=document.createElement("span"),P(we,"fancybox-focus-guard"),we.setAttribute(pe,"0"),we.setAttribute(oe,"true"),we.setAttribute("aria-label","Focus guard"),xe=we.cloneNode(),null===(t=s.parentElement)||void 0===t||t.insertBefore(we,s),null===(e=s.parentElement)||void 0===e||e.append(xe)),s.addEventListener("mousedown",(t=>{Ee=t.pageX,Se=t.pageY,S(s,ae)})),this.option("closeExisting"))for(const t of Te.values())t.id!==this.id&&t.close();else this.option("animated")&&(P(s,re),setTimeout((()=>{this.isClosing()||S(s,re)}),350));this.emit("initLayout")}}initCarousel(t){const i=this.container;if(!i)return;const n=i.querySelector(".fancybox__carousel");if(!n)return;const s=this.carousel=new Q(n,u({},{slides:t,transition:"fade",Panzoom:{lockAxis:this.option("dragToClose")?"xy":"x",infinite:!!this.option("dragToClose")&&"y"},Dots:!1,Navigation:{classes:{container:"fancybox__nav",button:"f-button",isNext:"is-next",isPrev:"is-prev"}},initialPage:this.option("startIndex"),l10n:this.option("l10n")},this.option("Carousel")||{}));s.on("*",((t,e,...i)=>{this.emit(`Carousel.${e}`,t,...i)})),s.on(["ready","change"],(()=>{this.manageCaption()})),this.on("Carousel.removeSlide",((t,e,i)=>{this.clearContent(i),i.state=void 0})),s.on("Panzoom.touchStart",(()=>{var t,e;this.isCompact||this.endIdle(),(null===(t=document.activeElement)||void 0===t?void 0:t.closest(".f-thumbs"))&&(null===(e=this.container)||void 0===e||e.focus())})),s.on("settle",(()=>{this.idleTimer||this.isCompact||!this.option("idle")||this.setIdle(),this.option("autoFocus")&&!this.isClosing&&this.checkFocus()})),this.option("dragToClose")&&(s.on("Panzoom.afterTransform",((t,i)=>{const n=this.getSlide();if(n&&e(n.el))return;const s=this.container;if(s){const t=Math.abs(i.current.f),e=t<1?"":Math.max(.5,Math.min(1,1-t/i.contentRect.fitHeight*1.5));s.style.setProperty("--fancybox-ts",e?"0s":""),s.style.setProperty("--fancybox-opacity",e+"")}})),s.on("Panzoom.touchEnd",((t,i,n)=>{var s;const o=this.getSlide();if(o&&e(o.el))return;if(i.isMobile&&document.activeElement&&-1!==["TEXTAREA","INPUT"].indexOf(null===(s=document.activeElement)||void 0===s?void 0:s.nodeName))return;const a=Math.abs(i.dragOffset.y);"y"===i.lockedAxis&&(a>=200||a>=50&&i.dragOffset.time<300)&&(n&&n.cancelable&&n.preventDefault(),this.close(n,"f-throwOut"+(i.current.f<0?"Up":"Down")))}))),s.on("change",(t=>{var e;let i=null===(e=this.getSlide())||void 0===e?void 0:e.triggerEl;if(i){const e=new CustomEvent("slideTo",{bubbles:!0,cancelable:!0,detail:t.page});i.dispatchEvent(e)}})),s.on(["refresh","change"],(t=>{const e=this.container;if(!e)return;for(const i of e.querySelectorAll("[data-fancybox-current-index]"))i.innerHTML=t.page+1;for(const i of e.querySelectorAll("[data-fancybox-count]"))i.innerHTML=t.pages.length;if(!t.isInfinite){for(const i of e.querySelectorAll("[data-fancybox-next]"))t.page<t.pages.length-1?(i.removeAttribute(ue),i.removeAttribute(pe)):(i.setAttribute(ue,""),i.setAttribute(pe,"-1"));for(const i of e.querySelectorAll("[data-fancybox-prev]"))t.page>0?(i.removeAttribute(ue),i.removeAttribute(pe)):(i.setAttribute(ue,""),i.setAttribute(pe,"-1"))}const i=this.getSlide();if(!i)return;let n=i.downloadSrc||"";n||"image"!==i.type||i.error||!ve(i[me])||(n=i[me]);for(const t of e.querySelectorAll("[data-fancybox-download]")){const e=i.downloadFilename;n?(t.removeAttribute(ue),t.removeAttribute(pe),t.setAttribute(ge,n),t.setAttribute(fe,e||n),t.setAttribute("target","_blank")):(t.setAttribute(ue,""),t.setAttribute(pe,"-1"),t.removeAttribute(ge),t.removeAttribute(fe))}})),this.emit("initCarousel")}attachEvents(){const t=this,e=t.container;if(!e)return;e.addEventListener("click",t.onClick,{passive:!1,capture:!1}),e.addEventListener("wheel",t.onWheel,{passive:!1,capture:!1}),document.addEventListener("keydown",t.onKeydown,{passive:!1,capture:!0}),document.addEventListener("visibilitychange",t.onVisibilityChange,!1),document.addEventListener("mousemove",t.onMousemove),t.option("trapFocus")&&document.addEventListener("focus",t.onFocus,!0),window.addEventListener("resize",t.onResize);const i=window.visualViewport;i&&(i.addEventListener("scroll",t.onResize),i.addEventListener("resize",t.onResize))}detachEvents(){const t=this,e=t.container;if(!e)return;document.removeEventListener("keydown",t.onKeydown,{passive:!1,capture:!0}),e.removeEventListener("wheel",t.onWheel,{passive:!1,capture:!1}),e.removeEventListener("click",t.onClick,{passive:!1,capture:!1}),document.removeEventListener("mousemove",t.onMousemove),window.removeEventListener("resize",t.onResize);const i=window.visualViewport;i&&(i.removeEventListener("resize",t.onResize),i.removeEventListener("scroll",t.onResize)),document.removeEventListener("visibilitychange",t.onVisibilityChange,!1),document.removeEventListener("focus",t.onFocus,!0)}scale(){const t=this.container;if(!t)return;const e=window.visualViewport,i=Math.max(1,(null==e?void 0:e.scale)||1);let n="",s="",o="";if(e&&i>1){let t=`${e.offsetLeft}px`,a=`${e.offsetTop}px`;n=e.width*i+"px",s=e.height*i+"px",o=`translate3d(${t}, ${a}, 0) scale(${1/i})`}t.style.transform=o,t.style.width=n,t.style.height=s}onClick(t){var e;const{container:i,isCompact:n}=this;if(!i||this.isClosing())return;!n&&this.option("idle")&&this.resetIdle();const s=t.composedPath()[0];if(s.closest(".fancybox-spinner")||s.closest("[data-fancybox-close]"))return t.preventDefault(),void this.close(t);if(s.closest("[data-fancybox-prev]"))return t.preventDefault(),void this.prev();if(s.closest("[data-fancybox-next]"))return t.preventDefault(),void this.next();if("click"===t.type&&0===t.detail)return;if(Math.abs(t.pageX-Ee)>30||Math.abs(t.pageY-Se)>30)return;const o=document.activeElement;if(be()&&o&&i.contains(o))return;if(n&&"image"===(null===(e=this.getSlide())||void 0===e?void 0:e.type))return void(this.clickTimer?(clearTimeout(this.clickTimer),this.clickTimer=null):this.clickTimer=setTimeout((()=>{this.toggleIdle(),this.clickTimer=null}),350));if(this.emit("click",t),t.defaultPrevented)return;let a=!1;if(s.closest(".fancybox__content")){if(o){if(o.closest("[contenteditable]"))return;s.matches(nt)||o.blur()}if(be())return;a=this.option("contentClick")}else s.closest(".fancybox__carousel")&&!s.matches(nt)&&(a=this.option("backdropClick"));"close"===a?(t.preventDefault(),this.close(t)):"next"===a?(t.preventDefault(),this.next()):"prev"===a&&(t.preventDefault(),this.prev())}onWheel(t){const e=t.target;let n=this.option("wheel",t);e.closest(".fancybox__thumbs")&&(n="slide");const s="slide"===n,o=[-t.deltaX||0,-t.deltaY||0,-t.detail||0].reduce((function(t,e){return Math.abs(e)>Math.abs(t)?e:t})),a=Math.max(-1,Math.min(1,o)),r=Date.now();this.pwt&&r-this.pwt<300?s&&t.preventDefault():(this.pwt=r,this.emit("wheel",t,a),t.defaultPrevented||("close"===n?(t.preventDefault(),this.close(t)):"slide"===n&&(i(e)||(t.preventDefault(),this[a>0?"prev":"next"]()))))}onScroll(){window.scrollTo(Pe,Ce)}onKeydown(t){if(!this.isTopmost())return;this.isCompact||!this.option("idle")||this.isClosing()||this.resetIdle();const e=t.key,i=this.option("keyboard");if(!i)return;const n=t.composedPath()[0],s=document.activeElement&&document.activeElement.classList,o=s&&s.contains("f-button")||n.dataset.carouselPage||n.dataset.carouselIndex;if("Escape"!==e&&!o&&E(n)){if(n.isContentEditable||-1!==["TEXTAREA","OPTION","INPUT","SELECT","VIDEO"].indexOf(n.nodeName))return}if("Tab"===t.key?P(this.container,ae):S(this.container,ae),t.ctrlKey||t.altKey||t.shiftKey)return;this.emit("keydown",e,t);const a=i[e];a&&"function"==typeof this[a]&&(t.preventDefault(),this[a]())}onResize(){const t=this.container;if(!t)return;const e=this.isCompact;t.classList.toggle(le,e),this.manageCaption(this.getSlide()),this.isCompact?this.clearIdle():this.endIdle(),this.scale(),this.emit("resize")}onFocus(t){this.isTopmost()&&this.checkFocus(t)}onMousemove(t){this.prevMouseMoveEvent=t,!this.isCompact&&this.option("idle")&&this.resetIdle()}onVisibilityChange(){"visible"===document.visibilityState?this.checkFocus():this.endIdle()}manageCloseBtn(t){const e=this.optionFor(t,"closeButton")||!1;if("auto"===e){const t=this.plugins.Toolbar;if(t&&t.state===Zt.Ready)return}if(!e)return;if(!t.contentEl||t.closeBtnEl)return;const i=this.option("tpl.closeButton");if(i){const e=n(this.localize(i));t.closeBtnEl=t.contentEl.appendChild(e),t.el&&P(t.el,"has-close-btn")}}manageCaption(t=void 0){var e,i;const n="fancybox__caption",s=this.container;if(!s)return;S(s,de);const o=this.isCompact||this.option("commonCaption"),a=!o;if(this.caption&&this.stop(this.caption),a&&this.caption&&(this.caption.remove(),this.caption=null),o&&!this.caption)for(const t of(null===(e=this.carousel)||void 0===e?void 0:e.slides)||[])t.captionEl&&(t.captionEl.remove(),t.captionEl=void 0,S(t.el,de),null===(i=t.el)||void 0===i||i.removeAttribute("aria-labelledby"));if(t||(t=this.getSlide()),!t||o&&!this.isCurrentSlide(t))return;const r=t.el;let l=this.optionFor(t,"caption","");if(!l)return void(o&&this.caption&&this.animate(this.caption,"f-fadeOut",(()=>{this.caption&&(this.caption.innerHTML="")})));let c=null;if(a){if(c=t.captionEl||null,r&&!c){const e=n+`_${this.id}_${t.index}`;c=document.createElement("div"),P(c,n),c.setAttribute("id",e),t.captionEl=r.appendChild(c),P(r,de),r.setAttribute("aria-labelledby",e)}}else{if(c=this.caption,c||(c=s.querySelector("."+n)),!c){c=document.createElement("div"),c.dataset.fancyboxCaption="",P(c,n);(this.footer||s).prepend(c)}P(s,de),this.caption=c}c&&(c.innerHTML="",ve(l)||"number"==typeof l?c.innerHTML=l+"":l instanceof HTMLElement&&c.appendChild(l))}checkFocus(t){this.focus(t)}focus(t){var e;if(this.ignoreFocusChange)return;const i=document.activeElement||null,n=(null==t?void 0:t.target)||null,s=this.container,o=null===(e=this.carousel)||void 0===e?void 0:e.viewport;if(!s||!o)return;if(!t&&i&&s.contains(i))return;const a=this.getSlide(),r=a&&a.state===lt.Ready?a.el:null;if(!r||r.contains(i)||s===i)return;t&&t.cancelable&&t.preventDefault(),this.ignoreFocusChange=!0;const l=Array.from(s.querySelectorAll(nt));let c=[],h=null;for(let t of l){const e=!t.offsetParent||!!t.closest('[aria-hidden="true"]'),i=r&&r.contains(t),n=!o.contains(t);if(t===s||(i||n)&&!e){c.push(t);const e=t.dataset.origTabindex;void 0!==e&&e&&(t.tabIndex=parseFloat(e)),t.removeAttribute("data-orig-tabindex"),!t.hasAttribute("autoFocus")&&h||(h=t)}else{const e=void 0===t.dataset.origTabindex?t.getAttribute("tabindex")||"":t.dataset.origTabindex;e&&(t.dataset.origTabindex=e),t.tabIndex=-1}}let d=null;t?(!n||c.indexOf(n)<0)&&(d=h||s,c.length&&(i===xe?d=c[0]:this.lastFocus!==s&&i!==we||(d=c[c.length-1]))):d=a&&"image"===a.type?s:h||s,d&&st(d),this.lastFocus=document.activeElement,this.ignoreFocusChange=!1}next(){const t=this.carousel;t&&t.pages.length>1&&t.slideNext()}prev(){const t=this.carousel;t&&t.pages.length>1&&t.slidePrev()}jumpTo(...t){this.carousel&&this.carousel.slideTo(...t)}isTopmost(){var t;return(null===(t=Oe.getInstance())||void 0===t?void 0:t.id)==this.id}animate(t=null,e="",i){if(!t||!e)return void(i&&i());this.stop(t);const n=s=>{s.target===t&&t.dataset.animationName&&(t.removeEventListener("animationend",n),delete t.dataset.animationName,i&&i(),S(t,e))};t.dataset.animationName=e,t.addEventListener("animationend",n),P(t,e)}stop(t){t&&t.dispatchEvent(new CustomEvent("animationend",{bubbles:!1,cancelable:!0,currentTarget:t}))}setContent(t,e="",i=!0){if(this.isClosing())return;const s=t.el;if(!s)return;let o=null;if(E(e)?o=e:(o=n(e+""),E(o)||(o=document.createElement("div"),o.innerHTML=e+"")),["img","picture","iframe","video","audio"].includes(o.nodeName.toLowerCase())){const t=document.createElement("div");t.appendChild(o),o=t}E(o)&&t.filter&&!t.error&&(o=o.querySelector(t.filter)),o&&E(o)?(P(o,"fancybox__content"),t.id&&o.setAttribute("id",t.id),s.classList.add(`has-${t.error?"error":t.type||"unknown"}`),s.prepend(o),"none"===o.style.display&&(o.style.display=""),"none"===getComputedStyle(o).getPropertyValue("display")&&(o.style.display=t.display||this.option("defaultDisplay")||"flex"),t.contentEl=o,i&&this.revealContent(t),this.manageCloseBtn(t),this.manageCaption(t)):this.setError(t,"{{ELEMENT_NOT_FOUND}}")}revealContent(t,e){const i=t.el,n=t.contentEl;i&&n&&(this.emit("reveal",t),this.hideLoading(t),t.state=lt.Opening,(e=this.isOpeningSlide(t)?void 0===e?this.optionFor(t,"showClass"):e:"f-fadeIn")?this.animate(n,e,(()=>{this.done(t)})):this.done(t))}done(t){this.isClosing()||(t.state=lt.Ready,this.emit("done",t),P(t.el,"is-done"),this.isCurrentSlide(t)&&this.option("autoFocus")&&queueMicrotask((()=>{var e;null===(e=t.panzoom)||void 0===e||e.updateControls(),this.option("autoFocus")&&this.focus()})),this.isOpeningSlide(t)&&(S(this.container,he),!this.isCompact&&this.option("idle")&&this.setIdle()))}isCurrentSlide(t){const e=this.getSlide();return!(!t||!e)&&e.index===t.index}isOpeningSlide(t){var e,i;return null===(null===(e=this.carousel)||void 0===e?void 0:e.prevPage)&&t&&t.index===(null===(i=this.getSlide())||void 0===i?void 0:i.index)}showLoading(t){t.state=lt.Loading;const e=t.el;if(!e)return;P(e,ce),this.emit("loading",t),t.spinnerEl||setTimeout((()=>{if(!this.isClosing()&&!t.spinnerEl&&t.state===lt.Loading){let i=n(x);P(i,"fancybox-spinner"),t.spinnerEl=i,e.prepend(i),this.animate(i,"f-fadeIn")}}),250)}hideLoading(t){const e=t.el;if(!e)return;const i=t.spinnerEl;this.isClosing()?null==i||i.remove():(S(e,ce),i&&this.animate(i,"f-fadeOut",(()=>{i.remove()})),t.state===lt.Loading&&(this.emit("loaded",t),t.state=lt.Ready))}setError(t,e){if(this.isClosing())return;const i=new Event("error",{bubbles:!0,cancelable:!0});if(this.emit("error",i,t),i.defaultPrevented)return;t.error=e,this.hideLoading(t),this.clearContent(t);const n=document.createElement("div");n.classList.add("fancybox-error"),n.innerHTML=this.localize(e||"<p>{{ERROR}}</p>"),this.setContent(t,n)}clearContent(t){if(void 0===t.state)return;this.emit("clearContent",t),t.contentEl&&(t.contentEl.remove(),t.contentEl=void 0);const e=t.el;e&&(S(e,"has-error"),S(e,"has-unknown"),S(e,`has-${t.type||"unknown"}`)),t.closeBtnEl&&t.closeBtnEl.remove(),t.closeBtnEl=void 0,t.captionEl&&t.captionEl.remove(),t.captionEl=void 0,t.spinnerEl&&t.spinnerEl.remove(),t.spinnerEl=void 0}getSlide(){var t;const e=this.carousel;return(null===(t=null==e?void 0:e.pages[null==e?void 0:e.page])||void 0===t?void 0:t.slides[0])||void 0}close(t,e){if(this.isClosing())return;const i=new Event("shouldClose",{bubbles:!0,cancelable:!0});if(this.emit("shouldClose",i,t),i.defaultPrevented)return;t&&t.cancelable&&(t.preventDefault(),t.stopPropagation());const n=()=>{this.proceedClose(t,e)};this.startedFs&&ye&&ye.isFullscreen()?Promise.resolve(ye.exit()).then((()=>n())):n()}clearIdle(){this.idleTimer&&clearTimeout(this.idleTimer),this.idleTimer=null}setIdle(t=!1){const e=()=>{this.clearIdle(),this.idle=!0,P(this.container,"is-idle"),this.emit("setIdle")};if(this.clearIdle(),!this.isClosing())if(t)e();else{const t=this.option("idle");t&&(this.idleTimer=setTimeout(e,t))}}endIdle(){this.clearIdle(),this.idle&&!this.isClosing()&&(this.idle=!1,S(this.container,"is-idle"),this.emit("endIdle"))}resetIdle(){this.endIdle(),this.setIdle()}toggleIdle(){this.idle?this.endIdle():this.setIdle(!0)}toggleFullscreen(){ye&&(ye.isFullscreen()?ye.exit():ye.request().then((()=>{this.startedFs=!0})))}isClosing(){return[rt.Closing,rt.CustomClosing,rt.Destroy].includes(this.state)}proceedClose(t,e){var i,n;this.state=rt.Closing,this.clearIdle(),this.detachEvents();const s=this.container,o=this.carousel,a=this.getSlide(),r=a&&this.option("placeFocusBack")?a.triggerEl||this.option("triggerEl"):null;if(r&&(tt(r)?st(r):r.focus()),s&&(S(s,he),P(s,"is-closing"),s.setAttribute(oe,"true"),this.option("animated")&&P(s,re),s.style.pointerEvents="none"),o){o.clearTransitions(),null===(i=o.panzoom)||void 0===i||i.destroy(),null===(n=o.plugins.Navigation)||void 0===n||n.detach();for(const t of o.slides){t.state=lt.Closing,this.hideLoading(t);const e=t.contentEl;e&&this.stop(e);const i=null==t?void 0:t.panzoom;i&&(i.stop(),i.detachEvents(),i.detachObserver()),this.isCurrentSlide(t)||o.emit("removeSlide",t)}}Pe=window.scrollX,Ce=window.scrollY,window.addEventListener("scroll",this.onScroll),this.emit("close",t),this.state!==rt.CustomClosing?(void 0===e&&a&&(e=this.optionFor(a,"hideClass")),e&&a?(this.animate(a.contentEl,e,(()=>{o&&o.emit("removeSlide",a)})),setTimeout((()=>{this.destroy()}),500)):this.destroy()):setTimeout((()=>{this.destroy()}),500)}destroy(){var t;if(this.state===rt.Destroy)return;window.removeEventListener("scroll",this.onScroll),this.state=rt.Destroy,null===(t=this.carousel)||void 0===t||t.destroy();const e=this.container;e&&e.remove(),Te.delete(this.id);const i=Oe.getInstance();i?i.focus():(we&&(we.remove(),we=null),xe&&(xe.remove(),xe=null),S(document.documentElement,ee),(()=>{if(!et)return;const t=document,e=t.body;e.classList.remove(ie),e.style.setProperty(se,""),t.documentElement.style.setProperty(ne,"")})(),this.emit("destroy"))}static bind(t,e,i){if(!et)return;let n,s="",o={};if(void 0===t?n=document.body:ve(t)?(n=document.body,s=t,"object"==typeof e&&(o=e||{})):(n=t,ve(e)&&(s=e),"object"==typeof i&&(o=i||{})),!n||!E(n))return;s=s||"[data-fancybox]";const a=Oe.openers.get(n)||new Map;a.set(s,o),Oe.openers.set(n,a),1===a.size&&n.addEventListener("click",Oe.fromEvent)}static unbind(t,e){let i,n="";if(ve(t)?(i=document.body,n=t):(i=t,ve(e)&&(n=e)),!i)return;const s=Oe.openers.get(i);s&&n&&s.delete(n),n&&s||(Oe.openers.delete(i),i.removeEventListener("click",Oe.fromEvent))}static destroy(){let t;for(;t=Oe.getInstance();)t.destroy();for(const t of Oe.openers.keys())t.removeEventListener("click",Oe.fromEvent);Oe.openers=new Map}static fromEvent(t){if(t.defaultPrevented)return;if(t.button&&0!==t.button)return;if(t.ctrlKey||t.metaKey||t.shiftKey)return;let e=t.composedPath()[0];const i=e.closest("[data-fancybox-trigger]");if(i){const t=i.dataset.fancyboxTrigger||"",n=document.querySelectorAll(`[data-fancybox="${t}"]`),s=parseInt(i.dataset.fancyboxIndex||"",10)||0;e=n[s]||e}if(!(e&&e instanceof Element))return;let n,s,o,a;if([...Oe.openers].reverse().find((([t,i])=>!(!t.contains(e)||![...i].reverse().find((([i,r])=>{let l=e.closest(i);return!!l&&(n=t,s=i,o=l,a=r,!0)}))))),!n||!s||!o)return;a=a||{},t.preventDefault(),e=o;let r=[],l=u({},at,a);l.event=t,l.triggerEl=e,l.delegate=i;const c=l.groupAll,h=l.groupAttr,d=h&&e?e.getAttribute(`${h}`):"";if((!e||d||c)&&(r=[].slice.call(n.querySelectorAll(s))),e&&!c&&(r=d?r.filter((t=>t.getAttribute(`${h}`)===d)):[e]),!r.length)return;const p=Oe.getInstance();return p&&p.options.triggerEl&&r.indexOf(p.options.triggerEl)>-1?void 0:(e&&(l.startIndex=r.indexOf(e)),Oe.fromNodes(r,l))}static fromSelector(t,e,i){let n=null,s="",o={};if(ve(t)?(n=document.body,s=t,"object"==typeof e&&(o=e||{})):t instanceof HTMLElement&&ve(e)&&(n=t,s=e,"object"==typeof i&&(o=i||{})),!n||!s)return!1;const a=Oe.openers.get(n);return!!a&&(o=u({},a.get(s)||{},o),!!o&&Oe.fromNodes(Array.from(n.querySelectorAll(s)),o))}static fromNodes(t,e){e=u({},at,e||{});const i=[];for(const n of t){const t=n.dataset||{},s=t[me]||n.getAttribute(ge)||n.getAttribute("currentSrc")||n.getAttribute(me)||void 0;let o;const a=e.delegate;let r;a&&i.length===e.startIndex&&(o=a instanceof HTMLImageElement?a:a.querySelector("img:not([aria-hidden])")),o||(o=n instanceof HTMLImageElement?n:n.querySelector("img:not([aria-hidden])")),o&&(r=o.currentSrc||o[me]||void 0,!r&&o.dataset&&(r=o.dataset.lazySrc||o.dataset[me]||void 0));const l={src:s,triggerEl:n,thumbEl:o,thumbElSrc:r,thumbSrc:r};for(const e in t){let i=t[e]+"";i="false"!==i&&("true"===i||i),l[e]=i}i.push(l)}return new Oe(i,e)}static getInstance(t){if(t)return Te.get(t);return Array.from(Te.values()).reverse().find((t=>!t.isClosing()&&t))||null}static getSlide(){var t;return(null===(t=Oe.getInstance())||void 0===t?void 0:t.getSlide())||null}static show(t=[],e={}){return new Oe(t,e)}static next(){const t=Oe.getInstance();t&&t.next()}static prev(){const t=Oe.getInstance();t&&t.prev()}static close(t=!0,...e){if(t)for(const t of Te.values())t.close(...e);else{const t=Oe.getInstance();t&&t.close(...e)}}}Object.defineProperty(Oe,"version",{enumerable:!0,configurable:!0,writable:!0,value:"5.0.36"}),Object.defineProperty(Oe,"defaults",{enumerable:!0,configurable:!0,writable:!0,value:at}),Object.defineProperty(Oe,"Plugins",{enumerable:!0,configurable:!0,writable:!0,value:te}),Object.defineProperty(Oe,"openers",{enumerable:!0,configurable:!0,writable:!0,value:new Map});
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/axios/index.js ***!
+  \*************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/adapters/xhr.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
+var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
+var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var buildFullPath = __webpack_require__(/*! ../core/buildFullPath */ "./node_modules/axios/lib/core/buildFullPath.js");
+var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
+var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
+var transitionalDefaults = __webpack_require__(/*! ../defaults/transitional */ "./node_modules/axios/lib/defaults/transitional.js");
+var AxiosError = __webpack_require__(/*! ../core/AxiosError */ "./node_modules/axios/lib/core/AxiosError.js");
+var CanceledError = __webpack_require__(/*! ../cancel/CanceledError */ "./node_modules/axios/lib/cancel/CanceledError.js");
+var parseProtocol = __webpack_require__(/*! ../helpers/parseProtocol */ "./node_modules/axios/lib/helpers/parseProtocol.js");
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+    var responseType = config.responseType;
+    var onCanceled;
+    function done() {
+      if (config.cancelToken) {
+        config.cancelToken.unsubscribe(onCanceled);
+      }
+
+      if (config.signal) {
+        config.signal.removeEventListener('abort', onCanceled);
+      }
+    }
+
+    if (utils.isFormData(requestData) && utils.isStandardBrowserEnv()) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    var fullPath = buildFullPath(config.baseURL, config.url);
+
+    request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    function onloadend() {
+      if (!request) {
+        return;
+      }
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !responseType || responseType === 'text' ||  responseType === 'json' ?
+        request.responseText : request.response;
+      var response = {
+        data: responseData,
+        status: request.status,
+        statusText: request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(function _resolve(value) {
+        resolve(value);
+        done();
+      }, function _reject(err) {
+        reject(err);
+        done();
+      }, response);
+
+      // Clean up request
+      request = null;
+    }
+
+    if ('onloadend' in request) {
+      // Use onloadend if available
+      request.onloadend = onloadend;
+    } else {
+      // Listen for ready state to emulate onloadend
+      request.onreadystatechange = function handleLoad() {
+        if (!request || request.readyState !== 4) {
+          return;
+        }
+
+        // The request errored out and we didn't get a response, this will be
+        // handled by onerror instead
+        // With one exception: request that using file: protocol, most browsers
+        // will return status as 0 even though it's a successful request
+        if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+          return;
+        }
+        // readystate handler is calling before onerror or ontimeout handlers,
+        // so we should call onloadend on the next 'tick'
+        setTimeout(onloadend);
+      };
+    }
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(new AxiosError('Request aborted', AxiosError.ECONNABORTED, config, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(new AxiosError('Network Error', AxiosError.ERR_NETWORK, config, request, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      var timeoutErrorMessage = config.timeout ? 'timeout of ' + config.timeout + 'ms exceeded' : 'timeout exceeded';
+      var transitional = config.transitional || transitionalDefaults;
+      if (config.timeoutErrorMessage) {
+        timeoutErrorMessage = config.timeoutErrorMessage;
+      }
+      reject(new AxiosError(
+        timeoutErrorMessage,
+        transitional.clarifyTimeoutError ? AxiosError.ETIMEDOUT : AxiosError.ECONNABORTED,
+        config,
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
+        cookies.read(config.xsrfCookieName) :
+        undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (!utils.isUndefined(config.withCredentials)) {
+      request.withCredentials = !!config.withCredentials;
+    }
+
+    // Add responseType to request if needed
+    if (responseType && responseType !== 'json') {
+      request.responseType = config.responseType;
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken || config.signal) {
+      // Handle cancellation
+      // eslint-disable-next-line func-names
+      onCanceled = function(cancel) {
+        if (!request) {
+          return;
+        }
+        reject(!cancel || (cancel && cancel.type) ? new CanceledError() : cancel);
+        request.abort();
+        request = null;
+      };
+
+      config.cancelToken && config.cancelToken.subscribe(onCanceled);
+      if (config.signal) {
+        config.signal.aborted ? onCanceled() : config.signal.addEventListener('abort', onCanceled);
+      }
+    }
+
+    if (!requestData) {
+      requestData = null;
+    }
+
+    var protocol = parseProtocol(fullPath);
+
+    if (protocol && [ 'http', 'https', 'file' ].indexOf(protocol) === -1) {
+      reject(new AxiosError('Unsupported protocol ' + protocol + ':', AxiosError.ERR_BAD_REQUEST, config));
+      return;
+    }
+
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/axios.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
+var mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
+var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults/index.js");
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ * @return {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  var context = new Axios(defaultConfig);
+  var instance = bind(Axios.prototype.request, context);
+
+  // Copy axios.prototype to instance
+  utils.extend(instance, Axios.prototype, context);
+
+  // Copy context to instance
+  utils.extend(instance, context);
+
+  // Factory for creating new instances
+  instance.create = function create(instanceConfig) {
+    return createInstance(mergeConfig(defaultConfig, instanceConfig));
+  };
+
+  return instance;
+}
+
+// Create the default instance to be exported
+var axios = createInstance(defaults);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = Axios;
+
+// Expose Cancel & CancelToken
+axios.CanceledError = __webpack_require__(/*! ./cancel/CanceledError */ "./node_modules/axios/lib/cancel/CanceledError.js");
+axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
+axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+axios.VERSION = (__webpack_require__(/*! ./env/data */ "./node_modules/axios/lib/env/data.js").version);
+axios.toFormData = __webpack_require__(/*! ./helpers/toFormData */ "./node_modules/axios/lib/helpers/toFormData.js");
+
+// Expose AxiosError class
+axios.AxiosError = __webpack_require__(/*! ../lib/core/AxiosError */ "./node_modules/axios/lib/core/AxiosError.js");
+
+// alias for CanceledError for backward compatibility
+axios.Cancel = axios.CanceledError;
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
+
+// Expose isAxiosError
+axios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ "./node_modules/axios/lib/helpers/isAxiosError.js");
+
+module.exports = axios;
+
+// Allow use of default import syntax in TypeScript
+module.exports["default"] = axios;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/CancelToken.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var CanceledError = __webpack_require__(/*! ./CanceledError */ "./node_modules/axios/lib/cancel/CanceledError.js");
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+function CancelToken(executor) {
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+
+  var resolvePromise;
+
+  this.promise = new Promise(function promiseExecutor(resolve) {
+    resolvePromise = resolve;
+  });
+
+  var token = this;
+
+  // eslint-disable-next-line func-names
+  this.promise.then(function(cancel) {
+    if (!token._listeners) return;
+
+    var i;
+    var l = token._listeners.length;
+
+    for (i = 0; i < l; i++) {
+      token._listeners[i](cancel);
+    }
+    token._listeners = null;
+  });
+
+  // eslint-disable-next-line func-names
+  this.promise.then = function(onfulfilled) {
+    var _resolve;
+    // eslint-disable-next-line func-names
+    var promise = new Promise(function(resolve) {
+      token.subscribe(resolve);
+      _resolve = resolve;
+    }).then(onfulfilled);
+
+    promise.cancel = function reject() {
+      token.unsubscribe(_resolve);
+    };
+
+    return promise;
+  };
+
+  executor(function cancel(message) {
+    if (token.reason) {
+      // Cancellation has already been requested
+      return;
+    }
+
+    token.reason = new CanceledError(message);
+    resolvePromise(token.reason);
+  });
+}
+
+/**
+ * Throws a `CanceledError` if cancellation has been requested.
+ */
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+
+/**
+ * Subscribe to the cancel signal
+ */
+
+CancelToken.prototype.subscribe = function subscribe(listener) {
+  if (this.reason) {
+    listener(this.reason);
+    return;
+  }
+
+  if (this._listeners) {
+    this._listeners.push(listener);
+  } else {
+    this._listeners = [listener];
+  }
+};
+
+/**
+ * Unsubscribe from the cancel signal
+ */
+
+CancelToken.prototype.unsubscribe = function unsubscribe(listener) {
+  if (!this._listeners) {
+    return;
+  }
+  var index = this._listeners.indexOf(listener);
+  if (index !== -1) {
+    this._listeners.splice(index, 1);
+  }
+};
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+CancelToken.source = function source() {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+
+module.exports = CancelToken;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/CanceledError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CanceledError.js ***!
+  \********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var AxiosError = __webpack_require__(/*! ../core/AxiosError */ "./node_modules/axios/lib/core/AxiosError.js");
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * A `CanceledError` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function CanceledError(message) {
+  // eslint-disable-next-line no-eq-null,eqeqeq
+  AxiosError.call(this, message == null ? 'canceled' : message, AxiosError.ERR_CANCELED);
+  this.name = 'CanceledError';
+}
+
+utils.inherits(CanceledError, AxiosError, {
+  __CANCEL__: true
+});
+
+module.exports = CanceledError;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/cancel/isCancel.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/Axios.js":
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var buildURL = __webpack_require__(/*! ../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
+var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
+var mergeConfig = __webpack_require__(/*! ./mergeConfig */ "./node_modules/axios/lib/core/mergeConfig.js");
+var buildFullPath = __webpack_require__(/*! ./buildFullPath */ "./node_modules/axios/lib/core/buildFullPath.js");
+var validator = __webpack_require__(/*! ../helpers/validator */ "./node_modules/axios/lib/helpers/validator.js");
+
+var validators = validator.validators;
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig;
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  };
+}
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+Axios.prototype.request = function request(configOrUrl, config) {
+  /*eslint no-param-reassign:0*/
+  // Allow for axios('example/url'[, config]) a la fetch API
+  if (typeof configOrUrl === 'string') {
+    config = config || {};
+    config.url = configOrUrl;
+  } else {
+    config = configOrUrl || {};
+  }
+
+  config = mergeConfig(this.defaults, config);
+
+  // Set config.method
+  if (config.method) {
+    config.method = config.method.toLowerCase();
+  } else if (this.defaults.method) {
+    config.method = this.defaults.method.toLowerCase();
+  } else {
+    config.method = 'get';
+  }
+
+  var transitional = config.transitional;
+
+  if (transitional !== undefined) {
+    validator.assertOptions(transitional, {
+      silentJSONParsing: validators.transitional(validators.boolean),
+      forcedJSONParsing: validators.transitional(validators.boolean),
+      clarifyTimeoutError: validators.transitional(validators.boolean)
+    }, false);
+  }
+
+  // filter out skipped interceptors
+  var requestInterceptorChain = [];
+  var synchronousRequestInterceptors = true;
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    if (typeof interceptor.runWhen === 'function' && interceptor.runWhen(config) === false) {
+      return;
+    }
+
+    synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
+
+    requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  var responseInterceptorChain = [];
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  var promise;
+
+  if (!synchronousRequestInterceptors) {
+    var chain = [dispatchRequest, undefined];
+
+    Array.prototype.unshift.apply(chain, requestInterceptorChain);
+    chain = chain.concat(responseInterceptorChain);
+
+    promise = Promise.resolve(config);
+    while (chain.length) {
+      promise = promise.then(chain.shift(), chain.shift());
+    }
+
+    return promise;
+  }
+
+
+  var newConfig = config;
+  while (requestInterceptorChain.length) {
+    var onFulfilled = requestInterceptorChain.shift();
+    var onRejected = requestInterceptorChain.shift();
+    try {
+      newConfig = onFulfilled(newConfig);
+    } catch (error) {
+      onRejected(error);
+      break;
+    }
+  }
+
+  try {
+    promise = dispatchRequest(newConfig);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+
+  while (responseInterceptorChain.length) {
+    promise = promise.then(responseInterceptorChain.shift(), responseInterceptorChain.shift());
+  }
+
+  return promise;
+};
+
+Axios.prototype.getUri = function getUri(config) {
+  config = mergeConfig(this.defaults, config);
+  var fullPath = buildFullPath(config.baseURL, config.url);
+  return buildURL(fullPath, config.params, config.paramsSerializer);
+};
+
+// Provide aliases for supported request methods
+utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request(mergeConfig(config || {}, {
+      method: method,
+      url: url,
+      data: (config || {}).data
+    }));
+  };
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+
+  function generateHTTPMethod(isForm) {
+    return function httpMethod(url, data, config) {
+      return this.request(mergeConfig(config || {}, {
+        method: method,
+        headers: isForm ? {
+          'Content-Type': 'multipart/form-data'
+        } : {},
+        url: url,
+        data: data
+      }));
+    };
+  }
+
+  Axios.prototype[method] = generateHTTPMethod();
+
+  Axios.prototype[method + 'Form'] = generateHTTPMethod(true);
+});
+
+module.exports = Axios;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/AxiosError.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/core/AxiosError.js ***!
+  \***************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [config] The config.
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+function AxiosError(message, code, config, request, response) {
+  Error.call(this);
+  this.message = message;
+  this.name = 'AxiosError';
+  code && (this.code = code);
+  config && (this.config = config);
+  request && (this.request = request);
+  response && (this.response = response);
+}
+
+utils.inherits(AxiosError, Error, {
+  toJSON: function toJSON() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: this.config,
+      code: this.code,
+      status: this.response && this.response.status ? this.response.status : null
+    };
+  }
+});
+
+var prototype = AxiosError.prototype;
+var descriptors = {};
+
+[
+  'ERR_BAD_OPTION_VALUE',
+  'ERR_BAD_OPTION',
+  'ECONNABORTED',
+  'ETIMEDOUT',
+  'ERR_NETWORK',
+  'ERR_FR_TOO_MANY_REDIRECTS',
+  'ERR_DEPRECATED',
+  'ERR_BAD_RESPONSE',
+  'ERR_BAD_REQUEST',
+  'ERR_CANCELED'
+// eslint-disable-next-line func-names
+].forEach(function(code) {
+  descriptors[code] = {value: code};
+});
+
+Object.defineProperties(AxiosError, descriptors);
+Object.defineProperty(prototype, 'isAxiosError', {value: true});
+
+// eslint-disable-next-line func-names
+AxiosError.from = function(error, code, config, request, response, customProps) {
+  var axiosError = Object.create(prototype);
+
+  utils.toFlatObject(error, axiosError, function filter(obj) {
+    return obj !== Error.prototype;
+  });
+
+  AxiosError.call(axiosError, error.message, code, config, request, response);
+
+  axiosError.name = error.name;
+
+  customProps && Object.assign(axiosError, customProps);
+
+  return axiosError;
+};
+
+module.exports = AxiosError;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/InterceptorManager.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+function InterceptorManager() {
+  this.handlers = [];
+}
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+InterceptorManager.prototype.use = function use(fulfilled, rejected, options) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected,
+    synchronous: options ? options.synchronous : false,
+    runWhen: options ? options.runWhen : null
+  });
+  return this.handlers.length - 1;
+};
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+InterceptorManager.prototype.eject = function eject(id) {
+  if (this.handlers[id]) {
+    this.handlers[id] = null;
+  }
+};
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+InterceptorManager.prototype.forEach = function forEach(fn) {
+  utils.forEach(this.handlers, function forEachHandler(h) {
+    if (h !== null) {
+      fn(h);
+    }
+  });
+};
+
+module.exports = InterceptorManager;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/buildFullPath.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/buildFullPath.js ***!
+  \******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var isAbsoluteURL = __webpack_require__(/*! ../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
+
+/**
+ * Creates a new URL by combining the baseURL with the requestedURL,
+ * only when the requestedURL is not already an absolute URL.
+ * If the requestURL is absolute, this function returns the requestedURL untouched.
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} requestedURL Absolute or relative URL to combine
+ * @returns {string} The combined full path
+ */
+module.exports = function buildFullPath(baseURL, requestedURL) {
+  if (baseURL && !isAbsoluteURL(requestedURL)) {
+    return combineURLs(baseURL, requestedURL);
+  }
+  return requestedURL;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/dispatchRequest.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
+var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults/index.js");
+var CanceledError = __webpack_require__(/*! ../cancel/CanceledError */ "./node_modules/axios/lib/cancel/CanceledError.js");
+
+/**
+ * Throws a `CanceledError` if cancellation has been requested.
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+
+  if (config.signal && config.signal.aborted) {
+    throw new CanceledError();
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+module.exports = function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  // Ensure headers exist
+  config.headers = config.headers || {};
+
+  // Transform request data
+  config.data = transformData.call(
+    config,
+    config.data,
+    config.headers,
+    config.transformRequest
+  );
+
+  // Flatten headers
+  config.headers = utils.merge(
+    config.headers.common || {},
+    config.headers[config.method] || {},
+    config.headers
+  );
+
+  utils.forEach(
+    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+    function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    }
+  );
+
+  var adapter = config.adapter || defaults.adapter;
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = transformData.call(
+      config,
+      response.data,
+      response.headers,
+      config.transformResponse
+    );
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = transformData.call(
+          config,
+          reason.response.data,
+          reason.response.headers,
+          config.transformResponse
+        );
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/mergeConfig.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/mergeConfig.js ***!
+  \****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+module.exports = function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  var config = {};
+
+  function getMergedValue(target, source) {
+    if (utils.isPlainObject(target) && utils.isPlainObject(source)) {
+      return utils.merge(target, source);
+    } else if (utils.isPlainObject(source)) {
+      return utils.merge({}, source);
+    } else if (utils.isArray(source)) {
+      return source.slice();
+    }
+    return source;
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDeepProperties(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(config1[prop], config2[prop]);
+    } else if (!utils.isUndefined(config1[prop])) {
+      return getMergedValue(undefined, config1[prop]);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function valueFromConfig2(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(undefined, config2[prop]);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function defaultToConfig2(prop) {
+    if (!utils.isUndefined(config2[prop])) {
+      return getMergedValue(undefined, config2[prop]);
+    } else if (!utils.isUndefined(config1[prop])) {
+      return getMergedValue(undefined, config1[prop]);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  function mergeDirectKeys(prop) {
+    if (prop in config2) {
+      return getMergedValue(config1[prop], config2[prop]);
+    } else if (prop in config1) {
+      return getMergedValue(undefined, config1[prop]);
+    }
+  }
+
+  var mergeMap = {
+    'url': valueFromConfig2,
+    'method': valueFromConfig2,
+    'data': valueFromConfig2,
+    'baseURL': defaultToConfig2,
+    'transformRequest': defaultToConfig2,
+    'transformResponse': defaultToConfig2,
+    'paramsSerializer': defaultToConfig2,
+    'timeout': defaultToConfig2,
+    'timeoutMessage': defaultToConfig2,
+    'withCredentials': defaultToConfig2,
+    'adapter': defaultToConfig2,
+    'responseType': defaultToConfig2,
+    'xsrfCookieName': defaultToConfig2,
+    'xsrfHeaderName': defaultToConfig2,
+    'onUploadProgress': defaultToConfig2,
+    'onDownloadProgress': defaultToConfig2,
+    'decompress': defaultToConfig2,
+    'maxContentLength': defaultToConfig2,
+    'maxBodyLength': defaultToConfig2,
+    'beforeRedirect': defaultToConfig2,
+    'transport': defaultToConfig2,
+    'httpAgent': defaultToConfig2,
+    'httpsAgent': defaultToConfig2,
+    'cancelToken': defaultToConfig2,
+    'socketPath': defaultToConfig2,
+    'responseEncoding': defaultToConfig2,
+    'validateStatus': mergeDirectKeys
+  };
+
+  utils.forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
+    var merge = mergeMap[prop] || mergeDeepProperties;
+    var configValue = merge(prop);
+    (utils.isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
+  });
+
+  return config;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/settle.js":
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var AxiosError = __webpack_require__(/*! ./AxiosError */ "./node_modules/axios/lib/core/AxiosError.js");
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+module.exports = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(new AxiosError(
+      'Request failed with status code ' + response.status,
+      [AxiosError.ERR_BAD_REQUEST, AxiosError.ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4],
+      response.config,
+      response.request,
+      response
+    ));
+  }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/core/transformData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults/index.js");
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  var context = this || defaults;
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn.call(context, data, headers);
+  });
+
+  return data;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/defaults/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/defaults/index.js ***!
+  \**************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+var normalizeHeaderName = __webpack_require__(/*! ../helpers/normalizeHeaderName */ "./node_modules/axios/lib/helpers/normalizeHeaderName.js");
+var AxiosError = __webpack_require__(/*! ../core/AxiosError */ "./node_modules/axios/lib/core/AxiosError.js");
+var transitionalDefaults = __webpack_require__(/*! ./transitional */ "./node_modules/axios/lib/defaults/transitional.js");
+var toFormData = __webpack_require__(/*! ../helpers/toFormData */ "./node_modules/axios/lib/helpers/toFormData.js");
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(/*! ../adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(/*! ../adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
+  }
+  return adapter;
+}
+
+function stringifySafely(rawValue, parser, encoder) {
+  if (utils.isString(rawValue)) {
+    try {
+      (parser || JSON.parse)(rawValue);
+      return utils.trim(rawValue);
+    } catch (e) {
+      if (e.name !== 'SyntaxError') {
+        throw e;
+      }
+    }
+  }
+
+  return (encoder || JSON.stringify)(rawValue);
+}
+
+var defaults = {
+
+  transitional: transitionalDefaults,
+
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Accept');
+    normalizeHeaderName(headers, 'Content-Type');
+
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+
+    var isObjectPayload = utils.isObject(data);
+    var contentType = headers && headers['Content-Type'];
+
+    var isFileList;
+
+    if ((isFileList = utils.isFileList(data)) || (isObjectPayload && contentType === 'multipart/form-data')) {
+      var _FormData = this.env && this.env.FormData;
+      return toFormData(isFileList ? {'files[]': data} : data, _FormData && new _FormData());
+    } else if (isObjectPayload || contentType === 'application/json') {
+      setContentTypeIfUnset(headers, 'application/json');
+      return stringifySafely(data);
+    }
+
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    var transitional = this.transitional || defaults.transitional;
+    var silentJSONParsing = transitional && transitional.silentJSONParsing;
+    var forcedJSONParsing = transitional && transitional.forcedJSONParsing;
+    var strictJSONParsing = !silentJSONParsing && this.responseType === 'json';
+
+    if (strictJSONParsing || (forcedJSONParsing && utils.isString(data) && data.length)) {
+      try {
+        return JSON.parse(data);
+      } catch (e) {
+        if (strictJSONParsing) {
+          if (e.name === 'SyntaxError') {
+            throw AxiosError.from(e, AxiosError.ERR_BAD_RESPONSE, this, null, this.response);
+          }
+          throw e;
+        }
+      }
+    }
+
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+  maxBodyLength: -1,
+
+  env: {
+    FormData: __webpack_require__(/*! ./env/FormData */ "./node_modules/axios/lib/helpers/null.js")
+  },
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  },
+
+  headers: {
+    common: {
+      'Accept': 'application/json, text/plain, */*'
+    }
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/defaults/transitional.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/defaults/transitional.js ***!
+  \*********************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+module.exports = {
+  silentJSONParsing: true,
+  forcedJSONParsing: true,
+  clarifyTimeoutError: false
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/env/data.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/env/data.js ***!
+  \********************************************/
+/***/ (function(module) {
+
+module.exports = {
+  "version": "0.27.2"
+};
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/bind.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/buildURL.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @returns {string} The formatted url
+ */
+module.exports = function buildURL(url, params, paramsSerializer) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else if (utils.isURLSearchParams(params)) {
+    serializedParams = params.toString();
+  } else {
+    var parts = [];
+
+    utils.forEach(params, function serialize(val, key) {
+      if (val === null || typeof val === 'undefined') {
+        return;
+      }
+
+      if (utils.isArray(val)) {
+        key = key + '[]';
+      } else {
+        val = [val];
+      }
+
+      utils.forEach(val, function parseValue(v) {
+        if (utils.isDate(v)) {
+          v = v.toISOString();
+        } else if (utils.isObject(v)) {
+          v = JSON.stringify(v);
+        }
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    var hashmarkIndex = url.indexOf('#');
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/combineURLs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ * @returns {string} The combined URL
+ */
+module.exports = function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/cookies.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs support document.cookie
+    (function standardBrowserEnv() {
+      return {
+        write: function write(name, value, expires, path, domain, secure) {
+          var cookie = [];
+          cookie.push(name + '=' + encodeURIComponent(value));
+
+          if (utils.isNumber(expires)) {
+            cookie.push('expires=' + new Date(expires).toGMTString());
+          }
+
+          if (utils.isString(path)) {
+            cookie.push('path=' + path);
+          }
+
+          if (utils.isString(domain)) {
+            cookie.push('domain=' + domain);
+          }
+
+          if (secure === true) {
+            cookie.push('secure');
+          }
+
+          document.cookie = cookie.join('; ');
+        },
+
+        read: function read(name) {
+          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+          return (match ? decodeURIComponent(match[3]) : null);
+        },
+
+        remove: function remove(name) {
+          this.write(name, '', Date.now() - 86400000);
+        }
+      };
+    })() :
+
+  // Non standard browser env (web workers, react-native) lack needed support.
+    (function nonStandardBrowserEnv() {
+      return {
+        write: function write() {},
+        read: function read() { return null; },
+        remove: function remove() {}
+      };
+    })()
+);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+module.exports = function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+module.exports = function isAxiosError(payload) {
+  return utils.isObject(payload) && (payload.isAxiosError === true);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs have full support of the APIs needed to test
+  // whether the request URL is of the same origin as current location.
+    (function standardBrowserEnv() {
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement('a');
+      var originURL;
+
+      /**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+      function resolveURL(url) {
+        var href = url;
+
+        if (msie) {
+        // IE needs attribute set twice to normalize properties
+          urlParsingNode.setAttribute('href', href);
+          href = urlParsingNode.href;
+        }
+
+        urlParsingNode.setAttribute('href', href);
+
+        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+        return {
+          href: urlParsingNode.href,
+          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+          host: urlParsingNode.host,
+          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+          hostname: urlParsingNode.hostname,
+          port: urlParsingNode.port,
+          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+            urlParsingNode.pathname :
+            '/' + urlParsingNode.pathname
+        };
+      }
+
+      originURL = resolveURL(window.location.href);
+
+      /**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+      return function isURLSameOrigin(requestURL) {
+        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+        return (parsed.protocol === originURL.protocol &&
+            parsed.host === originURL.host);
+      };
+    })() :
+
+  // Non standard browser envs (web workers, react-native) lack needed support.
+    (function nonStandardBrowserEnv() {
+      return function isURLSameOrigin() {
+        return true;
+      };
+    })()
+);
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/normalizeHeaderName.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \***************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+module.exports = function normalizeHeaderName(headers, normalizedName) {
+  utils.forEach(headers, function processHeader(value, name) {
+    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+      headers[normalizedName] = value;
+      delete headers[name];
+    }
+  });
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/null.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/null.js ***!
+  \************************************************/
+/***/ (function(module) {
+
+// eslint-disable-next-line strict
+module.exports = null;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} headers Headers needing to be parsed
+ * @returns {Object} Headers parsed into an object
+ */
+module.exports = function parseHeaders(headers) {
+  var parsed = {};
+  var key;
+  var val;
+  var i;
+
+  if (!headers) { return parsed; }
+
+  utils.forEach(headers.split('\n'), function parser(line) {
+    i = line.indexOf(':');
+    key = utils.trim(line.substr(0, i)).toLowerCase();
+    val = utils.trim(line.substr(i + 1));
+
+    if (key) {
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
+    }
+  });
+
+  return parsed;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/parseProtocol.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseProtocol.js ***!
+  \*********************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+module.exports = function parseProtocol(url) {
+  var match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);
+  return match && match[1] || '';
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/spread.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+module.exports = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/toFormData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/toFormData.js ***!
+  \******************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
+
+/**
+ * Convert a data object to FormData
+ * @param {Object} obj
+ * @param {?Object} [formData]
+ * @returns {Object}
+ **/
+
+function toFormData(obj, formData) {
+  // eslint-disable-next-line no-param-reassign
+  formData = formData || new FormData();
+
+  var stack = [];
+
+  function convertValue(value) {
+    if (value === null) return '';
+
+    if (utils.isDate(value)) {
+      return value.toISOString();
+    }
+
+    if (utils.isArrayBuffer(value) || utils.isTypedArray(value)) {
+      return typeof Blob === 'function' ? new Blob([value]) : Buffer.from(value);
+    }
+
+    return value;
+  }
+
+  function build(data, parentKey) {
+    if (utils.isPlainObject(data) || utils.isArray(data)) {
+      if (stack.indexOf(data) !== -1) {
+        throw Error('Circular reference detected in ' + parentKey);
+      }
+
+      stack.push(data);
+
+      utils.forEach(data, function each(value, key) {
+        if (utils.isUndefined(value)) return;
+        var fullKey = parentKey ? parentKey + '.' + key : key;
+        var arr;
+
+        if (value && !parentKey && typeof value === 'object') {
+          if (utils.endsWith(key, '{}')) {
+            // eslint-disable-next-line no-param-reassign
+            value = JSON.stringify(value);
+          } else if (utils.endsWith(key, '[]') && (arr = utils.toArray(value))) {
+            // eslint-disable-next-line func-names
+            arr.forEach(function(el) {
+              !utils.isUndefined(el) && formData.append(fullKey, convertValue(el));
+            });
+            return;
+          }
+        }
+
+        build(value, fullKey);
+      });
+
+      stack.pop();
+    } else {
+      formData.append(parentKey, convertValue(data));
+    }
+  }
+
+  build(obj);
+
+  return formData;
+}
+
+module.exports = toFormData;
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/validator.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/validator.js ***!
+  \*****************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var VERSION = (__webpack_require__(/*! ../env/data */ "./node_modules/axios/lib/env/data.js").version);
+var AxiosError = __webpack_require__(/*! ../core/AxiosError */ "./node_modules/axios/lib/core/AxiosError.js");
+
+var validators = {};
+
+// eslint-disable-next-line func-names
+['object', 'boolean', 'number', 'function', 'string', 'symbol'].forEach(function(type, i) {
+  validators[type] = function validator(thing) {
+    return typeof thing === type || 'a' + (i < 1 ? 'n ' : ' ') + type;
+  };
+});
+
+var deprecatedWarnings = {};
+
+/**
+ * Transitional option validator
+ * @param {function|boolean?} validator - set to false if the transitional option has been removed
+ * @param {string?} version - deprecated version / removed since version
+ * @param {string?} message - some message with additional info
+ * @returns {function}
+ */
+validators.transitional = function transitional(validator, version, message) {
+  function formatMessage(opt, desc) {
+    return '[Axios v' + VERSION + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
+  }
+
+  // eslint-disable-next-line func-names
+  return function(value, opt, opts) {
+    if (validator === false) {
+      throw new AxiosError(
+        formatMessage(opt, ' has been removed' + (version ? ' in ' + version : '')),
+        AxiosError.ERR_DEPRECATED
+      );
+    }
+
+    if (version && !deprecatedWarnings[opt]) {
+      deprecatedWarnings[opt] = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        formatMessage(
+          opt,
+          ' has been deprecated since v' + version + ' and will be removed in the near future'
+        )
+      );
+    }
+
+    return validator ? validator(value, opt, opts) : true;
+  };
+};
+
+/**
+ * Assert object's properties type
+ * @param {object} options
+ * @param {object} schema
+ * @param {boolean?} allowUnknown
+ */
+
+function assertOptions(options, schema, allowUnknown) {
+  if (typeof options !== 'object') {
+    throw new AxiosError('options must be an object', AxiosError.ERR_BAD_OPTION_VALUE);
+  }
+  var keys = Object.keys(options);
+  var i = keys.length;
+  while (i-- > 0) {
+    var opt = keys[i];
+    var validator = schema[opt];
+    if (validator) {
+      var value = options[opt];
+      var result = value === undefined || validator(value, opt, options);
+      if (result !== true) {
+        throw new AxiosError('option ' + opt + ' must be ' + result, AxiosError.ERR_BAD_OPTION_VALUE);
+      }
+      continue;
+    }
+    if (allowUnknown !== true) {
+      throw new AxiosError('Unknown option ' + opt, AxiosError.ERR_BAD_OPTION);
+    }
+  }
+}
+
+module.exports = {
+  assertOptions: assertOptions,
+  validators: validators
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/utils.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+
+// utils is a library of generic helper functions non-specific to axios
+
+var toString = Object.prototype.toString;
+
+// eslint-disable-next-line func-names
+var kindOf = (function(cache) {
+  // eslint-disable-next-line func-names
+  return function(thing) {
+    var str = toString.call(thing);
+    return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
+  };
+})(Object.create(null));
+
+function kindOfTest(type) {
+  type = type.toLowerCase();
+  return function isKindOf(thing) {
+    return kindOf(thing) === type;
+  };
+}
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+function isArray(val) {
+  return Array.isArray(val);
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */
+function isBuffer(val) {
+  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
+    && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @function
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+var isArrayBuffer = kindOfTest('ArrayBuffer');
+
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  var result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (isArrayBuffer(val.buffer));
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+function isString(val) {
+  return typeof val === 'string';
+}
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+function isNumber(val) {
+  return typeof val === 'number';
+}
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+function isObject(val) {
+  return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a plain Object
+ *
+ * @param {Object} val The value to test
+ * @return {boolean} True if value is a plain Object, otherwise false
+ */
+function isPlainObject(val) {
+  if (kindOf(val) !== 'object') {
+    return false;
+  }
+
+  var prototype = Object.getPrototypeOf(val);
+  return prototype === null || prototype === Object.prototype;
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @function
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+var isDate = kindOfTest('Date');
+
+/**
+ * Determine if a value is a File
+ *
+ * @function
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+var isFile = kindOfTest('File');
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @function
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+var isBlob = kindOfTest('Blob');
+
+/**
+ * Determine if a value is a FileList
+ *
+ * @function
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+var isFileList = kindOfTest('FileList');
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+function isFunction(val) {
+  return toString.call(val) === '[object Function]';
+}
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+function isStream(val) {
+  return isObject(val) && isFunction(val.pipe);
+}
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} thing The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+function isFormData(thing) {
+  var pattern = '[object FormData]';
+  return thing && (
+    (typeof FormData === 'function' && thing instanceof FormData) ||
+    toString.call(thing) === pattern ||
+    (isFunction(thing.toString) && thing.toString() === pattern)
+  );
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ * @function
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+var isURLSearchParams = kindOfTest('URLSearchParams');
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+function trim(str) {
+  return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, '');
+}
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
+ */
+function isStandardBrowserEnv() {
+  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
+                                           navigator.product === 'NativeScript' ||
+                                           navigator.product === 'NS')) {
+    return false;
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined'
+  );
+}
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+function forEach(obj, fn) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj);
+      }
+    }
+  }
+}
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (isPlainObject(result[key]) && isPlainObject(val)) {
+      result[key] = merge(result[key], val);
+    } else if (isPlainObject(val)) {
+      result[key] = merge({}, val);
+    } else if (isArray(val)) {
+      result[key] = val.slice();
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+function extend(a, b, thisArg) {
+  forEach(b, function assignValue(val, key) {
+    if (thisArg && typeof val === 'function') {
+      a[key] = bind(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  });
+  return a;
+}
+
+/**
+ * Remove byte order marker. This catches EF BB BF (the UTF-8 BOM)
+ *
+ * @param {string} content with BOM
+ * @return {string} content value without BOM
+ */
+function stripBOM(content) {
+  if (content.charCodeAt(0) === 0xFEFF) {
+    content = content.slice(1);
+  }
+  return content;
+}
+
+/**
+ * Inherit the prototype methods from one constructor into another
+ * @param {function} constructor
+ * @param {function} superConstructor
+ * @param {object} [props]
+ * @param {object} [descriptors]
+ */
+
+function inherits(constructor, superConstructor, props, descriptors) {
+  constructor.prototype = Object.create(superConstructor.prototype, descriptors);
+  constructor.prototype.constructor = constructor;
+  props && Object.assign(constructor.prototype, props);
+}
+
+/**
+ * Resolve object with deep prototype chain to a flat object
+ * @param {Object} sourceObj source object
+ * @param {Object} [destObj]
+ * @param {Function} [filter]
+ * @returns {Object}
+ */
+
+function toFlatObject(sourceObj, destObj, filter) {
+  var props;
+  var i;
+  var prop;
+  var merged = {};
+
+  destObj = destObj || {};
+
+  do {
+    props = Object.getOwnPropertyNames(sourceObj);
+    i = props.length;
+    while (i-- > 0) {
+      prop = props[i];
+      if (!merged[prop]) {
+        destObj[prop] = sourceObj[prop];
+        merged[prop] = true;
+      }
+    }
+    sourceObj = Object.getPrototypeOf(sourceObj);
+  } while (sourceObj && (!filter || filter(sourceObj, destObj)) && sourceObj !== Object.prototype);
+
+  return destObj;
+}
+
+/*
+ * determines whether a string ends with the characters of a specified string
+ * @param {String} str
+ * @param {String} searchString
+ * @param {Number} [position= 0]
+ * @returns {boolean}
+ */
+function endsWith(str, searchString, position) {
+  str = String(str);
+  if (position === undefined || position > str.length) {
+    position = str.length;
+  }
+  position -= searchString.length;
+  var lastIndex = str.indexOf(searchString, position);
+  return lastIndex !== -1 && lastIndex === position;
+}
+
+
+/**
+ * Returns new array from array like object
+ * @param {*} [thing]
+ * @returns {Array}
+ */
+function toArray(thing) {
+  if (!thing) return null;
+  var i = thing.length;
+  if (isUndefined(i)) return null;
+  var arr = new Array(i);
+  while (i-- > 0) {
+    arr[i] = thing[i];
+  }
+  return arr;
+}
+
+// eslint-disable-next-line func-names
+var isTypedArray = (function(TypedArray) {
+  // eslint-disable-next-line func-names
+  return function(thing) {
+    return TypedArray && thing instanceof TypedArray;
+  };
+})(typeof Uint8Array !== 'undefined' && Object.getPrototypeOf(Uint8Array));
+
+module.exports = {
+  isArray: isArray,
+  isArrayBuffer: isArrayBuffer,
+  isBuffer: isBuffer,
+  isFormData: isFormData,
+  isArrayBufferView: isArrayBufferView,
+  isString: isString,
+  isNumber: isNumber,
+  isObject: isObject,
+  isPlainObject: isPlainObject,
+  isUndefined: isUndefined,
+  isDate: isDate,
+  isFile: isFile,
+  isBlob: isBlob,
+  isFunction: isFunction,
+  isStream: isStream,
+  isURLSearchParams: isURLSearchParams,
+  isStandardBrowserEnv: isStandardBrowserEnv,
+  forEach: forEach,
+  merge: merge,
+  extend: extend,
+  trim: trim,
+  stripBOM: stripBOM,
+  inherits: inherits,
+  toFlatObject: toFlatObject,
+  kindOf: kindOf,
+  kindOfTest: kindOfTest,
+  endsWith: endsWith,
+  toArray: toArray,
+  isTypedArray: isTypedArray,
+  isFileList: isFileList
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/canUseDOM.js":
+/*!*************************************************!*\
+  !*** ./node_modules/inputmask/lib/canUseDOM.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const canUseDOM = !!(
+  typeof window !== "undefined" &&
+  window.document &&
+  window.document.createElement
+);
+
+/* harmony default export */ __webpack_exports__["default"] = (canUseDOM);
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/defaults.js":
+/*!************************************************!*\
+  !*** ./node_modules/inputmask/lib/defaults.js ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _keycode_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keycode.js */ "./node_modules/inputmask/lib/keycode.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	_maxTestPos: 500,
+	placeholder: "_",
+	optionalmarker: ["[", "]"],
+	quantifiermarker: ["{", "}"],
+	groupmarker: ["(", ")"],
+	alternatormarker: "|",
+	escapeChar: "\\",
+	mask: null, //needs tobe null instead of undefined as the extend method does not consider props with the undefined value
+	regex: null, //regular expression as a mask
+	oncomplete: () => {
+	}, //executes when the mask is complete
+	onincomplete: () => {
+	}, //executes when the mask is incomplete and focus is lost
+	oncleared: () => {
+	}, //executes when the mask is cleared
+	repeat: 0, //repetitions of the mask: * ~ forever, otherwise specify an integer
+	greedy: false, //true: allocated buffer for the mask and repetitions - false: allocate only if needed
+	autoUnmask: false, //automatically unmask when retrieving the value with $.fn.val or value if the browser supports __lookupGetter__ or getOwnPropertyDescriptor
+	removeMaskOnSubmit: false, //remove the mask before submitting the form.
+	clearMaskOnLostFocus: true,
+	insertMode: true, //insert the input or overwrite the input
+	insertModeVisual: true, //show selected caret when insertmode = false
+	clearIncomplete: false, //clear the incomplete input on blur
+	alias: null,
+	onKeyDown: () => {
+	}, //callback to implement autocomplete on certain keys for example. args => event, buffer, caretPos, opts
+	onBeforeMask: null, //executes before masking the initial value to allow preprocessing of the initial value.	args => initialValue, opts => return processedValue
+	onBeforePaste: function (pastedValue, opts) {
+		return typeof opts.onBeforeMask === "function" ? opts.onBeforeMask.call(this, pastedValue, opts) : pastedValue;
+	}, //executes before masking the pasted value to allow preprocessing of the pasted value.	args => pastedValue, opts => return processedValue
+	onBeforeWrite: null, //executes before writing to the masked element. args => event, opts
+	onUnMask: null, //executes after unmasking to allow postprocessing of the unmaskedvalue.	args => maskedValue, unmaskedValue, opts
+	showMaskOnFocus: true, //show the mask-placeholder when the input has focus
+	showMaskOnHover: true, //show the mask-placeholder when hovering the empty input
+	onKeyValidation: () => {
+	}, //executes on every key-press with the result of isValid. Params: key, result, opts
+	skipOptionalPartCharacter: " ", //a character which can be used to skip an optional part of a mask
+	numericInput: false, //numericInput input direction style (input shifts to the left while holding the caret position)
+	rightAlign: false, //align to the right
+	undoOnEscape: true, //pressing escape reverts the value to the value before focus
+	//numeric basic properties
+	radixPoint: "", //".", // | ","
+	_radixDance: false, //dance around the radixPoint
+	groupSeparator: "", //",", // | "."
+	//numeric basic properties
+	keepStatic: null, //try to keep the mask static while typing. Decisions to alter the mask will be posponed if possible
+	positionCaretOnTab: true, //when enabled the caret position is set after the latest valid position on TAB
+	tabThrough: false, //allows for tabbing through the different parts of the masked field
+	supportsInputType: ["text", "tel", "url", "password", "search"], //list with the supported input types
+	//specify keyCodes which should not be considered in the keypress event, otherwise the preventDefault will stop their default behavior especially in FF
+	ignorables: [
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Backspace,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Tab,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Pause,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Escape,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.PageUp,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.PageDown,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.End,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Home,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.ArrowLeft,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.ArrowUp,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.ArrowRight,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.ArrowDown,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Insert,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Delete,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.ContextMenu,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F1,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F2,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F3,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F4,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F5,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F6,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F7,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F8,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F9,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F10,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F11,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.F12,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Process,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Unidentified,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Shift,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Control,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Alt,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Tab,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.AltGraph,
+		_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.CapsLock
+	],
+	isComplete: null, //override for isComplete - args => buffer, opts - return true || false
+	preValidation: null, //hook to preValidate the input.  Usefull for validating regardless the definition.	args => buffer, pos, char, isSelection, opts, maskset, caretPos, strict => return true/false/command object
+	postValidation: null, //hook to postValidate the result from isValid.	Usefull for validating the entry as a whole.	args => buffer, pos, c, currentResult, opts, maskset, strict, fromCheckval => return true/false/json
+	staticDefinitionSymbol: undefined, //specify a definitionSymbol for static content, used to make matches for alternators
+	jitMasking: false, //just in time masking ~ only mask while typing, can n (number), true or false
+	nullable: true, //return nothing instead of the buffertemplate when the user hasn't entered anything.
+	inputEventOnly: false, //dev option - testing inputfallback behavior
+	noValuePatching: false, //disable value property patching
+	positionCaretOnClick: "lvp", //none, lvp (based on the last valid position (default), radixFocus (position caret to radixpoint on initial click), select (select the whole input), ignore (ignore the click and continue the mask)
+	casing: null, //mask-level casing. Options: null, "upper", "lower" or "title" or callback args => elem, test, pos, validPositions return charValue
+	inputmode: "text", //specify the inputmode
+	importDataAttributes: true, //import data-inputmask attributes
+	shiftPositions: true, //shift position of the mask entries on entry and deletion.
+	usePrototypeDefinitions: true, //use the default defined definitions from the prototype
+	validationEventTimeOut: 3000, //Time to show validation error on form submit
+	substitutes: {} //define character substitutes
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/definitions.js":
+/*!***************************************************!*\
+  !*** ./node_modules/inputmask/lib/definitions.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+	"9": { //\uFF11-\uFF19 #1606
+		validator: "[0-9\uFF10-\uFF19]",
+		definitionSymbol: "*"
+	},
+	"a": { //\u0410-\u044F\u0401\u0451\u00C0-\u00FF\u00B5 #76
+		validator: "[A-Za-z\u0410-\u044F\u0401\u0451\u00C0-\u00FF\u00B5]",
+		definitionSymbol: "*"
+	},
+	"*": {
+		validator: "[0-9\uFF10-\uFF19A-Za-z\u0410-\u044F\u0401\u0451\u00C0-\u00FF\u00B5]"
+	}
+});
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/dependencyLibs/data.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/inputmask/lib/dependencyLibs/data.js ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* export default binding */ __WEBPACK_DEFAULT_EXPORT__; }
+/* harmony export */ });
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(owner, key, value) {
+	if (value === undefined) {
+		return owner.__data ? owner.__data[key] : null;
+	} else {
+		owner.__data = owner.__data || {};
+		owner.__data[key] = value;
+	}
+}
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/dependencyLibs/events.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/inputmask/lib/dependencyLibs/events.js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Event": function() { return /* binding */ Event; },
+/* harmony export */   "off": function() { return /* binding */ off; },
+/* harmony export */   "on": function() { return /* binding */ on; },
+/* harmony export */   "trigger": function() { return /* binding */ trigger; }
+/* harmony export */ });
+/* harmony import */ var _extend__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./extend */ "./node_modules/inputmask/lib/dependencyLibs/extend.js");
+/* harmony import */ var _global_window__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../global/window */ "./node_modules/inputmask/lib/global/window.js");
+/* harmony import */ var _inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inputmask.dependencyLib */ "./node_modules/inputmask/lib/dependencyLibs/inputmask.dependencyLib.js");
+/* harmony import */ var _canUseDOM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../canUseDOM */ "./node_modules/inputmask/lib/canUseDOM.js");
+
+
+
+
+
+
+
+function isValidElement(elem) {
+	return elem instanceof Element;
+}
+
+let Event;
+if (typeof _global_window__WEBPACK_IMPORTED_MODULE_1__["default"].CustomEvent === "function") {
+	Event = _global_window__WEBPACK_IMPORTED_MODULE_1__["default"].CustomEvent;
+} else {
+	if (_canUseDOM__WEBPACK_IMPORTED_MODULE_3__["default"]) {
+		Event = function (event, params) {
+			params = params || {bubbles: false, cancelable: false, composed: true, detail: undefined};
+			var evt = document.createEvent("CustomEvent");
+			evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+			return evt;
+		};
+		Event.prototype = _global_window__WEBPACK_IMPORTED_MODULE_1__["default"].Event.prototype;
+	}
+}
+
+
+function on(events, handler) {
+	function addEvent(ev, namespace) {
+		//register domevent
+		if (elem.addEventListener) { // all browsers except IE before version 9
+			elem.addEventListener(ev, handler, false);
+		} else if (elem.attachEvent) { // IE before version 9
+			elem.attachEvent(`on${ev}`, handler);
+		}
+		eventRegistry[ev] = eventRegistry[ev] || {};
+		eventRegistry[ev][namespace] = eventRegistry[ev][namespace] || [];
+		eventRegistry[ev][namespace].push(handler);
+	}
+
+	if (isValidElement(this[0])) {
+		var eventRegistry = this[0].eventRegistry,
+			elem = this[0];
+
+		events.split(" ").forEach((event) => {
+			const [ev, namespace = "global"] = event.split(".");
+			addEvent(ev, namespace);
+		});
+	}
+	return this;
+}
+
+function off(events, handler) {
+	var eventRegistry, elem;
+
+	function removeEvent(ev, namespace, handler) {
+		if (ev in eventRegistry === true) {
+			//unbind to dom events
+			if (elem.removeEventListener) { // all browsers except IE before version 9
+				elem.removeEventListener(ev, handler, false);
+			} else if (elem.detachEvent) { // IE before version 9
+				elem.detachEvent(`on${ev}`, handler);
+			}
+			if (namespace === "global") {
+				for (var nmsp in eventRegistry[ev]) {
+					eventRegistry[ev][nmsp].splice(eventRegistry[ev][nmsp].indexOf(handler), 1);
+				}
+			} else {
+				eventRegistry[ev][namespace].splice(eventRegistry[ev][namespace].indexOf(handler), 1);
+			}
+		}
+	}
+
+	function resolveNamespace(ev, namespace) {
+		var evts = [],
+			hndx, hndL;
+		if (ev.length > 0) {
+			if (handler === undefined) {
+				for (hndx = 0, hndL = eventRegistry[ev][namespace].length; hndx < hndL; hndx++) {
+					evts.push({
+						ev: ev,
+						namespace: namespace && namespace.length > 0 ? namespace : "global",
+						handler: eventRegistry[ev][namespace][hndx]
+					});
+				}
+			} else {
+				evts.push({
+					ev: ev,
+					namespace: namespace && namespace.length > 0 ? namespace : "global",
+					handler: handler
+				});
+			}
+		} else if (namespace.length > 0) {
+			for (var evNdx in eventRegistry) {
+				for (var nmsp in eventRegistry[evNdx]) {
+					if (nmsp === namespace) {
+						if (handler === undefined) {
+							for (hndx = 0, hndL = eventRegistry[evNdx][nmsp].length; hndx < hndL; hndx++) {
+								evts.push({
+									ev: evNdx,
+									namespace: nmsp,
+									handler: eventRegistry[evNdx][nmsp][hndx]
+								});
+							}
+						} else {
+							evts.push({
+								ev: evNdx,
+								namespace: nmsp,
+								handler: handler
+							});
+						}
+					}
+				}
+			}
+		}
+
+		return evts;
+	}
+
+	if (isValidElement(this[0]) && events) {
+		eventRegistry = this[0].eventRegistry;
+		elem = this[0];
+
+		events.split(" ").forEach((event) => {
+			const [ev, namespace] = event.split(".");
+			resolveNamespace(ev, namespace).forEach(({ev: ev1, handler: handler1, namespace: namespace1}) => {
+				removeEvent(ev1, namespace1, handler1);
+			});
+		});
+	}
+	return this;
+}
+
+function trigger(events /* , args... */) {
+	if (isValidElement(this[0])) {
+		var eventRegistry = this[0].eventRegistry,
+			elem = this[0];
+		var _events = typeof events === "string" ? events.split(" ") : [events.type];
+		for (var endx = 0; endx < _events.length; endx++) {
+			var nsEvent = _events[endx].split("."),
+				ev = nsEvent[0],
+				namespace = nsEvent[1] || "global";
+			if (document !== undefined && namespace === "global") {
+				//trigger domevent
+				var evnt, i, params = {
+					bubbles: true,
+					cancelable: true,
+					composed: true,
+					detail: arguments[1]
+				};
+				// The custom event that will be created
+				if (document.createEvent) {
+					try {
+						switch (ev) {
+							case "input":
+								params.inputType = "insertText";
+								evnt = new InputEvent(ev, params);
+								break;
+							default:
+								evnt = new CustomEvent(ev, params);
+						}
+					} catch (e) {
+						evnt = document.createEvent("CustomEvent");
+						evnt.initCustomEvent(ev, params.bubbles, params.cancelable, params.detail);
+					}
+					if (events.type) (0,_extend__WEBPACK_IMPORTED_MODULE_0__["default"])(evnt, events);
+					elem.dispatchEvent(evnt);
+				} else {
+					evnt = document.createEventObject();
+					evnt.eventType = ev;
+					evnt.detail = arguments[1];
+					if (events.type) (0,_extend__WEBPACK_IMPORTED_MODULE_0__["default"])(evnt, events);
+					elem.fireEvent("on" + evnt.eventType, evnt);
+				}
+			} else if (eventRegistry[ev] !== undefined) {
+				arguments[0] = arguments[0].type ? arguments[0] : _inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_2__["default"].Event(arguments[0]);
+				arguments[0].detail = arguments.slice(1);
+
+				const registry = eventRegistry[ev],
+					handlers = namespace === "global" ? Object.values(registry).flat() : registry[namespace];
+				handlers.forEach(handler => handler.apply(elem, arguments));
+			}
+		}
+	}
+	return this;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/dependencyLibs/extend.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/inputmask/lib/dependencyLibs/extend.js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ extend; }
+/* harmony export */ });
+function extend() {
+	let options, name, src, copy, copyIsArray, clone,
+		target = arguments[0] || {},
+		i = 1,
+		length = arguments.length,
+		deep = false;
+
+	// Handle a deep copy situation
+	if (typeof target === "boolean") {
+		deep = target;
+
+		// Skip the boolean and the target
+		target = arguments[i] || {};
+		i++;
+	}
+
+	// Handle case when target is a string or something (possible in deep copy)
+	if (typeof target !== "object" && typeof target !== "function") {
+		target = {};
+	}
+
+	for (; i < length; i++) {
+		// Only deal with non-null/undefined values
+		if ((options = arguments[i]) != null) {
+			// Extend the base object
+			for (name in options) {
+				src = target[name];
+				copy = options[name];
+
+				// Prevent never-ending loop
+				if (target === copy) {
+					continue;
+				}
+
+				// Recurse if we're merging plain objects or arrays
+				if (deep && copy && (Object.prototype.toString.call(copy) === "[object Object]" || (copyIsArray = Array.isArray(copy)))) {
+					if (copyIsArray) {
+						copyIsArray = false;
+						clone = src && Array.isArray(src) ? src : [];
+
+					} else {
+						clone = src && Object.prototype.toString.call(src) === "[object Object]" ? src : {};
+					}
+
+					// Never move original objects, clone them
+					target[name] = extend(deep, clone, copy);
+
+					// Don't bring in undefined values
+				} else if (copy !== undefined) {
+					target[name] = copy;
+				}
+			}
+		}
+	}
+
+	// Return the modified object
+	return target;
+}
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/dependencyLibs/inputmask.dependencyLib.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/inputmask/lib/dependencyLibs/inputmask.dependencyLib.js ***!
+  \******************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _extend__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./extend */ "./node_modules/inputmask/lib/dependencyLibs/extend.js");
+/* harmony import */ var _global_window__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../global/window */ "./node_modules/inputmask/lib/global/window.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data */ "./node_modules/inputmask/lib/dependencyLibs/data.js");
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./events */ "./node_modules/inputmask/lib/dependencyLibs/events.js");
+/*
+ Input Mask plugin dependencyLib
+ http://github.com/RobinHerbots/jquery.inputmask
+ Copyright (c) Robin Herbots
+ Licensed under the MIT license
+ */
+
+
+
+
+
+
+const document = _global_window__WEBPACK_IMPORTED_MODULE_1__["default"].document;
+
+function DependencyLib(elem) {
+	if (elem instanceof DependencyLib) {
+		return elem;
+	}
+	if (!(this instanceof DependencyLib)) {
+		return new DependencyLib(elem);
+	}
+	if (elem !== undefined && elem !== null && elem !== _global_window__WEBPACK_IMPORTED_MODULE_1__["default"]) {
+		this[0] = elem.nodeName ? elem : (elem[0] !== undefined && elem[0].nodeName ? elem[0] : document.querySelector(elem));
+		if (this[0] !== undefined && this[0] !== null) {
+			this[0].eventRegistry = this[0].eventRegistry || {};
+		}
+	}
+}
+
+DependencyLib.prototype = {
+	on: _events__WEBPACK_IMPORTED_MODULE_3__.on,
+	off: _events__WEBPACK_IMPORTED_MODULE_3__.off,
+	trigger: _events__WEBPACK_IMPORTED_MODULE_3__.trigger
+};
+
+//static
+DependencyLib.extend = _extend__WEBPACK_IMPORTED_MODULE_0__["default"];
+DependencyLib.data = _data__WEBPACK_IMPORTED_MODULE_2__["default"];
+DependencyLib.Event = _events__WEBPACK_IMPORTED_MODULE_3__.Event;
+
+/* harmony default export */ __webpack_exports__["default"] = (DependencyLib);
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/environment.js":
+/*!***************************************************!*\
+  !*** ./node_modules/inputmask/lib/environment.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ie": function() { return /* binding */ ie; },
+/* harmony export */   "iphone": function() { return /* binding */ iphone; },
+/* harmony export */   "mobile": function() { return /* binding */ mobile; }
+/* harmony export */ });
+/* harmony import */ var _global_window__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./global/window */ "./node_modules/inputmask/lib/global/window.js");
+
+
+const ua = (_global_window__WEBPACK_IMPORTED_MODULE_0__["default"].navigator && _global_window__WEBPACK_IMPORTED_MODULE_0__["default"].navigator.userAgent) || "",
+    ie = (ua.indexOf("MSIE ") > 0) || (ua.indexOf("Trident/") > 0),
+    mobile = (navigator.userAgentData && navigator.userAgentData.mobile) || (_global_window__WEBPACK_IMPORTED_MODULE_0__["default"].navigator && _global_window__WEBPACK_IMPORTED_MODULE_0__["default"].navigator.maxTouchPoints) || "ontouchstart" in _global_window__WEBPACK_IMPORTED_MODULE_0__["default"], //not entirely correct but will currently do
+    iphone = /iphone/i.test(ua);
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/escapeRegex.js":
+/*!***************************************************!*\
+  !*** ./node_modules/inputmask/lib/escapeRegex.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* export default binding */ __WEBPACK_DEFAULT_EXPORT__; }
+/* harmony export */ });
+const  escapeRegexRegex = new RegExp("(\\" + ["/", ".", "*", "+", "?", "|", "(", ")", "[", "]", "{", "}", "\\", "$", "^"].join("|\\") + ")", "gim");
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(str) {
+	return str.replace(escapeRegexRegex, "\\$1");
+}
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/eventhandlers.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/inputmask/lib/eventhandlers.js ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EventHandlers": function() { return /* binding */ EventHandlers; }
+/* harmony export */ });
+/* harmony import */ var _positioning__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./positioning */ "./node_modules/inputmask/lib/positioning.js");
+/* harmony import */ var _keycode_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./keycode.js */ "./node_modules/inputmask/lib/keycode.js");
+/* harmony import */ var _environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./environment */ "./node_modules/inputmask/lib/environment.js");
+/* harmony import */ var _validation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./validation */ "./node_modules/inputmask/lib/validation.js");
+/* harmony import */ var _inputHandling__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./inputHandling */ "./node_modules/inputmask/lib/inputHandling.js");
+/* harmony import */ var _validation_tests__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./validation-tests */ "./node_modules/inputmask/lib/validation-tests.js");
+
+
+
+
+
+
+
+
+
+var EventHandlers = {
+    keyEvent: function (e, checkval, writeOut, strict, ndx) {
+        const inputmask = this.inputmask, opts = inputmask.opts, $ = inputmask.dependencyLib,
+            maskset = inputmask.maskset;
+
+        var input = this,
+            $input = $(input),
+            c = e.key,
+            pos = _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input);
+
+        var kdResult = opts.onKeyDown.call(this, e, _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask), pos, opts);
+        if (kdResult !== undefined) return kdResult;
+
+        //backspace, delete, and escape get special treatment
+        if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Backspace || c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Delete || (_environment__WEBPACK_IMPORTED_MODULE_2__.iphone && c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.BACKSPACE_SAFARI) || (e.ctrlKey && c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.x && !("oncut" in input))) { //backspace/delete
+            e.preventDefault(); //stop default action but allow propagation
+            _validation__WEBPACK_IMPORTED_MODULE_3__.handleRemove.call(inputmask, input, c, pos);
+            (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.writeBuffer)(input, _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask, true), maskset.p, e, input.inputmask._valueGet() !== _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask).join(""));
+        } else if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.End || c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.PageDown) { //when END or PAGE_DOWN pressed set position at lastmatch
+            e.preventDefault();
+            var caretPos = _positioning__WEBPACK_IMPORTED_MODULE_0__.seekNext.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_0__.getLastValidPosition.call(inputmask));
+            _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, e.shiftKey ? pos.begin : caretPos, caretPos, true);
+        } else if ((c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Home && !e.shiftKey) || c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.PageUp) { //Home or page_up
+            e.preventDefault();
+            _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, 0, e.shiftKey ? pos.begin : 0, true);
+        } else if (((opts.undoOnEscape && c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Escape) || ( false && 0)) && e.altKey !== true) { //escape && undo && #762
+            (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.checkVal)(input, true, false, inputmask.undoValue.split(""));
+            $input.trigger("click");
+        } else if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Insert && !(e.shiftKey || e.ctrlKey) && inputmask.userOptions.insertMode === undefined) { //insert
+            if (!_validation__WEBPACK_IMPORTED_MODULE_3__.isSelection.call(inputmask, pos)) {
+                opts.insertMode = !opts.insertMode;
+                _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, pos.begin, pos.begin);
+            } else opts.insertMode = !opts.insertMode;
+        } else if (opts.tabThrough === true && c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Tab) {
+            if (e.shiftKey === true) {
+                pos.end = _positioning__WEBPACK_IMPORTED_MODULE_0__.seekPrevious.call(inputmask, pos.end, true);
+                if (_validation_tests__WEBPACK_IMPORTED_MODULE_5__.getTest.call(inputmask, pos.end - 1).match.static === true) {
+                    pos.end--;
+                }
+                pos.begin = _positioning__WEBPACK_IMPORTED_MODULE_0__.seekPrevious.call(inputmask, pos.end, true);
+                if (pos.begin >= 0 && pos.end > 0) {
+                    e.preventDefault();
+                    _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, pos.begin, pos.end);
+                }
+            } else {
+                pos.begin = _positioning__WEBPACK_IMPORTED_MODULE_0__.seekNext.call(inputmask, pos.begin, true);
+                pos.end = _positioning__WEBPACK_IMPORTED_MODULE_0__.seekNext.call(inputmask, pos.begin, true);
+                if (pos.end < maskset.maskLength) pos.end--;
+                if (pos.begin <= maskset.maskLength) {
+                    e.preventDefault();
+                    _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, pos.begin, pos.end);
+                }
+            }
+        } else if (!e.shiftKey) {
+            if (opts.insertModeVisual && opts.insertMode === false) {
+                if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.ArrowRight) {
+                    setTimeout(function () {
+                        var caretPos = _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input);
+                        _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, caretPos.begin);
+                    }, 0);
+                } else if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.ArrowLeft) {
+                    setTimeout(function () {
+                        var caretPos = {
+                            begin: _positioning__WEBPACK_IMPORTED_MODULE_0__.translatePosition.call(inputmask, input.inputmask.caretPos.begin),
+                            end: _positioning__WEBPACK_IMPORTED_MODULE_0__.translatePosition.call(inputmask, input.inputmask.caretPos.end)
+                        };
+                        if (inputmask.isRTL) {
+                            _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, caretPos.begin + (caretPos.begin === maskset.maskLength ? 0 : 1));
+                        } else {
+                            _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, caretPos.begin - (caretPos.begin === 0 ? 0 : 1));
+                        }
+                    }, 0);
+                }
+            }
+        }
+
+        inputmask.isComposing = (c == _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Process || c == _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Unidentified);
+        inputmask.ignorable = opts.ignorables.includes(c);
+        return EventHandlers.keypressEvent.call(this, e, checkval, writeOut, strict, ndx);
+    },
+    keypressEvent: function (e, checkval, writeOut, strict, ndx) {
+        const inputmask = this.inputmask || this, opts = inputmask.opts, $ = inputmask.dependencyLib,
+            maskset = inputmask.maskset;
+
+        var input = inputmask.el,
+            $input = $(input),
+            c = e.key;
+
+        if (checkval !== true && (!(e.ctrlKey && e.altKey) && (e.ctrlKey || e.metaKey || inputmask.ignorable))) {
+            if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Enter) {
+                if (inputmask.undoValue !== inputmask._valueGet(true)) {
+                    inputmask.undoValue = inputmask._valueGet(true);
+                    // e.preventDefault();
+
+                    setTimeout(function () {
+                        $input.trigger("change");
+                    }, 0);
+                }
+            }
+            //inputmask.skipInputEvent = true; //skip the input as otherwise the skipped char could be picked up for validation by the inputfallback
+            return;
+        } else if (c) {
+            //special treat the decimal separator
+            // if ((k === 44 || k === 46) && e.location === 3 && opts.radixPoint !== "") k = opts.radixPoint.charCodeAt(0);
+            var pos = checkval ? {
+                    begin: ndx,
+                    end: ndx
+                } : _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input),
+                forwardPosition;
+
+            //allow for character substitution
+            c = opts.substitutes[c] || c;
+            maskset.writeOutBuffer = true;
+            var valResult = _validation__WEBPACK_IMPORTED_MODULE_3__.isValid.call(inputmask, pos, c, strict, undefined, undefined, undefined, checkval);
+            if (valResult !== false) {
+                _positioning__WEBPACK_IMPORTED_MODULE_0__.resetMaskSet.call(inputmask, true);
+                forwardPosition = valResult.caret !== undefined ? valResult.caret : _positioning__WEBPACK_IMPORTED_MODULE_0__.seekNext.call(inputmask, valResult.pos.begin ? valResult.pos.begin : valResult.pos);
+                maskset.p = forwardPosition; //needed for checkval
+            }
+
+            forwardPosition = ((opts.numericInput && valResult.caret === undefined) ? _positioning__WEBPACK_IMPORTED_MODULE_0__.seekPrevious.call(inputmask, forwardPosition) : forwardPosition);
+            if (writeOut !== false) {
+
+                setTimeout(function () {
+                    opts.onKeyValidation.call(input, c, valResult);
+                }, 0);
+                if (maskset.writeOutBuffer && valResult !== false) {
+                    var buffer = _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask);
+                    (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.writeBuffer)(input, buffer, forwardPosition, e, checkval !== true);
+                }
+            }
+
+            e.preventDefault();
+
+            if (checkval) {
+                if (valResult !== false) valResult.forwardPosition = forwardPosition;
+                return valResult;
+            }
+        }
+    },
+    pasteEvent: function (e) {
+        const inputmask = this.inputmask, opts = inputmask.opts;
+
+        var input = this,
+            inputValue = inputmask._valueGet(true),
+            caretPos = _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input),
+            tempValue;
+
+        if (inputmask.isRTL) {
+            tempValue = caretPos.end;
+            caretPos.end = _positioning__WEBPACK_IMPORTED_MODULE_0__.translatePosition.call(inputmask, caretPos.begin);
+            caretPos.begin = _positioning__WEBPACK_IMPORTED_MODULE_0__.translatePosition.call(inputmask, tempValue);
+        }
+
+        var valueBeforeCaret = inputValue.substr(0, caretPos.begin),
+            valueAfterCaret = inputValue.substr(caretPos.end, inputValue.length);
+
+        if (valueBeforeCaret == (inputmask.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask).slice().reverse() : _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask)).slice(0, caretPos.begin).join("")) valueBeforeCaret = "";
+        if (valueAfterCaret == (inputmask.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask).slice().reverse() : _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask)).slice(caretPos.end).join("")) valueAfterCaret = "";
+
+        if (window.clipboardData && window.clipboardData.getData) { // IE
+            inputValue = valueBeforeCaret + window.clipboardData.getData("Text") + valueAfterCaret;
+        } else if (e.clipboardData && e.clipboardData.getData) {
+            inputValue = valueBeforeCaret + e.clipboardData.getData("text/plain") + valueAfterCaret;
+        } else {
+            return true;
+        } //allow native paste event as fallback ~ masking will continue by inputfallback
+
+        var pasteValue = inputValue;
+        if (inputmask.isRTL) {
+            pasteValue = pasteValue.split("");
+            for (let c of _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask)) {
+                if (pasteValue[0] === c)
+                    pasteValue.shift();
+            }
+            pasteValue = pasteValue.join("");
+        }
+        if (typeof opts.onBeforePaste === "function") {
+            pasteValue = opts.onBeforePaste.call(inputmask, pasteValue, opts);
+            if (pasteValue === false) {
+                return false;
+            }
+            if (!pasteValue) {
+                pasteValue = inputValue;
+            }
+        }
+        (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.checkVal)(input, true, false, pasteValue.toString().split(""), e);
+        e.preventDefault();
+    },
+    inputFallBackEvent: function (e) { //fallback when keypress is not triggered
+        const inputmask = this.inputmask, opts = inputmask.opts, $ = inputmask.dependencyLib;
+        // console.log(e.inputType);
+
+        function analyseChanges(inputValue, buffer, caretPos) {
+            var frontPart = inputValue.substr(0, caretPos.begin).split(""),
+                backPart = inputValue.substr(caretPos.begin).split(""),
+                frontBufferPart = buffer.substr(0, caretPos.begin).split(""),
+                backBufferPart = buffer.substr(caretPos.begin).split("");
+
+            var fpl = frontPart.length >= frontBufferPart.length ? frontPart.length : frontBufferPart.length,
+                bpl = backPart.length >= backBufferPart.length ? backPart.length : backBufferPart.length,
+                bl, i, action = "", data = [], marker = "~", placeholder;
+
+            //align buffers
+            while (frontPart.length < fpl) frontPart.push(marker);
+            while (frontBufferPart.length < fpl) frontBufferPart.push(marker);
+            while (backPart.length < bpl) backPart.unshift(marker);
+            while (backBufferPart.length < bpl) backBufferPart.unshift(marker);
+
+            var newBuffer = frontPart.concat(backPart);
+            var oldBuffer = frontBufferPart.concat(backBufferPart);
+
+            // console.log("N " + newBuffer);
+            // console.log("O " + oldBuffer);
+
+            for (i = 0, bl = newBuffer.length; i < bl; i++) {
+                placeholder = _validation_tests__WEBPACK_IMPORTED_MODULE_5__.getPlaceholder.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_0__.translatePosition.call(inputmask, i));
+                switch (action) {
+                    case "insertText":
+                        if (oldBuffer[i - 1] === newBuffer[i] && caretPos.begin == newBuffer.length - 1) {
+                            data.push(newBuffer[i]);
+                        }
+                        i = bl;
+                        break;
+                    case "insertReplacementText":
+                        if (newBuffer[i] === marker) { //extend selection
+                            caretPos.end++;
+                        } else {
+                            // breakout loop
+                            i = bl;
+                        }
+                        break;
+                    case "deleteContentBackward":
+                        if (newBuffer[i] === marker) {
+                            caretPos.end++;
+                        } else {
+                            //breakout loop
+                            i = bl;
+                        }
+                        break;
+                    default:
+                        if (newBuffer[i] !== oldBuffer[i]) {
+                            if ((newBuffer[i + 1] === marker || newBuffer[i + 1] === placeholder || newBuffer[i + 1] === undefined) && ((oldBuffer[i] === placeholder && oldBuffer[i + 1] === marker) || oldBuffer[i] === marker)) {  //basic insert
+                                action = "insertText";
+                                data.push(newBuffer[i]);
+                                caretPos.begin--;
+                                caretPos.end--;
+                            } else if (oldBuffer[i + 1] === marker && oldBuffer[i] === newBuffer[i + 1]) { //insert between
+                                action = "insertText";
+                                data.push(newBuffer[i]);
+                                caretPos.begin--;
+                                caretPos.end--;
+                            } else if (newBuffer[i] !== placeholder && newBuffer[i] !== marker &&
+                                (newBuffer[i + 1] === marker || (oldBuffer[i] !== newBuffer[i] && oldBuffer[i + 1] === newBuffer[i + 1] /*single char replacement*/))) { //replace selection
+                                action = "insertReplacementText";
+                                data.push(newBuffer[i]);
+                                caretPos.begin--;
+                            } else if (newBuffer[i] === marker) {  //delete~backspace
+                                action = "deleteContentBackward";
+                                if (_positioning__WEBPACK_IMPORTED_MODULE_0__.isMask.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_0__.translatePosition.call(inputmask, i), true) || oldBuffer[i] === opts.radixPoint) caretPos.end++;
+                            } else {
+                                i = bl;
+                            }
+                        }
+                        break;
+                }
+            }
+
+            return {
+                action: action,
+                data: data,
+                caret: caretPos
+            };
+        }
+
+        var input = this,
+            inputValue = input.inputmask._valueGet(true),
+            buffer = (inputmask.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask).slice().reverse() : _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask)).join(""),
+            caretPos = _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, undefined, undefined, true),
+            changes;
+
+        if (buffer !== inputValue) {
+            changes = analyseChanges(inputValue, buffer, caretPos);
+            if ((input.inputmask.shadowRoot || input.ownerDocument).activeElement !== input) {
+                input.focus();
+            }
+            (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.writeBuffer)(input, _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask));
+            _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, caretPos.begin, caretPos.end, true);
+
+            // Japanese IME hack #2662
+            if (!_environment__WEBPACK_IMPORTED_MODULE_2__.mobile && inputmask.skipNextInsert && e.inputType === "insertText" && changes.action === "insertText" && inputmask.isComposing) {
+                return false;
+            }
+            if (e.inputType === "insertCompositionText" && changes.action === "insertText" && inputmask.isComposing) {
+                inputmask.skipNextInsert = true;
+            } else {
+                inputmask.skipNextInsert = false;
+            }
+
+            switch (changes.action) {
+                case "insertText":
+                case "insertReplacementText":
+                    changes.data.forEach(function (entry, ndx) {
+                        var keypress = new $.Event("keypress");
+                        keypress.key = entry;
+                        inputmask.ignorable = false; //make sure ignorable is ignored ;-)
+                        EventHandlers.keypressEvent.call(input, keypress);
+                    });
+                    setTimeout(function () {  //#2195 trigger keyup to help some other plugins to track changes
+                        inputmask.$el.trigger("keyup");
+                    }, 0);
+                    break;
+                case "deleteContentBackward":
+                    var keydown = new $.Event("keydown");
+                    keydown.key = _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Backspace;
+                    EventHandlers.keyEvent.call(input, keydown);
+                    break;
+                default:
+                    (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.applyInputValue)(input, inputValue);
+                    _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, caretPos.begin, caretPos.end, true);
+                    break;
+            }
+
+            e.preventDefault();
+        }
+    },
+    setValueEvent: function (e) {
+        const inputmask = this.inputmask;
+        var input = this,
+            value = (e && e.detail) ? e.detail[0] : arguments[1];
+
+        if (value === undefined) {
+            value = input.inputmask._valueGet(true);
+        }
+
+        (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.applyInputValue)(input, value);
+
+        if ((e.detail && e.detail[1] !== undefined) || arguments[2] !== undefined) {
+            _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, e.detail ? e.detail[1] : arguments[2]);
+        }
+    }
+    ,
+    focusEvent: function (e) {
+        const inputmask = this.inputmask, opts = inputmask.opts;
+        var input = this,
+            nptValue = inputmask?._valueGet();
+
+        if (opts.showMaskOnFocus) {
+            if (nptValue !== _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask).join("")) {
+                (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.writeBuffer)(input, _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask), _positioning__WEBPACK_IMPORTED_MODULE_0__.seekNext.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_0__.getLastValidPosition.call(inputmask)));
+            } /*else if (mouseEnter === false) { //only executed on focus without mouseenter
+					caret(input, seekNext(getLastValidPosition()));
+				}*/
+        }
+        if (opts.positionCaretOnTab === true && inputmask.mouseEnter === false && (!_validation__WEBPACK_IMPORTED_MODULE_3__.isComplete.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask)) || _positioning__WEBPACK_IMPORTED_MODULE_0__.getLastValidPosition.call(inputmask) === -1)) {
+            EventHandlers.clickEvent.apply(input, [e, true]);
+        }
+        inputmask.undoValue = inputmask?._valueGet(true);
+    },
+    invalidEvent: function (e) {
+        this.inputmask.validationEvent = true;
+    },
+    mouseleaveEvent: function () {
+        const inputmask = this.inputmask, opts = inputmask.opts;
+
+        var input = this;
+        inputmask.mouseEnter = false;
+        if (opts.clearMaskOnLostFocus && (input.inputmask.shadowRoot || input.ownerDocument).activeElement !== input) {
+            (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.HandleNativePlaceholder)(input, inputmask.originalPlaceholder);
+        }
+    },
+    clickEvent: function (e, tabbed) {
+        const inputmask = this.inputmask;
+        inputmask.clicked++;
+
+        var input = this;
+        if ((input.inputmask.shadowRoot || input.ownerDocument).activeElement === input) {
+            var newCaretPosition = _positioning__WEBPACK_IMPORTED_MODULE_0__.determineNewCaretPosition.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input), tabbed);
+            if (newCaretPosition !== undefined) {
+                _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input, newCaretPosition);
+            }
+        }
+    },
+    cutEvent: function (e) {
+        const inputmask = this.inputmask, maskset = inputmask.maskset;
+
+        var input = this,
+            pos = _positioning__WEBPACK_IMPORTED_MODULE_0__.caret.call(inputmask, input);
+
+        //correct clipboardData
+        var clipData = inputmask.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask).slice(pos.end, pos.begin) : _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask).slice(pos.begin, pos.end),
+            clipDataText = inputmask.isRTL ? clipData.reverse().join("") : clipData.join("");
+        if (window.navigator.clipboard) window.navigator.clipboard.writeText(clipDataText);
+        else if (window.clipboardData && window.clipboardData.getData) { // IE
+            window.clipboardData.setData("Text", clipDataText);
+        }
+        _validation__WEBPACK_IMPORTED_MODULE_3__.handleRemove.call(inputmask, input, _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Delete, pos);
+        (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.writeBuffer)(input, _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask), maskset.p, e, inputmask.undoValue !== inputmask._valueGet(true));
+    },
+    blurEvent: function (e) {
+        const inputmask = this.inputmask, opts = inputmask.opts, $ = inputmask.dependencyLib;
+        inputmask.clicked = 0;
+
+        var $input = $(this),
+            input = this;
+        if (input.inputmask) {
+            (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.HandleNativePlaceholder)(input, inputmask.originalPlaceholder);
+            var nptValue = input.inputmask._valueGet(),
+                buffer = _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask).slice();
+
+            if (nptValue !== "") {
+                if (opts.clearMaskOnLostFocus) {
+                    if (_positioning__WEBPACK_IMPORTED_MODULE_0__.getLastValidPosition.call(inputmask) === -1 && nptValue === _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask).join("")) {
+                        buffer = [];
+                    } else { //clearout optional tail of the mask
+                        _inputHandling__WEBPACK_IMPORTED_MODULE_4__.clearOptionalTail.call(inputmask, buffer);
+                    }
+                }
+                if (_validation__WEBPACK_IMPORTED_MODULE_3__.isComplete.call(inputmask, buffer) === false) {
+                    setTimeout(function () {
+                        $input.trigger("incomplete");
+                    }, 0);
+                    if (opts.clearIncomplete) {
+                        _positioning__WEBPACK_IMPORTED_MODULE_0__.resetMaskSet.call(inputmask);
+                        if (opts.clearMaskOnLostFocus) {
+                            buffer = [];
+                        } else {
+                            buffer = _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask).slice();
+                        }
+
+                    }
+                }
+
+                (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.writeBuffer)(input, buffer, undefined, e);
+            }
+
+            if (inputmask.undoValue !== inputmask._valueGet(true)) {
+                inputmask.undoValue = inputmask._valueGet(true);
+                $input.trigger("change");
+            }
+        }
+    }
+    ,
+    mouseenterEvent: function () {
+        const inputmask = this.inputmask, {showMaskOnHover} = inputmask.opts;
+
+        var input = this;
+        inputmask.mouseEnter = true;
+        if ((input.inputmask.shadowRoot || input.ownerDocument).activeElement !== input) {
+            var bufferTemplate = (inputmask.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask).slice().reverse() : _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask)).join("");
+            if (showMaskOnHover) {
+                (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.HandleNativePlaceholder)(input, bufferTemplate);
+            }
+        }
+    }
+    ,
+    submitEvent: function () { //trigger change on submit if any
+        const inputmask = this.inputmask, opts = inputmask.opts;
+
+        if (inputmask.undoValue !== inputmask._valueGet(true)) {
+            inputmask.$el.trigger("change");
+        }
+        if (/*opts.clearMaskOnLostFocus && */_positioning__WEBPACK_IMPORTED_MODULE_0__.getLastValidPosition.call(inputmask) === -1 && inputmask._valueGet && inputmask._valueGet() === _positioning__WEBPACK_IMPORTED_MODULE_0__.getBufferTemplate.call(inputmask).join("")) {
+            inputmask._valueSet(""); //clear masktemplete on submit and still has focus
+        }
+        if (opts.clearIncomplete && _validation__WEBPACK_IMPORTED_MODULE_3__.isComplete.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask)) === false) {
+            inputmask._valueSet("");
+        }
+        if (opts.removeMaskOnSubmit) {
+            inputmask._valueSet(inputmask.unmaskedvalue(), true);
+            setTimeout(function () {
+                (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.writeBuffer)(inputmask.el, _positioning__WEBPACK_IMPORTED_MODULE_0__.getBuffer.call(inputmask));
+            }, 0);
+        }
+    }
+    ,
+    resetEvent: function () {
+        const inputmask = this.inputmask;
+
+        inputmask.refreshValue = true; //indicate a forced refresh when there is a call to the value before leaving the triggering event fn
+        setTimeout(function () {
+            (0,_inputHandling__WEBPACK_IMPORTED_MODULE_4__.applyInputValue)(inputmask.el, inputmask._valueGet(true));
+        }, 0);
+    }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/eventruler.js":
+/*!**************************************************!*\
+  !*** ./node_modules/inputmask/lib/eventruler.js ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EventRuler": function() { return /* binding */ EventRuler; }
+/* harmony export */ });
+/* harmony import */ var _inputmask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputmask */ "./node_modules/inputmask/lib/inputmask.js");
+/* harmony import */ var _keycode_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./keycode.js */ "./node_modules/inputmask/lib/keycode.js");
+/* harmony import */ var _positioning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./positioning */ "./node_modules/inputmask/lib/positioning.js");
+/* harmony import */ var _inputHandling__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./inputHandling */ "./node_modules/inputmask/lib/inputHandling.js");
+
+
+
+
+
+
+
+var EventRuler = {
+    on: function (input, eventName, eventHandler) {
+        const $ = input.inputmask.dependencyLib;
+
+        var ev = function (e) {
+            if (e.originalEvent) {
+                e = e.originalEvent || e; //get original event from jquery evenbt
+                arguments[0] = e;
+            }
+            // console.log(e.type);
+            var that = this, args, inputmask = that.inputmask, opts = inputmask ? inputmask.opts : undefined;
+            if (inputmask === undefined && this.nodeName !== "FORM") { //happens when cloning an object with jquery.clone
+                var imOpts = $.data(that, "_inputmask_opts");
+                $(that).off(); //unbind all events
+                if (imOpts) {
+                    (new _inputmask__WEBPACK_IMPORTED_MODULE_0__["default"](imOpts)).mask(that);
+                }
+            } else if (!["submit", "reset", "setvalue"].includes(e.type) && this.nodeName !== "FORM" && (that.disabled || (that.readOnly && !(e.type === "keydown" && (e.ctrlKey && e.key === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.c) || (opts.tabThrough === false && e.key === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Tab))))) {
+                e.preventDefault();
+            } else {
+                switch (e.type) {
+                    case "input":
+                        if (inputmask.skipInputEvent === true) {
+                            inputmask.skipInputEvent = false;
+                            return e.preventDefault();
+                        }
+
+                        // if (mobile) { //this causes problem see #2220
+                        // 	args = arguments;
+                        // 	setTimeout(function () { //needed for caret selection when entering a char on Android 8 - #1818
+                        // 		eventHandler.apply(that, args);
+                        // 		caret(that, that.inputmask.caretPos, undefined, true);
+                        // 	}, 0);
+                        // 	return false;
+                        // }
+                        break;
+                    case "click":
+                    case "focus":
+                        if (inputmask.validationEvent) { // #841
+                            inputmask.validationEvent = false;
+                            input.blur();
+                            (0,_inputHandling__WEBPACK_IMPORTED_MODULE_3__.HandleNativePlaceholder)(input, (inputmask.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_2__.getBufferTemplate.call(inputmask).slice().reverse() : _positioning__WEBPACK_IMPORTED_MODULE_2__.getBufferTemplate.call(inputmask)).join(""));
+                            setTimeout(function () {
+                                input.focus();
+                            }, opts.validationEventTimeOut);
+                            return false;
+                        }
+                        args = arguments;
+                        setTimeout(function () { //needed for Chrome ~ initial selection clears after the clickevent
+                            if (!input.inputmask) {
+                                // `inputmask.remove()` was called before this callback
+                                return;
+                            }
+                            eventHandler.apply(that, args);
+                        }, 0);
+                        return /*false*/; //#2423
+                }
+                var returnVal = eventHandler.apply(that, arguments);
+                if (returnVal === false) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                return returnVal;
+            }
+        };
+        if (["submit", "reset"].includes(eventName)) {
+            ev = ev.bind(input); //bind creates a new eventhandler (wrap)
+            if (input.form !== null) $(input.form).on(eventName, ev);
+        } else {
+            $(input).on(eventName, ev);
+        }
+
+        //keep instance of the event
+        input.inputmask.events[eventName] = input.inputmask.events[eventName] || [];
+        input.inputmask.events[eventName].push(ev);
+
+    },
+    off: function (input, event) {
+        if (input.inputmask && input.inputmask.events) {
+            const $ = input.inputmask.dependencyLib;
+            let events = input.inputmask.events;
+            if (event) {
+                events = [];
+                events[event] = input.inputmask.events[event];
+            }
+            for (let eventName in events) {
+                let evArr = events[eventName];
+                while (evArr.length > 0) {
+                    let ev = evArr.pop();
+                    if (["submit", "reset",].includes(eventName)) {
+                        if (input.form !== null) $(input.form).off(eventName, ev);
+                    } else {
+                        $(input).off(eventName, ev);
+                    }
+                }
+                delete input.inputmask.events[eventName];
+            }
+        }
+    }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/global/window.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/inputmask/lib/global/window.js ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _canUseDOM__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../canUseDOM */ "./node_modules/inputmask/lib/canUseDOM.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_canUseDOM__WEBPACK_IMPORTED_MODULE_0__["default"] ? window : {});
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/inputHandling.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/inputmask/lib/inputHandling.js ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HandleNativePlaceholder": function() { return /* binding */ HandleNativePlaceholder; },
+/* harmony export */   "applyInputValue": function() { return /* binding */ applyInputValue; },
+/* harmony export */   "checkVal": function() { return /* binding */ checkVal; },
+/* harmony export */   "clearOptionalTail": function() { return /* binding */ clearOptionalTail; },
+/* harmony export */   "unmaskedvalue": function() { return /* binding */ unmaskedvalue; },
+/* harmony export */   "writeBuffer": function() { return /* binding */ writeBuffer; }
+/* harmony export */ });
+/* harmony import */ var _keycode_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keycode.js */ "./node_modules/inputmask/lib/keycode.js");
+/* harmony import */ var _validation_tests__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validation-tests */ "./node_modules/inputmask/lib/validation-tests.js");
+/* harmony import */ var _positioning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./positioning */ "./node_modules/inputmask/lib/positioning.js");
+/* harmony import */ var _validation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./validation */ "./node_modules/inputmask/lib/validation.js");
+/* harmony import */ var _environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environment */ "./node_modules/inputmask/lib/environment.js");
+/* harmony import */ var _eventhandlers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./eventhandlers */ "./node_modules/inputmask/lib/eventhandlers.js");
+
+
+
+
+
+
+
+
+
+
+function applyInputValue(input, value) {
+    const inputmask = input ? input.inputmask : this, opts = inputmask.opts;
+
+    input.inputmask.refreshValue = false;
+    if (typeof opts.onBeforeMask === "function") value = opts.onBeforeMask.call(inputmask, value, opts) || value;
+    value = (value || "").toString().split("");
+    checkVal(input, true, false, value);
+    inputmask.undoValue = inputmask._valueGet(true);
+    if ((opts.clearMaskOnLostFocus || opts.clearIncomplete) && input.inputmask._valueGet() === _positioning__WEBPACK_IMPORTED_MODULE_2__.getBufferTemplate.call(inputmask).join("") && _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask) === -1) {
+        input.inputmask._valueSet("");
+    }
+}
+
+//todo put on prototype?
+function clearOptionalTail(buffer) {
+    const inputmask = this;
+
+    buffer.length = 0;
+    var template = _validation_tests__WEBPACK_IMPORTED_MODULE_1__.getMaskTemplate.call(inputmask, true, 0, true, undefined, true), lmnt;
+    while ((lmnt = template.shift()) !== undefined) buffer.push(lmnt);
+    return buffer;
+}
+
+function checkVal(input, writeOut, strict, nptvl, initiatingEvent) {
+    const inputmask = input ? input.inputmask : this,
+        maskset = inputmask.maskset,
+        opts = inputmask.opts, $ = inputmask.dependencyLib;
+
+    var inputValue = nptvl.slice(),
+        charCodes = "",
+        initialNdx = -1,
+        result = undefined, skipOptionalPartCharacter = opts.skipOptionalPartCharacter;
+    opts.skipOptionalPartCharacter = ""; //see issue #2311
+
+    function isTemplateMatch(ndx, charCodes) {
+        var targetTemplate = _validation_tests__WEBPACK_IMPORTED_MODULE_1__.getMaskTemplate.call(inputmask, true, 0).slice(ndx, _positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, ndx, false, false)).join("").replace(/'/g, ""),
+            charCodeNdx = targetTemplate.indexOf(charCodes);
+        //strip spaces from targetTemplate
+        while (charCodeNdx > 0 && targetTemplate[charCodeNdx - 1] === " ") charCodeNdx--;
+
+        var match = charCodeNdx === 0 && !_positioning__WEBPACK_IMPORTED_MODULE_2__.isMask.call(inputmask, ndx)
+            && (_validation_tests__WEBPACK_IMPORTED_MODULE_1__.getTest.call(inputmask, ndx).match.nativeDef === charCodes.charAt(0)
+                || (_validation_tests__WEBPACK_IMPORTED_MODULE_1__.getTest.call(inputmask, ndx).match.static === true && _validation_tests__WEBPACK_IMPORTED_MODULE_1__.getTest.call(inputmask, ndx).match.nativeDef === ("'" + charCodes.charAt(0)))
+                || (_validation_tests__WEBPACK_IMPORTED_MODULE_1__.getTest.call(inputmask, ndx).match.nativeDef === " " && (_validation_tests__WEBPACK_IMPORTED_MODULE_1__.getTest.call(inputmask, ndx + 1).match.nativeDef === charCodes.charAt(0)
+                    || (_validation_tests__WEBPACK_IMPORTED_MODULE_1__.getTest.call(inputmask, ndx + 1).match.static === true && _validation_tests__WEBPACK_IMPORTED_MODULE_1__.getTest.call(inputmask, ndx + 1).match.nativeDef === ("'" + charCodes.charAt(0))))));
+
+        if (!match && charCodeNdx > 0 && !_positioning__WEBPACK_IMPORTED_MODULE_2__.isMask.call(inputmask, ndx, false, true)) {
+            var nextPos = _positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, ndx);
+            if (inputmask.caretPos.begin < nextPos) {
+                inputmask.caretPos = {begin: nextPos};
+            }
+        }
+        return match;
+    }
+
+    _positioning__WEBPACK_IMPORTED_MODULE_2__.resetMaskSet.call(inputmask);
+    maskset.tests = {}; //reset tests ~ possible after alternating
+    initialNdx = opts.radixPoint ? _positioning__WEBPACK_IMPORTED_MODULE_2__.determineNewCaretPosition.call(inputmask, {
+        begin: 0,
+        end: 0
+    }, false, opts.__financeInput === false ? "radixFocus" : undefined).begin : 0;
+    maskset.p = initialNdx;
+    inputmask.caretPos = {begin: initialNdx};
+
+    var staticMatches = [], prevCaretPos = inputmask.caretPos;
+    inputValue.forEach(function (charCode, ndx) {
+        if (charCode !== undefined) { //inputfallback strips some elements out of the inputarray.  $.each logically presents them as undefined
+            /*if (maskset.validPositions[ndx] === undefined && inputValue[ndx] === getPlaceholder.call(inputmask, ndx) && isMask.call(inputmask, ndx, true) &&
+                isValid.call(inputmask, ndx, inputValue[ndx], true, undefined, true, true) === false) {
+                inputmask.caretPos.begin++;
+            } else*/
+            {
+                var keypress = new $.Event("_checkval");
+                keypress.key = charCode;
+                charCodes += charCode;
+                var lvp = _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask, undefined, true);
+                if (!isTemplateMatch(initialNdx, charCodes)) {
+                    result = _eventhandlers__WEBPACK_IMPORTED_MODULE_5__.EventHandlers.keypressEvent.call(inputmask, keypress, true, false, strict, inputmask.caretPos.begin);
+
+                    if (result) {
+                        initialNdx = inputmask.caretPos.begin + 1;
+                        charCodes = "";
+                    }
+                } else {
+                    result = _eventhandlers__WEBPACK_IMPORTED_MODULE_5__.EventHandlers.keypressEvent.call(inputmask, keypress, true, false, strict, lvp + 1);
+                }
+                if (result) {
+                    if (result.pos !== undefined && maskset.validPositions[result.pos] && maskset.validPositions[result.pos].match.static === true && maskset.validPositions[result.pos].alternation === undefined) {
+                        staticMatches.push(result.pos);
+                        if (!inputmask.isRTL) {
+                            result.forwardPosition = result.pos + 1;
+                        }
+                    }
+                    writeBuffer.call(inputmask, undefined, _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask), result.forwardPosition, keypress, false);
+                    inputmask.caretPos = {begin: result.forwardPosition, end: result.forwardPosition};
+                    prevCaretPos = inputmask.caretPos;
+                } else {
+                    if (maskset.validPositions[ndx] === undefined && inputValue[ndx] === _validation_tests__WEBPACK_IMPORTED_MODULE_1__.getPlaceholder.call(inputmask, ndx) && _positioning__WEBPACK_IMPORTED_MODULE_2__.isMask.call(inputmask, ndx, true)) {
+                        inputmask.caretPos.begin++;
+                    } else inputmask.caretPos = prevCaretPos; //restore the caret position from before the failed validation
+                }
+            }
+        }
+    });
+    if (staticMatches.length > 0) {
+        var sndx, validPos, nextValid = _positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, -1, undefined, false);
+        if ((!_validation__WEBPACK_IMPORTED_MODULE_3__.isComplete.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask)) && staticMatches.length <= nextValid)
+            || (_validation__WEBPACK_IMPORTED_MODULE_3__.isComplete.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask)) && staticMatches.length > 0 && (staticMatches.length !== nextValid && staticMatches[0] === 0))) { //should check if is sequence starting from 0
+            var nextSndx = nextValid;
+            while ((sndx = staticMatches.shift()) !== undefined) {
+                var keypress = new $.Event("_checkval");
+                validPos = maskset.validPositions[sndx];
+                validPos.generatedInput = true;
+                keypress.key = validPos.input;
+                result = _eventhandlers__WEBPACK_IMPORTED_MODULE_5__.EventHandlers.keypressEvent.call(inputmask, keypress, true, false, strict, nextSndx);
+                if (result && result.pos !== undefined && result.pos !== sndx && maskset.validPositions[result.pos] && maskset.validPositions[result.pos].match.static === true) {
+                    staticMatches.push(result.pos);
+                } else if (!result) break;
+                nextSndx++;
+            }
+        } else { //mark al statics as generated
+            // while ((sndx = staticMatches.pop())) {
+            // 	validPos = maskset.validPositions[sndx];
+            // 	if (validPos) {
+            // 		validPos.generatedInput = true;
+            // 	}
+            // }
+        }
+    }
+    if (writeOut) {
+        writeBuffer.call(
+            inputmask,
+            input,
+            _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask), result ? result.forwardPosition : inputmask.caretPos.begin,
+            initiatingEvent || new $.Event("checkval"),
+            initiatingEvent && ((initiatingEvent.type === "input" && inputmask.undoValue !== _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask).join("")) || initiatingEvent.type === "paste"));
+        // for (var vndx in maskset.validPositions) {
+        // 	if (maskset.validPositions[vndx].match.generated !== true) { //only remove non forced generated
+        // 		delete maskset.validPositions[vndx].generatedInput; //clear generated markings ~ consider initializing with a  value as fully typed
+        // 	}
+        // }
+    }
+    opts.skipOptionalPartCharacter = skipOptionalPartCharacter;
+}
+
+function HandleNativePlaceholder(npt, value) {
+    const inputmask = npt ? npt.inputmask : this;
+
+    if (_environment__WEBPACK_IMPORTED_MODULE_4__.ie) {
+        if (npt.inputmask._valueGet() !== value && (npt.placeholder !== value || npt.placeholder === "")) {
+            var buffer = _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask).slice(),
+                nptValue = npt.inputmask._valueGet();
+            if (nptValue !== value) {
+                var lvp = _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask);
+                if (lvp === -1 && nptValue === _positioning__WEBPACK_IMPORTED_MODULE_2__.getBufferTemplate.call(inputmask).join("")) {
+                    buffer = [];
+                } else if (lvp !== -1) { //clearout optional tail of the mask
+                    clearOptionalTail.call(inputmask, buffer);
+                }
+                writeBuffer(npt, buffer);
+            }
+        }
+    } else if (npt.placeholder !== value) {
+        npt.placeholder = value;
+        if (npt.placeholder === "") npt.removeAttribute("placeholder");
+    }
+}
+
+function unmaskedvalue(input) {
+    const inputmask = input ? input.inputmask : this,
+        opts = inputmask.opts,
+        maskset = inputmask.maskset;
+
+    if (input) {
+        if (input.inputmask === undefined) {
+            return input.value;
+        }
+        if (input.inputmask && input.inputmask.refreshValue) { //forced refresh from the value form.reset
+            applyInputValue(input, input.inputmask._valueGet(true));
+        }
+    }
+    var umValue = [],
+        vps = maskset.validPositions;
+    for (let pndx = 0, vpl = vps.length; pndx < vpl; pndx++) {
+        if (vps[pndx] && vps[pndx].match && (vps[pndx].match.static != true || (Array.isArray(maskset.metadata) && vps[pndx].generatedInput !== true))) {
+            //only include generated input with multiple masks (check on metadata)
+            umValue.push(vps[pndx].input);
+        }
+    }
+    var unmaskedValue = umValue.length === 0 ? "" : (inputmask.isRTL ? umValue.reverse() : umValue).join("");
+    if (typeof opts.onUnMask === "function") {
+        var bufferValue = (inputmask.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask).slice().reverse() : _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask)).join("");
+        unmaskedValue = opts.onUnMask.call(inputmask, bufferValue, unmaskedValue, opts);
+    }
+    return unmaskedValue;
+}
+
+function writeBuffer(input, buffer, caretPos, event, triggerEvents) {
+    const inputmask = input ? input.inputmask : this,
+        opts = inputmask.opts,
+        $ = inputmask.dependencyLib;
+
+    if (event && typeof opts.onBeforeWrite === "function") {
+        //    buffer = buffer.slice(); //prevent uncontrolled manipulation of the internal buffer
+        var result = opts.onBeforeWrite.call(inputmask, event, buffer, caretPos, opts);
+        if (result) {
+            if (result.refreshFromBuffer) {
+                var refresh = result.refreshFromBuffer;
+                _validation__WEBPACK_IMPORTED_MODULE_3__.refreshFromBuffer.call(inputmask, refresh === true ? refresh : refresh.start, refresh.end, result.buffer || buffer);
+                buffer = _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask, true);
+            }
+            if (caretPos !== undefined) caretPos = result.caret !== undefined ? result.caret : caretPos;
+        }
+    }
+    if (input !== undefined) {
+        input.inputmask._valueSet(buffer.join(""));
+        if (caretPos !== undefined && (event === undefined || event.type !== "blur")) {
+            // console.log(caretPos);
+            _positioning__WEBPACK_IMPORTED_MODULE_2__.caret.call(inputmask, input, caretPos, undefined, undefined, (event !== undefined && event.type === "keydown" && (event.key === _keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Delete || event.key === _keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Backspace)));
+        }
+        if (triggerEvents === true) {
+            var $input = $(input), nptVal = input.inputmask._valueGet();
+            input.inputmask.skipInputEvent = true;
+            $input.trigger("input");
+            setTimeout(function () { //timeout needed for IE
+                if (nptVal === _positioning__WEBPACK_IMPORTED_MODULE_2__.getBufferTemplate.call(inputmask).join("")) {
+                    $input.trigger("cleared");
+                } else if (_validation__WEBPACK_IMPORTED_MODULE_3__.isComplete.call(inputmask, buffer) === true) {
+                    $input.trigger("complete");
+                }
+            }, 0);
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/inputmask.js":
+/*!*************************************************!*\
+  !*** ./node_modules/inputmask/lib/inputmask.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mask */ "./node_modules/inputmask/lib/mask.js");
+/* harmony import */ var _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dependencyLibs/inputmask.dependencyLib */ "./node_modules/inputmask/lib/dependencyLibs/inputmask.dependencyLib.js");
+/* harmony import */ var _global_window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global/window */ "./node_modules/inputmask/lib/global/window.js");
+/* harmony import */ var _mask_lexer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mask-lexer */ "./node_modules/inputmask/lib/mask-lexer.js");
+/* harmony import */ var _validation_tests__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./validation-tests */ "./node_modules/inputmask/lib/validation-tests.js");
+/* harmony import */ var _positioning__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./positioning */ "./node_modules/inputmask/lib/positioning.js");
+/* harmony import */ var _validation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validation */ "./node_modules/inputmask/lib/validation.js");
+/* harmony import */ var _inputHandling__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./inputHandling */ "./node_modules/inputmask/lib/inputHandling.js");
+/* harmony import */ var _eventruler__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./eventruler */ "./node_modules/inputmask/lib/eventruler.js");
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./definitions */ "./node_modules/inputmask/lib/definitions.js");
+/* harmony import */ var _defaults__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./defaults */ "./node_modules/inputmask/lib/defaults.js");
+/* harmony import */ var _canUseDOM__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./canUseDOM */ "./node_modules/inputmask/lib/canUseDOM.js");
+/*
+ * Input Mask Core
+ * http://github.com/RobinHerbots/jquery.inputmask
+ * Copyright (c) Robin Herbots
+ * Licensed under the MIT license
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const document = _global_window__WEBPACK_IMPORTED_MODULE_2__["default"].document, dataKey = "_inputmask_opts";
+
+function Inputmask(alias, options, internal) {
+    if (!_canUseDOM__WEBPACK_IMPORTED_MODULE_11__["default"]) {
+        return;
+    }
+
+    //allow instanciating without new
+    if (!(this instanceof Inputmask)) {
+        return new Inputmask(alias, options, internal);
+    }
+
+    this.dependencyLib = _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"];
+    this.el = undefined;
+    this.events = {};
+    this.maskset = undefined;
+
+    if (internal !== true) {
+        //init options
+        if (Object.prototype.toString.call(alias) === "[object Object]") {
+            options = alias;
+        } else {
+            options = options || {};
+            if (alias) options.alias = alias;
+        }
+        this.opts = _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, {}, this.defaults, options);
+        this.noMasksCache = options && options.definitions !== undefined;
+        this.userOptions = options || {}; //user passed options
+        resolveAlias(this.opts.alias, options, this.opts);
+    }
+
+    //maskscope properties
+    this.refreshValue = false; //indicate a refresh from the inputvalue is needed (form.reset)
+    this.undoValue = undefined;
+    this.$el = undefined;
+    this.skipInputEvent = false; //skip when triggered from within inputmask
+    this.validationEvent = false;
+    this.ignorable = false;
+    this.maxLength;
+    this.mouseEnter = false;
+    this.clicked = 0;
+    this.originalPlaceholder = undefined; //needed for FF
+    this.isComposing = false, //keydowncode == 229  compositionevent fallback
+    this.hasAlternator = false;
+}
+
+Inputmask.prototype = {
+    dataAttribute: "data-inputmask", //data attribute prefix used for attribute binding
+    //options default
+    defaults: _defaults__WEBPACK_IMPORTED_MODULE_10__["default"],
+    definitions: _definitions__WEBPACK_IMPORTED_MODULE_9__["default"],
+    aliases: {}, //aliases definitions
+    masksCache: {},
+    get isRTL() {
+        return this.opts.isRTL || this.opts.numericInput;
+    },
+    mask: function (elems) {
+        var that = this;
+        if (typeof elems === "string") {
+            elems = (document.getElementById(elems) || document.querySelectorAll(elems));
+        }
+        elems = elems.nodeName ? [elems] : (Array.isArray(elems) ? elems : [].slice.call(elems)); //[].slice as alternate for Array.from (Yandex browser)
+        elems.forEach(function (el, ndx) {
+            var scopedOpts = _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, {}, that.opts);
+            if (importAttributeOptions(el, scopedOpts, _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, {}, that.userOptions), that.dataAttribute)) {
+                var maskset = (0,_mask_lexer__WEBPACK_IMPORTED_MODULE_3__.generateMaskSet)(scopedOpts, that.noMasksCache);
+                if (maskset !== undefined) {
+                    if (el.inputmask !== undefined) {
+                        el.inputmask.opts.autoUnmask = true; //force autounmasking when remasking
+                        el.inputmask.remove();
+                    }
+                    //store inputmask instance on the input with element reference
+                    el.inputmask = new Inputmask(undefined, undefined, true);
+                    el.inputmask.opts = scopedOpts;
+                    el.inputmask.noMasksCache = that.noMasksCache;
+                    el.inputmask.userOptions = _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, {}, that.userOptions);
+                    // el.inputmask.isRTL = scopedOpts.isRTL || scopedOpts.numericInput;
+                    el.inputmask.el = el;
+                    el.inputmask.$el = (0,_dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"])(el);
+                    el.inputmask.maskset = maskset;
+
+                    _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].data(el, dataKey, that.userOptions);
+                    _mask__WEBPACK_IMPORTED_MODULE_0__.mask.call(el.inputmask);
+                }
+            }
+        });
+        return elems && elems[0] ? (elems[0].inputmask || this) : this;
+    },
+    option: function (options, noremask) { //set extra options || retrieve value of a current option
+        if (typeof options === "string") {
+            return this.opts[options];
+        } else if (typeof options === "object") {
+            _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(this.userOptions, options); //user passed options
+            //remask
+            if (this.el && noremask !== true) {
+                this.mask(this.el);
+            }
+            return this;
+        }
+    },
+    unmaskedvalue: function (value) {
+        this.maskset = this.maskset || (0,_mask_lexer__WEBPACK_IMPORTED_MODULE_3__.generateMaskSet)(this.opts, this.noMasksCache);
+        if (this.el === undefined || value !== undefined) {
+            var valueBuffer = (typeof this.opts.onBeforeMask === "function" ? (this.opts.onBeforeMask.call(this, value, this.opts) || value) : value).split("");
+            _inputHandling__WEBPACK_IMPORTED_MODULE_7__.checkVal.call(this, undefined, false, false, valueBuffer);
+            if (typeof this.opts.onBeforeWrite === "function") this.opts.onBeforeWrite.call(this, undefined, _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this), 0, this.opts);
+        }
+        return _inputHandling__WEBPACK_IMPORTED_MODULE_7__.unmaskedvalue.call(this, this.el);
+    },
+    remove: function () {
+        if (this.el) {
+            _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].data(this.el, dataKey, null); //invalidate
+            //writeout the value
+            var cv = this.opts.autoUnmask ? (0,_inputHandling__WEBPACK_IMPORTED_MODULE_7__.unmaskedvalue)(this.el) : this._valueGet(this.opts.autoUnmask);
+            if (cv !== _positioning__WEBPACK_IMPORTED_MODULE_5__.getBufferTemplate.call(this).join("")) this._valueSet(cv, this.opts.autoUnmask); else this._valueSet("");
+            //unbind all events
+            _eventruler__WEBPACK_IMPORTED_MODULE_8__.EventRuler.off(this.el);
+
+            //restore the value property
+            var valueProperty;
+            if (Object.getOwnPropertyDescriptor && Object.getPrototypeOf) {
+                valueProperty = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(this.el), "value");
+                if (valueProperty) {
+                    if (this.__valueGet) {
+                        Object.defineProperty(this.el, "value", {
+                            get: this.__valueGet,
+                            set: this.__valueSet,
+                            configurable: true
+                        });
+                    }
+                }
+            } else if (document.__lookupGetter__ && this.el.__lookupGetter__("value")) {
+                if (this.__valueGet) {
+                    this.el.__defineGetter__("value", this.__valueGet);
+                    this.el.__defineSetter__("value", this.__valueSet);
+                }
+            }
+            //clear data
+            this.el.inputmask = undefined;
+        }
+        return this.el;
+    },
+    getemptymask: function () { //return the default (empty) mask value, usefull for setting the default value in validation
+        this.maskset = this.maskset || (0,_mask_lexer__WEBPACK_IMPORTED_MODULE_3__.generateMaskSet)(this.opts, this.noMasksCache);
+        return (this.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_5__.getBufferTemplate.call(this).reverse() : _positioning__WEBPACK_IMPORTED_MODULE_5__.getBufferTemplate.call(this)).join("");
+    },
+    hasMaskedValue: function () { //check wheter the returned value is masked or not; currently only works reliable when using jquery.val fn to retrieve the value
+        return !this.opts.autoUnmask;
+    },
+    isComplete: function () {
+        this.maskset = this.maskset || (0,_mask_lexer__WEBPACK_IMPORTED_MODULE_3__.generateMaskSet)(this.opts, this.noMasksCache);
+        return _validation__WEBPACK_IMPORTED_MODULE_6__.isComplete.call(this, _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this));
+    },
+    getmetadata: function () { //return mask metadata if exists
+        this.maskset = this.maskset || (0,_mask_lexer__WEBPACK_IMPORTED_MODULE_3__.generateMaskSet)(this.opts, this.noMasksCache);
+        if (Array.isArray(this.maskset.metadata)) {
+            var maskTarget = _validation_tests__WEBPACK_IMPORTED_MODULE_4__.getMaskTemplate.call(this, true, 0, false).join("");
+            this.maskset.metadata.forEach(function (mtdt) {
+                if (mtdt.mask === maskTarget) {
+                    maskTarget = mtdt;
+                    return false;
+                }
+
+                return true;
+            });
+            return maskTarget;
+        }
+        return this.maskset.metadata;
+    },
+    isValid: function (value) {
+        this.maskset = this.maskset || (0,_mask_lexer__WEBPACK_IMPORTED_MODULE_3__.generateMaskSet)(this.opts, this.noMasksCache);
+        if (value) {
+            var valueBuffer = (typeof this.opts.onBeforeMask === "function" ? (this.opts.onBeforeMask.call(this, value, this.opts) || value) : value).split("");
+            _inputHandling__WEBPACK_IMPORTED_MODULE_7__.checkVal.call(this, undefined, true, false, valueBuffer);
+        } else {
+            value = this.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this).slice().reverse().join("") : _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this).join("");
+        }
+        var buffer = _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this);
+        var rl = _positioning__WEBPACK_IMPORTED_MODULE_5__.determineLastRequiredPosition.call(this),
+            lmib = buffer.length - 1;
+        for (; lmib > rl; lmib--) {
+            if (_positioning__WEBPACK_IMPORTED_MODULE_5__.isMask.call(this, lmib)) break;
+        }
+        buffer.splice(rl, lmib + 1 - rl);
+
+        return _validation__WEBPACK_IMPORTED_MODULE_6__.isComplete.call(this, buffer) && value === (this.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this).slice().reverse().join("") : _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this).join(""));
+
+    },
+    format: function (value, metadata) {
+        this.maskset = this.maskset || (0,_mask_lexer__WEBPACK_IMPORTED_MODULE_3__.generateMaskSet)(this.opts, this.noMasksCache);
+        let valueBuffer = (typeof this.opts.onBeforeMask === "function" ? (this.opts.onBeforeMask.call(this, value, this.opts) || value) : value).split("");
+        _inputHandling__WEBPACK_IMPORTED_MODULE_7__.checkVal.call(this, undefined, true, false, valueBuffer);
+        let formattedValue = this.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this).slice().reverse().join("") : _positioning__WEBPACK_IMPORTED_MODULE_5__.getBuffer.call(this).join("");
+        return metadata ? {
+            value: formattedValue,
+            metadata: this.getmetadata()
+        } : formattedValue;
+    },
+    setValue: function (value) {
+        if (this.el) {
+            (0,_dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"])(this.el).trigger("setvalue", [value]);
+        }
+    },
+    analyseMask: _mask_lexer__WEBPACK_IMPORTED_MODULE_3__.analyseMask
+};
+
+function resolveAlias(aliasStr, options, opts) {
+    var aliasDefinition = Inputmask.prototype.aliases[aliasStr];
+    if (aliasDefinition) {
+        if (aliasDefinition.alias) resolveAlias(aliasDefinition.alias, undefined, opts); //alias is another alias
+        _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, opts, aliasDefinition); //merge alias definition in the options
+        _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, opts, options); //reapply extra given options
+        return true;
+    } else //alias not found - try as mask
+    if (opts.mask === null) {
+        opts.mask = aliasStr;
+    }
+
+    return false;
+}
+
+function importAttributeOptions(npt, opts, userOptions, dataAttribute) {
+    function importOption(option, optionData) {
+        const attrOption = dataAttribute === "" ? option : dataAttribute + "-" + option;
+        optionData = optionData !== undefined ? optionData : npt.getAttribute(attrOption);
+        if (optionData !== null) {
+            if (typeof optionData === "string") {
+                if (option.indexOf("on") === 0) {
+                    optionData = _global_window__WEBPACK_IMPORTED_MODULE_2__["default"][optionData];
+                }//get function definition
+                else if (optionData === "false") {
+                    optionData = false;
+                } else if (optionData === "true") optionData = true;
+            }
+            userOptions[option] = optionData;
+        }
+    }
+
+    if (opts.importDataAttributes === true) {
+        var attrOptions = npt.getAttribute(dataAttribute), option, dataoptions, optionData, p;
+
+        if (attrOptions && attrOptions !== "") {
+            attrOptions = attrOptions.replace(/'/g, "\"");
+            dataoptions = JSON.parse("{" + attrOptions + "}");
+        }
+
+        //resolve aliases
+        if (dataoptions) { //pickup alias from dataAttribute
+            optionData = undefined;
+            for (p in dataoptions) {
+                if (p.toLowerCase() === "alias") {
+                    optionData = dataoptions[p];
+                    break;
+                }
+            }
+        }
+        importOption("alias", optionData); //pickup alias from dataAttribute-alias
+        if (userOptions.alias) {
+            resolveAlias(userOptions.alias, userOptions, opts);
+        }
+
+        for (option in opts) {
+            if (dataoptions) {
+                optionData = undefined;
+                for (p in dataoptions) {
+                    if (p.toLowerCase() === option.toLowerCase()) {
+                        optionData = dataoptions[p];
+                        break;
+                    }
+                }
+            }
+            importOption(option, optionData);
+        }
+    }
+    _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, opts, userOptions);
+
+    //handle dir=rtl
+    if (npt.dir === "rtl" || opts.rightAlign) {
+        npt.style.textAlign = "right";
+    }
+
+    if (npt.dir === "rtl" || opts.numericInput) {
+        npt.dir = "ltr";
+        npt.removeAttribute("dir");
+        opts.isRTL = true;
+    }
+
+    return Object.keys(userOptions).length;
+}
+
+//apply defaults, definitions, aliases
+Inputmask.extendDefaults = function (options) {
+    _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, Inputmask.prototype.defaults, options);
+};
+Inputmask.extendDefinitions = function (definition) {
+    _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, Inputmask.prototype.definitions, definition);
+};
+Inputmask.extendAliases = function (alias) {
+    _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"].extend(true, Inputmask.prototype.aliases, alias);
+};
+//static fn on inputmask
+Inputmask.format = function (value, options, metadata) {
+    return Inputmask(options).format(value, metadata);
+};
+Inputmask.unmask = function (value, options) {
+    return Inputmask(options).unmaskedvalue(value);
+};
+Inputmask.isValid = function (value, options) {
+    return Inputmask(options).isValid(value);
+};
+Inputmask.remove = function (elems) {
+    if (typeof elems === "string") {
+        elems = document.getElementById(elems) || document.querySelectorAll(elems);
+    }
+    elems = elems.nodeName ? [elems] : elems;
+    elems.forEach(function (el) {
+        if (el.inputmask) el.inputmask.remove();
+    });
+};
+Inputmask.setValue = function (elems, value) {
+    if (typeof elems === "string") {
+        elems = document.getElementById(elems) || document.querySelectorAll(elems);
+    }
+    elems = elems.nodeName ? [elems] : elems;
+    elems.forEach(function (el) {
+        if (el.inputmask) el.inputmask.setValue(value); else (0,_dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"])(el).trigger("setvalue", [value]);
+    });
+};
+
+Inputmask.dependencyLib = _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_1__["default"];
+
+//make inputmask available
+_global_window__WEBPACK_IMPORTED_MODULE_2__["default"].Inputmask = Inputmask;
+/* harmony default export */ __webpack_exports__["default"] = (Inputmask);
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/keycode.js":
+/*!***********************************************!*\
+  !*** ./node_modules/inputmask/lib/keycode.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "keyCode": function() { return /* binding */ keyCode; },
+/* harmony export */   "keys": function() { return /* binding */ keys; },
+/* harmony export */   "toKey": function() { return /* binding */ toKey; },
+/* harmony export */   "toKeyCode": function() { return /* binding */ toKeyCode; }
+/* harmony export */ });
+
+
+const keyCode = {
+    "AltGraph": 18,
+    "ArrowDown": 40,
+    "ArrowLeft": 37,
+    "ArrowRight": 39,
+    "ArrowUp": 38,
+    "Backspace": 8,
+    "BACKSPACE_SAFARI": 127,
+    "CapsLock": 20,
+    "Delete": 46,
+    "End": 35,
+    "Enter": 13,
+    "Escape": 27,
+    "Home": 36,
+    "Insert": 45,
+    "PageDown": 34,
+    "PageUp": 33,
+    "Space": 32,
+    "Tab": 9,
+    "c": 67,
+    "x": 88,
+    "z": 90,
+    "Shift": 16,
+    "Control": 17,
+    "Alt": 18,
+    "Pause": 19,
+    "Meta_LEFT": 91,
+    "Meta_RIGHT": 92,
+    "ContextMenu": 93,
+    "Process": 229,
+    "Unidentified": 229,
+    "F1": 112,
+    "F2": 113,
+    "F3": 114,
+    "F4": 115,
+    "F5": 116,
+    "F6": 117,
+    "F7": 118,
+    "F8": 119,
+    "F9": 120,
+    "F10": 121,
+    "F11": 122,
+    "F12": 123
+};
+
+const keyCodeRev = Object.entries(keyCode).reduce((acc, [key, value]) => (acc[value] = acc[value] === undefined ? key : acc[value] , acc), {});
+const keys = Object.entries(keyCode).reduce((acc, [key, value]) => (acc[key] = key === "Space" ? " " : key, acc), {});
+
+function toKey(keyCode, shiftKey) {
+    return keyCodeRev[keyCode] || (shiftKey ? String.fromCharCode(keyCode) : String.fromCharCode(keyCode).toLowerCase());
+}
+
+function toKeyCode(key) {
+    return keyCode[key];
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/mask-lexer.js":
+/*!**************************************************!*\
+  !*** ./node_modules/inputmask/lib/mask-lexer.js ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "analyseMask": function() { return /* binding */ analyseMask; },
+/* harmony export */   "generateMaskSet": function() { return /* binding */ generateMaskSet; }
+/* harmony export */ });
+/* harmony import */ var _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dependencyLibs/inputmask.dependencyLib */ "./node_modules/inputmask/lib/dependencyLibs/inputmask.dependencyLib.js");
+/* harmony import */ var _masktoken__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./masktoken */ "./node_modules/inputmask/lib/masktoken.js");
+/* harmony import */ var _inputmask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inputmask */ "./node_modules/inputmask/lib/inputmask.js");
+/* harmony import */ var _escapeRegex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./escapeRegex */ "./node_modules/inputmask/lib/escapeRegex.js");
+
+
+
+
+
+
+
+function generateMaskSet(opts, nocache) {
+    var ms;
+
+    function preProcessMask(mask, {repeat, groupmarker, quantifiermarker, keepStatic}) {
+        if (repeat > 0 || repeat === "*" || repeat === "+") {
+            var repeatStart = repeat === "*" ? 0 : (repeat === "+" ? 1 : repeat);
+            mask = groupmarker[0] + mask + groupmarker[1] + quantifiermarker[0] + repeatStart + "," + repeat + quantifiermarker[1];
+        }
+        if (keepStatic === true) {
+            let optionalRegex = "(.)\\[([^\\]]*)\\]", // "(?<p1>.)\\[(?<p2>[^\\]]*)\\]", remove named capture group @2428
+                maskMatches = mask.match(new RegExp(optionalRegex, "g"));
+            maskMatches && maskMatches.forEach((m, i) => {
+                let [p1, p2] = m.split("["); p2 = p2.replace("]", "");
+                mask = mask.replace(new RegExp(`${(0,_escapeRegex__WEBPACK_IMPORTED_MODULE_3__["default"])(p1)}\\[${(0,_escapeRegex__WEBPACK_IMPORTED_MODULE_3__["default"])(p2)}\\]`),
+                    p1.charAt(0) === p2.charAt(0) ?
+                        `(${p1}|${p1}${p2})` :
+                        `${p1}[${p2}]`);
+                // console.log(mask);
+            });
+        }
+
+        return mask;
+    }
+
+    function generateMask(mask, metadata, opts) {
+        var regexMask = false;
+        if (mask === null || mask === "") {
+            regexMask = opts.regex !== null;
+            if (regexMask) {
+                mask = opts.regex;
+                mask = mask.replace(/^(\^)(.*)(\$)$/, "$2");
+            } else {
+                regexMask = true;
+                mask = ".*";
+            }
+        }
+        if (mask.length === 1 && opts.greedy === false && opts.repeat !== 0) {
+            opts.placeholder = "";
+        } //hide placeholder with single non-greedy mask
+        mask = preProcessMask(mask, opts);
+
+        // console.log(mask);
+        var masksetDefinition, maskdefKey;
+        maskdefKey = regexMask ? "regex_" + opts.regex : opts.numericInput ? mask.split("").reverse().join("") : mask;
+        if (opts.keepStatic !== null) { //keepstatic modifies the output from the testdefinitions ~ so differentiate in the maskcache
+            maskdefKey = "ks_" + opts.keepStatic + maskdefKey;
+        }
+
+        if (_inputmask__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.masksCache[maskdefKey] === undefined || nocache === true) {
+            masksetDefinition = {
+                "mask": mask,
+                "maskToken": _inputmask__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.analyseMask(mask, regexMask, opts),
+                "validPositions": [],
+                "_buffer": undefined,
+                "buffer": undefined,
+                "tests": {},
+                "excludes": {}, //excluded alternations
+                "metadata": metadata,
+                "maskLength": undefined,
+                "jitOffset": {}
+            };
+            if (nocache !== true) {
+                _inputmask__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.masksCache[maskdefKey] = masksetDefinition;
+                masksetDefinition = _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_0__["default"].extend(true, {}, _inputmask__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.masksCache[maskdefKey]);
+            }
+        } else {
+            masksetDefinition = _dependencyLibs_inputmask_dependencyLib__WEBPACK_IMPORTED_MODULE_0__["default"].extend(true, {}, _inputmask__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.masksCache[maskdefKey]);
+        }
+
+        return masksetDefinition;
+    }
+
+    if (typeof opts.mask === "function") { //allow mask to be a preprocessing fn - should return a valid mask
+        opts.mask = opts.mask(opts);
+    }
+    if (Array.isArray(opts.mask)) {
+        if (opts.mask.length > 1) {
+            if (opts.keepStatic === null) { //enable by default when passing multiple masks when the option is not explicitly specified
+                opts.keepStatic = true;
+            }
+            var altMask = opts.groupmarker[0];
+            (opts.isRTL ? opts.mask.reverse() : opts.mask).forEach(function (msk) {
+                if (altMask.length > 1) {
+                    altMask += opts.alternatormarker;
+                }
+                if (msk.mask !== undefined && typeof msk.mask !== "function") {
+                    altMask += msk.mask;
+                } else {
+                    altMask += msk;
+                }
+            });
+            altMask += opts.groupmarker[1];
+            // console.log(altMask);
+            return generateMask(altMask, opts.mask, opts);
+        } else {
+            opts.mask = opts.mask.pop();
+        }
+    }
+    if (opts.mask && opts.mask.mask !== undefined && typeof opts.mask.mask !== "function") {
+        ms = generateMask(opts.mask.mask, opts.mask, opts);
+    } else {
+        ms = generateMask(opts.mask, opts.mask, opts);
+    }
+    if (opts.keepStatic === null) opts.keepStatic = false;
+    return ms;
+}
+
+function analyseMask(mask, regexMask, opts) {
+    const tokenizer = /(?:[?*+]|\{[0-9+*]+(?:,[0-9+*]*)?(?:\|[0-9+*]*)?\})|[^.?*+^${[]()|\\]+|./g,
+        //Thx to https://github.com/slevithan/regex-colorizer for the regexTokenizer regex
+        regexTokenizer = /\[\^?]?(?:[^\\\]]+|\\[\S\s]?)*]?|\\(?:0(?:[0-3][0-7]{0,2}|[4-7][0-7]?)?|[1-9][0-9]*|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|c[A-Za-z]|[\S\s]?)|\((?:\?[:=!]?)?|(?:[?*+]|\{[0-9]+(?:,[0-9]*)?\})\??|[^.?*+^${[()|\\]+|./g;
+    var escaped = false,
+        currentToken = new _masktoken__WEBPACK_IMPORTED_MODULE_1__["default"](),
+        match,
+        m,
+        openenings = [],
+        maskTokens = [],
+        openingToken,
+        currentOpeningToken,
+        alternator,
+        lastMatch,
+        closeRegexGroup = false;
+
+    //test definition => {fn: RegExp/function, static: true/false optionality: bool, newBlockMarker: bool, casing: null/upper/lower, def: definitionSymbol, placeholder: placeholder, mask: real maskDefinition}
+    function insertTestDefinition(mtoken, element, position) {
+        position = position !== undefined ? position : mtoken.matches.length;
+        var prevMatch = mtoken.matches[position - 1];
+        if (regexMask) {
+            if (element.indexOf("[") === 0 || (escaped && /\\d|\\s|\\w|\\p/i.test(element)) || element === ".") {
+                let flag = opts.casing ? "i" : "";
+                if (/^\\p\{.*}$/i.test(element))
+                    flag += "u";
+                mtoken.matches.splice(position++, 0, {
+                    fn: new RegExp(element, flag),
+                    static: false,
+                    optionality: false,
+                    newBlockMarker: prevMatch === undefined ? "master" : prevMatch.def !== element,
+                    casing: null,
+                    def: element,
+                    placeholder: undefined,
+                    nativeDef: element
+                });
+            } else {
+                if (escaped) element = element[element.length - 1];
+                element.split("").forEach(function (lmnt, ndx) {
+                    prevMatch = mtoken.matches[position - 1];
+                    mtoken.matches.splice(position++, 0, {
+                        fn: /[a-z]/i.test((opts.staticDefinitionSymbol || lmnt)) ? new RegExp("[" + (opts.staticDefinitionSymbol || lmnt) + "]", opts.casing ? "i" : "") : null,
+                        static: true,
+                        optionality: false,
+                        newBlockMarker: prevMatch === undefined ? "master" : (prevMatch.def !== lmnt && prevMatch.static !== true),
+                        casing: null,
+                        def: opts.staticDefinitionSymbol || lmnt,
+                        placeholder: opts.staticDefinitionSymbol !== undefined ? lmnt : undefined,
+                        nativeDef: (escaped ? "'" : "") + lmnt
+                    });
+                });
+            }
+            escaped = false;
+        } else {
+            var maskdef = (opts.definitions && opts.definitions[element]) || (opts.usePrototypeDefinitions && _inputmask__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.definitions[element]);
+            if (maskdef && !escaped) {
+                mtoken.matches.splice(position++, 0, {
+                    fn: maskdef.validator ? typeof maskdef.validator == "string" ? new RegExp(maskdef.validator, opts.casing ? "i" : "") : new function () {
+                        this.test = maskdef.validator;
+                    } : new RegExp("."),
+                    static: maskdef.static || false,
+                    optionality: maskdef.optional || false,
+                    defOptionality: maskdef.optional || false, //indicator for an optional from the definition
+                    newBlockMarker: (prevMatch === undefined || maskdef.optional) ? "master" : prevMatch.def !== (maskdef.definitionSymbol || element),
+                    casing: maskdef.casing,
+                    def: maskdef.definitionSymbol || element,
+                    placeholder: maskdef.placeholder,
+                    nativeDef: element,
+                    generated: maskdef.generated
+                });
+            } else {
+                mtoken.matches.splice(position++, 0, {
+                    fn: /[a-z]/i.test((opts.staticDefinitionSymbol || element)) ? new RegExp("[" + (opts.staticDefinitionSymbol || element) + "]", opts.casing ? "i" : "") : null,
+                    static: true,
+                    optionality: false,
+                    newBlockMarker: prevMatch === undefined ? "master" : (prevMatch.def !== element && prevMatch.static !== true),
+                    casing: null,
+                    def: opts.staticDefinitionSymbol || element,
+                    placeholder: opts.staticDefinitionSymbol !== undefined ? element : undefined,
+                    nativeDef: (escaped ? "'" : "") + element
+                });
+                escaped = false;
+            }
+        }
+    }
+
+    function verifyGroupMarker(maskToken) {
+        if (maskToken && maskToken.matches) {
+            maskToken.matches.forEach(function (token, ndx) {
+                var nextToken = maskToken.matches[ndx + 1];
+                if ((nextToken === undefined || (nextToken.matches === undefined || nextToken.isQuantifier === false)) && token && token.isGroup) { //this is not a group but a normal mask => convert
+                    token.isGroup = false;
+                    if (!regexMask) {
+                        insertTestDefinition(token, opts.groupmarker[0], 0);
+                        if (token.openGroup !== true) {
+                            insertTestDefinition(token, opts.groupmarker[1]);
+                        }
+                    }
+                }
+                verifyGroupMarker(token);
+            });
+        }
+    }
+
+    function defaultCase() {
+        if (openenings.length > 0) {
+            currentOpeningToken = openenings[openenings.length - 1];
+            insertTestDefinition(currentOpeningToken, m);
+            if (currentOpeningToken.isAlternator) { //handle alternator a | b case
+                alternator = openenings.pop();
+                for (var mndx = 0; mndx < alternator.matches.length; mndx++) {
+                    if (alternator.matches[mndx].isGroup) alternator.matches[mndx].isGroup = false; //don't mark alternate groups as group
+                }
+                if (openenings.length > 0) {
+                    currentOpeningToken = openenings[openenings.length - 1];
+                    currentOpeningToken.matches.push(alternator);
+                } else {
+                    currentToken.matches.push(alternator);
+                }
+            }
+        } else {
+            insertTestDefinition(currentToken, m);
+        }
+    }
+
+    function reverseTokens(maskToken) {
+        function reverseStatic(st) {
+            if (st === opts.optionalmarker[0]) {
+                st = opts.optionalmarker[1];
+            } else if (st === opts.optionalmarker[1]) {
+                st = opts.optionalmarker[0];
+            } else if (st === opts.groupmarker[0]) {
+                st = opts.groupmarker[1];
+            } else if (st === opts.groupmarker[1]) st = opts.groupmarker[0];
+
+            return st;
+        }
+
+        maskToken.matches = maskToken.matches.reverse();
+        for (var match in maskToken.matches) {
+            if (Object.prototype.hasOwnProperty.call(maskToken.matches, match)) {
+                var intMatch = parseInt(match);
+                if (maskToken.matches[match].isQuantifier && maskToken.matches[intMatch + 1] && maskToken.matches[intMatch + 1].isGroup) { //reposition quantifier
+                    var qt = maskToken.matches[match];
+                    maskToken.matches.splice(match, 1);
+                    maskToken.matches.splice(intMatch + 1, 0, qt);
+                }
+                if (maskToken.matches[match].matches !== undefined) {
+                    maskToken.matches[match] = reverseTokens(maskToken.matches[match]);
+                } else {
+                    maskToken.matches[match] = reverseStatic(maskToken.matches[match]);
+                }
+            }
+        }
+
+        return maskToken;
+    }
+
+    function groupify(matches) {
+        var groupToken = new _masktoken__WEBPACK_IMPORTED_MODULE_1__["default"](true);
+        groupToken.openGroup = false;
+        groupToken.matches = matches;
+        return groupToken;
+    }
+
+    function closeGroup() {
+        // Group closing
+        openingToken = openenings.pop();
+        openingToken.openGroup = false; //mark group as complete
+        if (openingToken !== undefined) {
+            if (openenings.length > 0) {
+                currentOpeningToken = openenings[openenings.length - 1];
+                currentOpeningToken.matches.push(openingToken);
+                if (currentOpeningToken.isAlternator) { //handle alternator (a) | (b) case
+                    alternator = openenings.pop();
+                    let altMatchesLength = alternator.matches[0].matches ? alternator.matches[0].matches.length : 1;
+                    for (var mndx = 0; mndx < alternator.matches.length; mndx++) {
+                        alternator.matches[mndx].isGroup = false; //don't mark alternate groups as group
+                        alternator.matches[mndx].alternatorGroup = false;
+                        if (opts.keepStatic === null && altMatchesLength < (alternator.matches[mndx].matches ? alternator.matches[mndx].matches.length : 1)) { //enable by default when passing multiple masks when the option is not explicitly specified
+                            opts.keepStatic = true;
+                        }
+                        altMatchesLength = alternator.matches[mndx].matches ? alternator.matches[mndx].matches.length : 1;
+                    }
+                    if (openenings.length > 0) {
+                        currentOpeningToken = openenings[openenings.length - 1];
+                        currentOpeningToken.matches.push(alternator);
+                    } else {
+                        currentToken.matches.push(alternator);
+                    }
+                }
+            } else {
+                currentToken.matches.push(openingToken);
+            }
+        } else {
+            defaultCase();
+        }
+    }
+
+    function groupQuantifier(matches) {
+        var lastMatch = matches.pop();
+        if (lastMatch.isQuantifier) {
+            lastMatch = groupify([matches.pop(), lastMatch]);
+        }
+        return lastMatch;
+    }
+
+    if (regexMask) {
+        opts.optionalmarker[0] = undefined;
+        opts.optionalmarker[1] = undefined;
+    }
+    while ((match = regexMask ? regexTokenizer.exec(mask) : tokenizer.exec(mask))) {
+        m = match[0];
+
+        if (regexMask) {
+            switch (m.charAt(0)) {
+                //Quantifier
+                case "?":
+                    m = "{0,1}";
+                    break;
+                case "+":
+                case "*":
+                    m = "{" + m + "}";
+                    break;
+                case "|":
+                    //regex mask alternator  ex: [01][0-9]|2[0-3] => ([01][0-9]|2[0-3])
+                    if (openenings.length === 0) { //wrap the mask in a group to form a regex alternator  ([01][0-9]|2[0-3])
+                        var altRegexGroup = groupify(currentToken.matches);
+                        altRegexGroup.openGroup = true;
+                        openenings.push(altRegexGroup);
+                        currentToken.matches = [];
+                        closeRegexGroup = true;
+                    }
+                    break;
+            }
+            switch (m) {
+                case "\\d":
+                    m = "[0-9]";
+                    break;
+                case "\\p": //Unicode Categories
+                    m += regexTokenizer.exec(mask)[0]; // {
+                    m += regexTokenizer.exec(mask)[0]; // ?}
+                    break;
+                case "(?:": //non capturing group
+                case "(?=": //lookahead
+                case "(?!": //negative lookahead
+                case "(?<=": //lookbehind
+                case "(?<!": //negative lookbehind
+                    // treat as group
+                    break;
+            }
+        }
+
+        if (escaped) {
+            defaultCase();
+            continue;
+        }
+        switch (m.charAt(0)) {
+            case "$":
+            case "^":
+                //ignore beginswith and endswith as in masking this makes no point
+                if (!regexMask) {
+                    defaultCase();
+                }
+                break;
+            case opts.escapeChar:
+                escaped = true;
+                if (regexMask) defaultCase();
+                break;
+            // optional closing
+            case opts.optionalmarker[1]:
+            case opts.groupmarker[1]:
+                closeGroup();
+                break;
+            case opts.optionalmarker[0]:
+                // optional opening
+                openenings.push(new _masktoken__WEBPACK_IMPORTED_MODULE_1__["default"](false, true));
+                break;
+            case opts.groupmarker[0]:
+                // Group opening
+                openenings.push(new _masktoken__WEBPACK_IMPORTED_MODULE_1__["default"](true));
+                break;
+            case opts.quantifiermarker[0]:
+                //Quantifier
+                var quantifier = new _masktoken__WEBPACK_IMPORTED_MODULE_1__["default"](false, false, true);
+
+                m = m.replace(/[{}?]/g, ""); //? matches lazy quantifiers
+                var mqj = m.split("|"),
+                    mq = mqj[0].split(","),
+                    mq0 = isNaN(mq[0]) ? mq[0] : parseInt(mq[0]),
+                    mq1 = mq.length === 1 ? mq0 : (isNaN(mq[1]) ? mq[1] : parseInt(mq[1])),
+                    mqJit = isNaN(mqj[1]) ? mqj[1] : parseInt(mqj[1]);
+                if (mq0 === "*" || mq0 === "+") {
+                    mq0 = mq1 === "*" ? 0 : 1;
+                }
+                quantifier.quantifier = {
+                    min: mq0,
+                    max: mq1,
+                    jit: mqJit
+                };
+                var matches = openenings.length > 0 ? openenings[openenings.length - 1].matches : currentToken.matches;
+                match = matches.pop();
+                // if (match.isAlternator) { //handle quantifier in an alternation [0-9]{2}|[0-9]{3}
+                //     matches.push(match); //push back alternator
+                //     matches = match.matches; //remap target matches
+                //     var groupToken = new MaskToken(true);
+                //     var tmpMatch = matches.pop();
+                //     matches.push(groupToken); //push the group
+                //     matches = groupToken.matches;
+                //     match = tmpMatch;
+                // }
+                if (!match.isGroup) {
+                    match = groupify([match]);
+                }
+                matches.push(match);
+                matches.push(quantifier);
+
+                break;
+            case opts.alternatormarker:
+                if (openenings.length > 0) {
+                    currentOpeningToken = openenings[openenings.length - 1];
+                    var subToken = currentOpeningToken.matches[currentOpeningToken.matches.length - 1];
+                    if (currentOpeningToken.openGroup && //regexp alt syntax
+                        (subToken.matches === undefined || (subToken.isGroup === false && subToken.isAlternator === false))) { //alternations within group
+                        lastMatch = openenings.pop();
+                    } else {
+                        lastMatch = groupQuantifier(currentOpeningToken.matches);
+                    }
+                } else {
+                    lastMatch = groupQuantifier(currentToken.matches);
+                }
+                if (lastMatch.isAlternator) {
+                    openenings.push(lastMatch);
+                } else {
+                    if (lastMatch.alternatorGroup) {
+                        alternator = openenings.pop();
+                        lastMatch.alternatorGroup = false;
+                    } else {
+                        alternator = new _masktoken__WEBPACK_IMPORTED_MODULE_1__["default"](false, false, false, true);
+                    }
+                    alternator.matches.push(lastMatch);
+                    openenings.push(alternator);
+                    if (lastMatch.openGroup) { //regexp alt syntax
+                        lastMatch.openGroup = false;
+                        var alternatorGroup = new _masktoken__WEBPACK_IMPORTED_MODULE_1__["default"](true);
+                        alternatorGroup.alternatorGroup = true;
+                        openenings.push(alternatorGroup);
+                    }
+                }
+                break;
+            default:
+                defaultCase();
+        }
+    }
+
+    if (closeRegexGroup) closeGroup();
+
+    while (openenings.length > 0) {
+        openingToken = openenings.pop();
+        currentToken.matches.push(openingToken);
+    }
+    if (currentToken.matches.length > 0) {
+        verifyGroupMarker(currentToken);
+        maskTokens.push(currentToken);
+    }
+
+    if (opts.numericInput || opts.isRTL) {
+        reverseTokens(maskTokens[0]);
+    }
+    // console.log(JSON.stringify(maskTokens));
+    return maskTokens;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/mask.js":
+/*!********************************************!*\
+  !*** ./node_modules/inputmask/lib/mask.js ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "mask": function() { return /* binding */ mask; }
+/* harmony export */ });
+/* harmony import */ var _keycode_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keycode.js */ "./node_modules/inputmask/lib/keycode.js");
+/* harmony import */ var _positioning__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./positioning */ "./node_modules/inputmask/lib/positioning.js");
+/* harmony import */ var _inputHandling__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inputHandling */ "./node_modules/inputmask/lib/inputHandling.js");
+/* harmony import */ var _eventruler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./eventruler */ "./node_modules/inputmask/lib/eventruler.js");
+/* harmony import */ var _environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environment */ "./node_modules/inputmask/lib/environment.js");
+/* harmony import */ var _validation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./validation */ "./node_modules/inputmask/lib/validation.js");
+/* harmony import */ var _eventhandlers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./eventhandlers */ "./node_modules/inputmask/lib/eventhandlers.js");
+
+
+
+
+
+
+
+
+
+
+//todo put on the prototype?
+function mask() {
+    const inputmask = this,
+        opts = this.opts,
+        el = this.el, $ = this.dependencyLib;
+
+
+    function isElementTypeSupported(input, opts) {
+        function patchValueProperty(npt) {
+            var valueGet;
+            var valueSet;
+
+            function patchValhook(type) {
+                if ($.valHooks && ($.valHooks[type] === undefined || $.valHooks[type].inputmaskpatch !== true)) {
+                    var valhookGet = $.valHooks[type] && $.valHooks[type].get ? $.valHooks[type].get : function (elem) {
+                        return elem.value;
+                    };
+                    var valhookSet = $.valHooks[type] && $.valHooks[type].set ? $.valHooks[type].set : function (elem, value) {
+                        elem.value = value;
+                        return elem;
+                    };
+
+                    $.valHooks[type] = {
+                        get: function (elem) {
+                            if (elem.inputmask) {
+                                if (elem.inputmask.opts.autoUnmask) {
+                                    return elem.inputmask.unmaskedvalue();
+                                } else {
+                                    var result = valhookGet(elem);
+                                    return _positioning__WEBPACK_IMPORTED_MODULE_1__.getLastValidPosition.call(inputmask, undefined, undefined, elem.inputmask.maskset.validPositions) !== -1 || opts.nullable !== true ? result : "";
+                                }
+                            } else {
+                                return valhookGet(elem);
+                            }
+                        },
+                        set: function (elem, value) {
+                            var result = valhookSet(elem, value);
+                            if (elem.inputmask) {
+                                (0,_inputHandling__WEBPACK_IMPORTED_MODULE_2__.applyInputValue)(elem, value);
+                            }
+                            return result;
+                        },
+                        inputmaskpatch: true
+                    };
+                }
+            }
+
+            function getter() {
+                if (this.inputmask) {
+                    return this.inputmask.opts.autoUnmask ?
+                        this.inputmask.unmaskedvalue() :
+                        (_positioning__WEBPACK_IMPORTED_MODULE_1__.getLastValidPosition.call(inputmask) !== -1 || opts.nullable !== true ?
+                            (((this.inputmask.shadowRoot || this.ownerDocument).activeElement) === this && opts.clearMaskOnLostFocus ?
+                                (inputmask.isRTL ? _inputHandling__WEBPACK_IMPORTED_MODULE_2__.clearOptionalTail.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_1__.getBuffer.call(inputmask).slice()).reverse() : _inputHandling__WEBPACK_IMPORTED_MODULE_2__.clearOptionalTail.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_1__.getBuffer.call(inputmask).slice())).join("") :
+                                valueGet.call(this)) :
+                            "");
+                } else {
+                    return valueGet.call(this);
+                }
+            }
+
+            function setter(value) {
+                valueSet.call(this, value);
+                if (this.inputmask) {
+                    (0,_inputHandling__WEBPACK_IMPORTED_MODULE_2__.applyInputValue)(this, value);
+                }
+            }
+
+            function installNativeValueSetFallback(npt) {
+                _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(npt, "mouseenter", function () {
+                    let input = this,
+                        value = input.inputmask._valueGet(true),
+                        bufferValue = (input.inputmask.isRTL ? _positioning__WEBPACK_IMPORTED_MODULE_1__.getBuffer.call(input.inputmask).slice().reverse() : _positioning__WEBPACK_IMPORTED_MODULE_1__.getBuffer.call(input.inputmask)).join("");
+                    if (value != bufferValue) {
+                        (0,_inputHandling__WEBPACK_IMPORTED_MODULE_2__.applyInputValue)(input, value);
+                    }
+                });
+            }
+
+            if (!npt.inputmask.__valueGet) {
+                if (opts.noValuePatching !== true) {
+                    if (Object.getOwnPropertyDescriptor) {
+                        var valueProperty = Object.getPrototypeOf ? Object.getOwnPropertyDescriptor(Object.getPrototypeOf(npt), "value") : undefined;
+                        if (valueProperty && valueProperty.get && valueProperty.set) {
+                            valueGet = valueProperty.get;
+                            valueSet = valueProperty.set;
+                            Object.defineProperty(npt, "value", {
+                                get: getter,
+                                set: setter,
+                                configurable: true
+                            });
+                        } else if (npt.tagName.toLowerCase() !== "input") {
+                            valueGet = function () {
+                                return this.textContent;
+                            };
+                            valueSet = function (value) {
+                                this.textContent = value;
+                            };
+                            Object.defineProperty(npt, "value", {
+                                get: getter,
+                                set: setter,
+                                configurable: true
+                            });
+                        }
+                    } else if (document.__lookupGetter__ && npt.__lookupGetter__("value")) {
+                        valueGet = npt.__lookupGetter__("value");
+                        valueSet = npt.__lookupSetter__("value");
+
+                        npt.__defineGetter__("value", getter);
+                        npt.__defineSetter__("value", setter);
+                    }
+                    npt.inputmask.__valueGet = valueGet; //store native property getter
+                    npt.inputmask.__valueSet = valueSet; //store native property setter
+                }
+                npt.inputmask._valueGet = function (overruleRTL) {
+                    return inputmask.isRTL && overruleRTL !== true ? valueGet.call(this.el).split("").reverse().join("") : valueGet.call(this.el);
+                };
+                npt.inputmask._valueSet = function (value, overruleRTL) { //null check is needed for IE8 => otherwise converts to "null"
+                    valueSet.call(this.el, (value === null || value === undefined) ? "" : ((overruleRTL !== true && inputmask.isRTL) ? value.split("").reverse().join("") : value));
+                };
+
+                if (valueGet === undefined) { //jquery.val fallback
+                    valueGet = function () {
+                        return this.value;
+                    };
+                    valueSet = function (value) {
+                        this.value = value;
+                    };
+                    patchValhook(npt.type);
+                    installNativeValueSetFallback(npt);
+                }
+            }
+        }
+
+        if (input.tagName.toLowerCase() !== "textarea") {
+            opts.ignorables.push(_keycode_js__WEBPACK_IMPORTED_MODULE_0__.keys.Enter);
+        }
+
+        var elementType = input.getAttribute("type");
+        var isSupported = (input.tagName.toLowerCase() === "input" && opts.supportsInputType.includes(elementType)) || input.isContentEditable || input.tagName.toLowerCase() === "textarea";
+        if (!isSupported) {
+            if (input.tagName.toLowerCase() === "input") {
+                var el = document.createElement("input");
+                el.setAttribute("type", elementType);
+                isSupported = el.type === "text"; //apply mask only if the type is not natively supported
+                el = null;
+            } else {
+                isSupported = "partial";
+            }
+        }
+        if (isSupported !== false) {
+            patchValueProperty(input);
+        } else {
+            input.inputmask = undefined;
+        }
+        return isSupported;
+    }
+
+    //unbind all events - to make sure that no other mask will interfere when re-masking
+    _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.off(el);
+    var isSupported = isElementTypeSupported(el, opts);
+    if (isSupported !== false) {
+        inputmask.originalPlaceholder = el.placeholder;
+
+        //read maxlength prop from el
+        inputmask.maxLength = el !== undefined ? el.maxLength : undefined;
+        if (inputmask.maxLength === -1) inputmask.maxLength = undefined;
+        if ("inputMode" in el && el.getAttribute("inputmode") === null) {
+            el.inputMode = opts.inputmode;
+            el.setAttribute("inputmode", opts.inputmode);
+        }
+
+
+        if (isSupported === true) {
+            opts.showMaskOnFocus = opts.showMaskOnFocus && ["cc-number", "cc-exp"].indexOf(el.autocomplete) === -1;
+            if (_environment__WEBPACK_IMPORTED_MODULE_4__.iphone) {
+                //selecting the caret shows as a selection on iphone
+                opts.insertModeVisual = false;
+                //disable autocorrect
+                el.setAttribute("autocorrect", "off");
+            }
+
+            //bind events
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "submit", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.submitEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "reset", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.resetEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "blur", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.blurEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "focus", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.focusEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "invalid", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.invalidEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "click", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.clickEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "mouseleave", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.mouseleaveEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "mouseenter", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.mouseenterEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "paste", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.pasteEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "cut", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.cutEvent);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "complete", opts.oncomplete);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "incomplete", opts.onincomplete);
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "cleared", opts.oncleared);
+            if (opts.inputEventOnly !== true) {
+                _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "keydown", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.keyEvent);
+            }
+            if (_environment__WEBPACK_IMPORTED_MODULE_4__.mobile || opts.inputEventOnly) {
+                el.removeAttribute("maxLength");
+            }
+            _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "input", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.inputFallBackEvent);
+            // EventRuler.on(el, "beforeinput", EventHandlers.beforeInputEvent); //https://github.com/w3c/input-events - to implement
+        }
+        _eventruler__WEBPACK_IMPORTED_MODULE_3__.EventRuler.on(el, "setvalue", _eventhandlers__WEBPACK_IMPORTED_MODULE_6__.EventHandlers.setValueEvent);
+
+        //apply mask
+        _positioning__WEBPACK_IMPORTED_MODULE_1__.getBufferTemplate.call(inputmask).join(""); //initialize the buffer and getmasklength
+        inputmask.undoValue = inputmask._valueGet(true);
+        var activeElement = (el.inputmask.shadowRoot || el.ownerDocument).activeElement;
+        if (el.inputmask._valueGet(true) !== "" || opts.clearMaskOnLostFocus === false || activeElement === el) {
+            (0,_inputHandling__WEBPACK_IMPORTED_MODULE_2__.applyInputValue)(el, el.inputmask._valueGet(true), opts);
+            var buffer = _positioning__WEBPACK_IMPORTED_MODULE_1__.getBuffer.call(inputmask).slice();
+            if (_validation__WEBPACK_IMPORTED_MODULE_5__.isComplete.call(inputmask, buffer) === false) {
+                if (opts.clearIncomplete) {
+                    _positioning__WEBPACK_IMPORTED_MODULE_1__.resetMaskSet.call(inputmask);
+                }
+            }
+            if (opts.clearMaskOnLostFocus && activeElement !== el) {
+                if (_positioning__WEBPACK_IMPORTED_MODULE_1__.getLastValidPosition.call(inputmask) === -1) {
+                    buffer = [];
+                } else {
+                    _inputHandling__WEBPACK_IMPORTED_MODULE_2__.clearOptionalTail.call(inputmask, buffer);
+                }
+            }
+            if (opts.clearMaskOnLostFocus === false || (opts.showMaskOnFocus && activeElement === el) || el.inputmask._valueGet(true) !== "") {
+                (0,_inputHandling__WEBPACK_IMPORTED_MODULE_2__.writeBuffer)(el, buffer);
+            }
+            if (activeElement === el) { //position the caret when in focus
+                _positioning__WEBPACK_IMPORTED_MODULE_1__.caret.call(inputmask, el, _positioning__WEBPACK_IMPORTED_MODULE_1__.seekNext.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_1__.getLastValidPosition.call(inputmask)));
+            }
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/masktoken.js":
+/*!*************************************************!*\
+  !*** ./node_modules/inputmask/lib/masktoken.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* export default binding */ __WEBPACK_DEFAULT_EXPORT__; }
+/* harmony export */ });
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(isGroup, isOptional, isQuantifier, isAlternator) {
+	this.matches = [];
+	this.openGroup = isGroup || false;
+	this.alternatorGroup = false;
+	this.isGroup = isGroup || false;
+	this.isOptional = isOptional || false;
+	this.isQuantifier = isQuantifier || false;
+	this.isAlternator = isAlternator || false;
+	this.quantifier = {
+		min: 1,
+		max: 1
+	};
+}
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/positioning.js":
+/*!***************************************************!*\
+  !*** ./node_modules/inputmask/lib/positioning.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "caret": function() { return /* binding */ caret; },
+/* harmony export */   "determineLastRequiredPosition": function() { return /* binding */ determineLastRequiredPosition; },
+/* harmony export */   "determineNewCaretPosition": function() { return /* binding */ determineNewCaretPosition; },
+/* harmony export */   "getBuffer": function() { return /* binding */ getBuffer; },
+/* harmony export */   "getBufferTemplate": function() { return /* binding */ getBufferTemplate; },
+/* harmony export */   "getLastValidPosition": function() { return /* binding */ getLastValidPosition; },
+/* harmony export */   "isMask": function() { return /* binding */ isMask; },
+/* harmony export */   "resetMaskSet": function() { return /* binding */ resetMaskSet; },
+/* harmony export */   "seekNext": function() { return /* binding */ seekNext; },
+/* harmony export */   "seekPrevious": function() { return /* binding */ seekPrevious; },
+/* harmony export */   "translatePosition": function() { return /* binding */ translatePosition; }
+/* harmony export */ });
+/* harmony import */ var _validation_tests__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validation-tests */ "./node_modules/inputmask/lib/validation-tests.js");
+/* harmony import */ var _validation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validation */ "./node_modules/inputmask/lib/validation.js");
+
+
+
+
+
+//tobe put on prototype?
+function caret(input, begin, end, notranslate, isDelete) {
+    const inputmask = this,
+        opts = this.opts;
+
+    var range;
+    if (begin !== undefined) {
+        if (Array.isArray(begin)) {
+            end = inputmask.isRTL ? begin[0] : begin[1];
+            begin = inputmask.isRTL ? begin[1] : begin[0];
+        }
+        if (begin.begin !== undefined) {
+            end = inputmask.isRTL ? begin.begin : begin.end;
+            begin = inputmask.isRTL ? begin.end : begin.begin;
+        }
+        if (typeof begin === "number") {
+            begin = notranslate ? begin : translatePosition.call(inputmask, begin);
+            end = notranslate ? end : translatePosition.call(inputmask, end);
+            end = (typeof end == "number") ? end : begin;
+            // if (!$(input).is(":visible")) {
+            // 	return;
+            // }
+
+            var scrollCalc = parseInt(((input.ownerDocument.defaultView || window).getComputedStyle ? (input.ownerDocument.defaultView || window).getComputedStyle(input, null) : input.currentStyle).fontSize) * end;
+            input.scrollLeft = scrollCalc > input.scrollWidth ? scrollCalc : 0;
+            input.inputmask.caretPos = {begin: begin, end: end}; //track caret internally
+            if (opts.insertModeVisual && opts.insertMode === false && begin === end) {
+                if (!isDelete) {
+                    end++; //set visualization for insert/overwrite mode
+                }
+            }
+            if (input === (input.inputmask.shadowRoot || input.ownerDocument).activeElement) {
+                if ("setSelectionRange" in input) {
+                    input.setSelectionRange(begin, end);
+                } else if (window.getSelection) {
+                    range = document.createRange();
+                    if (input.firstChild === undefined || input.firstChild === null) {
+                        var textNode = document.createTextNode("");
+                        input.appendChild(textNode);
+                    }
+                    range.setStart(input.firstChild, begin < input.inputmask._valueGet().length ? begin : input.inputmask._valueGet().length);
+                    range.setEnd(input.firstChild, end < input.inputmask._valueGet().length ? end : input.inputmask._valueGet().length);
+                    range.collapse(true);
+                    var sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                    //input.focus();
+                } else if (input.createTextRange) {
+                    range = input.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd("character", end);
+                    range.moveStart("character", begin);
+                    range.select();
+                }
+            }
+        }
+    } else {
+        if ("selectionStart" in input && "selectionEnd" in input) {
+            begin = input.selectionStart;
+            end = input.selectionEnd;
+        } else if (window.getSelection) {
+            range = window.getSelection().getRangeAt(0);
+            if (range.commonAncestorContainer.parentNode === input || range.commonAncestorContainer === input) {
+                begin = range.startOffset;
+                end = range.endOffset;
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            begin = 0 - range.duplicate().moveStart("character", -input.inputmask._valueGet().length);
+            end = begin + range.text.length;
+        }
+
+        // if (opts.insertModeVisual && opts.insertMode === false && begin === (end - 1)) end--; //correct caret for insert/overwrite mode
+
+        /*eslint-disable consistent-return */
+        return {
+            "begin": notranslate ? begin : translatePosition.call(inputmask, begin),
+            "end": notranslate ? end : translatePosition.call(inputmask, end)
+        };
+        /*eslint-enable consistent-return */
+    }
+}
+
+//tobe put on prototype?
+function determineLastRequiredPosition(returnDefinition) {
+    const inputmask = this, {maskset, dependencyLib: $} = inputmask;
+
+    var buffer = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getMaskTemplate.call(inputmask, true, getLastValidPosition.call(inputmask), true, true),
+        bl = buffer.length,
+        pos, lvp = getLastValidPosition.call(inputmask),
+        positions = {},
+        lvTest = maskset.validPositions[lvp],
+        ndxIntlzr = lvTest !== undefined ? lvTest.locator.slice() : undefined,
+        testPos;
+    for (pos = lvp + 1; pos < buffer.length; pos++) {
+        testPos = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTestTemplate.call(inputmask, pos, ndxIntlzr, pos - 1);
+        ndxIntlzr = testPos.locator.slice();
+        positions[pos] = $.extend(true, {}, testPos);
+    }
+
+    var lvTestAlt = lvTest && lvTest.alternation !== undefined ? lvTest.locator[lvTest.alternation] : undefined;
+    for (pos = bl - 1; pos > lvp; pos--) {
+        testPos = positions[pos];
+        if ((testPos.match.optionality ||
+                (testPos.match.optionalQuantifier && testPos.match.newBlockMarker) ||
+                (lvTestAlt &&
+                    (
+                        (lvTestAlt !== positions[pos].locator[lvTest.alternation] && testPos.match.static != true) ||
+                        (testPos.match.static === true &&
+                            testPos.locator[lvTest.alternation] &&
+                            _validation__WEBPACK_IMPORTED_MODULE_1__.checkAlternationMatch.call(inputmask, testPos.locator[lvTest.alternation].toString().split(","), lvTestAlt.toString().split(",")) &&
+                            _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTests.call(inputmask, pos)[0].def !== "")
+                    )
+                )) &&
+            buffer[pos] === _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, pos, testPos.match)) {
+            bl--;
+        } else {
+            break;
+        }
+    }
+    return returnDefinition ? {
+        "l": bl,
+        "def": positions[bl] ? positions[bl].match : undefined
+    } : bl;
+}
+
+//tobe put on prototype?
+function determineNewCaretPosition(selectedCaret, tabbed, positionCaretOnClick) {
+    const inputmask = this, {maskset, opts} = inputmask;
+
+    function doRadixFocus(clickPos) {
+        if (opts.radixPoint !== "" && opts.digits !== 0) {
+            var vps = maskset.validPositions;
+            if (vps[clickPos] === undefined || (vps[clickPos].input === _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, clickPos))) {
+                if (clickPos < seekNext.call(inputmask, -1)) return true;
+                var radixPos = getBuffer.call(inputmask).indexOf(opts.radixPoint);
+                if (radixPos !== -1) {
+                    for (let vp = 0, vpl = vps.length; vp < vpl; vp++) {
+                        if (vps[vp] && radixPos < vp && vps[vp].input !== _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, vp)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    if (tabbed) {
+        if (inputmask.isRTL) {
+            selectedCaret.end = selectedCaret.begin;
+        } else {
+            selectedCaret.begin = selectedCaret.end;
+        }
+    }
+    if (selectedCaret.begin === selectedCaret.end) {
+        positionCaretOnClick = positionCaretOnClick || opts.positionCaretOnClick;
+        switch (positionCaretOnClick) {
+            case "none":
+                break;
+            case "select":
+                selectedCaret = {begin: 0, end: getBuffer.call(inputmask).length};
+                break;
+            case "ignore":
+                selectedCaret.end = selectedCaret.begin = seekNext.call(inputmask, getLastValidPosition.call(inputmask));
+                break;
+            case "radixFocus":
+                if (inputmask.clicked > 1 && maskset.validPositions.length == 0)
+                    break;
+                if (doRadixFocus(selectedCaret.begin)) {
+                    var radixPos = getBuffer.call(inputmask).join("").indexOf(opts.radixPoint);
+                    selectedCaret.end = selectedCaret.begin = opts.numericInput ? seekNext.call(inputmask, radixPos) : radixPos;
+                    break;
+                } //fallback to lvp
+            // eslint-disable-next-line no-fallthrough
+            default: //lvp:
+                var clickPosition = selectedCaret.begin,
+                    lvclickPosition = getLastValidPosition.call(inputmask, clickPosition, true),
+                    lastPosition = seekNext.call(inputmask, (lvclickPosition === -1 && !isMask.call(inputmask, 0)) ? -1 : lvclickPosition);
+
+                if (clickPosition <= lastPosition) {
+                    selectedCaret.end = selectedCaret.begin = !isMask.call(inputmask, clickPosition, false, true) ? seekNext.call(inputmask, clickPosition) : clickPosition;
+                } else {
+                    var lvp = maskset.validPositions[lvclickPosition],
+                        tt = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTestTemplate.call(inputmask, lastPosition, lvp ? lvp.match.locator : undefined, lvp),
+                        placeholder = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, lastPosition, tt.match);
+                    if ((placeholder !== "" && getBuffer.call(inputmask)[lastPosition] !== placeholder && tt.match.optionalQuantifier !== true && tt.match.newBlockMarker !== true) || (!isMask.call(inputmask, lastPosition, opts.keepStatic, true) && tt.match.def === placeholder)) {
+                        var newPos = seekNext.call(inputmask, lastPosition);
+                        if (clickPosition >= newPos || clickPosition === lastPosition) {
+                            lastPosition = newPos;
+                        }
+                    }
+                    selectedCaret.end = selectedCaret.begin = lastPosition;
+                }
+        }
+
+        return selectedCaret;
+    }
+}
+
+
+//tobe put on prototype?
+function getBuffer(noCache) {
+    const inputmask = this, {maskset} = inputmask;
+
+    if (maskset.buffer === undefined || noCache === true) {
+        maskset.buffer = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getMaskTemplate.call(inputmask, true, getLastValidPosition.call(inputmask), true);
+        if (maskset._buffer === undefined) maskset._buffer = maskset.buffer.slice();
+    }
+    return maskset.buffer;
+}
+
+//tobe put on prototype?
+function getBufferTemplate() {
+    const inputmask = this, maskset = this.maskset;
+
+    if (maskset._buffer === undefined) {
+        //generate template
+        maskset._buffer = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getMaskTemplate.call(inputmask, false, 1);
+        if (maskset.buffer === undefined) maskset.buffer = maskset._buffer.slice();
+    }
+    return maskset._buffer;
+}
+
+//tobe put on prototype?
+function getLastValidPosition(closestTo, strict, validPositions) {
+    const maskset = this.maskset;
+
+    var before = -1,
+        after = -1,
+        valids = validPositions || maskset.validPositions; //for use in valhook ~ context switch
+    if (closestTo === undefined) closestTo = -1;
+    for (var psNdx = 0, vpl = valids.length; psNdx < vpl; psNdx++) {
+        if (valids[psNdx] && (strict || valids[psNdx].generatedInput !== true)) {
+            if (psNdx <= closestTo) before = psNdx;
+            if (psNdx >= closestTo) after = psNdx;
+        }
+    }
+    return (before === -1 || before == closestTo) ? after : after == -1 ? before : (closestTo - before) < (after - closestTo) ? before : after;
+}
+
+//tobe put on prototype?
+function isMask(pos, strict, fuzzy) {
+    const inputmask = this, maskset = this.maskset;
+
+    var test = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTestTemplate.call(inputmask, pos).match;
+    if (test.def === "") test = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, pos).match;
+
+    if (test.static !== true) {
+        return test.fn;
+    }
+    if (fuzzy === true && (maskset.validPositions[pos] !== undefined && maskset.validPositions[pos].generatedInput !== true)) {
+        return true;
+    }
+
+    if (strict !== true && pos > -1) {
+        if (fuzzy) { //check on the number of tests
+            var tests = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTests.call(inputmask, pos);
+            return tests.length > (1 + (tests[tests.length - 1].match.def === "" ? 1 : 0));
+        }
+        //else based on the template
+        var testTemplate = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.determineTestTemplate.call(inputmask, pos, _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTests.call(inputmask, pos));
+        var testPlaceHolder = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, pos, testTemplate.match);
+        return testTemplate.match.def !== testPlaceHolder;
+
+    }
+    return false;
+}
+
+//tobe put on prototype?
+function resetMaskSet(soft) {
+    const maskset = this.maskset;
+
+    maskset.buffer = undefined;
+    if (soft !== true) {
+        maskset.validPositions = [];
+        maskset.p = 0;
+    }
+}
+
+//tobe put on prototype?
+function seekNext(pos, newBlock, fuzzy) {
+    const inputmask = this;
+
+    if (fuzzy === undefined) fuzzy = true;
+    var position = pos + 1;
+    while (_validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, position).match.def !== "" &&
+    ((newBlock === true && (_validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, position).match.newBlockMarker !== true || !isMask.call(inputmask, position, undefined, true))) ||
+        (newBlock !== true && !isMask.call(inputmask, position, undefined, fuzzy)))) {
+        position++;
+    }
+    return position;
+}
+
+//tobe put on prototype?
+function seekPrevious(pos, newBlock) {
+    const inputmask = this;
+
+    var position = pos - 1;
+    if (pos <= 0) return 0;
+
+    while (position > 0 &&
+    ((newBlock === true && (_validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, position).match.newBlockMarker !== true || !isMask.call(inputmask, position, undefined, true))) ||
+        (newBlock !== true && !isMask.call(inputmask, position, undefined, true)))) {
+        position--;
+    }
+    return position;
+}
+
+//tobe put on prototype?
+function translatePosition(pos) {
+    const inputmask = this,
+        opts = this.opts,
+        el = this.el;
+
+    if (inputmask.isRTL && typeof pos === "number" && (!opts.greedy || opts.placeholder !== "") && el) {
+        pos = inputmask._valueGet().length - pos;
+        if (pos < 0) pos = 0;
+    }
+    return pos;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/validation-tests.js":
+/*!********************************************************!*\
+  !*** ./node_modules/inputmask/lib/validation-tests.js ***!
+  \********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "determineTestTemplate": function() { return /* binding */ determineTestTemplate; },
+/* harmony export */   "getDecisionTaker": function() { return /* binding */ getDecisionTaker; },
+/* harmony export */   "getMaskTemplate": function() { return /* binding */ getMaskTemplate; },
+/* harmony export */   "getPlaceholder": function() { return /* binding */ getPlaceholder; },
+/* harmony export */   "getTest": function() { return /* binding */ getTest; },
+/* harmony export */   "getTestTemplate": function() { return /* binding */ getTestTemplate; },
+/* harmony export */   "getTests": function() { return /* binding */ getTests; },
+/* harmony export */   "isSubsetOf": function() { return /* binding */ isSubsetOf; }
+/* harmony export */ });
+/* harmony import */ var _inputmask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputmask */ "./node_modules/inputmask/lib/inputmask.js");
+
+
+
+function getLocator(tst, align) { //need to align the locators to be correct
+    var locator = (tst.alternation != undefined ? tst.mloc[getDecisionTaker(tst)] : tst.locator).join("");
+    if (locator !== "") while (locator.length < align) locator += "0";
+    return locator;
+}
+
+function getDecisionTaker(tst) {
+    var decisionTaker = tst.locator[tst.alternation];
+    if (typeof decisionTaker == "string" && decisionTaker.length > 0) { //no decision taken ~ take first one as decider
+        decisionTaker = decisionTaker.split(",")[0];
+    }
+    return decisionTaker !== undefined ? decisionTaker.toString() : "";
+}
+
+//tobe put on prototype?
+function getPlaceholder(pos, test, returnPL) {
+    const inputmask = this,
+        opts = this.opts,
+        maskset = this.maskset;
+
+    test = test || getTest.call(inputmask, pos).match;
+    if (test.placeholder !== undefined || returnPL === true) {
+        return typeof test.placeholder === "function" ? test.placeholder(opts) : test.placeholder;
+    } else if (test.static === true) {
+        if (pos > -1 && maskset.validPositions[pos] === undefined) {
+            var tests = getTests.call(inputmask, pos),
+                staticAlternations = [],
+                prevTest;
+            if (tests.length > 1 + (tests[tests.length - 1].match.def === "" ? 1 : 0)) {
+                for (var i = 0; i < tests.length; i++) {
+                    if (tests[i].match.def !== "" && tests[i].match.optionality !== true && tests[i].match.optionalQuantifier !== true &&
+                        (tests[i].match.static === true || (prevTest === undefined || tests[i].match.fn.test(prevTest.match.def, maskset, pos, true, opts) !== false))) {
+                        staticAlternations.push(tests[i]);
+                        if (tests[i].match.static === true) prevTest = tests[i];
+                        if (staticAlternations.length > 1) {
+                            if (/[0-9a-bA-Z]/.test(staticAlternations[0].match.def)) {
+                                return opts.placeholder.charAt(pos % opts.placeholder.length);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return test.def;
+    }
+
+    return opts.placeholder.charAt(pos % opts.placeholder.length);
+}
+
+//tobe put on prototype?
+function getMaskTemplate(baseOnInput, minimalPos, includeMode, noJit, clearOptionalTail) {
+    //includeMode true => input, undefined => placeholder, false => mask
+
+    var inputmask = this,
+        opts = this.opts,
+        maskset = this.maskset;
+
+
+    var greedy = opts.greedy;
+    if (clearOptionalTail && opts.greedy) {
+        opts.greedy = false;
+        inputmask.maskset.tests = {};
+    }
+    minimalPos = minimalPos || 0;
+    var maskTemplate = [],
+        ndxIntlzr, pos = 0,
+        test, testPos, jitRenderStatic;
+    do {
+        if (baseOnInput === true && maskset.validPositions[pos]) {
+            testPos = (clearOptionalTail && maskset.validPositions[pos].match.optionality
+                && maskset.validPositions[pos + 1] === undefined
+                && (maskset.validPositions[pos].generatedInput === true || (maskset.validPositions[pos].input == opts.skipOptionalPartCharacter && pos > 0)))
+                ? determineTestTemplate.call(inputmask, pos, getTests.call(inputmask, pos, ndxIntlzr, pos - 1))
+                : maskset.validPositions[pos];
+            test = testPos.match;
+            ndxIntlzr = testPos.locator.slice();
+            maskTemplate.push(includeMode === true ? testPos.input : includeMode === false ? test.nativeDef : getPlaceholder.call(inputmask, pos, test));
+        } else {
+            testPos = getTestTemplate.call(inputmask, pos, ndxIntlzr, pos - 1);
+            test = testPos.match;
+            ndxIntlzr = testPos.locator.slice();
+            var jitMasking = noJit === true ? false : (opts.jitMasking !== false ? opts.jitMasking : test.jit);
+            //check for groupSeparator is a hack for the numerics as we don't want the render of the groupSeparator beforehand
+            jitRenderStatic = ((jitRenderStatic && test.static && test.def !== opts.groupSeparator && test.fn === null) || (maskset.validPositions[pos - 1] && test.static && test.def !== opts.groupSeparator && test.fn === null)) && maskset.tests[pos] /*&& maskset.tests[pos].length === 1*/;
+            if (jitRenderStatic || jitMasking === false || jitMasking === undefined /*|| pos < lvp*/ || (typeof jitMasking === "number" && isFinite(jitMasking) && jitMasking > pos)) {
+                maskTemplate.push(includeMode === false ? test.nativeDef : getPlaceholder.call(inputmask, maskTemplate.length, test));
+            } else {
+                jitRenderStatic = false;
+            }
+        }
+
+        pos++;
+    } while ((test.static !== true || test.def !== "") || minimalPos > pos);
+    if (maskTemplate[maskTemplate.length - 1] === "") {
+        maskTemplate.pop(); //drop the last one which is empty
+    }
+    if (includeMode !== false || //do not alter the masklength when just retrieving the maskdefinition
+        maskset.maskLength === undefined) //just make sure the maskLength gets initialized in all cases (needed for isValid)
+    {
+        maskset.maskLength = pos - 1;
+    }
+
+    opts.greedy = greedy;
+    return maskTemplate;
+}
+
+//tobe put on prototype?
+function getTestTemplate(pos, ndxIntlzr, tstPs) {
+    var inputmask = this,
+        maskset = this.maskset;
+
+    return maskset.validPositions[pos] || determineTestTemplate.call(inputmask, pos, getTests.call(inputmask, pos, ndxIntlzr ? ndxIntlzr.slice() : ndxIntlzr, tstPs));
+}
+
+//tobe put on prototype?
+function determineTestTemplate(pos, tests) {
+    var inputmask = this,
+        opts = this.opts,
+        lenghtOffset = 0;
+    var optionalityLevel = determineOptionalityLevel(pos, tests);
+    pos = pos > 0 ? pos - 1 : 0;
+    var altTest = getTest.call(inputmask, pos), targetLocator = getLocator(altTest), tstLocator, closest, bestMatch;
+    if (opts.greedy && tests.length > 1 && tests[tests.length - 1].match.def === "")
+        lenghtOffset = 1;
+    // console.log(" optionality = " + optionalityLevel);
+    // console.log(" - " + JSON.stringify(tests));
+    for (var ndx = 0; ndx < tests.length - lenghtOffset; ndx++) { //find best matching
+        var tst = tests[ndx];
+        tstLocator = getLocator(tst, targetLocator.length);
+        var distance = Math.abs(tstLocator - targetLocator);
+
+        if (closest === undefined
+            || (tstLocator !== "" && distance < closest)
+            || (bestMatch && !opts.greedy &&
+                (bestMatch.match.optionality && bestMatch.match.optionality - optionalityLevel > 0) &&
+                bestMatch.match.newBlockMarker === "master" &&
+                ((!tst.match.optionality || tst.match.optionality - optionalityLevel < 1) || !tst.match.newBlockMarker))
+            || (bestMatch && !opts.greedy && bestMatch.match.optionalQuantifier && !tst.match.optionalQuantifier)) {
+            closest = distance;
+            bestMatch = tst;
+        }
+    }
+    return bestMatch;
+}
+
+function determineOptionalityLevel(pos, tests) {
+    let optionalityLevel = 0, differentOptionalLevels = false;
+    tests.forEach(test => {
+        if (test.match.optionality) {
+            if (optionalityLevel !== 0 && optionalityLevel !== test.match.optionality)
+                differentOptionalLevels = true;
+            if (optionalityLevel === 0 || optionalityLevel > test.match.optionality) {
+                optionalityLevel = test.match.optionality;
+            }
+        }
+    });
+    if (optionalityLevel) {
+        if (pos == 0) optionalityLevel = 0;
+        else if (tests.length == 1) optionalityLevel = 0;
+        else if (!differentOptionalLevels) optionalityLevel = 0;
+    }
+    return optionalityLevel;
+}
+
+//tobe put on prototype?
+function getTest(pos, tests) {
+    var inputmask = this,
+        maskset = this.maskset;
+
+    if (maskset.validPositions[pos]) {
+        return maskset.validPositions[pos];
+    }
+    return (tests || getTests.call(inputmask, pos))[0];
+}
+
+function isSubsetOf(source, target, opts) {
+    function expand(pattern) {
+        var expanded = [], start = -1, end;
+        for (var i = 0, l = pattern.length; i < l; i++) {
+            if (pattern.charAt(i) === "-") {
+                end = pattern.charCodeAt(i + 1);
+                while (++start < end) expanded.push(String.fromCharCode(start));
+            } else {
+                start = pattern.charCodeAt(i);
+                expanded.push(pattern.charAt(i));
+            }
+        }
+        return expanded.join("");
+    }
+
+    if (source.match.def === target.match.nativeDef) return true;
+    if ((opts.regex || (source.match.fn instanceof RegExp && target.match.fn instanceof RegExp)) && source.match.static !== true && target.match.static !== true) { //is regex a subset
+        return expand(target.match.fn.toString().replace(/[[\]/]/g, "")).indexOf(expand(source.match.fn.toString().replace(/[[\]/]/g, ""))) !== -1;
+    }
+    return false;
+}
+
+//tobe put on prototype?
+function getTests(pos, ndxIntlzr, tstPs) {
+    var inputmask = this,
+        $ = this.dependencyLib,
+        maskset = this.maskset,
+        opts = this.opts,
+        el = this.el,
+        maskTokens = maskset.maskToken,
+        testPos = ndxIntlzr ? tstPs : 0,
+        ndxInitializer = ndxIntlzr ? ndxIntlzr.slice() : [0],
+        matches = [],
+        insertStop = false,
+        latestMatch,
+        cacheDependency = ndxIntlzr ? ndxIntlzr.join("") : "";
+
+    function resolveTestFromToken(maskToken, ndxInitializer, loopNdx, quantifierRecurse) { //ndxInitializer contains a set of indexes to speedup searches in the mtokens
+        function handleMatch(match, loopNdx, quantifierRecurse) {
+            function isFirstMatch(latestMatch, tokenGroup) {
+                var firstMatch = tokenGroup.matches.indexOf(latestMatch) === 0;
+                if (!firstMatch) {
+                    tokenGroup.matches.every(function (match, ndx) {
+                        if (match.isQuantifier === true) {
+                            firstMatch = isFirstMatch(latestMatch, tokenGroup.matches[ndx - 1]);
+                        } else if (Object.prototype.hasOwnProperty.call(match, "matches")) firstMatch = isFirstMatch(latestMatch, match);
+                        if (firstMatch) return false;
+
+                        return true;
+                    });
+                }
+                return firstMatch;
+            }
+
+            function resolveNdxInitializer(pos, alternateNdx, targetAlternation) {
+                var bestMatch, indexPos;
+
+                if (maskset.tests[pos] || maskset.validPositions[pos]) {
+                    (maskset.tests[pos] || [maskset.validPositions[pos]]).every(function (lmnt, ndx) {
+                        if (lmnt.mloc[alternateNdx]) {
+                            bestMatch = lmnt;
+                            return false; //break
+                        }
+                        var alternation = targetAlternation !== undefined ? targetAlternation : lmnt.alternation,
+                            ndxPos = lmnt.locator[alternation] !== undefined ? lmnt.locator[alternation].toString().indexOf(alternateNdx) : -1;
+                        if ((indexPos === undefined || ndxPos < indexPos) && ndxPos !== -1) {
+                            bestMatch = lmnt;
+                            indexPos = ndxPos;
+                        }
+
+                        return true;
+                    });
+                }
+                if (bestMatch) {
+                    var bestMatchAltIndex = bestMatch.locator[bestMatch.alternation];
+                    var locator = bestMatch.mloc[alternateNdx] || bestMatch.mloc[bestMatchAltIndex] || bestMatch.locator;
+                    return locator.slice((targetAlternation !== undefined ? targetAlternation : bestMatch.alternation) + 1);
+                } else {
+                    return targetAlternation !== undefined ? resolveNdxInitializer(pos, alternateNdx) : undefined;
+                }
+            }
+
+            function staticCanMatchDefinition(source, target) {
+                return source.match.static === true && target.match.static !== true ? target.match.fn.test(source.match.def, maskset, pos, false, opts, false) : false;
+            }
+
+            //mergelocators for retrieving the correct locator match when merging
+            function setMergeLocators(targetMatch, altMatch) {
+                var alternationNdx = targetMatch.alternation,
+                    shouldMerge = altMatch === undefined || (alternationNdx === altMatch.alternation &&
+                        targetMatch.locator[alternationNdx].toString().indexOf(altMatch.locator[alternationNdx]) === -1);
+                if (!shouldMerge && alternationNdx > altMatch.alternation) {
+                    for (var i = altMatch.alternation; i < alternationNdx; i++) {
+                        if (targetMatch.locator[i] !== altMatch.locator[i]) {
+                            alternationNdx = i;
+                            shouldMerge = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (shouldMerge) {
+                    targetMatch.mloc = targetMatch.mloc || {};
+                    var locNdx = targetMatch.locator[alternationNdx];
+                    if (locNdx === undefined) {
+                        targetMatch.alternation = undefined;
+                    } else {
+                        if (typeof locNdx === "string") locNdx = locNdx.split(",")[0];
+                        if (targetMatch.mloc[locNdx] === undefined) targetMatch.mloc[locNdx] = targetMatch.locator.slice();
+                        if (altMatch !== undefined) {
+                            for (var ndx in altMatch.mloc) {
+                                if (typeof ndx === "string") ndx = ndx.split(",")[0];
+                                if (targetMatch.mloc[ndx] === undefined) targetMatch.mloc[ndx] = altMatch.mloc[ndx];
+                            }
+                            targetMatch.locator[alternationNdx] = Object.keys(targetMatch.mloc).join(",");
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function isSameLevel(targetMatch, altMatch) {
+                if (targetMatch.locator.length !== altMatch.locator.length) {
+                    return false;
+                }
+                for (let locNdx = targetMatch.alternation + 1; locNdx < targetMatch.locator.length; locNdx++) {
+                    if (targetMatch.locator[locNdx] !== altMatch.locator[locNdx]) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function handleGroup() {
+                match = handleMatch(maskToken.matches[maskToken.matches.indexOf(match) + 1], loopNdx, quantifierRecurse);
+                if (match) return true;
+            }
+
+            function handleOptional() {
+                var optionalToken = match, mtchsNdx = matches.length;
+                match = resolveTestFromToken(match, ndxInitializer, loopNdx, quantifierRecurse);
+                if (matches.length > 0) { //check on matches.length instead of match to handle quantifier in a recursive call
+                    //mark optionality in matches
+                    matches.forEach(function (mtch, ndx) {
+                        if (ndx >= mtchsNdx) {
+                            mtch.match.optionality = mtch.match.optionality ? mtch.match.optionality + 1 : 1;
+                        }
+                    });
+                    latestMatch = matches[matches.length - 1].match;
+
+                    if (quantifierRecurse === undefined && isFirstMatch(latestMatch, optionalToken)) { //prevent loop see #698
+                        insertStop = true; //insert a stop
+                        testPos = pos; //match the position after the group
+                    } else {
+                        return match; //make the loop continue when it is deliberately by a quantifier
+                    }
+                }
+            }
+
+            function handleAlternator() {
+                inputmask.hasAlternator = true;
+                var alternateToken = match,
+                    malternateMatches = [],
+                    maltMatches,
+                    currentMatches = matches.slice(),
+                    loopNdxCnt = loopNdx.length,
+                    unMatchedAlternation = false;
+                var altIndex = ndxInitializer.length > 0 ? ndxInitializer.shift() : -1;
+                if (altIndex === -1 || typeof altIndex === "string") {
+                    var currentPos = testPos,
+                        ndxInitializerClone = ndxInitializer.slice(),
+                        altIndexArr = [],
+                        amndx;
+                    if (typeof altIndex == "string") {
+                        altIndexArr = altIndex.split(",");
+                    } else {
+                        for (amndx = 0; amndx < alternateToken.matches.length; amndx++) {
+                            altIndexArr.push(amndx.toString());
+                        }
+                    }
+
+                    if (maskset.excludes[pos] !== undefined) {
+                        var altIndexArrClone = altIndexArr.slice();
+                        for (var i = 0, exl = maskset.excludes[pos].length; i < exl; i++) {
+                            var excludeSet = maskset.excludes[pos][i].toString().split(":");
+                            if (loopNdx.length == excludeSet[1]) {
+                                altIndexArr.splice(altIndexArr.indexOf(excludeSet[0]), 1);
+                            }
+                        }
+                        if (altIndexArr.length === 0) { //fully alternated => reset
+                            delete maskset.excludes[pos];
+                            altIndexArr = altIndexArrClone;
+                        }
+                    }
+                    if (opts.keepStatic === true || (isFinite(parseInt(opts.keepStatic)) && currentPos >= opts.keepStatic)) altIndexArr = altIndexArr.slice(0, 1);
+                    for (var ndx = 0; ndx < altIndexArr.length; ndx++) {
+                        amndx = parseInt(altIndexArr[ndx]);
+                        matches = [];
+                        //set the correct ndxInitializer
+                        ndxInitializer = typeof altIndex === "string" ? resolveNdxInitializer(testPos, amndx, loopNdxCnt) || ndxInitializerClone.slice() : ndxInitializerClone.slice();
+                        var tokenMatch = alternateToken.matches[amndx];
+                        if (tokenMatch && handleMatch(tokenMatch, [amndx].concat(loopNdx), quantifierRecurse)) {
+                            match = true;
+                        } else {
+                            if (ndx === 0) {
+                                unMatchedAlternation = true;
+                            }
+                            if (tokenMatch && tokenMatch.matches && tokenMatch.matches.length > alternateToken.matches[0].matches.length) {
+                                break;
+                            }
+                        }
+
+                        maltMatches = matches.slice();
+                        testPos = currentPos;
+                        matches = [];
+
+                        //fuzzy merge matches
+                        for (var ndx1 = 0; ndx1 < maltMatches.length; ndx1++) {
+                            var altMatch = maltMatches[ndx1],
+                                dropMatch = false;
+                            altMatch.match.jit = altMatch.match.jit || unMatchedAlternation; //mark jit when there are unmatched alternations  ex: mask: "(a|aa)"
+                            altMatch.alternation = altMatch.alternation || loopNdxCnt;
+                            setMergeLocators(altMatch);
+                            for (var ndx2 = 0; ndx2 < malternateMatches.length; ndx2++) {
+                                var altMatch2 = malternateMatches[ndx2];
+                                if (typeof altIndex !== "string" || (altMatch.alternation !== undefined && altIndexArr.includes(altMatch.locator[altMatch.alternation].toString()))) {
+                                    if (altMatch.match.nativeDef === altMatch2.match.nativeDef) {
+                                        dropMatch = true;
+                                        setMergeLocators(altMatch2, altMatch);
+                                        break;
+                                    } else if (isSubsetOf(altMatch, altMatch2, opts)) {
+                                        if (setMergeLocators(altMatch, altMatch2)) {
+                                            dropMatch = true;
+                                            malternateMatches.splice(malternateMatches.indexOf(altMatch2), 0, altMatch);
+                                        }
+                                        break;
+                                    } else if (isSubsetOf(altMatch2, altMatch, opts)) {
+                                        setMergeLocators(altMatch2, altMatch);
+                                        break;
+                                    } else if (staticCanMatchDefinition(altMatch, altMatch2)) {
+                                        if (!isSameLevel(altMatch, altMatch2) && el.inputmask.userOptions.keepStatic === undefined) {
+                                            opts.keepStatic = true;
+                                        } else if (setMergeLocators(altMatch, altMatch2)) {
+                                            //insert match above general match
+                                            dropMatch = true;
+                                            malternateMatches.splice(malternateMatches.indexOf(altMatch2), 0, altMatch);
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!dropMatch) {
+                                malternateMatches.push(altMatch);
+                            }
+                        }
+                    }
+
+                    matches = currentMatches.concat(malternateMatches);
+                    testPos = pos;
+                    insertStop = matches.length > 0; //insert a stopelemnt when there is an alternate - needed for non-greedy option
+                    match = malternateMatches.length > 0; //set correct match state
+
+                    //cloneback
+                    ndxInitializer = ndxInitializerClone.slice();
+                } else {
+                    match = handleMatch(alternateToken.matches[altIndex] || maskToken.matches[altIndex], [altIndex].concat(loopNdx), quantifierRecurse);
+                }
+                if (match) return true;
+            }
+
+            function handleQuantifier() {
+                var qt = match, breakloop = false;
+                for (var qndx = (ndxInitializer.length > 0) ? ndxInitializer.shift() : 0; (qndx < (isNaN(qt.quantifier.max) ? qndx + 1 : qt.quantifier.max)) && testPos <= pos; qndx++) {
+                    var tokenGroup = maskToken.matches[maskToken.matches.indexOf(qt) - 1];
+                    match = handleMatch(tokenGroup, [qndx].concat(loopNdx), tokenGroup); //set the tokenGroup as quantifierRecurse marker
+                    if (match) {
+                        matches.forEach(function (mtch, ndx) {
+                            if (IsMatchOf(tokenGroup, mtch.match))
+                                latestMatch = mtch.match;
+                            else latestMatch = matches[matches.length - 1].match;
+
+                            //mark optionality
+                            //TODO FIX RECURSIVE QUANTIFIERS
+                            latestMatch.optionalQuantifier = qndx >= qt.quantifier.min;
+                            // console.log(pos + " " + qt.quantifier.min + " " + latestMatch.optionalQuantifier);
+                            //qndx + 1 as the index starts from 0
+                            latestMatch.jit = (qndx + 1) * (tokenGroup.matches.indexOf(latestMatch) + 1) > qt.quantifier.jit;
+                            if (latestMatch.optionalQuantifier && isFirstMatch(latestMatch, tokenGroup)) {
+                                insertStop = true;
+                                testPos = pos; //match the position after the group
+                                if (opts.greedy && maskset.validPositions[pos - 1] == undefined && qndx > qt.quantifier.min && ["*", "+"].indexOf(qt.quantifier.max) != -1) {
+                                    matches.pop();
+                                    cacheDependency = undefined;
+                                }
+                                breakloop = true; //stop quantifierloop && search for next possible match
+                                match = false; //mark match to false to make sure the loop in optionals continues
+                            }
+                            if (!breakloop && latestMatch.jit /*&& !latestMatch.optionalQuantifier*/) {
+                                //always set jitOffset, isvalid checks when to apply
+                                maskset.jitOffset[pos] = tokenGroup.matches.length - tokenGroup.matches.indexOf(latestMatch);
+                            }
+                        });
+                        if (breakloop) break; // search for next possible match
+                        return true;
+                    }
+                }
+            }
+
+            if (testPos > (pos + opts._maxTestPos)) {
+                throw "Inputmask: There is probably an error in your mask definition or in the code. Create an issue on github with an example of the mask you are using. " + maskset.mask;
+            }
+            if (testPos === pos && match.matches === undefined) {
+                matches.push({
+                    "match": match,
+                    "locator": loopNdx.reverse(),
+                    "cd": cacheDependency,
+                    "mloc": {}
+                });
+                if (match.optionality && quantifierRecurse === undefined &&
+                    ((opts.definitions && opts.definitions[match.nativeDef] && opts.definitions[match.nativeDef].optional) ||
+                        (_inputmask__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.definitions[match.nativeDef] && _inputmask__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.definitions[match.nativeDef].optional))) { //prevent loop see #698
+                    insertStop = true; //insert a stop
+                    testPos = pos; //match the position after the group
+                } else {
+                    return true;
+                }
+            } else if (match.matches !== undefined) {
+                if (match.isGroup && quantifierRecurse !== match) { //when a group pass along to the quantifier
+                    return handleGroup();
+                } else if (match.isOptional) {
+                    return handleOptional();
+                } else if (match.isAlternator) {
+                    return handleAlternator();
+                } else if (match.isQuantifier && quantifierRecurse !== maskToken.matches[maskToken.matches.indexOf(match) - 1]) {
+                    return handleQuantifier();
+                } else {
+                    match = resolveTestFromToken(match, ndxInitializer, loopNdx, quantifierRecurse);
+                    if (match) return true;
+                }
+            } else {
+                testPos++;
+            }
+        }
+
+        //the offset is set in the quantifierloop when git masking is used
+        for (var tndx = (ndxInitializer.length > 0 ? ndxInitializer.shift() : 0); tndx < maskToken.matches.length; tndx++) {
+            if (maskToken.matches[tndx].isQuantifier !== true) {
+                var match = handleMatch(maskToken.matches[tndx], [tndx].concat(loopNdx), quantifierRecurse);
+                if (match && testPos === pos) {
+                    return match;
+                } else if (testPos > pos) {
+                    break;
+                }
+            }
+        }
+    }
+
+    function IsMatchOf(tokenGroup, match) {
+        let isMatch = tokenGroup.matches.indexOf(match) != -1;
+        if (!isMatch) {
+            tokenGroup.matches.forEach((mtch, ndx) => {
+                if (mtch.matches !== undefined && !isMatch) {
+                    isMatch = IsMatchOf(mtch, match);
+                }
+            });
+        }
+        return isMatch;
+    }
+
+    function mergeLocators(pos, tests) {
+        let locator = [], alternation;
+        if (!Array.isArray(tests)) tests = [tests];
+
+        if (tests.length > 0) {
+            if (tests[0].alternation === undefined || opts.keepStatic === true) {
+                locator = determineTestTemplate.call(inputmask, pos, tests.slice()).locator.slice();
+                if (locator.length === 0) locator = tests[0].locator.slice();
+            } else {
+                tests.forEach(function (tst) {
+                    if (tst.def !== "") {
+                        if (locator.length === 0) {
+                            alternation = tst.alternation;
+                            locator = tst.locator.slice();
+                        } else {
+                            if (tst.locator[alternation] && locator[alternation].toString().indexOf(tst.locator[alternation]) === -1) {
+                                locator[alternation] += "," + tst.locator[alternation];
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        return locator;
+    }
+
+    if (pos > -1) {
+        if (ndxIntlzr === undefined) { //determine index initializer
+            var previousPos = pos - 1,
+                test;
+            while ((test = maskset.validPositions[previousPos] || maskset.tests[previousPos]) === undefined && previousPos > -1) {
+                previousPos--;
+            }
+            if (test !== undefined && previousPos > -1) {
+                ndxInitializer = mergeLocators(previousPos, test);
+                cacheDependency = ndxInitializer.join("");
+                testPos = previousPos;
+            }
+        }
+        if (maskset.tests[pos] && maskset.tests[pos][0].cd === cacheDependency) { //cacheDependency is set on all tests, just check on the first
+            return maskset.tests[pos];
+        }
+        for (var mtndx = ndxInitializer.shift(); mtndx < maskTokens.length; mtndx++) {
+            var match = resolveTestFromToken(maskTokens[mtndx], ndxInitializer, [mtndx]);
+            if ((match && testPos === pos) || testPos > pos) {
+                break;
+            }
+        }
+    }
+    if (matches.length === 0 || insertStop) {
+        matches.push({
+            match: {
+                fn: null,
+                static: true,
+                optionality: false,
+                casing: null,
+                def: "",
+                placeholder: ""
+            },
+            locator: [],
+            mloc: {},
+            cd: cacheDependency
+        });
+    }
+    var result;
+    if (ndxIntlzr !== undefined && maskset.tests[pos]) { //prioritize full tests for caching
+        result = $.extend(true, [], matches);
+    } else {
+        maskset.tests[pos] = $.extend(true, [], matches); //set a clone to prevent overwriting some props
+        result = maskset.tests[pos];
+    }
+
+    // console.log(pos + " - " + JSON.stringify(matches));
+    //cleanup optionality marking
+    matches.forEach(t => {
+        t.match.optionality = t.match.defOptionality || false;
+    });
+
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/inputmask/lib/validation.js":
+/*!**************************************************!*\
+  !*** ./node_modules/inputmask/lib/validation.js ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "alternate": function() { return /* binding */ alternate; },
+/* harmony export */   "checkAlternationMatch": function() { return /* binding */ checkAlternationMatch; },
+/* harmony export */   "handleRemove": function() { return /* binding */ handleRemove; },
+/* harmony export */   "isComplete": function() { return /* binding */ isComplete; },
+/* harmony export */   "isSelection": function() { return /* binding */ isSelection; },
+/* harmony export */   "isValid": function() { return /* binding */ isValid; },
+/* harmony export */   "refreshFromBuffer": function() { return /* binding */ refreshFromBuffer; },
+/* harmony export */   "revalidateMask": function() { return /* binding */ revalidateMask; }
+/* harmony export */ });
+/* harmony import */ var _validation_tests__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validation-tests */ "./node_modules/inputmask/lib/validation-tests.js");
+/* harmony import */ var _keycode_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./keycode.js */ "./node_modules/inputmask/lib/keycode.js");
+/* harmony import */ var _positioning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./positioning */ "./node_modules/inputmask/lib/positioning.js");
+/* harmony import */ var _eventhandlers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./eventhandlers */ "./node_modules/inputmask/lib/eventhandlers.js");
+
+
+
+
+
+
+
+//tobe put on prototype?
+function alternate(maskPos, c, strict, fromIsValid, rAltPos, selection) { //pos == true => generalize
+    const inputmask = this,
+        $ = this.dependencyLib,
+        opts = this.opts,
+        maskset = inputmask.maskset;
+
+    var validPsClone = $.extend(true, [], maskset.validPositions),
+        tstClone = $.extend(true, {}, maskset.tests),
+        lastAlt,
+        alternation,
+        isValidRslt = false, returnRslt = false,
+        altPos, prevAltPos, i, validPos,
+        decisionPos,
+        lAltPos = rAltPos !== undefined ? rAltPos : _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask), nextPos, input, begin, end;
+
+    if (selection) {
+        begin = selection.begin;
+        end = selection.end;
+        if (selection.begin > selection.end) {
+            begin = selection.end;
+            end = selection.begin;
+        }
+    }
+    if (lAltPos === -1 && rAltPos === undefined) { //do not recurse when already paste the beginning
+        lastAlt = 0;
+        prevAltPos = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, lastAlt);
+        alternation = prevAltPos.alternation;
+    } else {
+        //find last modified alternation
+        for (; lAltPos >= 0; lAltPos--) {
+            altPos = maskset.validPositions[lAltPos];
+            if (altPos && altPos.alternation !== undefined) {
+                if (lAltPos <= (maskPos || 0) && prevAltPos && prevAltPos.locator[altPos.alternation] !== altPos.locator[altPos.alternation]) {
+                    break;
+                }
+                lastAlt = lAltPos;
+                alternation = maskset.validPositions[lastAlt].alternation;
+                prevAltPos = altPos;
+            }
+        }
+    }
+
+    if (alternation !== undefined) {
+        decisionPos = parseInt(lastAlt);
+        maskset.excludes[decisionPos] = maskset.excludes[decisionPos] || [];
+        if (maskPos !== true) { //generalize
+            maskset.excludes[decisionPos].push((0,_validation_tests__WEBPACK_IMPORTED_MODULE_0__.getDecisionTaker)(prevAltPos) + ":" + prevAltPos.alternation);
+        }
+
+        var validInputs = [], resultPos = -1;
+        for (i = decisionPos; i < _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask, undefined, true) + 1; i++) {
+            if (resultPos === -1 && maskPos <= i && c !== undefined) {
+                validInputs.push(c);
+                resultPos = validInputs.length - 1;
+            }
+            validPos = maskset.validPositions[i];
+            if (validPos && validPos.generatedInput !== true && (selection === undefined || (i < begin || i >= end))) {
+                validInputs.push(validPos.input);
+            }
+            delete maskset.validPositions[i];
+        }
+        if (resultPos === -1 && c !== undefined) {
+            validInputs.push(c);
+            resultPos = validInputs.length - 1;
+        }
+
+        while (maskset.excludes[decisionPos] !== undefined && maskset.excludes[decisionPos].length < 10) {
+            // maskset.tests[decisionPos] = undefined; //clear decisionPos
+            maskset.tests = {};  //clear all
+            _positioning__WEBPACK_IMPORTED_MODULE_2__.resetMaskSet.call(inputmask, true); //clear getbuffer
+            isValidRslt = true;
+            for (i = 0; i < validInputs.length; i++) {
+                nextPos = isValidRslt.caret || (_positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask, undefined, true) + 1);
+                input = validInputs[i];
+                // nextPos = translatePosition.call(inputmask, nextPos);
+                if (!(isValidRslt = isValid.call(inputmask, nextPos, input, false, fromIsValid, true))) {
+                    break;
+                }
+                if (i === resultPos) {
+                    returnRslt = isValidRslt;
+                }
+                if (maskPos == true && isValidRslt) {  //return validposition on generalise
+                    returnRslt = {caretPos: i};
+                }
+            }
+            if (!isValidRslt) {
+                _positioning__WEBPACK_IMPORTED_MODULE_2__.resetMaskSet.call(inputmask);
+                prevAltPos = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, decisionPos);  //get the current decisionPos to exclude ~ needs to be before restoring the initial validation
+                //reset & revert
+                maskset.validPositions = $.extend(true, [], validPsClone);
+                maskset.tests = $.extend(true, {}, tstClone); //refresh tests after possible alternating
+                if (maskset.excludes[decisionPos]) {
+                    var decisionTaker = (0,_validation_tests__WEBPACK_IMPORTED_MODULE_0__.getDecisionTaker)(prevAltPos);
+                    if (maskset.excludes[decisionPos].indexOf(decisionTaker + ":" + prevAltPos.alternation) !== -1) {
+                        returnRslt = alternate.call(inputmask, maskPos, c, strict, fromIsValid, decisionPos - 1, selection);
+                        break;
+                    }
+                    maskset.excludes[decisionPos].push(decisionTaker + ":" + prevAltPos.alternation);
+                    for (i = decisionPos; i < _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask, undefined, true) + 1; i++) delete maskset.validPositions[i];
+                } else { //latest alternation
+                    returnRslt = alternate.call(inputmask, maskPos, c, strict, fromIsValid, decisionPos - 1, selection);
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+    }
+    //reset alternation excludes
+    if (!returnRslt || opts.keepStatic !== false) {
+        delete maskset.excludes[decisionPos];
+    }
+    return returnRslt;
+}
+
+function casing(elem, test, pos) {
+    const opts = this.opts,
+        maskset = this.maskset;
+
+    switch (opts.casing || test.casing) {
+        case "upper":
+            elem = elem.toUpperCase();
+            break;
+        case "lower":
+            elem = elem.toLowerCase();
+            break;
+        case "title":
+            var posBefore = maskset.validPositions[pos - 1];
+            if (pos === 0 || posBefore && posBefore.input === String.fromCharCode(_keycode_js__WEBPACK_IMPORTED_MODULE_1__.keyCode.Space)) {
+                elem = elem.toUpperCase();
+            } else {
+                elem = elem.toLowerCase();
+            }
+            break;
+        default:
+            if (typeof opts.casing === "function") {
+                var args = Array.prototype.slice.call(arguments);
+                args.push(maskset.validPositions);
+                elem = opts.casing.apply(this, args);
+            }
+    }
+
+    return elem;
+}
+
+//tobe put on prototype?
+function checkAlternationMatch(altArr1, altArr2, na) {
+    const opts = this.opts;
+
+    var altArrC = opts.greedy ? altArr2 : altArr2.slice(0, 1),
+        isMatch = false,
+        naArr = na !== undefined ? na.split(",") : [],
+        naNdx;
+
+    //remove no alternate indexes from alternation array
+    for (var i = 0; i < naArr.length; i++) {
+        if ((naNdx = altArr1.indexOf(naArr[i])) !== -1) {
+            altArr1.splice(naNdx, 1);
+        }
+    }
+
+    for (var alndx = 0; alndx < altArr1.length; alndx++) {
+        if (altArrC.includes(altArr1[alndx])) {
+            isMatch = true;
+            break;
+        }
+    }
+    return isMatch;
+}
+
+//tobe put on prototype?
+function handleRemove(input, c, pos, strict, fromIsValid) {
+    const inputmask = this, maskset = this.maskset, opts = this.opts;
+
+    if (opts.numericInput || inputmask.isRTL) {
+        if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Backspace) {
+            c = _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Delete;
+        } else if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Delete) {
+            c = _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Backspace;
+        }
+
+        if (inputmask.isRTL) {
+            var pend = pos.end;
+            pos.end = pos.begin;
+            pos.begin = pend;
+        }
+    }
+
+    var lvp = _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask, undefined, true);
+    if (pos.end >= _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask).length && lvp >= pos.end) { //handle numeric negate symbol offset, due to  dynamic jit masking
+        pos.end = lvp + 1;
+    }
+
+    if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Backspace) {
+        if ((pos.end - pos.begin < 1)) {
+            pos.begin = _positioning__WEBPACK_IMPORTED_MODULE_2__.seekPrevious.call(inputmask, pos.begin);
+        }
+    } else if (c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Delete) {
+        if (pos.begin === pos.end) {
+            pos.end = _positioning__WEBPACK_IMPORTED_MODULE_2__.isMask.call(inputmask, pos.end, true, true) ? pos.end + 1 : _positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, pos.end) + 1;
+        }
+    }
+    var offset;
+    if ((offset = revalidateMask.call(inputmask, pos)) !== false) {
+        if (strict !== true && opts.keepStatic !== false || (opts.regex !== null && _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, pos.begin).match.def.indexOf("|") !== -1)) { //TODO NEEDS BETTER CHECK WHEN TO ALTERNATE  ~ opts regex isn"t good enough
+            var result = alternate.call(inputmask, true);
+            if (result) {
+                var newPos = result.caret !== undefined ? result.caret : (result.pos ? _positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, result.pos.begin ? result.pos.begin : result.pos) : _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask, -1, true));
+                if (c !== _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Delete || pos.begin > newPos) {
+                    pos.begin == newPos;
+                }
+            }
+        }
+
+        if (strict !== true) {
+            maskset.p = c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Delete ? pos.begin + offset : pos.begin;
+            maskset.p = _positioning__WEBPACK_IMPORTED_MODULE_2__.determineNewCaretPosition.call(inputmask, {
+                begin: maskset.p,
+                end: maskset.p
+            }, false, opts.insertMode === false && c === _keycode_js__WEBPACK_IMPORTED_MODULE_1__.keys.Backspace ? "none" : undefined).begin;
+        }
+    }
+}
+
+//tobe put on prototype?
+function isComplete(buffer) { //return true / false / undefined (repeat *)
+    const inputmask = this, opts = this.opts, maskset = this.maskset;
+
+    if (typeof opts.isComplete === "function") return opts.isComplete(buffer, opts);
+    if (opts.repeat === "*") return undefined;
+    var complete = false,
+        lrp = _positioning__WEBPACK_IMPORTED_MODULE_2__.determineLastRequiredPosition.call(inputmask, true),
+        aml = _positioning__WEBPACK_IMPORTED_MODULE_2__.seekPrevious.call(inputmask, lrp.l);
+
+    if (lrp.def === undefined || lrp.def.newBlockMarker || lrp.def.optionality || lrp.def.optionalQuantifier) {
+        complete = true;
+        for (var i = 0; i <= aml; i++) {
+            var test = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTestTemplate.call(inputmask, i).match;
+            if ((test.static !== true && maskset.validPositions[i] === undefined && test.optionality !== true && test.optionalQuantifier !== true) || (test.static === true && buffer[i] !== _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, i, test))) {
+                complete = false;
+                break;
+            }
+        }
+    }
+    return complete;
+}
+
+function isSelection(posObj) {
+    const inputmask = this,
+        opts = this.opts, insertModeOffset = opts.insertMode ? 0 : 1;
+    return inputmask.isRTL ? (posObj.begin - posObj.end) > insertModeOffset : (posObj.end - posObj.begin) > insertModeOffset;
+}
+
+//tobe put on prototype?
+function isValid(pos, c, strict, fromIsValid, fromAlternate, validateOnly, fromCheckval) { //strict true ~ no correction or autofill
+    const inputmask = this,
+        $ = this.dependencyLib,
+        opts = this.opts,
+        maskset = inputmask.maskset;
+
+    strict = strict === true; //always set a value to strict to prevent possible strange behavior in the extensions
+
+    var maskPos = pos;
+    if (pos.begin !== undefined) { //position was a position object - used to handle a delete by typing over a selection
+        maskPos = inputmask.isRTL ? pos.end : pos.begin;
+    }
+
+    function processCommandObject(commandObj) {
+        if (commandObj !== undefined) {
+            if (commandObj.remove !== undefined) { //remove position(s)
+                if (!Array.isArray(commandObj.remove)) commandObj.remove = [commandObj.remove];
+                commandObj.remove.sort(function (a, b) {
+                    return inputmask.isRTL ? a.pos - b.pos : b.pos - a.pos;
+                }).forEach(function (lmnt) {
+                    revalidateMask.call(inputmask, {begin: lmnt, end: lmnt + 1});
+                });
+                commandObj.remove = undefined;
+            }
+            if (commandObj.insert !== undefined) { //insert position(s)
+                if (!Array.isArray(commandObj.insert)) commandObj.insert = [commandObj.insert];
+                commandObj.insert.sort(function (a, b) {
+                    return inputmask.isRTL ? b.pos - a.pos : a.pos - b.pos;
+                }).forEach(function (lmnt) {
+                    if (lmnt.c !== "") {
+                        isValid.call(inputmask, lmnt.pos, lmnt.c, lmnt.strict !== undefined ? lmnt.strict : true, lmnt.fromIsValid !== undefined ? lmnt.fromIsValid : fromIsValid);
+                    }
+                });
+                commandObj.insert = undefined;
+            }
+
+            if (commandObj.refreshFromBuffer && commandObj.buffer) {
+                var refresh = commandObj.refreshFromBuffer;
+                refreshFromBuffer.call(inputmask, refresh === true ? refresh : refresh.start, refresh.end, commandObj.buffer);
+                commandObj.refreshFromBuffer = undefined;
+            }
+
+            if (commandObj.rewritePosition !== undefined) {
+                maskPos = commandObj.rewritePosition;
+                // commandObj.rewritePosition = undefined;
+                commandObj = true;
+            }
+        }
+        return commandObj;
+    }
+
+    function _isValid(position, c, strict) {
+        var rslt = false;
+        _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTests.call(inputmask, position).every(function (tst, ndx) {
+            var test = tst.match;
+            //make sure the buffer is set and correct
+            _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask, true);
+            if (test.jit && maskset.validPositions[_positioning__WEBPACK_IMPORTED_MODULE_2__.seekPrevious.call(inputmask, position)] === undefined) //ignore if jit is not desirable
+            {
+                rslt = false;
+            } else {
+                //return is false or a json object => { pos: ??, c: ??} or true
+                rslt = test.fn != null ?
+                    test.fn.test(c, maskset, position, strict, opts, isSelection.call(inputmask, pos)) : (c === test.def || c === opts.skipOptionalPartCharacter) && test.def !== "" ? //non mask
+                        {
+                            c: _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, position, test, true) || test.def,
+                            pos: position
+                        } : false;
+            }
+            if (rslt !== false) {
+                var elem = rslt.c !== undefined ? rslt.c : c, validatedPos = position;
+                elem = (elem === opts.skipOptionalPartCharacter && test.static === true) ?
+                    (_validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, position, test, true) || test.def) : elem;
+
+                rslt = processCommandObject(rslt);
+
+                if (rslt !== true && rslt.pos !== undefined && rslt.pos !== position) { //their is a position offset
+                    validatedPos = rslt.pos;
+                }
+
+                if (rslt !== true && rslt.pos === undefined && rslt.c === undefined) {
+                    return false; //breakout if nothing to insert
+                }
+
+                if (revalidateMask.call(inputmask, pos, $.extend({}, tst, {
+                    "input": casing.call(inputmask, elem, test, validatedPos)
+                }), fromIsValid, validatedPos) === false) {
+                    rslt = false;
+                }
+                return false; //break from loop
+            }
+
+            return true;
+        });
+        return rslt;
+    }
+
+    var result = true,
+        positionsClone = $.extend(true, {}, maskset.validPositions); //clone the currentPositions
+
+    if (opts.keepStatic === false && maskset.excludes[maskPos] !== undefined && fromAlternate !== true && fromIsValid !== true) {
+        for (var i = maskPos; i < (inputmask.isRTL ? pos.begin : pos.end); i++) {
+            if (maskset.excludes[i] !== undefined) {
+                maskset.excludes[i] = undefined;
+                delete maskset.tests[i];
+            }
+        }
+    }
+
+    if (typeof opts.preValidation === "function" && fromIsValid !== true && validateOnly !== true) {
+        result = opts.preValidation.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask), maskPos, c, isSelection.call(inputmask, pos), opts, maskset, pos, strict || fromAlternate);
+        result = processCommandObject(result);
+    }
+    if (result === true) { //preValidation result
+        result = _isValid(maskPos, c, strict);
+        if ((!strict || fromIsValid === true) && result === false && validateOnly !== true) {
+            var currentPosValid = maskset.validPositions[maskPos];
+            if (currentPosValid && currentPosValid.match.static === true && (currentPosValid.match.def === c || c === opts.skipOptionalPartCharacter)) {
+                result = {
+                    "caret": _positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, maskPos)
+                };
+            } else {
+                if (opts.insertMode || maskset.validPositions[_positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, maskPos)] === undefined || pos.end > maskPos) { //does the input match on a further position?
+                    var skip = false;
+                    if (maskset.jitOffset[maskPos] && maskset.validPositions[_positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, maskPos)] === undefined) {
+                        result = isValid.call(inputmask, maskPos + maskset.jitOffset[maskPos], c, true, true);
+                        if (result !== false) {
+                            if (fromAlternate !== true) result.caret = maskPos;
+                            skip = true;
+                        }
+                    }
+                    if (pos.end > maskPos) {
+                        maskset.validPositions[maskPos] = undefined;
+                    }
+                    if (!skip && !_positioning__WEBPACK_IMPORTED_MODULE_2__.isMask.call(inputmask, maskPos, opts.keepStatic && maskPos === 0)) {
+                        for (var nPos = maskPos + 1, snPos = _positioning__WEBPACK_IMPORTED_MODULE_2__.seekNext.call(inputmask, maskPos, false, maskPos !== 0); nPos <= snPos; nPos++) {
+                            // if (!isMask(nPos, true)) {
+                            // 	continue;
+                            // }
+                            result = _isValid(nPos, c, strict);
+                            if (result !== false) {
+                                result = trackbackPositions.call(inputmask, maskPos, result.pos !== undefined ? result.pos : nPos) || result;
+                                maskPos = nPos;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (inputmask.hasAlternator && fromAlternate !== true && !strict) {
+            if (result === false && opts.keepStatic && (isComplete.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask)) || maskPos === 0)) { //try fuzzy alternator logic
+                result = alternate.call(inputmask, maskPos, c, strict, fromIsValid, undefined, pos);
+            } else if (isSelection.call(inputmask, pos) && maskset.tests[maskPos] && maskset.tests[maskPos].length > 1 && opts.keepStatic) { //selection clears an alternated keepstatic mask ~ #2189
+                result = alternate.call(inputmask, true);
+            } else if (result == true && opts.numericInput !== true && maskset.tests[maskPos] && maskset.tests[maskPos].length > 1 && _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask, undefined, true) > maskPos) {
+                // console.log("Alternating");
+                result = alternate.call(inputmask, true);
+            }
+        }
+
+        if (result === true) {
+            result = {
+                "pos": maskPos
+            };
+        }
+    }
+    if (typeof opts.postValidation === "function" && fromIsValid !== true && validateOnly !== true) {
+        var postResult = opts.postValidation.call(inputmask, _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask, true), pos.begin !== undefined ? (inputmask.isRTL ? pos.end : pos.begin) : pos, c, result, opts, maskset, strict, fromCheckval);
+        if (postResult !== undefined) {
+            result = postResult === true ? result : postResult;
+        }
+    }
+
+    if (result && result.pos === undefined) {
+        result.pos = maskPos;
+    }
+
+    if (result === false || validateOnly === true) {
+        _positioning__WEBPACK_IMPORTED_MODULE_2__.resetMaskSet.call(inputmask, true);
+        maskset.validPositions = $.extend(true, [], positionsClone); //revert validation changes
+    } else {
+        trackbackPositions.call(inputmask, undefined, maskPos, true);
+    }
+
+    var endResult = processCommandObject(result);
+    // console.log("returned result " + JSON.stringify(endResult));
+    if (inputmask.maxLength !== undefined) {
+        var buffer = _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask);
+        if (buffer.length > inputmask.maxLength && !fromIsValid) {
+            _positioning__WEBPACK_IMPORTED_MODULE_2__.resetMaskSet.call(inputmask, true);
+            maskset.validPositions = $.extend(true, [], positionsClone); //revert validation changes
+            endResult = false;
+        }
+    }
+    return endResult;
+}
+
+//tobe put on prototype?
+function positionCanMatchDefinition(pos, testDefinition, opts) {
+    const inputmask = this,
+        maskset = this.maskset;
+
+    var valid = false,
+        tests = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTests.call(inputmask, pos);
+    for (var tndx = 0; tndx < tests.length; tndx++) {
+        if (tests[tndx].match &&
+            ((tests[tndx].match["nativeDef"] === testDefinition.match[opts.shiftPositions ? "def" : "nativeDef"] && (!opts.shiftPositions || !testDefinition.match.static)) ||
+                tests[tndx].match["nativeDef"] === testDefinition.match["nativeDef"] ||
+                (opts.regex && !tests[tndx].match.static && tests[tndx].match.fn.test(testDefinition.input, maskset, pos, false, opts)))) {
+            valid = true;
+            break;
+        } else if (tests[tndx].match && tests[tndx].match["def"] === testDefinition.match["nativeDef"]) {
+            valid = undefined;
+            break;
+        }
+    }
+    if (valid === false) {
+        if (maskset.jitOffset[pos] !== undefined) {
+            valid = positionCanMatchDefinition.call(inputmask, pos + maskset.jitOffset[pos], testDefinition, opts);
+        }
+    }
+    return valid;
+}
+
+//tobe put on prototype?
+function refreshFromBuffer(start, end, buffer) {
+    const inputmask = this,
+        maskset = this.maskset,
+        opts = this.opts,
+        $ = this.dependencyLib;
+    // checkVal.call(inputmask, el, false, true, isRTL ? buffer.reverse() : buffer);
+    var i, p, skipOptionalPartCharacter = opts.skipOptionalPartCharacter,
+        bffr = inputmask.isRTL ? buffer.slice().reverse() : buffer;
+    opts.skipOptionalPartCharacter = "";
+    if (start === true) {
+        _positioning__WEBPACK_IMPORTED_MODULE_2__.resetMaskSet.call(inputmask);
+        maskset.tests = {}; //refresh tests after possible alternating
+        start = 0;
+        end = buffer.length;
+        p = _positioning__WEBPACK_IMPORTED_MODULE_2__.determineNewCaretPosition.call(inputmask, {begin: 0, end: 0}, false).begin;
+    } else {
+        for (i = start; i < end; i++) {
+            delete maskset.validPositions[i];
+        }
+        p = start;
+    }
+
+    var keypress = new $.Event("keypress");
+    for (i = start; i < end; i++) {
+        keypress.key = bffr[i].toString();
+        inputmask.ignorable = false; //make sure ignorable is ignored ;-)
+        var valResult = _eventhandlers__WEBPACK_IMPORTED_MODULE_3__.EventHandlers.keypressEvent.call(inputmask, keypress, true, false, false, p);
+        if (valResult !== false && valResult !== undefined) {
+            p = valResult.forwardPosition;
+        }
+    }
+
+    opts.skipOptionalPartCharacter = skipOptionalPartCharacter;
+}
+
+//tobe put on prototype?
+//fill in best positions according the current input
+function trackbackPositions(originalPos, newPos, fillOnly) {
+    const inputmask = this,
+        maskset = this.maskset,
+        $ = this.dependencyLib;
+
+    // console.log("trackbackPositions " + originalPos + " " + newPos);
+    if (originalPos === undefined) {
+        //find previous valid
+        for (originalPos = newPos - 1; originalPos > 0; originalPos--) {
+            if (maskset.validPositions[originalPos]) break;
+        }
+    }
+    for (var ps = originalPos; ps < newPos; ps++) {
+        if (maskset.validPositions[ps] === undefined && !_positioning__WEBPACK_IMPORTED_MODULE_2__.isMask.call(inputmask, ps, false)) {
+            var vp = ps == 0 ? _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, ps) : maskset.validPositions[ps - 1];
+            if (vp) {
+                var tests = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTests.call(inputmask, ps).slice();
+                if (tests[tests.length - 1].match.def === "") tests.pop();
+                var bestMatch = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.determineTestTemplate.call(inputmask, ps, tests), np;
+                if (bestMatch && (bestMatch.match.jit !== true || (bestMatch.match.newBlockMarker === "master" && (np = maskset.validPositions[ps + 1]) && np.match.optionalQuantifier === true))) {
+                    bestMatch = $.extend({}, bestMatch, {
+                        "input": _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getPlaceholder.call(inputmask, ps, bestMatch.match, true) || bestMatch.match.def
+                    });
+                    bestMatch.generatedInput = true;
+                    revalidateMask.call(inputmask, ps, bestMatch, true);
+
+                    if (fillOnly !== true) {
+                        //revalidate the new position to update the locator value
+                        var cvpInput = maskset.validPositions[newPos].input;
+                        maskset.validPositions[newPos] = undefined;
+                        return isValid.call(inputmask, newPos, cvpInput, true, true);
+                    }
+                }
+            }
+        }
+    }
+}
+
+//tobe put on prototype?
+function revalidateMask(pos, validTest, fromIsValid, validatedPos) {
+    const inputmask = this,
+        maskset = this.maskset,
+        opts = this.opts,
+        $ = this.dependencyLib;
+
+    function IsEnclosedStatic(pos, valids, selection) {
+        var posMatch = valids[pos];
+        if (posMatch !== undefined && posMatch.match.static === true && posMatch.match.optionality !== true && (valids[0] === undefined || valids[0].alternation === undefined)) {
+            var prevMatch = selection.begin <= pos - 1 ? valids[pos - 1] && valids[pos - 1].match.static === true && valids[pos - 1] : valids[pos - 1],
+                nextMatch = selection.end > pos + 1 ? valids[pos + 1] && valids[pos + 1].match.static === true && valids[pos + 1] : valids[pos + 1];
+            return prevMatch && nextMatch;
+        }
+        return false;
+    }
+
+    var offset = 0, begin = pos.begin !== undefined ? pos.begin : pos, end = pos.end !== undefined ? pos.end : pos,
+        valid = true;
+    if (pos.begin > pos.end) {
+        begin = pos.end;
+        end = pos.begin;
+    }
+
+    validatedPos = validatedPos !== undefined ? validatedPos : begin;
+    if (fromIsValid === undefined && (begin !== end || (opts.insertMode && maskset.validPositions[validatedPos] !== undefined) || validTest === undefined || validTest.match.optionalQuantifier || validTest.match.optionality)) {
+        //reposition & revalidate others
+        var positionsClone = $.extend(true, {}, maskset.validPositions),
+            lvp = _positioning__WEBPACK_IMPORTED_MODULE_2__.getLastValidPosition.call(inputmask, undefined, true),
+            i;
+        maskset.p = begin; //needed for alternated position after overtype selection
+
+        for (i = lvp; i >= begin; i--) {
+            delete maskset.validPositions[i];
+            if (validTest === undefined) delete maskset.tests[i + 1];
+        }
+
+        var j = validatedPos,
+            posMatch = j, t, canMatch, test;
+
+        if (validTest) {
+            maskset.validPositions[validatedPos] = $.extend(true, {}, validTest);
+            posMatch++;
+            j++;
+        }
+
+        for (i = validTest ? end : end - 1; i <= lvp; i++) {
+            if ((t = positionsClone[i]) !== undefined && t.generatedInput !== true &&
+                (i >= end || (i >= begin && IsEnclosedStatic(i, positionsClone, {
+                    begin: begin,
+                    end: end
+                })))) {
+                while (test = _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, posMatch), test.match.def !== "") { //loop needed to match further positions
+                    if ((canMatch = positionCanMatchDefinition.call(inputmask, posMatch, t, opts)) !== false || t.match.def === "+") { //validated match //we still need some hackery for the + validator (numeric alias)
+                        if (t.match.def === "+") _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask, true);
+                        var result = isValid.call(inputmask, posMatch, t.input, t.match.def !== "+", /*t.match.def !== "+"*/ true);
+                        valid = result !== false;
+                        j = (result.pos || posMatch) + 1;
+                        if (!valid && canMatch) break;
+                    } else {
+                        valid = false;
+                    }
+                    if (valid) {
+                        if (validTest === undefined && t.match.static && i === pos.begin) offset++;
+                        break;
+                    }
+                    if (!valid && _positioning__WEBPACK_IMPORTED_MODULE_2__.getBuffer.call(inputmask), posMatch > maskset.maskLength) {
+                        break;
+                    }
+                    posMatch++;
+                }
+                if (_validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, posMatch).match.def == "") {
+                    valid = false;
+                }
+                //restore position
+                posMatch = j;
+            }
+            if (!valid) break;
+        }
+        if (!valid) {
+            maskset.validPositions = $.extend(true, [], positionsClone);
+            _positioning__WEBPACK_IMPORTED_MODULE_2__.resetMaskSet.call(inputmask, true);
+            return false;
+        }
+    } else if (validTest && _validation_tests__WEBPACK_IMPORTED_MODULE_0__.getTest.call(inputmask, validatedPos).match.cd === validTest.match.cd) {
+        maskset.validPositions[validatedPos] = $.extend(true, {}, validTest);
+    }
+
+    _positioning__WEBPACK_IMPORTED_MODULE_2__.resetMaskSet.call(inputmask, true);
+    return offset;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@fancyapps/ui/dist/fancybox/fancybox.css":
+/*!***************************************************************!*\
+  !*** ./node_modules/@fancyapps/ui/dist/fancybox/fancybox.css ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/swiper/swiper-bundle.min.css":
 /*!***************************************************!*\
   !*** ./node_modules/swiper/swiper-bundle.min.css ***!
@@ -37,6 +6960,44 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "./src/assets/sprite/icon-cross.svg":
+/*!******************************************!*\
+  !*** ./src/assets/sprite/icon-cross.svg ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+      id: "icon-cross-usage",
+      viewBox: "0 0 17 16",
+      url: "/assets/sprite/" + "sprite.svg#icon-cross-usage",
+      toString: function () {
+        return this.url;
+      }
+    });
+
+/***/ }),
+
+/***/ "./src/assets/sprite/icon-file.svg":
+/*!*****************************************!*\
+  !*** ./src/assets/sprite/icon-file.svg ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+      id: "icon-file-usage",
+      viewBox: "0 0 13 14",
+      url: "/assets/sprite/" + "sprite.svg#icon-file-usage",
+      toString: function () {
+        return this.url;
+      }
+    });
 
 /***/ }),
 
@@ -135,6 +7096,98 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/js/form.js":
+/*!************************!*\
+  !*** ./src/js/form.js ***!
+  \************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/index.esm.js");
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    initForm()
+})
+
+const initForm = () => {
+    const form = document.querySelector('[data-form]')
+    if (!form) return;
+    const accept = form.querySelector('[data-form-accept]');
+    const submit = form.querySelector('button[type="submit"]');
+    const url = form.getAttribute('action')
+    const els = [...form.querySelectorAll('input'), ...form.querySelectorAll('textarea')]
+
+    submit.setAttribute('disabled', accept.checked);
+
+    accept.addEventListener('change', () => {
+        accept.checked
+            ? submit.removeAttribute('disabled')
+            : submit.setAttribute('disabled', accept.checked);
+    })
+
+    const getData = () => {
+        const data = new FormData()
+
+        els.forEach(el => {
+            if (el.checked) {
+                data.append(el.name, el.value)
+            } else if (el.type === 'text' || el.type === 'number' || el.type === 'date' || el.type === "tel" || el.type === 'email') {
+                data.append(el.name, el.value)
+            }
+        })
+
+        return data
+    }
+
+    const sendData = () => {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, getData())
+            .then(response => response.data)
+            .then(data => {
+                _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.close()
+                const title = document.querySelector('[data-modal-title]')
+                const text = document.querySelector('[data-modal-text]')
+                if (title || text) {
+                    title.textContent = 'Заявка отправлена';
+                    text.textContent = 'Мы свяжемся с вами в ближайшее время.'
+                }
+
+                _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.show([{
+                    src: '#accept',
+                    type: 'inline'
+                }])
+            })
+            .catch(error => {
+                _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.close()
+                const {message} = error;
+                const title = document.querySelector('[data-modal-title]')
+                const text = document.querySelector('[data-modal-text]')
+                if (title || text) {
+                    title.textContent = 'Ошибка';
+                    text.textContent = message;
+                }
+
+                _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.show([{
+                    src: '#accept',
+                    type: 'inline'
+                }])
+
+                console.error(error)
+            })
+    }
+
+    form.addEventListener('submit', (evt) => {
+        evt.preventDefault()
+        sendData()
+    })
+}
+
+/***/ }),
+
 /***/ "./src/js/header.js":
 /*!**************************!*\
   !*** ./src/js/header.js ***!
@@ -151,6 +7204,8 @@ class Header {
         this.el = el;
         this.topLine = document.querySelector('.top-line')
         this.topLineHeight = this.topLine.clientHeight;
+        this.burger = document.querySelector('[data-burger]');
+        this.mobileMenu = document.querySelector('[data-mobile-menu]')
         this.init()
     }
 
@@ -168,8 +7223,97 @@ class Header {
             this.el.style.top = `${this.topLineHeight - window.pageYOffset}px`;
         } else {
             this.el.style.top = 0;
+            this.mobileMenu.classList.remove('active')
+            this.burger.classList.remove('active')
         }
     }
+}
+
+/***/ }),
+
+/***/ "./src/js/inputmask.js":
+/*!*****************************!*\
+  !*** ./src/js/inputmask.js ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var inputmask_lib_inputmask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! inputmask/lib/inputmask */ "./node_modules/inputmask/lib/inputmask.js");
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    initMask()
+})
+
+const initMask = () => {
+    const tels = document.querySelectorAll('input[type="tel"]')
+
+    if (!tels) return;
+
+    tels.forEach(tel => {
+        (0,inputmask_lib_inputmask__WEBPACK_IMPORTED_MODULE_0__["default"])({mask: "+7 (999) 999-99-99"}).mask(tel);
+    })
+}
+
+/***/ }),
+
+/***/ "./src/js/mobile-menu.js":
+/*!*******************************!*\
+  !*** ./src/js/mobile-menu.js ***!
+  \*******************************/
+/***/ (function() {
+
+document.addEventListener('DOMContentLoaded', () => {
+    initMenu()
+})
+
+const initMenu = () => {
+    const burger = document.querySelector('[data-burger]');
+    const mobileMenu = document.querySelector('[data-mobile-menu]')
+    burger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active')
+        burger.classList.toggle('active')
+    })
+}
+
+/***/ }),
+
+/***/ "./src/js/modal.js":
+/*!*************************!*\
+  !*** ./src/js/modal.js ***!
+  \*************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/index.esm.js");
+/* harmony import */ var _fancyapps_ui_dist_fancybox_fancybox_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox/fancybox.css");
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    initModal()
+})
+
+const initModal = () => {
+    _fancyapps_ui__WEBPACK_IMPORTED_MODULE_0__.Fancybox.bind('[data-fancybox]', {})
+
+    const modals = document.querySelectorAll('[data-modal]');
+    if (!modals) return;
+
+    modals.forEach(modal => {
+        const content = modal.querySelector('[data-modal-content]')
+        const close = modal.querySelector('[data-modal-close]')
+
+        const closeModal = () => {
+            _fancyapps_ui__WEBPACK_IMPORTED_MODULE_0__.Fancybox.close()
+        }
+
+        modal.addEventListener('click', closeModal)
+        close.addEventListener('click', closeModal)
+        content.addEventListener('click', (evt) => evt.stopPropagation())
+    })
 }
 
 /***/ }),
@@ -297,6 +7441,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_sprite_icon_vk_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/sprite/icon-vk.svg */ "./src/assets/sprite/icon-vk.svg");
 /* harmony import */ var _assets_sprite_icon_rd_vector_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/sprite/icon-rd-vector.svg */ "./src/assets/sprite/icon-rd-vector.svg");
 /* harmony import */ var _assets_sprite_icon_magnifier_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../assets/sprite/icon-magnifier.svg */ "./src/assets/sprite/icon-magnifier.svg");
+/* harmony import */ var _assets_sprite_icon_cross_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../assets/sprite/icon-cross.svg */ "./src/assets/sprite/icon-cross.svg");
+/* harmony import */ var _assets_sprite_icon_file_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../assets/sprite/icon-file.svg */ "./src/assets/sprite/icon-file.svg");
+
+
 
 
 
@@ -308,7 +7456,9 @@ __webpack_require__.r(__webpack_exports__);
     tg: _assets_sprite_icon_tg_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
     vk: _assets_sprite_icon_vk_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
     roadmapVector: _assets_sprite_icon_rd_vector_svg__WEBPACK_IMPORTED_MODULE_3__["default"],
-    magnifier: _assets_sprite_icon_magnifier_svg__WEBPACK_IMPORTED_MODULE_4__["default"]
+    magnifier: _assets_sprite_icon_magnifier_svg__WEBPACK_IMPORTED_MODULE_4__["default"],
+    cross: _assets_sprite_icon_cross_svg__WEBPACK_IMPORTED_MODULE_5__["default"],
+    file: _assets_sprite_icon_file_svg__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 
 
@@ -13301,6 +20451,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./header */ "./src/js/header.js");
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_header__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modal */ "./src/js/modal.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./form */ "./src/js/form.js");
+/* harmony import */ var _inputmask__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./inputmask */ "./src/js/inputmask.js");
+/* harmony import */ var _mobile_menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mobile-menu */ "./src/js/mobile-menu.js");
+/* harmony import */ var _mobile_menu__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_mobile_menu__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
 
 
 

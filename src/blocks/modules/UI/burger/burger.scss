@@ -3,6 +3,23 @@
   display: block;
   width: 23px;
   height: 16px;
+  overflow: hidden;
+
+  &.active {
+    .burger__item {
+      top: -6px;
+    }
+    &::before {
+      top: 6px;
+      width: 23px;
+      transform: rotate(-45deg);
+    }
+    &::after {
+      top: 6px;
+      width: 23px;
+      transform: rotate(45deg);
+    }
+  }
 
   &__item {
     position: absolute;
@@ -13,6 +30,7 @@
     height: 3px;
     border-radius: 25px;
     background-color: $primary-accent;
+    transition: .2s linear;
   }
 
   &::before,
@@ -26,6 +44,7 @@
     height: 3px;
     border-radius: 25px;
     background-color: $primary-accent;
+    transition: .2s linear;
   }
 
   &::before {

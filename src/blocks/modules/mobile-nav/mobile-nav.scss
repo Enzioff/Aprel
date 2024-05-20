@@ -1,0 +1,39 @@
+.mobile-nav {
+  position: absolute;
+  top: calc(100% + 23px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: $white;
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: .2s linear;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  &__link {
+    display: flex;
+    min-width: 234px;
+    padding: 11px 17px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.82px;
+    text-align: left;
+    border-radius: 20px;
+
+    &.active {
+      background-color: #21D7A033;
+    }
+
+    &:hover {
+      background-color: #21D7A033;
+    }
+  }
+}

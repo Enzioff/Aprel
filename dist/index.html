@@ -18,9 +18,16 @@
 			<a href="tel:+79965212792" class="top-line__link">
 				+7 (996) 521-27-92
 			</a>
-			<div class="burger">
+			<div class="burger" data-burger>
 				<span class="burger__item"></span>
 			</div>
+			<nav class="mobile-nav" data-mobile-menu>
+				<a href="#" class="mobile-nav__link active">Главная</a>
+				<a href="#" class="mobile-nav__link">Услуги</a>
+				<a href="#" class="mobile-nav__link">О мастерской</a>
+				<a href="#" class="mobile-nav__link">Товары</a>
+				<a href="#" class="mobile-nav__link">Контакты</a>
+			</nav>
 		</div>
 	</div>
 </div>
@@ -63,7 +70,7 @@
                                         </p>
                                         <div class="article-preview__controls">
                                             <button class="button button--accent">Наши проекты</button>
-                                            <button class="button mob-hidden">Оставить заявку</button>
+                                            <button class="button mob-hidden" data-fancybox data-src="#feedback">Оставить заявку</button>
                                         </div>
                                     </div>
                                     <img class="article-preview__logo" src="./assets/images/aprel-intro.svg" alt="">
@@ -86,7 +93,7 @@
                                         </p>
                                         <div class="article-preview__controls">
                                             <button class="button button--accent">Наши проекты</button>
-                                            <button class="button mob-hidden">Оставить заявку</button>
+                                            <button class="button mob-hidden" data-fancybox data-src="#feedback">Оставить заявку</button>
                                         </div>
                                     </div>
                                     <img class="article-preview__logo" src="./assets/images/aprel-intro.svg" alt="">
@@ -109,7 +116,7 @@
                                         </p>
                                         <div class="article-preview__controls">
                                             <button class="button button--accent">Наши проекты</button>
-                                            <button class="button mob-hidden">Оставить заявку</button>
+                                            <button class="button mob-hidden" data-fancybox data-src="#feedback">Оставить заявку</button>
                                         </div>
                                     </div>
                                     <img class="article-preview__logo" src="./assets/images/aprel-intro.svg" alt="">
@@ -314,7 +321,8 @@
                     <p class="subtitle">О компании</p>
                     <h2 class="title">Ландшафтная<br/>мастерская</h2>
                 </div>
-                <p class="subtitle subtitle--default text-right mob-hidden">создаём комфортное и удобное<br/>в эксплуатации
+                <p class="subtitle subtitle--default text-right mob-hidden">создаём комфортное и удобное<br/>в
+                    эксплуатации
                     пространство</p>
             </div>
             <div class="about">
@@ -347,7 +355,8 @@
                         </div>
                     </div>
                 </div>
-                <p class="about__description about__description--accent desktop-hidden mbm-20">создаём комфортное и удобное<br/>в эксплуатации
+                <p class="about__description about__description--accent desktop-hidden mbm-20">создаём комфортное и
+                    удобное<br/>в эксплуатации
                     пространство</p>
                 <p class="about__description">
                     Простота ухода для нас важна, потому что мы много лет ухаживаем за уличными и комнатными растениями,
@@ -358,14 +367,15 @@
             </div>
         </div>
     </section>
-    <section class="section section--bg pt-130 ptm-40 pb-120 pbm-50" style="background-image: url('./assets/images/roadmap-bg.jpg')">
+    <section class="section section--bg pt-130 ptm-40 pb-120 pbm-50"
+             style="background-image: url('./assets/images/roadmap-bg.jpg')">
         <div class="container">
             <div class="head head--light mb-90 mbm-45">
                 <div class="head__info">
                     <p class="subtitle">roadmap</p>
                     <h2 class="title">этапы работы</h2>
                 </div>
-                <a href="#" class="button mob-hidden">Оставить заявку</a>
+                <a href="#" class="button mob-hidden" data-fancybox data-src="#feedback">Оставить заявку</a>
             </div>
             <div class="roadmap">
                 <div class="roadmap__item">
@@ -1030,7 +1040,7 @@
         </div>
     </section>
 </main>
-	<footer class="footer">
+<footer class="footer">
 	<div class="container">
 		<div class="footer__wrapper">
 			<a href="#" class="footer__logo">
@@ -1084,7 +1094,7 @@
 		</div>
 	</div>
 </footer>
-    <!-- Это временная секция, здесь ссылки на все страницы. На продакшене ее не будет -->
+<!-- Это временная секция, здесь ссылки на все страницы. На продакшене ее не будет -->
 <section class="section">
     <div class="container">
         <style>
@@ -1114,6 +1124,73 @@
         </div>
     </div>
 </section>
+<div class="modal" id="feedback" data-modal>
+    <div class="modal__content" data-modal-content>
+        <div class="modal__head">
+            <h2 class="modal__title">Откликнуться</h2>
+            <p class="modal__text">Заполните форму и мы свяжемся с вами в ближайшее время.</p>
+        </div>
+        <form action="#" class="modal__form" data-form>
+            <label class="modal__item">
+                <span>Ваше полное имя <sup>*</sup></span>
+                <input type="text" class="modal__input input" placeholder="Введите ваше имя">
+            </label>
+            <label class="modal__item">
+                <span>Телефон <sup>*</sup></span>
+                <input type="tel" class="modal__input input" placeholder="+7 (___) ___-__-__">
+            </label>
+            <label class="modal__item">
+                <span>Email <sup>*</sup></span>
+                <input type="email" class="modal__input input" placeholder="info@mail.ru">
+            </label>
+            <label class="modal__item">
+                <span>Адрес объекта</span>
+                <input type="text" class="modal__input input" placeholder="Введите адрес объекта">
+            </label>
+            <label class="modal__item">
+                <span>Сообщение</span>
+                <textarea class="input" placeholder="Сопроводительное письмо"></textarea>
+            </label>
+            <div class="modal__footer">
+                <label class="modal__file">
+                    <input type="file" style="display: none">
+                    <svg class="modal__icon">
+                        <use xlink:href="./assets/sprite/sprite.svg#icon-file"></use>
+                    </svg>
+                    <span>Прикрепить фотогорафии объекта</span>
+                </label>
+                <div class="modal__send">
+                    <button class="button" type="submit">Отправить</button>
+                    <label class="modal__accept">
+                        <input type="checkbox" class="checkbox checkbox--dark" data-form-accept>
+                        <span>Я согласен с правилами обработки персональных данных и ознакомлен с <a href="#">Политикой конфиденциальности</a></span>
+                    </label>
+                </div>
+            </div>
+        </form>
+        <button class="modal__close" type="button" data-modal-close>
+            <svg class="modal__icon">
+                <use xlink:href="./assets/sprite/sprite.svg#icon-cross"></use>
+            </svg>
+        </button>
+    </div>
+</div>
+<div class="modal modal--slim" id="accept" data-modal>
+    <div class="modal__content" data-modal-content>
+        <div class="modal__head">
+            <picture class="modal__picture">
+                <img src="./assets/images/logo-dark.svg" alt="">
+            </picture>
+            <h2 class="modal__title" data-modal-title>Заявка отправлена</h2>
+            <p class="modal__text" data-modal-text>Мы свяжемся с вами в ближайшее время.</p>
+        </div>
+        <button class="modal__close" type="button" data-modal-close>
+            <svg class="modal__icon">
+                <use xlink:href="./assets/sprite/sprite.svg#icon-cross"></use>
+            </svg>
+        </button>
+    </div>
+</div>
 <script defer src="js/bundle.js"></script></body>
 
 </html>

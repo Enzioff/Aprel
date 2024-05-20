@@ -5,3 +5,7 @@ import "../css/main.scss";
 
 import "./slider";
 import "./header";
+import "./modal";
+import "./form";
+import "./inputmask";
+import "./mobile-menu";
