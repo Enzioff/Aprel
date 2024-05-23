@@ -7136,10 +7136,18 @@ const initForm = () => {
         els.forEach(el => {
             if (el.checked) {
                 data.append(el.name, el.value)
-            } else if (el.type === 'text' || el.type === 'number' || el.type === 'date' || el.type === "tel" || el.type === 'email') {
+            } else if (el.type === 'file') {
+                data.append(el.name, el.files[0])
+            } else if (el.type === 'text' || el.type === 'number' || el.type === 'date' || el.type === "tel" || el.type === 'email' || el.type === 'textarea' || el.type === 'hidden') {
                 data.append(el.name, el.value)
             }
         })
+
+        if (window.productData) {
+            window.productData.formData.forEach(el => {
+                data.append(Object.keys(el)[0], ...Object.values(el)[0])
+            })
+        }
 
         return data
     }
@@ -7313,6 +7321,49 @@ const initModal = () => {
         modal.addEventListener('click', closeModal)
         close.addEventListener('click', closeModal)
         content.addEventListener('click', (evt) => evt.stopPropagation())
+    })
+}
+
+/***/ }),
+
+/***/ "./src/js/product-page.js":
+/*!********************************!*\
+  !*** ./src/js/product-page.js ***!
+  \********************************/
+/***/ (function() {
+
+document.addEventListener('DOMContentLoaded', () => {
+    initProductPage()
+})
+
+const initProductPage = () => {
+    const form = document.querySelector('[data-form-intermediate]')
+
+    if (!form) return;
+
+    const sendButtons = form.querySelectorAll('[data-product-id]')
+    const modal = document.querySelector('[data-modal]')
+    if (!modal) return;
+    const productId = modal.querySelector('[data-form-id]')
+    const productData = modal.querySelector('[data-modal-info]')
+    const els = [...form.querySelectorAll('input')]
+    const productPageInfo = document.querySelector('.product-page__list').cloneNode(true)
+    const productInfo = modal.querySelector('.product-detail__content')
+
+    sendButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            window.productData = {}
+            window.productData.formData = [];
+            productData.classList.remove('visually-hidden')
+            productId.value = button.getAttribute('data-product-id')
+            els.forEach(el => {
+                if (el.checked || el.type === 'text' || el.type === 'number') {
+                    window.productData.formData.push({[el.name]: [el.value]})
+                }
+            })
+            productInfo.innerHTML = '';
+            productInfo.insertAdjacentElement('beforeend', productPageInfo)
+        })
     })
 }
 
@@ -20456,6 +20507,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inputmask__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./inputmask */ "./src/js/inputmask.js");
 /* harmony import */ var _mobile_menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mobile-menu */ "./src/js/mobile-menu.js");
 /* harmony import */ var _mobile_menu__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_mobile_menu__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _product_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product-page */ "./src/js/product-page.js");
+/* harmony import */ var _product_page__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_product_page__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 

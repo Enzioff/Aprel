@@ -495,30 +495,61 @@
 			<h2 class="modal__title">Откликнуться</h2>
 			<p class="modal__text">Заполните форму и мы свяжемся с вами в ближайшее время.</p>
 		</div>
+		<div class="product-detail visually-hidden" data-modal-info>
+			<div class="product-detail__top">
+				<h3 class="product-detail__title">Ваш выбор</h3>
+				<p class="product-detail__product">Мешок/гроубэг</p>
+			</div>
+			<div class="product-detail__content">
+				<ul class="product-detail__list">
+					<li class="product-detail__item">
+						<span>Количество</span>
+						<span>Н</span>
+					</li>
+					<li class="product-detail__item">
+						<span>Ручки</span>
+						<span>да/нет</span>
+					</li>
+					<li class="product-detail__item">
+						<span>Объем</span>
+						<span>10</span>
+					</li>
+					<li class="product-detail__item">
+						<span>Форма</span>
+						<span>Круг/квадрат</span>
+					</li>
+					<li class="product-detail__item">
+						<span>Стоимость</span>
+						<span>Н</span>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<form action="#" class="modal__form" data-form>
+			<input type="hidden" name="PRODUCT_ID" value="" data-form-id>
 			<label class="modal__item">
 				<span>Ваше полное имя <sup>*</sup></span>
-				<input type="text" class="modal__input input" placeholder="Введите ваше имя">
+				<input type="text" class="modal__input input" name="NAME" placeholder="Введите ваше имя">
 			</label>
 			<label class="modal__item">
 				<span>Телефон <sup>*</sup></span>
-				<input type="tel" class="modal__input input" placeholder="+7 (___) ___-__-__">
+				<input type="tel" class="modal__input input" name="PHONE" placeholder="+7 (___) ___-__-__">
 			</label>
 			<label class="modal__item">
 				<span>Email <sup>*</sup></span>
-				<input type="email" class="modal__input input" placeholder="info@mail.ru">
+				<input type="email" class="modal__input input" name="MAIL" placeholder="info@mail.ru">
 			</label>
 			<label class="modal__item">
 				<span>Адрес объекта</span>
-				<input type="text" class="modal__input input" placeholder="Введите адрес объекта">
+				<input type="text" class="modal__input input" name="ADDRESS" placeholder="Введите адрес объекта">
 			</label>
 			<label class="modal__item">
 				<span>Сообщение</span>
-				<textarea class="input" placeholder="Сопроводительное письмо"></textarea>
+				<textarea class="input" name="MESSAGE" placeholder="Сопроводительное письмо"></textarea>
 			</label>
 			<div class="modal__footer">
 				<label class="modal__file">
-					<input type="file" style="display: none">
+					<input type="file" style="display: none" name="FILE">
 					<svg class="modal__icon">
 						<use xlink:href="./assets/sprite/sprite.svg#icon-file"></use>
 					</svg>

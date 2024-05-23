@@ -21,6 +21,12 @@
     justify-content: flex-start;
     gap: 50px;
 
+    @include r($mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
     .nav__link {
       color: $white;
       text-transform: none;

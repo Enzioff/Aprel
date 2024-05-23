@@ -27,10 +27,18 @@ const initForm = () => {
         els.forEach(el => {
             if (el.checked) {
                 data.append(el.name, el.value)
-            } else if (el.type === 'text' || el.type === 'number' || el.type === 'date' || el.type === "tel" || el.type === 'email') {
+            } else if (el.type === 'file') {
+                data.append(el.name, el.files[0])
+            } else if (el.type === 'text' || el.type === 'number' || el.type === 'date' || el.type === "tel" || el.type === 'email' || el.type === 'textarea' || el.type === 'hidden') {
                 data.append(el.name, el.value)
             }
         })
+
+        if (window.productData) {
+            window.productData.formData.forEach(el => {
+                data.append(Object.keys(el)[0], ...Object.values(el)[0])
+            })
+        }
 
         return data
     }
