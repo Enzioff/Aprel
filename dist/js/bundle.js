@@ -7115,82 +7115,84 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 const initForm = () => {
-    const form = document.querySelector('[data-form]')
-    if (!form) return;
-    const accept = form.querySelector('[data-form-accept]');
-    const submit = form.querySelector('button[type="submit"]');
-    const url = form.getAttribute('action')
-    const els = [...form.querySelectorAll('input'), ...form.querySelectorAll('textarea')]
+    const forms = document.querySelectorAll('[data-form]')
+    if (!forms) return;
+    forms.forEach(form => {
+        const accept = form.querySelector('[data-form-accept]');
+        const submit = form.querySelector('button[type="submit"]');
+        const url = form.getAttribute('action')
+        const els = [...form.querySelectorAll('input'), ...form.querySelectorAll('textarea')]
 
-    submit.setAttribute('disabled', accept.checked);
+        submit.setAttribute('disabled', accept.checked);
 
-    accept.addEventListener('change', () => {
-        accept.checked
-            ? submit.removeAttribute('disabled')
-            : submit.setAttribute('disabled', accept.checked);
-    })
-
-    const getData = () => {
-        const data = new FormData()
-
-        els.forEach(el => {
-            if (el.checked) {
-                data.append(el.name, el.value)
-            } else if (el.type === 'file') {
-                data.append(el.name, el.files[0])
-            } else if (el.type === 'text' || el.type === 'number' || el.type === 'date' || el.type === "tel" || el.type === 'email' || el.type === 'textarea' || el.type === 'hidden') {
-                data.append(el.name, el.value)
-            }
+        accept.addEventListener('change', () => {
+            accept.checked
+                ? submit.removeAttribute('disabled')
+                : submit.setAttribute('disabled', accept.checked);
         })
 
-        if (window.productData) {
-            window.productData.formData.forEach(el => {
-                data.append(Object.keys(el)[0], ...Object.values(el)[0])
+        const getData = () => {
+            const data = new FormData()
+
+            els.forEach(el => {
+                if (el.checked) {
+                    data.append(el.name, el.value)
+                } else if (el.type === 'file') {
+                    data.append(el.name, el.files[0])
+                } else if (el.type === 'text' || el.type === 'number' || el.type === 'date' || el.type === "tel" || el.type === 'email' || el.type === 'textarea' || el.type === 'hidden') {
+                    data.append(el.name, el.value)
+                }
             })
+
+            if (window.productData) {
+                window.productData.formData.forEach(el => {
+                    data.append(Object.keys(el)[0], ...Object.values(el)[0])
+                })
+            }
+
+            return data
         }
 
-        return data
-    }
+        const sendData = () => {
+            axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, getData())
+                .then(response => response.data)
+                .then(data => {
+                    _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.close()
+                    const title = document.querySelector('[data-modal-title]')
+                    const text = document.querySelector('[data-modal-text]')
+                    if (title || text) {
+                        title.textContent = 'Заявка отправлена';
+                        text.textContent = 'Мы свяжемся с вами в ближайшее время.'
+                    }
 
-    const sendData = () => {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, getData())
-            .then(response => response.data)
-            .then(data => {
-                _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.close()
-                const title = document.querySelector('[data-modal-title]')
-                const text = document.querySelector('[data-modal-text]')
-                if (title || text) {
-                    title.textContent = 'Заявка отправлена';
-                    text.textContent = 'Мы свяжемся с вами в ближайшее время.'
-                }
+                    _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.show([{
+                        src: '#accept',
+                        type: 'inline'
+                    }])
+                })
+                .catch(error => {
+                    _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.close()
+                    const {message} = error;
+                    const title = document.querySelector('[data-modal-title]')
+                    const text = document.querySelector('[data-modal-text]')
+                    if (title || text) {
+                        title.textContent = 'Ошибка';
+                        text.textContent = message;
+                    }
 
-                _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.show([{
-                    src: '#accept',
-                    type: 'inline'
-                }])
-            })
-            .catch(error => {
-                _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.close()
-                const {message} = error;
-                const title = document.querySelector('[data-modal-title]')
-                const text = document.querySelector('[data-modal-text]')
-                if (title || text) {
-                    title.textContent = 'Ошибка';
-                    text.textContent = message;
-                }
+                    _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.show([{
+                        src: '#accept',
+                        type: 'inline'
+                    }])
 
-                _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.show([{
-                    src: '#accept',
-                    type: 'inline'
-                }])
+                    console.error(error)
+                })
+        }
 
-                console.error(error)
-            })
-    }
-
-    form.addEventListener('submit', (evt) => {
-        evt.preventDefault()
-        sendData()
+        form.addEventListener('submit', (evt) => {
+            evt.preventDefault()
+            sendData()
+        })
     })
 }
 
@@ -7263,6 +7265,50 @@ const initMask = () => {
         (0,inputmask_lib_inputmask__WEBPACK_IMPORTED_MODULE_0__["default"])({mask: "+7 (999) 999-99-99"}).mask(tel);
     })
 }
+
+/***/ }),
+
+/***/ "./src/js/loadMore.js":
+/*!****************************!*\
+  !*** ./src/js/loadMore.js ***!
+  \****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loadContent = document.querySelector('[data-load-content]')
+    const loadMoreBtn = document.querySelector('[data-load-more]')
+
+    if (!loadMoreBtn || !loadContent) return
+
+    const url = loadMoreBtn.getAttribute('data-url')
+
+    if (!url) return
+
+    const load = () => {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get(url)
+            .then(response => response.data)
+            .then(data => {
+                const parser = new DOMParser()
+                const items = parser.parseFromString(data, 'text/html').querySelectorAll('[data-load-item]')
+                items.forEach((item) => {
+                    loadContent.appendChild(item)
+                })
+                if (items.length < loadContent.getAttribute('data-loading-count')) {
+                    loadMoreBtn.style.display = 'none'
+                }
+            })
+            .catch(error => console.error(error))
+    }
+
+    loadMoreBtn.addEventListener('click', load)
+})
+
 
 /***/ }),
 
@@ -7342,25 +7388,26 @@ const initProductPage = () => {
     if (!form) return;
 
     const sendButtons = form.querySelectorAll('[data-product-id]')
-    const modal = document.querySelector('[data-modal]')
+    const modal = document.querySelector('[data-modal-extended]')
     if (!modal) return;
     const productId = modal.querySelector('[data-form-id]')
-    const productData = modal.querySelector('[data-modal-info]')
     const els = [...form.querySelectorAll('input')]
-    const productPageInfo = document.querySelector('.product-page__list').cloneNode(true)
+    const productPageInfo = document.querySelector('.product-page__form .product-page__list').cloneNode(true)
     const productInfo = modal.querySelector('.product-detail__content')
 
     sendButtons.forEach(button => {
         button.addEventListener('click', () => {
             window.productData = {}
             window.productData.formData = [];
-            productData.classList.remove('visually-hidden')
+
             productId.value = button.getAttribute('data-product-id')
+
             els.forEach(el => {
                 if (el.checked || el.type === 'text' || el.type === 'number') {
                     window.productData.formData.push({[el.name]: [el.value]})
                 }
             })
+
             productInfo.innerHTML = '';
             productInfo.insertAdjacentElement('beforeend', productPageInfo)
         })
@@ -20509,6 +20556,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mobile_menu__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_mobile_menu__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _product_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product-page */ "./src/js/product-page.js");
 /* harmony import */ var _product_page__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_product_page__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _loadMore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./loadMore */ "./src/js/loadMore.js");
+
 
 
 

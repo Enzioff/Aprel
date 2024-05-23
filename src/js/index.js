@@ -10,3 +10,4 @@ import "./form";
 import "./inputmask";
 import "./mobile-menu";
 import "./product-page";
+import "./loadMore";

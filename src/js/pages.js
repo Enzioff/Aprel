@@ -69,4 +69,14 @@ module.exports = [
         sectionFooter,
         temp
     }),
+    new HtmlWebpackPlugin({
+        template: "./src/pages/catalog.html",
+        filename: "catalog.html",
+        inject: "body",
+        title: "Aprel | Каталог",
+        head,
+        sectionHeader,
+        sectionFooter,
+        temp
+    }),
 ];

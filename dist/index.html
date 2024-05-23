@@ -1122,6 +1122,88 @@
 		</button>
 	</div>
 </div>
+<div class="modal" id="product" data-modal data-modal-extended>
+	<div class="modal__content" data-modal-content>
+		<div class="modal__head">
+			<h2 class="modal__title">Откликнуться</h2>
+			<p class="modal__text">Заполните форму и мы свяжемся с вами в ближайшее время.</p>
+		</div>
+		<div class="product-detail" data-modal-info>
+			<div class="product-detail__top">
+				<h3 class="product-detail__title">Ваш выбор</h3>
+				<p class="product-detail__product">Мешок/гроубэг</p>
+			</div>
+			<div class="product-detail__content">
+				<ul class="product-detail__list">
+					<li class="product-detail__item">
+						<span>Количество</span>
+						<span>Н</span>
+					</li>
+					<li class="product-detail__item">
+						<span>Ручки</span>
+						<span>да/нет</span>
+					</li>
+					<li class="product-detail__item">
+						<span>Объем</span>
+						<span>10</span>
+					</li>
+					<li class="product-detail__item">
+						<span>Форма</span>
+						<span>Круг/квадрат</span>
+					</li>
+					<li class="product-detail__item">
+						<span>Стоимость</span>
+						<span>Н</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<form action="#" class="modal__form" data-form>
+			<input type="hidden" name="PRODUCT_ID" value="" data-form-id>
+			<label class="modal__item">
+				<span>Ваше полное имя <sup>*</sup></span>
+				<input type="text" class="modal__input input" name="NAME" placeholder="Введите ваше имя">
+			</label>
+			<label class="modal__item">
+				<span>Телефон <sup>*</sup></span>
+				<input type="tel" class="modal__input input" name="PHONE" placeholder="+7 (___) ___-__-__">
+			</label>
+			<label class="modal__item">
+				<span>Email <sup>*</sup></span>
+				<input type="email" class="modal__input input" name="MAIL" placeholder="info@mail.ru">
+			</label>
+			<label class="modal__item">
+				<span>Адрес объекта</span>
+				<input type="text" class="modal__input input" name="ADDRESS" placeholder="Введите адрес объекта">
+			</label>
+			<label class="modal__item">
+				<span>Сообщение</span>
+				<textarea class="input" name="MESSAGE" placeholder="Сопроводительное письмо"></textarea>
+			</label>
+			<div class="modal__footer">
+				<label class="modal__file">
+					<input type="file" style="display: none" name="FILE">
+					<svg class="modal__icon">
+						<use xlink:href="./assets/sprite/sprite.svg#icon-file"></use>
+					</svg>
+					<span>Прикрепить фотогорафии объекта</span>
+				</label>
+				<div class="modal__send">
+					<button class="button" type="submit">Отправить</button>
+					<label class="modal__accept">
+						<input type="checkbox" class="checkbox checkbox--dark" data-form-accept>
+						<span>Я согласен с правилами обработки персональных данных и ознакомлен с <a href="#">Политикой конфиденциальности</a></span>
+					</label>
+				</div>
+			</div>
+		</form>
+		<button class="modal__close" type="button" data-modal-close>
+			<svg class="modal__icon">
+				<use xlink:href="./assets/sprite/sprite.svg#icon-cross"></use>
+			</svg>
+		</button>
+	</div>
+</div>
 <div class="modal modal--slim" id="accept" data-modal>
 	<div class="modal__content" data-modal-content>
 		<div class="modal__head">
@@ -1146,7 +1228,7 @@
 			</a>
 			<div class="footer__content">
 				<div class="footer__top">
-					<button class="button">Оставить заявку</button>
+					<button class="button" data-fancybox data-src="#feedback">Оставить заявку</button>
 					<a href="tel:+79965212792" class="footer__phone">
 						Тел: <span>+7 (996) 521-27-92</span>
 					</a>
@@ -1219,6 +1301,7 @@
             <a href="./about.html" class="temp__link">О мастерской</a>
             <a href="./product-page.html" class="temp__link">Карточка товара</a>
             <a href="./contacts.html" class="temp__link">Контакты</a>
+            <a href="./catalog.html" class="temp__link">Каталог</a>
         </div>
     </div>
 </section>
