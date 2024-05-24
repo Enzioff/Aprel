@@ -30,6 +30,39 @@ const initProductPage = () => {
 
             productInfo.innerHTML = '';
             productInfo.insertAdjacentElement('beforeend', productPageInfo)
+            const productList = productInfo.querySelector('.product-page__list');
+            if (!productList) return
+            for (let i = 0; i < window.productData.formData.length; i++) {
+                productList.insertAdjacentHTML('beforeend', itemTemplate(window.productData.formData[i]))
+            }
         })
     })
+}
+
+const itemTemplate = (data) => {
+    const quantity = data['QUANTITY'];
+    const pens = data['PENS'];
+    const shape = data['SHAPE'];
+    const volume = data['VOLUME'];
+    let title = ''
+    let value = ''
+    if (quantity) {
+        title = 'Количество'
+        value = quantity
+    } else if (pens) {
+        title = 'Добавить ручки'
+        value = pens
+    } else if (shape) {
+        title = 'Тип'
+        value = shape
+    } else if (volume) {
+        title = 'Размер'
+        value = volume
+    }
+    return `
+        <li class="product-page__item">
+            <strong>${title}</strong>
+            <span>${value}</span>
+        </li>
+    `
 }
