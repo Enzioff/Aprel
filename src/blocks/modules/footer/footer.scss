@@ -74,6 +74,10 @@
     flex-direction: column;
     justify-content: space-between;
     height: auto;
+
+    @include r($mobile) {
+      gap: 10px;
+    }
   }
 
   &__phone {

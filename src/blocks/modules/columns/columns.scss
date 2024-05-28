@@ -73,4 +73,10 @@
             grid-column: span 12;
         }
     }
+    
+    &--custom {
+        @include r($mobile) {
+            gap: 10px;
+        }
+    }
 }

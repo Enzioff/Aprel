@@ -172,14 +172,14 @@
                                 Заполните форму заявки и мы рассмотрим ваш запрос
                             </p>
                         </div>
-                        <form class="form" action="#">
-                            <fieldset class="form__wrapper">
+                        <form class="form" action="#" data-form>
+                            <fieldset class="form__wrapper mbm-10">
                                 <label class="form__item">
                                     <input class="input input--form" type="text" placeholder="Введите имя">
                                     <span class="form__legend">Имя</span>
                                 </label>
                                 <label class="form__item">
-                                    <input class="input input--form" type="text" placeholder="+7-000-000-00-00">
+                                    <input class="input input--form" type="tel" placeholder="+7-000-000-00-00">
                                     <span class="form__legend">Телефон</span>
                                 </label>
                             </fieldset>
@@ -190,9 +190,9 @@
                                 </label>
                             </fieldset>
                             <div class="form__footer">
-                                <button class="button" type="submit">Отправить</button>
+                                <button class="button button--mobile-wide" type="submit">Отправить</button>
                                 <label class="form__accept">
-                                    <input class="checkbox" type="checkbox">
+                                    <input class="checkbox" type="checkbox" data-form-accept>
                                     <span>
                                         Я согласен с правилами обработки персональных данных и ознакомлен с <a
                                             href="#" target="_blank">Политикой конфидециальности</a>

@@ -7125,6 +7125,8 @@ const initForm = () => {
 
         submit.setAttribute('disabled', accept.checked);
 
+        console.log(submit)
+
         accept.addEventListener('change', () => {
             accept.checked
                 ? submit.removeAttribute('disabled')
@@ -7312,6 +7314,101 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /***/ }),
 
+/***/ "./src/js/masters.js":
+/*!***************************!*\
+  !*** ./src/js/masters.js ***!
+  \***************************/
+/***/ (function() {
+
+document.addEventListener('DOMContentLoaded', () => {
+    initMasters()
+})
+
+const initMasters = () => {
+    const masters = document.querySelectorAll('[data-master]')
+    const pictures = document.querySelectorAll('[data-person]')
+    const media = matchMedia('(max-width: 1200px)')
+    const list = document.querySelector('.masters__list');
+
+    if (!masters || !list) return
+
+    masters.forEach(master => {
+        const masterPicture = pictures.item(master.getAttribute('data-master'))
+        master.addEventListener('click', () => {
+            pictures.forEach(temp => temp.classList.remove('active'))
+            if (!master.classList.contains('active')) {
+                masters.forEach(temp => {
+                    temp.classList.remove('active')
+                    if (media.matches) {
+                        temp.style.position = 'absolute';
+                    }
+                })
+                master.classList.add('active')
+                masterPicture.classList.add('active')
+                if (media.matches) {
+                    if (+master.getAttribute('data-master') === 2) {
+                        masters[0].style.left = '-116px'
+                        masters[0].style.width = 'auto'
+                        master.style.position = 'relative'
+                        master.style.width = 'calc(100% - 40px)'
+                        master.style.right = '0'
+                        list.style.justifyContent = 'flex-end'
+                    } else {
+                        masters[1].style.right = '-189px'
+                        masters[1].style.width = 'auto'
+                        master.style.position = 'relative'
+                        master.style.width = 'calc(100% - 40px)'
+                        master.style.left = '0'
+                        list.style.justifyContent = 'flex-start'
+                    }
+                } else {
+                    masters[0].style.position = null;
+                    masters[0].style.left = null;
+                    masters[0].style.width = null;
+                    masters[1].style.position = null;
+                    masters[1].style.width = null;
+                    masters[1].style.right = null;
+                    list.style.justifyContent = null;
+                }
+            } else {
+                master.classList.remove('active')
+                masterPicture.classList.remove('active')
+                pictures[0].classList.add('active')
+                if (media.matches) {
+                    masters[0].style.position = 'relative'
+                    masters[0].style.left = '0'
+                    masters[0].style.width = '100%'
+                    masters[1].style.position = 'relative'
+                    masters[1].style.width = '100%'
+                    masters[1].style.right = '0'
+                    list.style.justifyContent = 'space-between'
+                } else {
+                    masters[0].style.position = null;
+                    masters[0].style.left = null;
+                    masters[0].style.width = null;
+                    masters[1].style.position = null;
+                    masters[1].style.width = null;
+                    masters[1].style.right = null;
+                    list.style.justifyContent = null;
+                }
+            }
+        })
+    })
+    media.addEventListener('change', () => {
+        if (!media.matches) {
+            masters.forEach(master => {
+                master.style.position = null;
+                master.style.left = null;
+                master.style.width = null;
+                master.style.right = null;
+                list.style.justifyContent = null;
+            })
+        }
+    })
+}
+
+/***/ }),
+
 /***/ "./src/js/mobile-menu.js":
 /*!*******************************!*\
   !*** ./src/js/mobile-menu.js ***!
@@ -7379,6 +7476,7 @@ const initModal = () => {
 /***/ (function() {
 
 document.addEventListener('DOMContentLoaded', () => {
+    initLiveUpdate()
     initProductPage()
 })
 
@@ -7392,11 +7490,12 @@ const initProductPage = () => {
     if (!modal) return;
     const productId = modal.querySelector('[data-form-id]')
     const els = [...form.querySelectorAll('input')]
-    const productPageInfo = document.querySelector('.product-page__form .product-page__list').cloneNode(true)
     const productInfo = modal.querySelector('.product-detail__content')
 
     sendButtons.forEach(button => {
         button.addEventListener('click', () => {
+            const productPageInfo = document.querySelector('.product-page__form .product-page__list').cloneNode(true)
+            const productItems = productPageInfo.querySelectorAll('li')
             window.productData = {}
             window.productData.formData = [];
 
@@ -7411,6 +7510,10 @@ const initProductPage = () => {
             productInfo.innerHTML = '';
             productInfo.insertAdjacentElement('beforeend', productPageInfo)
             const productList = productInfo.querySelector('.product-page__list');
+            productList.innerHTML = '';
+            productItems.forEach(el => {
+                productList.insertAdjacentElement('beforeend', el)
+            })
             if (!productList) return
             for (let i = 0; i < window.productData.formData.length; i++) {
                 productList.insertAdjacentHTML('beforeend', itemTemplate(window.productData.formData[i]))
@@ -7428,7 +7531,7 @@ const itemTemplate = (data) => {
     let value = ''
     if (quantity) {
         title = 'Количество'
-        value = quantity
+        value = parseInt(quantity, 10) > 1 ? quantity : 1
     } else if (pens) {
         title = 'Добавить ручки'
         value = pens
@@ -7445,6 +7548,87 @@ const itemTemplate = (data) => {
             <span>${value}</span>
         </li>
     `
+}
+
+const initLiveUpdate = () => {
+    const visibleElements = document.querySelectorAll('[data-visible]')
+    const typesElements = document.querySelectorAll('[data-shape-type]')
+    let volumeElements = document.querySelectorAll('[data-price]')
+    const pensPrice = document.querySelector('[data-pens-price]')
+    const totalPrice = document.querySelector('[data-final-price]')
+    const quantity = document.querySelector('[data-quantity]')
+    const paramType = document.querySelector('[data-param-shape]')
+    const width = document.querySelector('[data-width]')
+    const height = document.querySelector('[data-height]')
+
+    if (!visibleElements) return
+
+    visibleElements[0].style.display = 'block'
+
+    const updatePrice = () => {
+        const currentElement = Array.from(volumeElements).find(el => el.checked);
+        const currentType = Array.from(typesElements).find(el => el.checked).getAttribute('data-shape-type');
+        const currentTypeValue = Array.from(typesElements).find(el => el.checked).value;
+        const currentWidth = currentElement.getAttribute('data-volume-width')
+        const currentHeight = currentElement.getAttribute('data-volume-height')
+        let price = 0;
+
+        if (currentType === 'circle') {
+            price = price + +currentElement.getAttribute('data-price')
+        } else {
+            price = price + +currentElement.getAttribute('data-price-second')
+        }
+
+        if (pensPrice.checked) {
+            price += +pensPrice.getAttribute('data-pens-price')
+        }
+
+        if (quantity.value <= 0) {
+            price *= 1;
+        } else {
+            price *= quantity.value
+        }
+
+        paramType.textContent = currentTypeValue
+        width.textContent = currentWidth
+        height.textContent = currentHeight
+
+        totalPrice.textContent = `${price}`;
+    }
+
+    updatePrice()
+
+    typesElements.forEach((type, idx) => {
+        type.addEventListener('change', () => {
+            const currentType = type.getAttribute('data-shape-type')
+            visibleElements.forEach(temp => temp.style.display = null)
+            const current = visibleElements.item(idx)
+            current.style.display = 'block'
+
+            updatePrice(currentType)
+        })
+    })
+
+    volumeElements.forEach(el => {
+        el.addEventListener('change', () => {
+            const currentElement = Array.from(typesElements).find(el => el.checked);
+            updatePrice(currentElement.getAttribute('data-shape-type'))
+        })
+    })
+
+    pensPrice.addEventListener('change', () => {
+        const currentElement = Array.from(typesElements).find(el => el.checked);
+        updatePrice(currentElement.getAttribute('data-shape-type'))
+    })
+
+    quantity.addEventListener('input', () => {
+        if (quantity.value <= 0) {
+            quantity.value = 1;
+        }
+        const currentElement = Array.from(typesElements).find(el => el.checked);
+        updatePrice(currentElement.getAttribute('data-shape-type'))
+    })
+
 }
 
 /***/ }),
@@ -7534,7 +7718,7 @@ class Slider {
 
     initThumbsSlider() {
         const slider = this.el.querySelector('.swiper');
-        const thumbSlider = document.querySelector('.slider--thumbs');
+        const thumbSlider = this.el.parentElement.querySelector('.slider--thumbs');
         const thumb = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](thumbSlider.querySelector('.swiper'), {
             slidesPerView: 2,
             spaceBetween: 16,
@@ -20590,6 +20774,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _product_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product-page */ "./src/js/product-page.js");
 /* harmony import */ var _product_page__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_product_page__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _loadMore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./loadMore */ "./src/js/loadMore.js");
+/* harmony import */ var _masters__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./masters */ "./src/js/masters.js");
+/* harmony import */ var _masters__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_masters__WEBPACK_IMPORTED_MODULE_11__);
+
 
 
 

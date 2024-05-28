@@ -73,7 +73,7 @@ class Slider {
 
     initThumbsSlider() {
         const slider = this.el.querySelector('.swiper');
-        const thumbSlider = document.querySelector('.slider--thumbs');
+        const thumbSlider = this.el.parentElement.querySelector('.slider--thumbs');
         const thumb = new Swiper(thumbSlider.querySelector('.swiper'), {
             slidesPerView: 2,
             spaceBetween: 16,

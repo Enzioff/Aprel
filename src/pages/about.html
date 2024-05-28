@@ -7,7 +7,7 @@
 <body class="body">
 <%= htmlWebpackPlugin.options.sectionHeader %>
 <main class="main">
-    <section class="section pt-50 pb-40 pbm-30">
+    <section class="section pt-50 pb-80 pbm-30">
         <div class="container">
             <div class="page-header mb-80 mbm-30">
                 <div class="breadcrumbs">
@@ -70,13 +70,23 @@
                         </div>
                     </div>
                     <div class="masters__list">
-                        <div class="masters__item">
+                        <div class="masters__item" data-master="1">
                             <h3 class="masters__title">Анна Кудрявцева</h3>
                             <p class="masters__description">Ландшафтный архитектор</p>
+                            <p class="masters__description masters__description--full">
+                                Стаж: 3 года<br>
+                                Количество проектов: 0<br>
+                                Образование: есть
+                            </p>
                         </div>
-                        <div class="masters__item">
+                        <div class="masters__item" data-master="2">
                             <h3 class="masters__title">Юрий Семёнов</h3>
                             <p class="masters__description">Руководитель отдела озеленения и ухода</p>
+                            <p class="masters__description masters__description--full">
+                                Стаж: 3 года<br>
+                                Количество проектов: 0<br>
+                                Образование: есть
+                            </p>
                         </div>
                     </div>
                     <p class="masters__text mob-hidden">
@@ -85,7 +95,9 @@
                     </p>
                 </div>
                 <picture class="masters__picture picture">
-                    <img src="./assets/images/people.jpg" alt="">
+                    <img class="masters__person active" src="./assets/images/people.jpg" data-person="0" alt="">
+                    <img class="masters__person masters__person--absolute" src="./assets/images/person-2.jpg" data-person="1" alt="">
+                    <img class="masters__person masters__person--absolute" src="./assets/images/person-1.jpg" data-person="2" alt="">
                 </picture>
             </div>
         </div>
@@ -244,14 +256,14 @@
                                 Заполните форму заявки и мы рассмотрим ваш запрос
                             </p>
                         </div>
-                        <form class="form" action="#">
-                            <fieldset class="form__wrapper">
+                        <form class="form" action="#" data-form>
+                            <fieldset class="form__wrapper mbm-10">
                                 <label class="form__item">
                                     <input class="input input--form" type="text" placeholder="Введите имя">
                                     <span class="form__legend">Имя</span>
                                 </label>
                                 <label class="form__item">
-                                    <input class="input input--form" type="text" placeholder="+7-000-000-00-00">
+                                    <input class="input input--form" type="tel" placeholder="+7-000-000-00-00">
                                     <span class="form__legend">Телефон</span>
                                 </label>
                             </fieldset>
@@ -262,9 +274,9 @@
                                 </label>
                             </fieldset>
                             <div class="form__footer">
-                                <button class="button" type="submit">Отправить</button>
+                                <button class="button button--mobile-wide" type="submit">Отправить</button>
                                 <label class="form__accept">
-                                    <input class="checkbox" type="checkbox">
+                                    <input class="checkbox" type="checkbox" data-form-accept>
                                     <span>
                                         Я согласен с правилами обработки персональных данных и ознакомлен с <a
                                             href="#" target="_blank">Политикой конфидециальности</a>
