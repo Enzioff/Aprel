@@ -1563,6 +1563,10 @@ button {
     max-width: 100%;
   }
 }
+.button--dark:hover {
+  -webkit-box-shadow: 0 3px 4px 0 #a9a38c inset, 0 -3px 4px 0 #FFFDF6 inset;
+          box-shadow: 0 3px 4px 0 #a9a38c inset, 0 -3px 4px 0 #FFFDF6 inset;
+}
 
 .input {
   display: inline-block;
@@ -4726,6 +4730,7 @@ svg {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 50px 39px 54px 50px;
+  height: 100%;
   background-color: #fff;
   border-radius: 25px 0 25px 25px;
 }

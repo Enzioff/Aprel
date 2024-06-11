@@ -48,4 +48,10 @@
       max-width: 100%;
     }
   }
+
+  &--dark {
+    &:hover {
+      box-shadow: 0 3px 4px 0 #a9a38c inset, 0 -3px 4px 0 #FFFDF6 inset;
+    }
+  }
 }
