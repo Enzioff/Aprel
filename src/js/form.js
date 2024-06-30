@@ -16,8 +16,6 @@ const initForm = () => {
 
         submit.setAttribute('disabled', accept.checked);
 
-        console.log(submit)
-
         accept.addEventListener('change', () => {
             accept.checked
                 ? submit.removeAttribute('disabled')

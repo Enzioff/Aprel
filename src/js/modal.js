@@ -1,12 +1,20 @@
 import {Fancybox} from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import Swiper from "swiper";
 
 document.addEventListener('DOMContentLoaded', () => {
     initModal()
 })
 
 const initModal = () => {
-    Fancybox.bind('[data-fancybox]', {})
+    Fancybox.bind('[data-fancybox]', {
+        backFocus: true,
+        on: {
+            done: (fancybox, slide) => {
+                const index = slide.index;
+            }
+        }
+    })
 
     const modals = document.querySelectorAll('[data-modal]');
     if (!modals) return;

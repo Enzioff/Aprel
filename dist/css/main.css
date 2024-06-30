@@ -2382,6 +2382,10 @@ svg {
   border: 1px solid #1ec996;
 }
 
+.swiper-wrapper {
+  height: auto !important;
+}
+
 .social {
   display: -webkit-box;
   display: -webkit-flex;
